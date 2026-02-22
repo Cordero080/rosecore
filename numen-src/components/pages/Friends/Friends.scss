@@ -1,0 +1,1137 @@
+// Friends.consolidated.scss - Friends page styles (CONSOLIDATED VERSION)
+// 🔵 PABLO - UI/Styling
+// TEST THIS FILE before replacing Friends.scss
+// To test: rename this to Friends.scss and rename original to Friends.backup.scss
+
+// ============================================
+// BASE PAGE LAYOUT
+// ============================================
+
+.friends-page {
+  min-height: 100vh;
+  width: 100%;
+  color: var(--text-primary);
+  position: relative;
+  overflow-x: hidden;
+  padding-bottom: 80px;
+  box-sizing: border-box;
+  margin-top: -60px;
+  padding-top: 60px;
+  
+  // Background that extends full width behind sidebar - darker
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--bg-overlay);
+    z-index: -1;
+    pointer-events: none;
+  }
+}
+
+// ============================================
+// SCANNING OVERLAY EFFECT
+// ============================================
+
+.scan-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 100;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(79, 255, 255, 0.03) 50%,
+    transparent 100%
+  );
+  background-size: 100% 200%;
+  animation: scanOverlay 2s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes scanOverlay {
+  0% {
+    opacity: 1;
+    background-position: 0% 0%;
+  }
+  100% {
+    opacity: 0;
+    background-position: 0% 200%;
+  }
+}
+
+// Scan line on individual cards
+.scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #4fffff, transparent);
+  opacity: 0;
+  animation: cardScan 0.8s ease-out forwards;
+  animation-delay: inherit;
+  z-index: 10;
+}
+
+@keyframes cardScan {
+  0% {
+    opacity: 1;
+    top: 0;
+    box-shadow: 0 0 20px rgba(79, 255, 255, 0.8), 0 0 40px rgba(79, 255, 255, 0.4);
+  }
+  100% {
+    opacity: 0;
+    top: 100%;
+    box-shadow: 0 0 5px rgba(79, 255, 255, 0.2);
+  }
+}
+
+// ============================================
+// HEADER - Centered with stats below title
+// ============================================
+
+.friends-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 1100px;
+  margin: 80px auto 28px;
+  padding: 0 24px;
+  gap: 12px;
+}
+
+.friends-title {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, var(--text-primary) 30%, rgba(150, 160, 170, 0.7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 40px rgba(79, 255, 255, 0.15);
+}
+
+.friends-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.stat-item {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.stat-value {
+  font-family: var(--font-title);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--cyan);
+  text-shadow: 0 0 10px rgba(79, 255, 255, 0.5);
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
+
+// Dot separator between stats
+.stat-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(79, 255, 255, 0.5);
+  box-shadow: 0 0 6px rgba(79, 255, 255, 0.4);
+}
+
+// Remove old divider style
+.stat-divider {
+  display: none;
+}
+
+// ============================================
+// TABS - Same style as view-toggle-btn
+// ============================================
+
+.friends-tabs {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto 30px;
+  padding: 0 20px;
+}
+
+.tab-btn {
+  background: rgba(12, 18, 30, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(79, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0.25rem 0.85rem;
+  cursor: pointer;
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-display);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+
+  &:hover {
+    background: rgba(20, 30, 50, 0.5);
+    transform: translateY(-1px);
+    border-color: rgba(79, 255, 255, 0.4);
+    color: var(--cyan);
+    box-shadow: 0 4px 12px rgba(79, 255, 255, 0.15);
+  }
+
+  &.active {
+    background: rgba(79, 255, 255, 0.08);
+    border-color: rgba(79, 255, 255, 0.5);
+    color: var(--cyan);
+    text-shadow: 0 0 8px rgba(79, 255, 255, 0.6);
+    box-shadow: 0 4px 16px rgba(79, 255, 255, 0.2);
+  }
+}
+
+.tab-badge {
+  background: var(--magenta);
+  color: white;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-family: 'sweet-square-pro', monospace;
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+// ============================================
+// FRIENDS GRID
+// ============================================
+
+.friends-content {
+  max-width: 1100px;              // Tighter max for better card grouping
+  margin: 0 auto;
+  padding: 0 24px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.friends-grid {
+  display: grid;
+  // Fixed card widths for consistent sizing, max 3 columns
+  grid-template-columns: repeat(auto-fit, minmax(320px, 350px));
+  gap: 18px;                      // Tighter gap for cohesion
+  justify-content: center;        // Center the grid itself
+  
+  // Cap at 3 columns on large screens
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(3, 350px);
+  }
+  
+  // 2 columns on medium screens
+  @media (min-width: 768px) and (max-width: 1199px) {
+    grid-template-columns: repeat(2, minmax(320px, 380px));
+  }
+  
+  // Center cards when there are few
+  @media (min-width: 992px) {
+    &:has(.friend-card:nth-child(-n+2):last-child) {
+      grid-template-columns: repeat(2, 350px);
+      justify-content: center;
+    }
+    
+    &:has(.friend-card:only-child) {
+      grid-template-columns: 350px;
+      justify-content: center;
+    }
+  }
+}
+
+// Staggered entrance animation for cards
+@keyframes cardSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// ============================================
+// FRIEND CARD - Cyberpunk chamfered style
+// ============================================
+
+.friend-card {
+  padding: 18px 22px;             // Slightly more horizontal padding
+  min-height: 88px;               // Consistent card height
+  color: var(--color-white);
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 16px;                      // Consistent gap
+  /* Cyberpunk cut corners */
+  clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+  
+  // Staggered entrance animation
+  animation: cardSlideIn 0.4s ease-out backwards;
+  
+  @for $i from 1 through 12 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.08}s;  // Slightly faster stagger
+      
+      .scan-line {
+        animation-delay: #{$i * 0.08 + 0.15}s;
+      }
+    }
+  }
+}
+
+/* Pseudo-element border - glowing edge effect */
+.friend-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(
+    135deg,
+    rgba(26, 115, 231, 0.4) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(220, 8, 188, 0.4) 100%
+  );
+  background-size: 200% 200%;
+  clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+  z-index: -2;
+  transition: background 0.4s ease 0.05s, filter 0.4s ease 0.05s;
+  pointer-events: none;
+}
+
+/* Inner solid background layer - cosmic black holographic */
+.friend-card::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  /* Layered cosmic black background - same as composer */
+  background: var(--holographic-bg);
+  background-size: var(--holographic-bg-size);
+  background-position: var(--holographic-bg-position);
+  background-blend-mode: var(--holographic-bg-blend);
+  clip-path: polygon(13px 0, 100% 0, 100% calc(100% - 13px), calc(100% - 13px) 100%, 0 100%, 0 13px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.friend-card:hover {
+  transform: translateY(-5px) scale(1.01);  // More lift + subtle scale
+  box-shadow: 
+    0 12px 32px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(79, 255, 255, 0.1);        // Subtle cyan glow
+}
+
+.friend-card:hover::before {
+  background: linear-gradient(
+    135deg,
+    rgba(26, 115, 231, 0.8) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(220, 8, 188, 0.8) 100%
+  );
+  background-size: 200% 200%;
+  filter: brightness(1.4);
+  animation: gradientShimmer 2s ease infinite;
+}
+
+// Inner background brightens on hover
+.friend-card:hover::after {
+  background:
+    linear-gradient(145deg, #121212, #050505),
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.15), transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.5), transparent 50%),
+    linear-gradient(
+      45deg,
+      rgba(138, 43, 226, 0.08),
+      rgba(0, 212, 255, 0.08),
+      rgba(138, 43, 226, 0.08)
+    );
+}
+
+// ============================================
+// CARD COLOR VARIANTS
+// ============================================
+
+.friend-card.card-cyan::before {
+  background: linear-gradient(135deg, rgba(79, 255, 255, 0.5) 0%, rgba(26, 115, 231, 0.4) 100%);
+}
+.friend-card.card-cyan:hover::before {
+  background: linear-gradient(135deg, rgba(79, 255, 255, 0.8) 0%, rgba(26, 115, 231, 0.7) 100%);
+}
+
+.friend-card.card-magenta::before {
+  background: linear-gradient(135deg, rgba(220, 8, 188, 0.5) 0%, rgba(255, 50, 150, 0.4) 100%);
+}
+.friend-card.card-magenta:hover::before {
+  background: linear-gradient(135deg, rgba(220, 8, 188, 0.8) 0%, rgba(255, 50, 150, 0.7) 100%);
+}
+
+.friend-card.card-green::before {
+  background: linear-gradient(135deg, rgba(26, 231, 132, 0.5) 0%, rgba(0, 200, 150, 0.4) 100%);
+}
+.friend-card.card-green:hover::before {
+  background: linear-gradient(135deg, rgba(26, 231, 132, 0.8) 0%, rgba(0, 200, 150, 0.7) 100%);
+}
+
+.friend-card.card-purple::before {
+  background: linear-gradient(135deg, rgba(138, 43, 226, 0.5) 0%, rgba(75, 0, 130, 0.4) 100%);
+}
+.friend-card.card-purple:hover::before {
+  background: linear-gradient(135deg, rgba(138, 43, 226, 0.8) 0%, rgba(75, 0, 130, 0.7) 100%);
+}
+
+.friend-card.card-orange::before {
+  background: linear-gradient(135deg, rgba(255, 165, 0, 0.5) 0%, rgba(255, 100, 50, 0.4) 100%);
+}
+.friend-card.card-orange:hover::before {
+  background: linear-gradient(135deg, rgba(255, 165, 0, 0.8) 0%, rgba(255, 100, 50, 0.7) 100%);
+}
+
+// ============================================
+// AVATAR
+// ============================================
+
+.friend-avatar {
+  width: 56px;                    // Larger avatar for better balance
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, rgba(15, 20, 30, 0.95), rgba(8, 12, 20, 0.98));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;             // Larger initials to fill avatar
+  position: relative;
+  flex-shrink: 0;
+  border: 1.5px solid rgba(0, 212, 255, 0.4);
+  box-shadow: 0 0 14px rgba(0, 212, 255, 0.18);
+  z-index: 1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  // Gradient text - cyan fading to darker at bottom
+  span {
+    background: linear-gradient(180deg, var(--cyan) 22%, rgba(79, 88, 88, 0.699) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .friend-card:hover & {
+    transform: scale(1.1);
+    box-shadow: 0 0 24px rgba(0, 212, 255, 0.5);
+    border-color: rgba(0, 212, 255, 0.6);
+  }
+}
+
+.status-dot {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid rgba(12, 18, 30, 0.98);
+
+  &.online {
+    background: var(--accent);
+    box-shadow: 0 0 8px rgba(26, 231, 132, 0.8);
+    animation: onlinePulse 2s ease-in-out infinite;
+  }
+
+  &.offline {
+    background: rgba(255, 255, 255, 0.3);
+  }
+}
+
+@keyframes onlinePulse {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(26, 231, 132, 0.8);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(26, 231, 132, 1), 0 0 24px rgba(26, 231, 132, 0.5);
+  }
+}
+
+// ============================================
+// FRIEND INFO
+// ============================================
+
+.friend-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;                       // More breathing room
+  min-width: 0;
+  z-index: 1;
+}
+
+.friend-name {
+  font-family: var(--font-title);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.25;
+  background: linear-gradient(180deg, var(--text-primary) 30%, rgba(180, 190, 190, 0.85) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.3px;
+}
+
+.friend-username {
+  font-size: 13px;
+  color: var(--cyan);
+  text-shadow: 0 0 8px rgba(79, 255, 255, 0.4);
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+.friend-mutual {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);  // More subtle
+  margin-top: 1px;
+  letter-spacing: 0.1px;
+}
+
+.friend-action-btn {
+  background: transparent;
+  border: none;
+  color: var(--cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+  z-index: 1;
+  padding: 8px;
+  width: 36px;
+  height: 36px;
+
+  &:hover {
+    color: var(--text-primary);
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 8px rgba(79, 255, 255, 0.6));
+  }
+  
+  &:active {
+    transform: scale(0.95);
+  }
+  
+  &:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 2px;
+    border-radius: 50%;
+  }
+}
+
+// ============================================
+// REMOVE FRIEND BUTTON (Unlink icon)
+// ============================================
+
+.friend-remove-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-error);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+  z-index: 1;
+  padding: 8px;
+  width: 36px;
+  height: 36px;
+
+  &:hover {
+    color: #ff3333;
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 12px rgba(255, 50, 50, 0.9))
+            drop-shadow(0 0 20px rgba(255, 50, 50, 0.6))
+            drop-shadow(0 0 30px rgba(255, 50, 50, 0.4));
+  }
+  
+  &:active {
+    color: #ff1111;
+    transform: scale(0.95);
+    filter: drop-shadow(0 0 15px rgba(255, 20, 20, 1))
+            drop-shadow(0 0 25px rgba(255, 20, 20, 0.8))
+            drop-shadow(0 0 40px rgba(255, 20, 20, 0.5));
+  }
+}
+
+// ============================================
+// REQUEST / SUGGESTION ACTIONS
+// ============================================
+
+.request-actions {
+  display: flex;
+  gap: 10px;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+.btn-accept {
+  padding: 8px 16px;
+  background: linear-gradient(135deg, rgba(26, 231, 132, 0.15), rgba(79, 255, 255, 0.1));
+  border: 1px solid rgba(26, 231, 132, 0.5);
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+  text-shadow: 0 0 8px rgba(26, 231, 132, 0.5);
+  box-shadow: 0 4px 16px rgba(26, 231, 132, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 80px;
+  justify-content: center;
+
+  // Checkmark icon via pseudo-element
+  &::before {
+    content: '✓';
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  &:hover {
+    background: linear-gradient(135deg, rgba(26, 231, 132, 0.3), rgba(79, 255, 255, 0.2));
+    border-color: rgba(26, 231, 132, 0.8);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 
+      0 0 20px rgba(26, 231, 132, 0.4),
+      0 6px 20px rgba(26, 231, 132, 0.25);
+    color: var(--accent);
+  }
+  
+  &:active {
+    transform: translateY(0) scale(0.98);
+  }
+  
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+.btn-decline {
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 80px;
+  justify-content: center;
+
+  // X icon via pseudo-element
+  &::before {
+    content: '✕';
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  &:hover {
+    background: rgba(220, 8, 188, 0.1);
+    border-color: rgba(220, 8, 188, 0.6);
+    color: var(--magenta);
+    box-shadow: 0 0 16px rgba(220, 8, 188, 0.3);
+    transform: translateY(-2px);
+  }
+  
+  &:active {
+    transform: translateY(0) scale(0.98);
+  }
+  
+  &:focus-visible {
+    outline: 2px solid var(--magenta);
+    outline-offset: 2px;
+  }
+}
+
+.btn-add-friend {
+  padding: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  z-index: 1;
+
+  svg {
+    transition: transform 0.2s ease, filter 0.2s ease;
+    filter: drop-shadow(0 0 4px currentColor);
+  }
+
+  &:hover {
+    transform: scale(1.2);
+    
+    svg {
+      transform: rotate(90deg);
+      filter: drop-shadow(0 0 8px currentColor);
+    }
+  }
+  
+  &:active {
+    transform: scale(1.1);
+  }
+  
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+// ============================================
+// RESPONSIVE
+// ============================================
+
+/* Large Desktop (1600px and above) - scale up for wide monitors */
+@media (min-width: 1600px) {
+  .friends-header {
+    gap: 20px;
+  }
+  
+  .friends-title {
+    font-size: clamp(3rem, 4vw, 4.5rem);
+    letter-spacing: 4px;
+  }
+  
+  .friends-stats {
+    gap: 40px;
+  }
+  
+  .stat-value {
+    font-size: clamp(1.5rem, 1.8vw, 2rem);
+  }
+  
+  .stat-label {
+    font-size: clamp(0.9rem, 1vw, 1.1rem);
+  }
+  
+  .friends-tabs {
+    gap: 20px;
+  }
+  
+  .tab-btn {
+    padding: 12px 28px;
+    font-size: clamp(0.9rem, 1vw, 1.1rem);
+  }
+  
+  .friends-grid {
+    gap: 20px;
+  }
+  
+  .friend-card {
+    padding: 22px 28px;
+    min-height: 100px;
+    gap: 20px;
+  }
+  
+  .friend-avatar {
+    width: 68px;
+    height: 68px;
+    font-size: 1.5rem;
+  }
+  
+  .friend-name {
+    font-size: clamp(17px, 1.2vw, 20px);
+  }
+  
+  .friend-username {
+    font-size: clamp(13px, 0.9vw, 15px);
+  }
+  
+  .friend-mutual {
+    font-size: clamp(11px, 0.8vw, 13px);
+  }
+}
+
+/* Ultra-wide Desktop (2000px and above) */
+@media (min-width: 2000px) {
+  .friends-title {
+    font-size: clamp(4rem, 4.5vw, 5.5rem);
+    letter-spacing: 5px;
+  }
+  
+  .stat-value {
+    font-size: clamp(1.8rem, 2vw, 2.5rem);
+  }
+  
+  .tab-btn {
+    padding: 14px 32px;
+  }
+  
+  .friends-grid {
+    gap: 24px;
+  }
+  
+  .friend-card {
+    padding: 26px 32px;
+    min-height: 110px;
+    gap: 24px;
+  }
+  
+  .friend-avatar {
+    width: 80px;
+    height: 80px;
+    font-size: 1.75rem;
+  }
+  
+  .friend-name {
+    font-size: clamp(18px, 1.3vw, 22px);
+  }
+  
+  .friend-username {
+    font-size: clamp(14px, 1vw, 16px);
+  }
+  
+  .friend-mutual {
+    font-size: clamp(12px, 0.85vw, 14px);
+  }
+}
+
+@media (max-width: 768px) {
+  .friends-header {
+    margin: 70px auto 24px;
+    gap: 10px;
+  }
+  
+  .friends-title {
+    font-size: 2rem;
+    letter-spacing: 2px;
+  }
+  
+  .friends-stats {
+    gap: 16px;
+  }
+  
+  .stat-value {
+    font-size: 1rem;
+  }
+  
+  .stat-label {
+    font-size: 0.75rem;
+  }
+  
+  .friends-content {
+    padding: 0 16px;
+  }
+
+  .friends-tabs {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .friends-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  
+  .friend-card {
+    padding: 16px 18px;
+    min-height: 80px;
+  }
+  
+  .friend-avatar {
+    width: 50px;
+    height: 50px;
+    font-size: 14px;
+  }
+  
+  .friend-name {
+    font-size: 16px;
+  }
+  
+  .request-actions {
+    flex-direction: column;
+    gap: 8px;
+    
+    .btn-accept,
+    .btn-decline {
+      padding: 10px 14px;
+      min-width: 90px;
+      justify-content: center;
+    }
+  }
+  
+  .btn-add-friend {
+    padding: 10px 14px;
+    min-width: 44px;
+    min-height: 44px;
+    justify-content: center;
+  }
+  
+  .friend-action-btn {
+    min-width: 44px;
+    min-height: 44px;
+    width: 44px;
+    height: 44px;
+  }
+}
+
+// Small phones
+@media (max-width: 400px) {
+  .friends-header {
+    margin: 60px auto 20px;
+  }
+  
+  .friends-title {
+    font-size: 1.6rem;
+    letter-spacing: 1.5px;
+  }
+  
+  .friends-stats {
+    gap: 12px;
+  }
+  
+  .stat-value {
+    font-size: 0.9rem;
+  }
+  
+  .stat-label {
+    font-size: 0.7rem;
+  }
+  
+  .friends-content {
+    padding: 0 12px;
+  }
+  
+  .friend-card {
+    padding: 14px 16px;
+    gap: 12px;
+  }
+  
+  .friend-avatar {
+    width: 46px;
+    height: 46px;
+    font-size: 13px;
+  }
+  
+  .friend-name {
+    font-size: 15px;
+  }
+  
+  .friend-username {
+    font-size: 12px;
+  }
+  
+  .friend-mutual {
+    font-size: 10px;
+  }
+}
+
+// ============================================
+// LIGHT MODE
+// ============================================
+
+[data-theme="light"] {
+  .friends-page {
+    background: transparent !important; // Let blobs show through like Profile and Home
+    color: var(--text-inverse);
+    
+    &::before {
+      background: rgba(255, 255, 255, 0.6); // Light veil overlay like Profile page
+    }
+  }
+
+  .friends-title {
+    /* Invert gradient for light mode - dark on top, lighter at bottom */
+    background: linear-gradient(180deg, #000000 22%, rgba(80, 80, 80, 0.7) 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    text-shadow: none;
+  }
+
+  .stat-value {
+    color: var(--blue-primary);
+    text-shadow: none;
+  }
+
+  .stat-label {
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  .stat-dot {
+    background: rgba(26, 115, 231, 0.6);
+    box-shadow: 0 0 6px rgba(26, 115, 231, 0.4);
+  }
+
+  .stat-divider {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  .friend-card::after {
+    background: #ffffff !important;
+    background-image: none !important;
+    border: none;
+  }
+
+  .friend-avatar {
+    background: linear-gradient(145deg, rgba(240, 245, 255, 0.95), rgba(230, 235, 245, 0.98));
+    border-color: rgba(26, 115, 231, 0.3);
+    color: var(--blue-primary);
+  }
+
+  .friend-name {
+    /* Invert gradient for light mode - dark on top, lighter at bottom */
+    background: linear-gradient(180deg, #000000 22%, rgba(80, 80, 80, 0.7) 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+  }
+
+  .friend-username {
+    color: var(--blue-primary);
+    text-shadow: none;
+  }
+
+  .friend-mutual {
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  .friend-action-btn {
+    color: var(--blue-primary);
+    
+    &:hover {
+      filter: drop-shadow(0 0 8px rgba(26, 115, 231, 0.6));
+    }
+  }
+
+  .status-dot {
+    border-color: white;
+  }
+
+  .btn-accept {
+    background: rgba(26, 115, 231, 0.15);
+    border: 1px solid rgba(26, 115, 231, 0.5);
+    color: var(--blue-primary);
+    text-shadow: none;
+    box-shadow: 0 2px 8px rgba(26, 115, 231, 0.2);
+
+    &:hover {
+      box-shadow: 0 0 12px rgba(26, 115, 231, 0.4), 0 4px 12px rgba(26, 115, 231, 0.2);
+    }
+  }
+
+  .btn-decline {
+    border-color: rgba(0, 0, 0, 0.2);
+    color: rgba(0, 0, 0, 0.6);
+
+    &:hover {
+      background: rgba(220, 8, 188, 0.1);
+    }
+  }
+
+  .btn-add-friend {
+    border-color: rgba(26, 115, 231, 0.4);
+    color: var(--blue-primary);
+  }
+
+  .tab-btn {
+    /* Light mode - clear contrast */
+    background: rgba(240, 243, 248, 0.95);
+    backdrop-filter: blur(12px);
+    
+    /* Visible border */
+    border: 1.5px solid rgba(0, 0, 0, 0.15);
+    
+    /* Dark, readable text */
+    color: var(--text-inverse);
+    font-weight: 600;
+    
+    /* Soft shadow */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      background: rgba(255, 255, 255, 1);
+      transform: translateY(-1px);
+      border-color: rgba(26, 115, 231, 0.5);
+      color: var(--blue-primary);
+      box-shadow: 0 4px 12px rgba(26, 115, 231, 0.2);
+    }
+
+    &.active {
+      background: var(--blue-primary);
+      border-color: var(--blue-primary);
+      color: var(--text-primary);
+      font-weight: 600;
+      text-shadow: none;
+      box-shadow: 
+        0 4px 16px rgba(26, 115, 231, 0.35),
+        0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+  }
+  
+  .tab-badge {
+    background: #ff3366;
+    color: white;
+  }
+  
+  .scan-line {
+    background: linear-gradient(90deg, transparent, #1a73e7, transparent);
+  }
+}

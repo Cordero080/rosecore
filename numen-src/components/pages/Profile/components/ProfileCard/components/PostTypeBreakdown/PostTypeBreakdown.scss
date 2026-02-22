@@ -1,0 +1,125 @@
+/* PostTypeBreakdown Component Styles
+   Extracted from ProfileCard.scss
+*/
+
+.post-type-breakdown {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  padding: var(--space-md) 0;
+}
+
+.breakdown-title {
+  font-family: var(--font-title);
+  font-weight: 400;
+  font-style: normal;
+  font-size: var(--font-size-sm);
+  margin: 0 0 16px 0;
+  letter-spacing: 0.5px;
+  background: linear-gradient(180deg, #ffffff 22%, rgba(79, 88, 88, 0.699) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.breakdown-content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xl);
+}
+
+.donut-chart {
+  flex-shrink: 0;
+}
+
+.donut-segment {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  stroke: none;
+}
+
+.donut-segment:hover {
+  opacity: 0.8;
+  filter: brightness(1.2);
+}
+
+.breakdown-legend {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  flex: 1;
+}
+
+.breakdown-legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+
+
+.legend-color {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+}
+
+.legend-type {
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+.legend-percent {
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.6);
+  font-family: var(--font-title);
+  font-weight: 600;
+}
+
+/* ============================================
+   LIGHT MODE OVERRIDES
+   ============================================ */
+[data-theme="light"] {
+  .breakdown-section {
+    background: rgba(0, 0, 0, 0.02) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .breakdown-section:hover {
+    border-color: rgba(26, 115, 231, 0.2) !important;
+  }
+
+  .breakdown-title {
+    /* Invert gradient for light mode - dark on top, lighter at bottom */
+    background: linear-gradient(180deg, #000000 22%, rgba(80, 80, 80, 0.7) 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    text-shadow: none !important;
+  }
+
+  .donut-center-text .donut-total {
+    fill: #000000 !important;
+  }
+
+  .donut-center-text .donut-label {
+    fill: rgba(0, 0, 0, 0.5) !important;
+  }
+
+  .legend-type {
+    color: rgba(0, 0, 0, 0.8) !important;
+  }
+
+  .legend-percent {
+    color: rgba(0, 0, 0, 0.7) !important;
+  }
+
+}

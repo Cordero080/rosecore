@@ -1,0 +1,120 @@
+/* Complementary Mode Navbar Styling */
+body.complementary-colors .navbar {
+	background: linear-gradient(90deg, #00ff91 0%, #ff7f00 100%);
+	box-shadow: 0 8px 32px 0 rgba(0, 255, 145, 0.22), 0 0 32px 8px #ff7f0044;
+	border-bottom: 2px solid #00ff91;
+	backdrop-filter: blur(24px) saturate(200%) brightness(1.2);
+	-webkit-backdrop-filter: blur(24px) saturate(200%) brightness(1.2);
+	transition: box-shadow 0.4s, background 0.4s;
+}
+body.complementary-colors {
+	color: #000000;
+	background: linear-gradient(65deg, 
+		#910240 0%,
+		#6829c4 10%,
+		#2d6bcc 20%,
+		#0f9c68 30%,
+		#cc9909 40%,
+		#c94505 50%,
+		#cc0058 60%,
+		#6829c4 70%,
+		#2d6bcc 80%,
+		#05cc84 90%,
+		#cc9909 100%
+	);
+}
+
+body.complementary-colors .navbar {
+	background: rgba(29, 101, 235, 0.331);
+}
+
+body.complementary-colors .nav-logo a {
+	background: linear-gradient(45deg, #00ff91, #13c743, #f8bd60);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+body.complementary-colors .nav-links a {
+	color: #10e46f8c;
+}
+
+body.complementary-colors .nav-links a:hover {
+	color: #7cc713;
+}
+
+body.complementary-colors .nav-links a::after {
+	background: linear-gradient(45deg, #00ff91, #7cc713, #ff7f00);
+}
+
+body.complementary-colors .card {
+	background: linear-gradient(135deg, 
+		#ffffff 0%,     /* Bright silver highlight */
+		#f0f0f0 15%,    /* Light silver */
+		#e0e0e0 25%,    /* Medium-light silver */
+		#c8c8c8 35%,    /* Medium silver */
+		#b0b0b0 45%,    /* Silver */
+		#909090 55%,    /* Dark silver */
+		#808080 65%,    /* Darker silver */
+		#a0a0a0 75%,    /* Medium silver recovery */
+		#c0c0c0 85%,    /* Light silver */
+		#e8e8e8 95%,    /* Very light silver */
+		#ffffff 100%    /* Bright silver highlight */
+	);
+	color: rgba(97, 14, 42, 0.764);
+	box-shadow: 
+		0 20px 40px rgba(217, 249, 35, 0.5),
+		inset 0 1px 0 rgba(0, 0, 0, 0.1),
+		inset 0 -1px 0 rgba(255, 255, 255, 0.5);
+}
+
+body.complementary-colors .card:hover {
+	box-shadow: 0 30px 60px rgba(6, 248, 111, 0.742);
+}
+
+body.complementary-colors .glitch::before {
+	color: #00ffc8;
+}
+
+body.complementary-colors .glitch::after {
+	color: #ff0026;
+}
+
+body.complementary-colors .card-description {
+	background: linear-gradient(45deg, #ff0800, #15b800);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+body.complementary-colors .card:hover .card-description {
+	background: linear-gradient(45deg, #b25408, #009482);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+body.complementary-colors ::-webkit-scrollbar-track {
+	background: #e5e5e5;
+}
+
+body.complementary-colors ::-webkit-scrollbar-thumb {
+	background: linear-gradient(180deg, 
+		#00ff91,
+		#7cc713,
+		#f8bd60,
+		#edb459,
+		#a9ee68,
+		#69f23b
+	);
+	border: 2px solid #fff;
+}
+
+/* Sinewave in comp mode - fixed center, above cards */
+body.complementary-colors #waves {
+	position: fixed;
+	top: 50%;
+	left: 0;
+	transform: translateY(-50%);
+	z-index: 1;
+}

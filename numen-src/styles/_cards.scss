@@ -1,0 +1,79 @@
+// ================================================
+// NUMENEON CARD SYSTEM
+// Card components and variants
+// ================================================
+// 🔵 PABLO - UI Architect
+// Use .card as base, then add modifiers.
+// Example: <div class="card card-hover">
+// ================================================
+
+// ============================================
+// BASE CARD
+// ============================================
+
+.card {
+  /* Cosmic black holographic background */
+  background:
+    linear-gradient(145deg, #0a0a0a, #000000),
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1), transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.5), transparent 50%),
+    linear-gradient(
+      45deg,
+      rgba(138, 43, 226, 0.05),
+      rgba(0, 212, 255, 0.05),
+      rgba(138, 43, 226, 0.05)
+    );
+  background-size: 100% 100%, 150% 150%, 150% 150%, 200% 200%;
+  background-position: 0% 50%, 75% 75%, 75% 75%, 50% 50%;
+  background-blend-mode: overlay, multiply, overlay;
+  
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: var(--transition);
+}
+
+// ============================================
+// CARD MODIFIERS
+// ============================================
+
+.card-hover {
+  transition: var(--transition);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--glow);
+    border-color: var(--border-hover);
+  }
+}
+
+.card-interactive {
+  cursor: pointer;
+  transition: var(--transition);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--glow);
+    border-color: var(--border-hover);
+    background: var(--surface-hover);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+// ============================================
+// CARD VARIANTS
+// ============================================
+
+.card-glass {
+  background: var(--bg-glass);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid var(--border-default);
+}
+
+.card-dark {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-subtle);
+}

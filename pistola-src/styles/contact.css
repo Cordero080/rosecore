@@ -1,0 +1,211 @@
+/**
+ * contact.css
+ * Contact section with holographic buttons and fibonacci-scaled sizing
+ */
+
+/* ========== CONTACT SECTION ========== */
+.contact-section {
+  padding: 4rem 2rem;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 2rem;
+  /* Defer rendering until near viewport */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 400px;
+}
+
+.contact-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact-title {
+  font-family: "Rajdhani", sans-serif;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 2rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.7) 40%, rgba(255, 255, 255, 0.05) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  min-width: 280px;
+  text-decoration: none;
+  font-family: "aktiv-grotesk", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.95);
+  
+  /* iOS Safari fix */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  /* Organic blob shape */
+  border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
+  
+  /* Multi-layered dark holographic background */
+  background:
+    linear-gradient(145deg, #221d27, #000000),
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1), transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.5), transparent 50%),
+    linear-gradient(45deg, rgba(138, 43, 226, 0.05), rgba(0, 212, 255, 0.05), rgba(138, 43, 226, 0.05));
+  background-size: 100% 100%, 150% 150%, 150% 150%, 200% 200%;
+  background-blend-mode: overlay, multiply, overlay;
+  
+  border: 2px solid rgba(0, 212, 255, 0.4);
+  
+  /* Glowing text shadow */
+  text-shadow:
+    0 0 5px rgba(138, 43, 226, 0.5),
+    0 0 10px rgba(0, 212, 255, 0.3),
+    0 0 15px rgba(138, 43, 226, 0.2);
+  
+  /* Subtle glow shadow */
+  box-shadow:
+    0 2px 8px rgba(138, 43, 226, 0.3),
+    0 1px 6px rgba(0, 212, 255, 0.2);
+  
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  
+  /* Bouncy animation easing */
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-link::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(
+    circle,
+    rgba(0, 212, 255, 0.25),
+    rgba(138, 43, 226, 0.2)
+  );
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+  z-index: -1;
+}
+
+.contact-link:hover::before {
+  width: 350px;
+  height: 350px;
+}
+
+.contact-link:hover {
+  color: rgba(255, 255, 255, 1);
+  border-color: rgba(0, 212, 255, 0.8);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:
+    0 4px 12px rgba(0, 212, 255, 0.35),
+    0 6px 16px rgba(138, 43, 226, 0.25);
+}
+
+.contact-link:active {
+  transform: translateY(3px) scale(0.97);
+  box-shadow:
+    0 2px 6px rgba(0, 212, 255, 0.25),
+    0 3px 8px rgba(138, 43, 226, 0.15);
+  transition: all 0.1s ease;
+}
+
+.contact-link svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  flex-shrink: 0;
+}
+
+.contact-link span {
+  font-weight: 600;
+}
+
+/* Fibonacci-scaled sizing: Email (base) > LinkedIn > GitHub */
+.contact-email {
+  padding: 1rem 2rem;
+  min-width: 280px;
+  font-size: 0.9rem;
+}
+
+.contact-email svg {
+  width: 22px;
+  height: 22px;
+}
+
+.contact-linkedin {
+  padding: 0.85rem 1.75rem;
+  min-width: 220px;
+  font-size: 0.85rem;
+}
+
+.contact-linkedin svg {
+  width: 20px;
+  height: 20px;
+}
+
+.contact-github {
+  padding: 0.75rem 1.5rem;
+  min-width: 180px;
+  font-size: 0.8rem;
+}
+
+.contact-github svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Contact section mobile */
+@media (max-width: 600px) {
+  .contact-section {
+    padding: 3rem 1.5rem;
+    margin-top: 6rem;
+  }
+
+  .contact-link {
+    min-width: 80%;
+    padding: 0.6rem 1.5rem;
+    /* Keep organic blob shape on mobile */
+    border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
+    /* iOS Safari fix */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .contact-title {
+    /* Ensure font loads on iOS */
+    font-family: "Orbitron", "Rajdhani", -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}

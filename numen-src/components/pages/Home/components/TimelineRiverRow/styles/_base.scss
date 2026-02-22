@@ -1,0 +1,251 @@
+/* ============================================
+   BASE LAYOUT - Tabs + Content Structure
+   Core layout for timeline rows
+   ============================================ */
+
+.timeline-river-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-lg);
+  width: 100%;
+  overflow-x: visible;
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+}
+
+/* User header - only shows when all collapsed */
+.timeline-river-row__user-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 8px 12px;
+  
+  .river-avatar {
+    background: rgba(79, 193, 255, 0.284);
+    border-color: rgba(79, 226, 255, 0.515);
+    svg { color: var(--bg-card-solid); }
+  }
+}
+
+/* Tabs row - all tabs together, same size */
+.timeline-river-row__tabs {
+  display: flex;
+  gap: var(--space-sm);
+  width: 100%;
+}
+
+/* Individual tab button - all same size */
+.deck-tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: 8px 12px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: var(--font-title);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: inherit;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.deck-tab__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .smart-deck-icon-svg { width: 16px; height: 16px; }
+}
+
+.deck-tab__label { white-space: nowrap; }
+.deck-tab__count { font-size: 11px; opacity: 0.8; }
+.deck-tab__collapse { 
+  position: absolute;
+  right: 12px;
+  font-size: 16px; 
+  font-weight: bold; 
+  opacity: 0.5;
+}
+
+/* Collapsed tab - greyed out */
+.deck-tab--collapsed {
+  opacity: 0.35;
+  &:hover { opacity: 0.6; }
+}
+
+/* Not most recent - slightly dimmed */
+.deck-tab--not-recent:not(.deck-tab--collapsed) {
+  opacity: 0.75;
+  &:hover { opacity: 0.85; }
+}
+
+/* Type-specific tab colors - using CSS vars for consistency */
+.deck-tab--thoughts {
+  border-color: rgba(79, 255, 255, 0.4);
+  .smart-deck-icon-svg, .deck-tab__label, .deck-tab__count, .deck-tab__collapse { color: var(--cyan); }
+}
+
+.deck-tab--media {
+  border-color: rgba(167, 131, 255, 0.4);
+  .smart-deck-icon-svg, .deck-tab__label, .deck-tab__count, .deck-tab__collapse { color: var(--post-media-badge); }
+}
+
+.deck-tab--milestones {
+  border-color: rgba(26, 231, 132, 0.4);
+  .smart-deck-icon-svg, .deck-tab__label, .deck-tab__count, .deck-tab__collapse { color: var(--accent); }
+}
+
+/* Content row */
+.timeline-river-row__content {
+  display: flex;
+  gap: var(--space-md);
+  width: 100%;
+  align-items: stretch;
+}
+
+.smart-deck-content {
+  flex: 1 1 0;
+  min-width: 0;
+  width: 100%;
+}
+
+.smart-deck-card-container { min-width: 0; width: 100%; }
+.river-post-card { min-width: 0; width: 100%; }
+
+/* River Column */
+.river-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  min-width: 0;
+  position: relative;
+  flex: 1;
+}
+
+/* Post widths */
+.post--thoughts,
+.post--media,
+.post--milestones { width: 100%; }
+
+/* Single post centering */
+.post--single {
+  width: 70%;
+  margin: 0 auto !important;
+  max-width: 700px;
+}
+
+.post--thoughts.post--single { width: 65%; max-width: 650px; }
+.post--media.post--single { width: 75%; max-width: 750px; }
+
+/* Compact post - keep full width, just visual styling */
+.post--compact {
+  /* No width constraints - fill column */
+}
+
+/* Category count layouts - only constrain single category (CAROUSEL MODE ONLY) */
+.timeline-river-row--expanded-1:not(.timeline-river-row--grid-mode) .timeline-river-row__content { justify-content: center; }
+.timeline-river-row--expanded-1:not(.timeline-river-row--grid-mode) .smart-deck-content { flex: 0 1 auto; max-width: 750px; width: 100%; }
+
+/* GRID MODE - Force full width when any grid is active */
+.timeline-river-row--grid-mode .timeline-river-row__content {
+  justify-content: stretch !important;
+  width: 100% !important;
+}
+
+.timeline-river-row--grid-mode .smart-deck-content {
+  max-width: 100% !important;
+  flex: 1 1 100% !important;
+  width: 100% !important;
+}
+
+/* Explicit override: Grid mode with single expanded category */
+.timeline-river-row--expanded-1.timeline-river-row--grid-mode .smart-deck-content {
+  max-width: 100% !important;
+  flex: 1 1 100% !important;
+  width: 100% !important;
+}
+
+.timeline-river-row--expanded-1.timeline-river-row--grid-mode .timeline-river-row__content {
+  justify-content: stretch !important;
+  width: 100% !important;
+}
+
+/* Grid view overrides - FORCE full width */
+.smart-deck-grid-wrapper {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.timeline-river-row--expanded-1 .smart-deck-content:has(.smart-deck-grid-wrapper) {
+  max-width: 100% !important;
+  flex: 1 1 100% !important;
+  width: 100% !important;
+}
+
+.timeline-river-row--expanded-1 .timeline-river-row__content:has(.smart-deck-grid-wrapper) {
+  justify-content: stretch !important;
+  width: 100% !important;
+}
+
+.timeline-river-row__content:has(.smart-deck-grid-wrapper) {
+  width: 100% !important;
+}
+
+/* View Mode Toggle Button - positioned on LEFT side */
+.deck-view-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  opacity: 0.7;
+  transition: all 0.2s;
+  position: absolute;
+  left: 8px;
+  color: inherit;
+  z-index: 10;
+  
+  &:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  svg {
+    stroke-width: 2.5;
+  }
+}
+
+/* Category-specific colors for grid toggle */
+.deck-view-toggle--thoughts {
+  color: #4fffff;
+  
+  &:hover {
+    background: rgba(79, 255, 255, 0.15);
+  }
+}
+
+.deck-view-toggle--media {
+  color: #c9a8ff;
+  
+  &:hover {
+    background: rgba(201, 168, 255, 0.15);
+  }
+}
+
+.deck-view-toggle--milestones {
+  color: #1ae784;
+  
+  &:hover {
+    background: rgba(26, 231, 132, 0.15);
+  }
+}

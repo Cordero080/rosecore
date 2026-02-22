@@ -1,0 +1,200 @@
+/* Timeline River Feed Container */
+
+.timeline-river-feed {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: var(--space-md) var(--space-md);
+  position: relative;
+  overflow-x: visible;
+  
+  /* Advanced 3D Parallax Setup */
+  perspective: 1500px;
+  perspective-origin: center center;
+  transform-style: preserve-3d;
+}
+
+/* Canopy shadow - actual element */
+.timeline-canopy {
+  position: sticky;
+  top: 60px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.4) 0%,
+    transparent 100%
+  );
+  z-index: 10;
+  pointer-events: none;
+  margin-bottom: -20px;
+}
+
+.timeline-river-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  position: relative;
+  z-index: 1; /* Create stacking context */
+}
+
+/* River Date Header */
+
+.river-date-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 20; /* Above the cards */
+}
+
+.river-date-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background: linear-gradient(145deg, rgba(15, 20, 30, 0.9), rgba(8, 12, 20, 0.95));
+  backdrop-filter: blur(10px);
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 212, 255, 0.25);
+  color: rgba(255, 255, 255, 0.55);
+  font-family: var(--font-title);
+  font-size: 13px;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.1);
+}
+
+.river-date-badge svg {
+  color: #4fffff;
+  filter: drop-shadow(0 0 4px rgba(79, 255, 255, 0.5));
+}
+
+.river-divider {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 212, 255, 0.3) 0%,
+    rgba(167, 131, 255, 0.2) 50%,
+    transparent 100%
+  );
+}
+
+/* Empty State */
+
+.timeline-river-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-lg);
+  padding: 80px 20px;
+  color: var(--text-muted);
+  font-family: 'degular', sans-serif;
+  font-size: var(--font-size-md);
+  font-weight: 400;
+}
+
+.timeline-river-empty svg {
+  opacity: 0.3;
+}
+
+/* Responsive Adjustments */
+
+@media (max-width: 768px) {
+  .timeline-river-feed {
+    gap: 40px;
+    padding: 15px 0;
+  }
+
+  .timeline-river-section {
+    gap: 15px;
+  }
+
+  .river-date-badge {
+    font-size: var(--font-size-xs);
+    padding: 6px 12px;
+  }
+
+  .river-date-badge svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline-river-feed {
+    perspective: none;
+    transform-style: flat;
+  }
+}
+
+/* ============================================
+   LIGHT MODE OVERRIDES
+   ============================================ */
+[data-theme="light"] {
+  .timeline-canopy {
+    height: 20px;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.4) 0%,
+      transparent 100%
+    );
+    margin-bottom: -20px;
+  }
+
+  .timeline-river-feed {
+    align-items: center;
+  }
+
+  .timeline-river-section {
+    width: 100%;
+    max-width: 100%;
+    align-items: center;
+  }
+
+  .timeline-river-row {
+    justify-content: center;
+  }
+
+  .river-date-badge {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    color: #000000 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .river-date-badge svg {
+    color: #1a73e7 !important;
+    filter: none !important;
+  }
+
+  .river-divider {
+    background: linear-gradient(
+      90deg,
+      rgba(26, 115, 231, 0.3) 0%,
+      rgba(26, 231, 132, 0.2) 50%,
+      transparent 100%
+    ) !important;
+  }
+
+  .timeline-river-empty {
+    color: rgba(0, 0, 0, 0.4) !important;
+  }
+
+  .timeline-river-empty svg {
+    opacity: 0.3 !important;
+    color: rgba(0, 0, 0, 0.3) !important;
+  }
+}

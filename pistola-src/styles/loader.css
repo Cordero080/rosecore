@@ -1,0 +1,82 @@
+/**
+ * loader.css
+ * Page loading screen with scanline animation
+ */
+
+/* ==========================================
+   LOADING SCREEN
+   ========================================== */
+.page-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+  pointer-events: none;
+}
+
+.page-loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #00fff7, #eae4e831, #eff3f268, transparent);
+  animation: loaderScan 7s ease-in-out infinite;
+  filter: blur(1px);
+  box-shadow: 0 0 20px rgba(0, 255, 247, 0.5);
+}
+
+@keyframes loaderScan {
+  0% { top: 0; opacity: 1; }
+  50% { opacity: 0.8; }
+  100% { top: 100%; opacity: 1; }
+}
+
+.loader-text {
+  display: none;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.loader-dots {
+  display: none;
+}
+
+.loader-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00fff7;
+  animation: loaderPulse 1.2s ease-in-out infinite;
+}
+
+.loader-dot:nth-child(2) { animation-delay: 0.2s; }
+.loader-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes loaderPulse {
+  0%, 100% { transform: scale(0.5); opacity: 0.3; }
+  50% { transform: scale(1); opacity: 1; }
+}
+
+/* Accessibility: Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .page-loader { display: none; }
+  .loader-scanline, .loader-text, .loader-dot { animation: none; }
+}

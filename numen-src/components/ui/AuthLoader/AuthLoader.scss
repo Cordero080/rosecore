@@ -1,0 +1,108 @@
+/* AuthLoader - Lightweight Revving Spinner */
+
+.auth-loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.auth-loader-content {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Spinning dashed ring */
+.spinner-ring {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px dashed rgba(80, 160, 255, 0.8);
+  animation: spin 2s linear infinite;
+  box-shadow: 
+    0 0 20px rgba(80, 160, 255, 0.3),
+    inset 0 0 20px rgba(80, 160, 255, 0.1);
+}
+
+.spinner-ring-reverse {
+  width: 90px;
+  height: 90px;
+  border: 2px dashed rgba(100, 255, 232, 0.6);
+  animation: spinReverse 1.5s linear infinite;
+  box-shadow: 
+    0 0 15px rgba(100, 255, 180, 0.3),
+    inset 0 0 15px rgba(100, 255, 180, 0.1);
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spinReverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+/* Center icon */
+.center-icon {
+  font-size: 32px;
+  animation: pulse 0.8s ease-in-out infinite alternate;
+  /* Cyan/blue glow instead of gold */
+  filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.8));
+}
+
+@keyframes pulse {
+  from { 
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  to { 
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+/* Message text */
+.loader-message {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.message-text {
+  font-family: var(--font-main, 'Inter', sans-serif);
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(100, 255, 180, 0.9);
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(100, 255, 180, 0.5);
+  animation: textFade 0.3s ease-out;
+}
+
+@keyframes textFade {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}

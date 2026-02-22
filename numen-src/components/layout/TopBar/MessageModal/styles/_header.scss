@@ -1,0 +1,90 @@
+/* MessageModal Header */
+
+.message-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  background: rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.message-modal-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 1.5rem;
+  right: 1.5rem;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(26, 231, 132, 0.3) 20%,
+    rgba(0, 212, 255, 0.2) 50%,
+    rgba(26, 231, 132, 0.3) 80%,
+    transparent 100%
+  );
+}
+
+.message-modal-title {
+  font-family: 'degular', sans-serif;
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+  color: var(--accent, #1ae784);
+  letter-spacing: 0.5px;
+  margin: 0;
+  text-shadow:
+    0 0 8px rgba(26, 231, 132, 0.4),
+    0 0 16px rgba(26, 231, 132, 0.2);
+}
+
+/* Header actions container */
+.modal-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Fullscreen toggle button */
+.fullscreen-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+
+  &:hover {
+    color: var(--cyan);
+    background: rgba(0, 212, 255, 0.1);
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.4));
+  }
+}
+
+/* Close button - pink accent to match plus button */
+.message-modal-header .close-btn-glow {
+  background: transparent;
+  border: none;
+  color: rgba(255, 85, 221, 0.8);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+
+  &:hover {
+    color: #ff55dd;
+    background: rgba(255, 85, 221, 0.1);
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 8px rgba(255, 85, 221, 0.4));
+  }
+}

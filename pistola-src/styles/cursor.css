@@ -1,0 +1,232 @@
+/**
+ * cursor.css
+ * Custom cursor system with glow, particles, and quantum ripple effects
+ */
+
+/* Custom Cursor System */
+* {
+  cursor: none !important;
+}
+
+.cursor-main {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #f8f8f9;
+  background: rgba(107, 123, 255, 0.3);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999999;
+  transition: transform 0.1s ease-out, width 0.3s ease, height 0.3s ease;
+  box-shadow: 
+    0 0 20px rgba(107, 123, 255, 0.9),
+    0 0 40px rgba(94, 96, 206, 0.7);
+  opacity: 1;
+  display: block !important;
+  visibility: visible !important;
+}
+
+.cursor-follow {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: #e7d805bb;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999998;
+  transition: transform 0.15s ease-out;
+  opacity: 0.8;
+  display: block !important;
+  visibility: visible !important;
+}
+
+.cursor-main.hover {
+  transform: scale(1.3);
+  border-width: 3px;
+  box-shadow: 
+    0 0 30px rgba(13, 34, 228, 0.8),
+    0 0 60px rgba(94, 96, 206, 0.5),
+    0 0 90px rgba(58, 134, 255, 0.3),
+    inset 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.cursor-glow {
+  position: fixed;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9997;
+  background: radial-gradient(circle, 
+    rgba(107, 123, 255, 0.1) 0%,
+    rgba(94, 96, 206, 0.05) 30%,
+    rgba(58, 134, 255, 0.02) 60%,
+    transparent 100%);
+  opacity: 0;
+  transition: opacity 0.1s ease;
+  filter: blur(10px);
+}
+
+.cursor-glow.active {
+  opacity: 1;
+}
+
+.cursor-particle {
+  position: fixed;
+  width: 3px;
+  height: 3px;
+  background: #00ffff;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9996;
+  animation: particleFloat 3s ease-out forwards;
+}
+
+@keyframes particleFloat {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0) translateY(-30px);
+  }
+}
+
+.quantum-ripple {
+  position: fixed;
+  top: 12vh;
+  left: 8vw;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle at var(--qr-focal-x,60%) var(--qr-focal-y,40%), #031ca8b2 0%, var(--qr-color1, #7fffd417) 35%, var(--qr-color2, #ff00cc) 60%, var(--qr-color3, #0d5175) 80%, transparent 100%);
+  box-shadow: 0 0 48px 16px var(--qr-glow, #7fa5ff65), 0 0 24px 6px var(--qr-glow, #ff00ccf4);
+  transition: background 1.2s linear, box-shadow 1.2s linear, filter 0.8s linear, z-index 0.4s;
+  opacity: 0.7;
+  z-index: 1;
+  pointer-events: none;
+  animation: quantum-ripple-move 32s infinite cubic-bezier(.77,0,.18,1), quantum-ripple-color 32s infinite linear, quantum-ripple-spinZ 14.4s infinite cubic-bezier(.77,0,.18,1), quantum-ripple-spinX 28.8s infinite cubic-bezier(.77,0,.18,1), quantum-ripple-spinY 43.2s infinite cubic-bezier(.77,0,.18,1), quantum-ripple-focal 14.4s infinite linear;
+  filter: blur(1px) brightness(1) saturate(1.9);
+  position: relative;
+}
+.quantum-ripple::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  border-radius: 50%;
+  pointer-events: none;
+  background: conic-gradient(from var(--qr-reflect-angle,0deg), #01337d 0%, #ff00cc 33%, #706003 66%, #025b63 100%);
+  opacity: 0.45;
+  mix-blend-mode: lighten;
+  animation: quantum-ripple-reflectZ 14.4s linear infinite, quantum-ripple-reflectX 28.8s linear infinite, quantum-ripple-reflectY 43.2s linear infinite;
+}
+
+@keyframes quantum-ripple-reflectZ {
+  0% { --qr-reflect-angle: 0deg; }
+  100% { --qr-reflect-angle: 360deg; }
+}
+@keyframes quantum-ripple-reflectX {
+  0% { filter: brightness(1.1) drop-shadow(0 0 12px #7fffd4); }
+  100% { filter: brightness(1.1) drop-shadow(0 0 12px #ffd700); }
+}
+@keyframes quantum-ripple-reflectY {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+@keyframes quantum-ripple-move {
+  0% {
+    top: 12vh;
+    left: 8vw;
+    transform: scale(1.2) rotateZ(0deg);
+    opacity: 0.2;
+    z-index: 1;
+  }
+  10% {
+    opacity: 0.7;
+    z-index: 10;
+    transform: scale(1.4) rotateZ(8deg);
+  }
+  15% {
+    top: 90vh;
+    left: 70vw;
+    transform: scale(1.18) rotateZ(18deg);
+    opacity: 0.9;
+    z-index: 10;
+  }
+  25% {
+    opacity: 0.3;
+    z-index: 1;
+    transform: scale(0.7) rotateZ(0deg);
+  }
+  32% {
+    top: 70vh;
+    left: 60vw;
+    transform: scale(0.92) rotateZ(-8deg);
+    opacity: 0.6;
+    z-index: 1;
+  }
+  40% {
+    opacity: 0.15;
+    z-index: 1;
+    transform: scale(0.1) rotateZ(-12deg);
+  }
+  48% {
+    top: 8vh;
+    left: 100vw;
+    transform: scale(1.12) rotateZ(24deg);
+    opacity: 0.8;
+    z-index: 10;
+  }
+  55% {
+    opacity: 0.25;
+    z-index: 1;
+    transform: scale(0.8) rotateZ(0deg);
+  }
+  65% {
+    top: 50vh;
+    left: 90vw; /* was left before */
+    transform: scale(1.05) rotateZ(-16deg);
+    opacity: 0.7;
+    z-index: 10;
+  }
+  75% {
+    opacity: 0.1;
+    z-index: 1;
+    transform: scale(0.6) rotateZ(-8deg);
+  }
+  82% {
+    top: 18vh;
+    left: 40vw;
+    transform: scale(1.22) rotateZ(32deg);
+    opacity: 0.9;
+    z-index: 10;
+  }
+  90% {
+    opacity: 0.2;
+    z-index: 1;
+    transform: scale(0.7) rotateZ(0deg);
+  }
+  100% {
+    top: 12vh;
+    left: 8vw;
+    transform: scale(1.2) rotateZ(0deg);
+    opacity: 0.2;
+    z-index: 1;
+  }
+}
+
+/* Disable custom cursor on mobile/tablet */
+@media (max-width: 900px) {
+  * {
+    cursor: auto !important;
+  }
+  .cursor-main,
+  .cursor-follow,
+  .cursor-glow,
+  .cursor-particle,
+  .quantum-ripple {
+    display: none !important;
+  }
+}

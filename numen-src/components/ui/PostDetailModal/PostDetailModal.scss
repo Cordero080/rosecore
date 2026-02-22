@@ -1,0 +1,711 @@
+/* PostDetailModal.scss - Styled modal for viewing posts with comments
+   Matches MediaLightbox styling
+   🔵 PABLO - UI/Styling
+*/
+
+// Animation
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+// Overlay
+.post-detail-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl);
+  animation: fadeIn 0.2s ease;
+  cursor: pointer;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+// Content Container - Cyberpunk holographic card matching PostCard
+.post-detail-content {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  width: 100%;
+  max-height: 85vh;
+  cursor: default;
+  animation: slideUp 0.3s ease;
+  position: relative;
+  overflow: visible;
+  
+  /* Cyberpunk cut corners */
+  clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+  
+  /* Glowing border edge */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(
+      135deg,
+      rgba(79, 255, 255, 0.4) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(79, 255, 255, 0.4) 100%
+    );
+    clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+    z-index: -2;
+    pointer-events: none;
+  }
+  
+  /* Holographic black background */
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    background:
+      linear-gradient(145deg, #0a0a0a, #000000),
+      radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1), transparent 50%),
+      radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.5), transparent 50%),
+      linear-gradient(
+        45deg,
+        rgba(138, 43, 226, 0.05),
+        rgba(0, 212, 255, 0.05),
+        rgba(138, 43, 226, 0.05)
+      );
+    background-size: 100% 100%, 150% 150%, 150% 150%, 200% 200%;
+    background-position: 0% 50%, 75% 75%, 75% 75%, 50% 50%;
+    background-blend-mode: overlay, multiply, overlay;
+    clip-path: polygon(13px 0, 100% 0, 100% calc(100% - 13px), calc(100% - 13px) 100%, 0 100%, 0 13px);
+    z-index: -1;
+    pointer-events: none;
+  }
+  
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5),
+              0 0 40px rgba(0, 212, 255, 0.1);
+  
+  &--loading {
+    min-height: 200px;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// Close button
+.post-detail-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  transition: all 0.25s ease;
+  color: rgba(255, 255, 255, 0.7);
+  
+  &:hover {
+    background: rgba(255, 82, 82, 0.3);
+    border-color: rgba(255, 82, 82, 0.5);
+    color: #ff5252;
+    transform: scale(1.1);
+  }
+}
+
+// Loading state
+.post-detail-loading {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+// Main post area
+.post-detail-main {
+  padding: var(--space-lg);
+  border-bottom: 1px solid var(--border-default);
+  position: relative;
+  z-index: 1;
+}
+
+// Header with author info
+.post-detail-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.post-detail-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bg-card-solid);
+  border: 1px solid var(--border-default);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  overflow: hidden;
+  
+  &:hover {
+    filter: drop-shadow(0 0 8px var(--cyan));
+    transform: scale(1.05);
+  }
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  svg {
+    color: var(--blue-primary);
+  }
+}
+
+.post-detail-author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.post-detail-author {
+  font-family: var(--font-title);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.2;
+  background: linear-gradient(180deg, var(--text-primary) 22%, rgba(79, 88, 88, 0.699) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: linear-gradient(180deg, var(--cyan) 22%, rgba(79, 255, 255, 0.699) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 8px var(--cyan));
+  }
+}
+
+.post-detail-username {
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.post-detail-timestamp {
+  font-family: "new-science-mono", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+// Post body
+.post-detail-body {
+  margin-bottom: var(--space-md);
+}
+
+.post-detail-text {
+  font-family: var(--font-main);
+  font-size: var(--font-size-body);
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--content-text);
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.post-detail-media {
+  margin-top: var(--space-md);
+  border-radius: 12px;
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+// Action buttons
+.post-detail-actions {
+  display: flex;
+  gap: var(--space-lg);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.post-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+  }
+  
+  &--liked {
+    color: #ff6b9d;
+    
+    svg {
+      filter: drop-shadow(0 0 6px rgba(255, 107, 157, 0.5));
+    }
+  }
+}
+
+// Comments section
+.post-detail-comments {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-md) var(--space-lg);
+  position: relative;
+  z-index: 1;
+}
+
+.post-detail-comments-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: var(--space-md);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  
+  svg {
+    color: var(--accent-cyan);
+  }
+}
+
+// Comment composer
+.post-detail-composer {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.post-detail-composer-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(168, 85, 247, 0.15));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  
+  svg {
+    color: var(--text-tertiary);
+  }
+}
+
+.post-detail-composer-input-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 8px 12px;
+  transition: all 0.2s ease;
+  
+  &:focus-within {
+    border-color: var(--accent-cyan);
+    background: rgba(0, 212, 255, 0.03);
+  }
+}
+
+.post-detail-composer-input {
+  flex: 1;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: 14px;
+  resize: none;
+  outline: none;
+  min-height: 20px;
+  max-height: 80px;
+  line-height: 1.4;
+  
+  &::placeholder {
+    color: var(--text-tertiary);
+  }
+}
+
+.post-detail-composer-submit {
+  background: none;
+  border: none;
+  color: var(--accent-cyan);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  opacity: 0.5;
+  
+  &:not(:disabled) {
+    opacity: 1;
+    
+    &:hover {
+      transform: translateX(2px);
+      filter: drop-shadow(0 0 6px rgba(0, 212, 255, 0.5));
+    }
+  }
+  
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+// Comments list
+.post-detail-comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.post-detail-comments-loading,
+.post-detail-comments-empty {
+  text-align: center;
+  color: var(--text-tertiary);
+  font-size: 14px;
+  padding: var(--space-lg);
+}
+
+// Individual comment
+.post-detail-comment {
+  display: flex;
+  gap: var(--space-sm);
+  
+  &.is-editing {
+    background: rgba(168, 85, 247, 0.05);
+    border-radius: 12px;
+    padding: var(--space-sm);
+    margin: calc(-1 * var(--space-sm));
+  }
+}
+
+.post-detail-comment-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    border-color: var(--accent-cyan);
+  }
+  
+  svg {
+    color: var(--text-tertiary);
+  }
+}
+
+.post-detail-comment-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.post-detail-comment-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.post-detail-comment-author {
+  font-family: 'sweet-square-pro', sans-serif;
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  color: var(--color-white);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    color: var(--cyan);
+    filter: drop-shadow(0 0 6px var(--cyan));
+  }
+}
+
+.post-detail-comment-actions {
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  
+  .post-detail-comment:hover & {
+    opacity: 1;
+  }
+}
+
+.comment-action-btn {
+  background: none;
+  border: none;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    color: var(--accent-cyan);
+    background: rgba(0, 212, 255, 0.1);
+  }
+  
+  &--delete:hover {
+    color: #ff5252;
+    background: rgba(255, 82, 82, 0.1);
+  }
+}
+
+.post-detail-comment-text {
+  font-family: var(--font-main);
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  line-height: 1.4;
+  margin: 0;
+  word-wrap: break-word;
+}
+
+.post-detail-comment-time {
+  font-family: "new-science-mono", sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-top: 4px;
+  display: block;
+}
+
+// Edit form
+.comment-edit-form {
+  margin-top: 8px;
+}
+
+.comment-edit-input {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: var(--text-primary);
+  font-size: 14px;
+  resize: none;
+  outline: none;
+  min-height: 60px;
+  
+  &:focus {
+    border-color: var(--accent-purple);
+  }
+}
+
+.comment-edit-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  justify-content: flex-end;
+}
+
+.comment-edit-btn {
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &--cancel {
+    background: transparent;
+    border: 1px solid var(--border-default);
+    color: var(--text-secondary);
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+  }
+  
+  &--save {
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+    border: none;
+    color: white;
+    
+    &:hover:not(:disabled) {
+      filter: brightness(1.1);
+    }
+    
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+// Delete confirmation modal
+.post-detail-delete-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+.post-detail-delete-modal {
+  background: var(--bg-card-solid);
+  border: 1px solid var(--border-default);
+  border-radius: 16px;
+  padding: var(--space-xl);
+  text-align: center;
+  max-width: 320px;
+  
+  h3 {
+    margin: var(--space-md) 0 var(--space-sm);
+    color: var(--text-primary);
+    font-size: 18px;
+  }
+  
+  p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin: 0 0 var(--space-lg);
+  }
+}
+
+.post-detail-delete-icon {
+  opacity: 0.8;
+}
+
+.post-detail-delete-actions {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+}
+
+.post-detail-delete-btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &--cancel {
+    background: transparent;
+    border: 1px solid var(--border-default);
+    color: var(--text-secondary);
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+  }
+  
+  &--delete {
+    background: rgba(255, 82, 82, 0.2);
+    border: 1px solid rgba(255, 82, 82, 0.3);
+    color: #ff5252;
+    
+    &:hover:not(:disabled) {
+      background: rgba(255, 82, 82, 0.3);
+    }
+    
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+// Light mode overrides
+[data-theme="light"] {
+  .post-detail-content {
+    background: var(--bg-card-solid);
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15),
+                0 0 40px rgba(0, 150, 200, 0.05);
+  }
+  
+  .post-detail-close {
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--text-secondary);
+  }
+  
+  .post-detail-composer-input-wrapper {
+    background: rgba(0, 0, 0, 0.03);
+  }
+  
+  .comment-edit-input {
+    background: rgba(0, 0, 0, 0.03);
+  }
+}
+
+// Mobile responsive
+@media (max-width: 600px) {
+  .post-detail-overlay {
+    padding: 0;
+  }
+  
+  .post-detail-content {
+    max-height: 100vh;
+    height: 100vh;
+    border-radius: 0;
+    max-width: 100%;
+  }
+  
+  .post-detail-main {
+    padding: var(--space-md);
+  }
+  
+  .post-detail-comments {
+    padding: var(--space-md);
+  }
+}

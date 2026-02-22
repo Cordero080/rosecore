@@ -1,0 +1,498 @@
+/* MessageModal Conversations Sidebar */
+
+.message-conversations {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+/* Vertical gradient divider */
+.message-conversations::after {
+  content: '';
+  position: absolute;
+  top: 1rem;
+  bottom: 1rem;
+  right: 0;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 212, 255, 0.25) 20%,
+    rgba(167, 131, 255, 0.2) 50%,
+    rgba(0, 212, 255, 0.25) 80%,
+    transparent 100%
+  );
+}
+
+.conversations-header {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--glass-bg-subtle);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Mobile title row - hidden on desktop */
+.conversations-title-row {
+  display: none;
+  padding: 1rem;
+  min-height: 56px; /* Ensure enough height for touch targets */
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--glass-bg-subtle);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.conversations-title {
+  font-family: 'degular', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--accent, #1ae784);
+  letter-spacing: 0.5px;
+  margin: 0;
+  text-shadow:
+    0 0 8px rgba(26, 231, 132, 0.4),
+    0 0 16px rgba(26, 231, 132, 0.2);
+}
+
+.conversations-close-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 85, 221, 0.8);
+  width: 44px;  /* Larger touch target for mobile */
+  height: 44px; /* Larger touch target for mobile */
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+  
+  &:hover {
+    color: #ff55dd;
+    background: rgba(255, 85, 221, 0.1);
+  }
+}
+
+.new-message-btn {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  /* Layered cosmic black background with pink accent */
+  background:
+    linear-gradient(145deg, #0a0a0a, #000000),
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.04), transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.5), transparent 50%),
+    linear-gradient(
+      45deg,
+      rgba(255, 85, 221, 0.05),
+      rgba(0, 212, 255, 0.05),
+      rgba(255, 85, 221, 0.05)
+    );
+  background-size: 100% 100%, 150% 150%, 150% 150%, 200% 200%;
+  background-position: 25% 50%, 60% 60%, 40% 40%, 75% 25%;
+  background-blend-mode: overlay, multiply, overlay;
+  
+  /* Cyberpunk border - pink accent */
+  border: 1px solid rgba(255, 85, 221, 0.3);
+  border-radius: 8px;
+  
+  /* Clip path - same as feed composer */
+  clip-path: polygon(4px 0, 100% 0, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0 100%, 0 4px);
+  
+  color: rgba(255, 85, 221, 0.8);
+  
+  /* 3D depth shadows */
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.8),
+    inset 0 1px 3px var(--border-strong),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.5);
+  
+  &:hover {
+    border-color: rgba(255, 85, 221, 0.6);
+    background:
+      linear-gradient(145deg, #0f0f0f, #050505),
+      radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.15), transparent 50%),
+      radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.6), transparent 50%),
+      linear-gradient(
+        45deg,
+        rgba(255, 85, 221, 0.08),
+        rgba(0, 212, 255, 0.08),
+        rgba(255, 85, 221, 0.08)
+      );
+    background-size: 100% 100%, 150% 150%, 150% 150%, 200% 200%;
+    background-blend-mode: overlay, multiply, overlay;
+    box-shadow:
+      0 0 15px rgba(255, 85, 221, 0.3),
+      0 0 30px rgba(0, 212, 255, 0.2),
+      inset 0 1px 3px rgba(255, 255, 255, 0.15),
+      inset 0 -1px 3px rgba(0, 0, 0, 0.6);
+    color: #fff;
+  }
+}
+
+.conversations-search-wrapper {
+  position: relative;
+}
+
+.conversations-search {
+  width: 240px;
+  padding: 10px 14px;
+  font-family: 'degular', sans-serif;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  box-sizing: border-box;
+  
+  /* Layered cosmic black background with pink accent */
+  background:
+    linear-gradient(145deg, #0a0a0a, #000000),
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.04), transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.5), transparent 50%),
+    linear-gradient(
+      45deg,
+      rgba(255, 85, 221, 0.05),
+      rgba(0, 212, 255, 0.05),
+      rgba(255, 85, 221, 0.05)
+    );
+  background-size: 100% 100%, 150% 150%, 150% 150%, 200% 200%;
+  background-position: 25% 50%, 60% 60%, 40% 40%, 75% 25%;
+  background-blend-mode: overlay, multiply, overlay;
+  
+  /* Cyberpunk border - pink accent */
+  border: 1px solid rgba(255, 85, 221, 0.3);
+  border-radius: 8px;
+  
+  /* Clip path - same as feed composer */
+  clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+  
+  color: #fff;
+  outline: none;
+  transition: all 0.3s ease;
+  
+  /* 3D depth shadows */
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.8),
+    inset 0 1px 3px var(--border-strong),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.conversations-search::placeholder {
+  color: var(--text-placeholder);
+  text-shadow:
+    0 0 5px rgba(255, 85, 221, 0.5),
+    0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+.conversations-search:focus {
+  border-color: rgba(255, 85, 221, 0.6);
+  background:
+    linear-gradient(145deg, #0f0f0f, #050505),
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.15), transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.6), transparent 50%),
+    linear-gradient(
+      45deg,
+      rgba(255, 85, 221, 0.08),
+      rgba(0, 212, 255, 0.08),
+      rgba(255, 85, 221, 0.08)
+    );
+  background-size: 100% 100%, 150% 150%, 150% 150%, 200% 200%;
+  background-blend-mode: overlay, multiply, overlay;
+  box-shadow:
+    0 0 15px rgba(255, 85, 221, 0.3),
+    0 0 30px rgba(0, 212, 255, 0.2),
+    inset 0 1px 3px var(--border-strong),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.conversations-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Futuristic glowing scrollbar */
+.conversations-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.conversations-list::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 212, 255, 0.08);
+  border-radius: 0;
+}
+
+.conversations-list::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, 
+    rgba(0, 212, 255, 0.3), 
+    rgba(138, 43, 226, 0.3)
+  );
+  border-radius: 0;
+  box-shadow: 
+    0 0 4px rgba(0, 212, 255, 0.2),
+    0 0 8px rgba(138, 43, 226, 0.15);
+}
+
+.conversations-list::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, 
+    rgba(0, 212, 255, 0.5), 
+    rgba(138, 43, 226, 0.5)
+  );
+  box-shadow: 
+    0 0 6px rgba(0, 212, 255, 0.4),
+    0 0 12px rgba(138, 43, 226, 0.3);
+}
+
+/* Conversation Item */
+.conversation-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+/* Subtle gradient divider line */
+.conversation-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 1rem;
+  right: 1rem;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 212, 255, 0.2) 20%,
+    rgba(167, 131, 255, 0.15) 50%,
+    rgba(0, 212, 255, 0.2) 80%,
+    transparent 100%
+  );
+}
+
+.conversation-item:last-child::after {
+  display: none;
+}
+
+.conversation-item:hover {
+  background: var(--surface);
+}
+
+.conversation-item:hover::after {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 212, 255, 0.35) 20%,
+    rgba(167, 131, 255, 0.25) 50%,
+    rgba(0, 212, 255, 0.35) 80%,
+    transparent 100%
+  );
+}
+
+.conversation-item.active {
+  background: rgba(26, 231, 132, 0.08);
+  border-left: 2px solid var(--accent, #1ae784);
+}
+
+.conversation-item.active::after {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(26, 231, 132, 0.25) 20%,
+    rgba(26, 231, 132, 0.15) 50%,
+    rgba(26, 231, 132, 0.25) 80%,
+    transparent 100%
+  );
+}
+
+/* Conversation Avatar */
+.conversation-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, rgba(15, 20, 30, 0.95), rgba(8, 12, 20, 0.98));
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  flex-shrink: 0;
+  box-shadow:
+    0 0 10px rgba(0, 212, 255, 0.15),
+    inset 0 1px 2px var(--glass-bg-subtle);
+}
+
+/* First initial - cyan */
+.conversation-avatar .initial-1 {
+  color: #4fffff;
+  text-shadow: 
+    0 0 8px rgba(79, 255, 255, 0.9),
+    0 0 16px rgba(0, 212, 255, 0.7),
+    0 0 24px rgba(0, 212, 255, 0.4);
+}
+
+/* Second initial - purple */
+.conversation-avatar .initial-2 {
+  color: #c9a8ff;
+  text-shadow: 
+    0 0 8px rgba(201, 168, 255, 0.9),
+    0 0 16px rgba(167, 131, 255, 0.7),
+    0 0 24px rgba(167, 131, 255, 0.4);
+}
+
+.conversation-avatar-img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(0, 212, 255, 0.3);
+  flex-shrink: 0;
+}
+
+/* Conversation Info */
+.conversation-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.conversation-name {
+  font-family: var(--font-title);
+  font-weight: 400;
+  font-size: var(--font-size-body);
+  line-height: 1.2;
+  background: linear-gradient(180deg, #ffffff 22%, rgba(140, 150, 150, 0.85) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all 0.2s ease;
+}
+
+/* Alternating cyberpunk colors on hover */
+.conversation-item:nth-child(odd):hover .conversation-name {
+  color: #4fffff;
+  text-shadow: 
+    0 0 8px rgba(79, 255, 255, 0.6),
+    0 0 16px rgba(0, 212, 255, 0.4);
+}
+
+.conversation-item:nth-child(even):hover .conversation-name {
+  color: #c9a8ff;
+  text-shadow: 
+    0 0 8px rgba(201, 168, 255, 0.6),
+    0 0 16px rgba(167, 131, 255, 0.4);
+}
+
+.conversation-item.active .conversation-name {
+  color: #1ae784;
+  text-shadow: 0 0 12px rgba(26, 231, 132, 0.5);
+}
+
+.conversation-preview {
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Unread message preview - mint green highlight */
+.conversation-preview.unread {
+  color: #70ffb8;
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(112, 255, 184, 0.4);
+}
+
+/* Conversation meta container */
+.conversation-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.conversation-time {
+  font-size: var(--font-size-xs);
+  color: rgba(79, 255, 255, 0.5);
+  flex-shrink: 0;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Unread badge - shows count */
+.unread-badge {
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  background: #70ffb8;
+  color: rgba(0, 20, 10, 0.95);
+  font-size: 0.65rem;
+  font-weight: 800;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 6px rgba(112, 255, 184, 0.6),
+    0 0 12px rgba(112, 255, 184, 0.4);
+}
+
+/* Unread conversation item styling */
+.conversation-item.unread {
+  background: rgba(112, 255, 184, 0.05);
+  border-left: 2px solid #70ffb8;
+}
+
+.conversation-item.unread .conversation-name {
+  color: #fff;
+  font-weight: 600;
+  -webkit-text-fill-color: #fff;
+}
+
+.conversation-item.unread::after {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(112, 255, 184, 0.25) 20%,
+    rgba(112, 255, 184, 0.15) 50%,
+    rgba(112, 255, 184, 0.25) 80%,
+    transparent 100%
+  );
+}
+
+.conversation-item.active .conversation-time {
+  color: rgba(26, 231, 132, 0.7);
+}
+
+/* Empty conversations state */
+.conversations-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  text-align: center;
+  color: rgba(201, 168, 255, 0.5);
+  font-size: var(--font-size-sm);
+  gap: 0.5rem;
+}
+
+.conversations-empty .empty-hint {
+  font-size: var(--font-size-xs);
+  color: rgba(0, 212, 255, 0.4);
+}

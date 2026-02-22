@@ -1,0 +1,539 @@
+/* Top Bar
+   
+   RESPONSIVE BEHAVIOR:
+   - Desktop: 60px height, full padding
+   - Mobile (480px-): 44px height, reduced padding and icon sizes
+   
+   The top bar is fixed position and spans full width.
+   On mobile, it should remain within viewport bounds.
+*/
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: calc(60px + env(safe-area-inset-top, 0px));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: env(safe-area-inset-top, 0px) 1.6rem 6px 1.6rem; /* Added 6px bottom padding for curved border */
+  padding-left: max(1.6rem, env(safe-area-inset-left, 0px));
+  padding-right: max(1.6rem, env(safe-area-inset-right, 0px));
+  background: var(--bg-card);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border-bottom: 1px solid var(--border-default);
+  border-bottom-left-radius: 35% 50%;
+  border-bottom-right-radius: 35% 50%;
+  box-shadow: var(--shadow-card);
+  z-index: 100;
+}
+
+/* Notifications icon - amber/gold */
+.icon-notifications {
+  color: var(--amber);
+  position: relative;
+}
+
+.icon-notifications:hover {
+  color: var(--amber);
+  background: rgba(251, 191, 36, 0.15);
+  box-shadow: 0 0 15px rgba(251, 191, 36, 0.4);
+  transform: scale(1.1);
+}
+
+/* Notification badge - always visible with count + breathing animation */
+.notification-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  
+  /* Solid amber background - no blur */
+  background: var(--amber);
+  color: rgba(28, 10, 1, 0.95);
+  font-size: 0.65rem;
+  font-weight: 800;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Clean glow effect */
+  box-shadow:
+    0 0 6px var(--amber),
+    0 0 12px rgba(251, 191, 36, 0.6);
+  
+  /* Smooth transition for hover */
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Mysterious breathing pulse - shrink and grow */
+  animation: breathe 3s ease-in-out infinite;
+}
+
+/* Slight scale on hover - pause animation */
+.icon-notifications:hover .notification-badge,
+.icon-messages:hover .notification-badge {
+  transform: scale(1.15);
+  animation: none;
+  
+  /* Enhanced glow when hovered */
+  box-shadow:
+    0 0 8px var(--amber),
+    0 0 16px rgba(251, 191, 36, 0.7),
+    inset 0 -2px 4px rgba(195, 9, 9, 0.2);
+}
+
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow:
+      0 0 6px var(--amber),
+      0 0 12px rgba(251, 191, 36, 0.6);
+  }
+  50% {
+    transform: scale(0.7);
+    opacity: 0.85;
+    box-shadow:
+      0 0 3px var(--amber),
+      0 0 6px rgba(251, 191, 36, 0.3);
+  }
+}
+
+.top-bar-logo {
+  @include numeneon-title;
+  font-size: 1rem;
+  margin-left: 2.5rem;
+  letter-spacing: 2px;
+  position: relative;
+  top: -6px;
+  align-self: center;
+  cursor: pointer;
+  transition: text-shadow 0.2s ease;
+  
+  &:hover {
+    animation: logoGlitch 0.3s ease-in-out;
+  }
+}
+
+.top-bar-icons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0; // Prevent icon group from shrinking
+}
+
+.icon-placeholder {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0; // Prevent individual icons from distorting
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+}
+
+/* Search icon - pink */
+.icon-search {
+  color: var(--pink);
+  opacity: 0.75;
+}
+
+.icon-search:hover {
+  color: var(--pink);
+  opacity: 1;
+  background: rgba(255, 107, 157, 0.15);
+  box-shadow: 0 0 15px rgba(255, 107, 157, 0.4);
+  transform: scale(1.1);
+}
+
+/* Messages icon - accent green */
+.icon-messages {
+  color: var(--accent, #1ae784);
+  opacity: 0.75;
+}
+
+.icon-messages:hover {
+  color: var(--accent);
+  opacity: 1;
+  background: rgba(26, 231, 132, 0.15);
+  box-shadow: 0 0 15px rgba(26, 231, 132, 0.4);
+  transform: scale(1.1);
+}
+
+/* Notifications icon - amber/gold radar pulse */
+.icon-notifications {
+  color: var(--amber);
+  opacity: 0.75;
+}
+
+.icon-notifications:hover {
+  color: var(--amber);
+  opacity: 1;
+  background: rgba(251, 191, 36, 0.15);
+  box-shadow: 0 0 15px rgba(251, 191, 36, 0.4);
+  transform: scale(1.1);
+}
+
+/* Logout icon - arrow orange, door cyan */
+.icon-logout {
+  opacity: 0.75;
+  svg {
+    path {
+      stroke: var(--cyan); /* Door - cyan */
+    }
+    polyline {
+      stroke: var(--amber); /* Arrow head - orange */
+    }
+    line {
+      stroke: var(--amber); /* Arrow line - orange */
+    }
+  }
+}
+
+.icon-logout:hover {
+  opacity: 1;
+  background: rgba(255, 140, 0, 0.15);
+  box-shadow: 0 0 15px rgba(255, 140, 0, 0.4);
+  transform: scale(1.1);
+}
+
+/* Login icon - cyan */
+.icon-login {
+  color: var(--cyan);
+  opacity: 0.75;
+}
+
+.icon-login:hover {
+  opacity: 1;
+  background: rgba(124, 201, 255, 0.15);
+  box-shadow: 0 0 15px rgba(124, 201, 255, 0.4);
+  transform: scale(1.1);
+}
+
+/* Hamburger Menu Button */
+.hamburger-btn {
+  display: none; /* Hidden by default */
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--cyan);
+  cursor: pointer;
+  flex-shrink: 0;
+  
+  &:hover {
+    color: var(--pink);
+  }
+  
+  &.is-open {
+    color: var(--accent);
+  }
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+  .top-bar-logo {
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    top: 0;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .hamburger-btn {
+    display: flex; /* Show on mobile/tablet */
+  }
+  
+  .top-bar {
+    justify-content: flex-start;
+    gap: 0.75rem;
+  }
+  
+  .top-bar-logo {
+    flex: 1;
+    margin-left: 0;
+    text-align: left;
+    font-size: 0.75rem;
+    letter-spacing: 1.25px;
+    top: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-bar {
+    height: calc(52px + env(safe-area-inset-top, 0px));
+    padding: env(safe-area-inset-top, 0px) 0.75rem 8px 0.75rem; /* Added 8px bottom padding for curved border */
+    gap: 0.75rem;
+  }
+  
+  .hamburger-btn {
+    width: 34px;
+    height: 34px;
+    
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  
+  .top-bar-logo {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    margin-left: 6px;
+    top: 0;
+  }
+  
+  .top-bar-icons {
+    gap: 0.6rem;
+  }
+  
+  .icon-placeholder {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .icon-placeholder svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* ============================================
+   LIGHT MODE OVERRIDES
+   ============================================ */
+[data-theme="light"] {
+  .top-bar {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .hamburger-btn {
+    color: var(--text-secondary) !important;
+    
+    &:hover {
+      color: var(--blue-primary) !important;
+      background: rgba(26, 115, 231, 0.1) !important;
+    }
+    
+    &.is-open {
+      color: var(--blue-primary) !important;
+      background: rgba(26, 115, 231, 0.15) !important;
+    }
+  }
+
+  .top-bar-logo {
+    color: var(--text-inverse) !important;
+  }
+
+  .icon-placeholder {
+    color: rgba(0, 0, 0, 0.6) !important;
+  }
+
+  .icon-search {
+    color: rgba(0, 0, 0, 0.6) !important;
+  }
+
+  .icon-search:hover {
+    color: var(--blue-primary) !important;
+    background: rgba(26, 115, 231, 0.1) !important;
+    box-shadow: 0 0 10px rgba(26, 115, 231, 0.2) !important;
+  }
+
+  .icon-messages {
+    color: rgba(0, 0, 0, 0.6) !important;
+  }
+
+  .icon-messages:hover {
+    color: var(--blue-primary) !important;
+    background: rgba(26, 115, 231, 0.1) !important;
+    box-shadow: 0 0 10px rgba(26, 115, 231, 0.2) !important;
+  }
+
+  .icon-placeholder:hover {
+    color: var(--blue-primary) !important;
+    background: rgba(26, 115, 231, 0.1) !important;
+    box-shadow: 0 0 10px rgba(26, 115, 231, 0.2) !important;
+  }
+}
+
+/* Friend Accepted Toast - slides in from right side */
+.friend-accepted-toast {
+  position: fixed;
+  top: 62px;
+  right: 16px;
+  background: rgba(0, 0, 0, 0.343);
+  border: .05px solid rgba(26, 217, 231, 0.66);
+  border-radius: 8px;
+  padding: 0.3rem 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #1ae784;
+  font-size: 0.8rem;
+  font-weight: 500;
+  white-space: nowrap;
+  z-index: 9999;
+  animation: toastSlideInRight 0.4s ease-out;
+  box-shadow: 
+    0 0 20px rgba(26, 231, 200, 0.3),
+    0 4px 20px rgba(0, 0, 0, 0.5);
+  
+  /* Fade-out when closing */
+  &.closing {
+    animation: toastFadeOutRight 0.3s ease-out forwards;
+  }
+  
+  strong {
+    color: #fff;
+  }
+  
+  button {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    padding: 0;
+    margin-left: 0.5rem;
+    font-size: 1rem;
+    transition: color 0.2s ease;
+    
+    &:hover {
+      color: #f753f2ef;
+    }
+  }
+  
+  /* Tablet - 1024px */
+  @media (max-width: 1024px) {
+    top: 62px;
+    right: 14px;
+    font-size: 0.78rem;
+    padding: 0.28rem 0.85rem;
+    gap: 0.45rem;
+  }
+  
+  /* Mobile - 768px */
+  @media (max-width: 768px) {
+    top: 58px;
+    right: 10px;
+    font-size: 0.72rem;
+    padding: 0.2rem 0.6rem;
+    gap: 0.35rem;
+    border-radius: 6px;
+    max-width: calc(100vw - 20px);
+    
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+    
+    button {
+      font-size: 0.85rem;
+      margin-left: 0.3rem;
+    }
+  }
+  
+  /* Small Mobile - 480px (iPhone 6/7/8/SE) */
+  @media (max-width: 480px) {
+    top: 54px;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.65rem;
+    padding: 0.18rem 0.5rem;
+    gap: 0.3rem;
+    border-radius: 5px;
+    max-width: calc(100vw - 16px);
+    box-shadow: 
+      0 0 10px rgba(26, 231, 200, 0.2),
+      0 2px 8px rgba(0, 0, 0, 0.3);
+    animation: toastSlideInCenter 0.4s ease-out;
+    
+    &.closing {
+      animation: toastFadeOutCenter 0.3s ease-out forwards;
+    }
+    
+    button {
+      font-size: 0.75rem;
+      margin-left: 0.2rem;
+    }
+    
+    svg {
+      width: 12px;
+      height: 12px;
+    }
+  }
+  
+  /* Extra Small - 375px and below (iPhone SE, older iPhones) */
+  @media (max-width: 375px) {
+    font-size: 0.6rem;
+    padding: 0.15rem 0.4rem;
+    gap: 0.25rem;
+    
+    button {
+      font-size: 0.7rem;
+      margin-left: 0.15rem;
+    }
+    
+    svg {
+      width: 11px;
+      height: 11px;
+    }
+  }
+}
+
+@keyframes toastSlideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes toastFadeOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+}
+
+/* Center animations for mobile */
+@keyframes toastSlideInCenter {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes toastFadeOutCenter {
+  from {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+}

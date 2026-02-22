@@ -1,0 +1,743 @@
+/**
+ * ============================================
+ * NUMENEON Light Mode Theme - Override File
+ * ============================================
+ * 
+ * This file provides overrides for components that haven't
+ * been converted to use semantic variables yet.
+ * 
+ * As components are converted to use var(--bg-card), var(--text-primary),
+ * etc., their overrides here can be removed.
+ * 
+ * Theme variables are defined in _variables.scss under [data-theme="light"]
+ */
+
+[data-theme="light"] {
+  
+  /* ============================================
+     BASE RESET
+     ============================================ */
+  
+  background: var(--bg-base) !important;
+  color: var(--text-primary) !important;
+
+  /* ============================================
+     LEGACY VARIABLE ALIASES
+     Bridge old --light-* vars to semantic tokens
+     Remove as components are fully converted
+     ============================================ */
+  
+  // Backgrounds
+  --light-bg-glass: var(--bg-glass);
+  --light-bg-card: var(--bg-card);
+  --light-bg-subtle: rgba(0, 0, 0, 0.02);
+  --light-bg-muted: rgba(0, 0, 0, 0.04);
+  --light-bg-input: var(--bg-input);
+  --light-bg-overlay: var(--bg-overlay);
+  
+  // Text
+  --light-text-primary: var(--text-primary);
+  --light-text-secondary: var(--text-secondary);
+  --light-text-muted: var(--text-muted);
+  --light-text-placeholder: var(--text-placeholder);
+  
+  // Borders
+  --light-border: var(--border-default);
+  --light-border-strong: var(--border-strong);
+  --light-border-focus: var(--border-focus);
+  
+  // Shadows
+  --light-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --light-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --light-shadow-lg: var(--shadow-card);
+  --light-shadow-focus: var(--shadow-focus);
+  
+  // Accents
+  --light-accent-blue: #1565c0;
+  --light-accent-cyan: #0277bd;
+  --light-accent-magenta: #9c27b0;
+
+  /* ============================================
+     TYPOGRAPHY
+     ============================================ */
+  
+  /* Base text color inherited from semantic variables */
+  /* Only override specific elements that need it */
+  
+  .text-muted,
+  .timestamp,
+  .meta,
+  small {
+    color: var(--light-text-secondary) !important;
+  }
+
+  /* ============================================
+     PAGE CONTAINERS
+     ============================================ */
+  
+  /* Profile page - custom background */
+  .profile-page,
+  .user-profile-page,
+  .user-profile-page.river-profile {
+    background: var(--bg-base) !important;
+  }
+
+  .home-page,
+  .friends-page,
+  .about-page,
+  .feed-container,
+  .home-container,
+  .timeline-container,
+  .login-page,
+  .signup-page,
+  .landing-page {
+    background: var(--bg-base) !important;
+  }
+
+  /* ============================================
+     CARDS (Unified)
+     ============================================ */
+  
+  /* Cards now inherit from semantic variables in _variables.scss */
+  /* These overrides ensure any hardcoded dark values are fixed */
+  
+  .card,
+  .profile-card,
+  .post-card,
+  .friend-card,
+  .login-card,
+  .signup-card,
+  .auth-card,
+  .river-card {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-default) !important;
+    box-shadow: var(--shadow-card) !important;
+    color: var(--text-primary) !important;
+  }
+
+  /* River post cards - solid background for clip-path corners */
+  .river-post-card {
+    background: #ffffff !important;
+    border: none !important;
+   
+  }
+
+  .river-post-card::before {
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0.05) 50%,
+      rgba(0, 0, 0, 0.1) 100%
+    ) !important;
+    clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px) !important;
+  }
+
+  .river-post-card::after {
+    background: #ffffff !important;
+    clip-path: polygon(13px 0, 100% 0, 100% calc(100% - 13px), calc(100% - 13px) 100%, 0 100%, 0 13px) !important;
+  }
+
+  .river-post-card:hover {
+    box-shadow: 
+      0 8px 24px rgba(0, 0, 0, 0.12),
+      0 4px 12px rgba(26, 115, 231, 0.08) !important;
+    border: none !important;
+    transform: translateY(-2px);
+  }
+
+  .river-post-card:hover::before {
+    background: linear-gradient(
+      135deg,
+      rgba(26, 115, 231, 0.25) 0%,
+      rgba(26, 231, 132, 0.12) 50%,
+      rgba(26, 115, 231, 0.25) 100%
+    ) !important;
+  }
+
+  /* Card interactions */
+  .card:hover,
+  .post-card:hover,
+  .river-card:hover {
+    background: var(--bg-card-hover) !important;
+    border-color: var(--border-strong) !important;
+    box-shadow: var(--shadow-card-hover) !important;
+  }
+
+  /* ============================================
+     BUTTONS
+     ============================================ */
+  
+  /* Friends page tabs */
+  .tab-btn {
+    background: var(--light-bg-glass) !important;
+    border: 1px solid var(--light-border) !important;
+    color: var(--light-text-primary) !important;
+    box-shadow: var(--light-shadow-sm) !important;
+  }
+  
+  .tab-btn:hover {
+    background: var(--light-bg-muted) !important;
+    border-color: var(--light-accent-blue) !important;
+    color: var(--light-accent-blue) !important;
+  }
+  
+  .tab-btn.active {
+    background: var(--light-accent-blue) !important;
+    border-color: var(--light-accent-blue) !important;
+    color: #ffffff !important;
+    text-shadow: none !important;
+  }
+  
+  /* Primary buttons - keep accent colors */
+  .btn-primary,
+  .primary-btn {
+    background: linear-gradient(135deg, var(--light-accent-blue), #1565c0) !important;
+    color: #ffffff !important;
+    border: none !important;
+  }
+
+  /* Secondary/Ghost buttons */
+  .btn-secondary,
+  .btn-ghost,
+  .action-btn,
+  .media-action-btn {
+    background: var(--light-bg-muted) !important;
+    border: 1px solid var(--light-border) !important;
+    color: var(--light-text-primary) !important;
+  }
+
+  .btn-secondary:hover,
+  .btn-ghost:hover,
+  .action-btn:hover,
+  .media-action-btn:hover {
+    background: rgba(0, 0, 0, 0.1) !important;
+    border-color: var(--light-border-strong) !important;
+  }
+
+  /* Icon buttons */
+  .icon-btn,
+  .close-btn {
+    background: var(--light-bg-muted) !important;
+    color: var(--light-text-primary) !important;
+  }
+  
+  /* Glowing close button - light mode */
+  .close-btn-glow {
+    color: rgba(200, 30, 60, 0.8) !important;
+    z-index: 10 !important;
+    pointer-events: auto !important;
+    
+    svg {
+      filter: drop-shadow(0 0 3px rgba(200, 30, 60, 0.3)) !important;
+    }
+    
+    &:hover {
+      color: #c81e3c !important;
+      
+      svg {
+        filter: drop-shadow(0 0 8px rgba(200, 30, 60, 0.6))
+                drop-shadow(0 0 16px rgba(200, 30, 60, 0.4)) !important;
+        transform: rotate(90deg) !important;
+      }
+    }
+  }
+
+  /* ============================================
+     NAVIGATION
+     ============================================ */
+  
+  /* Navigation now uses theme variables from _variables.scss */
+  /* Additional light mode tweaks only */
+  
+  .top-bar,
+  .bottom-nav,
+  .side-nav {
+    box-shadow: var(--shadow-card) !important;
+  }
+
+  .top-bar-logo {
+    /* Invert gradient for light mode - dark on top, lighter at bottom */
+    background: linear-gradient(180deg, #000000 22%, rgba(80, 80, 80, 0.7) 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+  }
+
+  .nav-item.active,
+  .nav-link.active {
+    color: var(--color-cyan) !important;
+  }
+
+  /* ============================================
+     INPUTS & FORMS (Standard Light Style)
+     ============================================ */
+  
+  .input,
+  .search-input {
+    background: var(--light-bg-input) !important;
+    border: 1px solid var(--light-border-strong) !important;
+    color: var(--light-text-primary) !important;
+    box-shadow: var(--light-shadow-sm) !important;
+    border-radius: 8px !important;
+  }
+
+  .input:focus,
+  .search-input:focus {
+    border-color: var(--light-border-focus) !important;
+    box-shadow: var(--light-shadow-focus) !important;
+    outline: none !important;
+  }
+
+  .input::placeholder,
+  .search-input::placeholder {
+    color: var(--light-text-placeholder) !important;
+    text-shadow: none !important;
+  }
+
+  /* ============================================
+     ICONS & SVGs
+     ============================================ */
+  
+  .icon,
+  svg:not(.blob):not(.keep-color):not(.composer-action-btn svg):not(.quick-composer-action-btn svg) {
+    stroke: var(--light-text-primary) !important;
+  }
+
+  /* Composer action buttons - keep icons colored on dark background */
+  .composer-action-btn.media-btn svg,
+  .quick-composer-action-btn.media-btn svg {
+    stroke: #dc08bc !important;
+    color: #dc08bc !important;
+  }
+  
+  .composer-action-btn.milestone-btn svg,
+  .quick-composer-action-btn.milestone-btn svg {
+    stroke: #ffd700 !important;
+    color: #ffd700 !important;
+  }
+
+  .icon-muted {
+    stroke: var(--light-text-secondary) !important;
+  }
+
+  /* Keep colored icons */
+  .icon-cyan { stroke: var(--light-accent-cyan) !important; }
+  .icon-magenta { stroke: var(--light-accent-magenta) !important; }
+
+  /* ============================================
+     TIMELINE RIVER
+     ============================================ */
+  
+  /* Now uses theme variables from _variables.scss - minimal overrides needed */
+  
+  .timeline-river,
+  .river-column {
+    background: transparent !important;
+  }
+
+  /* Date Headers - container is transparent, only badge has background */
+  .river-date-header,
+  .date-header {
+    background: transparent !important;
+    border: none !important;
+    color: var(--text-primary) !important;
+  }
+
+  /* ============================================
+     CAROUSEL / SMART DECK
+     ============================================ */
+  
+  .carousel-container,
+  .smart-deck,
+  .stories-section,
+  .stories-carousel {
+    background: transparent !important;
+  }
+
+  .carousel-card,
+  .story-card,
+  .story-item {
+    background: transparent !important;
+    border: none !important;
+    /* Keep cyberpunk clip-path from base styles */
+  }
+
+  /* ============================================
+     DECK TABS (Home Feed) - Light Mode
+     ============================================ */
+  
+  .deck-tab {
+    background: var(--light-bg-glass) !important;
+    border-color: var(--light-border) !important;
+  }
+  
+  .deck-tab--collapsed {
+    background: var(--light-bg-subtle) !important;
+    opacity: 0.5 !important;
+  }
+
+  /* ============================================
+     RIVER LABELS (Profile Page) - Light Mode
+     ============================================ */
+  
+  .river-label {
+    background: var(--light-bg-glass) !important;
+    border-color: var(--light-border) !important;
+  }
+  
+  .river-label--collapsed {
+    background: var(--light-bg-subtle) !important;
+    opacity: 0.5 !important;
+  }
+
+  /* Light inner background for story cards - keep colorful gradient border */
+  .story-card::after {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.99)) !important;
+  }
+
+  .story-card:hover {
+    box-shadow: var(--light-shadow-lg) !important;
+  }
+
+  /* Story avatar - light mode */
+  .story-avatar {
+    background: var(--light-bg-subtle) !important;
+    border: 1px solid var(--light-border) !important;
+    box-shadow: none !important;
+  }
+
+  .story-avatar svg {
+    color: var(--light-accent-blue) !important;
+    filter: none !important;
+  }
+
+  /* Story initials & add icon - dark text for light mode */
+  .story-initial-1,
+  .story-initial-2,
+  .add-story-icon {
+    color: var(--light-text-primary) !important;
+  }
+
+  /* Story name - visible on white */
+  .story-name {
+    color: var(--light-text-primary) !important;
+  }
+
+  /* Composer section container - light glass */
+  .composer-section {
+    background: var(--light-bg-glass) !important;
+    border: 1px solid var(--light-border) !important;
+    backdrop-filter: blur(10px) !important;
+  }
+
+  .composer-section:hover {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border-color: rgba(26, 115, 231, 0.3) !important;
+    box-shadow: var(--light-shadow-md) !important;
+  }
+
+  /* Composer avatar - light mode */
+  .composer-avatar {
+    background: var(--light-bg-subtle) !important;
+    border: 1px solid var(--light-border) !important;
+    color: var(--light-accent-blue) !important;
+    box-shadow: none !important;
+  }
+
+  .composer-avatar svg {
+    filter: none !important;
+  }
+
+  /* ============================================
+     MODAL & OVERLAYS
+     ============================================ */
+  
+  .modal-overlay,
+  .overlay {
+    background: rgba(0, 0, 0, 0.4) !important;
+    backdrop-filter: blur(8px) !important;
+  }
+
+  .modal,
+  .modal-content,
+  .composer-modal {
+    background: var(--light-bg-card) !important;
+    border: 1px solid var(--light-border) !important;
+    box-shadow: var(--light-shadow-lg) !important;
+  }
+
+  .modal-header,
+  .modal-title {
+    color: var(--light-text-primary) !important;
+  }
+
+  /* ============================================
+     MEDIA LIGHTBOX - Moved to component:
+     components/Home/components/MediaLightbox/styles/_light-mode.scss
+     ============================================ */
+
+  /* ============================================
+     SCROLLBARS
+     ============================================ */
+  
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--light-bg-subtle);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  /* ============================================
+     AVATARS
+     ============================================ */
+  
+  .avatar,
+  .river-avatar {
+    border: 2px solid var(--light-border) !important;
+  }
+
+  .avatar-icon {
+    filter: brightness(0) saturate(100%) !important;
+  }
+
+  /* ============================================
+     BADGES & TAGS
+     ============================================ */
+  
+  .badge,
+  .tag {
+    background: var(--light-bg-muted) !important;
+    color: var(--light-text-primary) !important;
+    border: 1px solid var(--light-border) !important;
+  }
+
+  /* ============================================
+     DIVIDERS
+     ============================================ */
+  
+  hr,
+  .divider,
+  .separator {
+    border-color: var(--light-border) !important;
+    background: var(--light-border) !important;
+  }
+
+  /* ============================================
+     LINKS
+     ============================================ */
+  
+  a {
+    color: var(--light-accent-cyan) !important;
+  }
+
+  a:hover {
+    color: var(--light-accent-blue) !important;
+  }
+
+  /* ============================================
+     TYPE TOGGLE
+     ============================================ */
+  
+  .composer-type-toggle,
+  .type-toggle {
+    background: var(--light-bg-glass) !important;
+    border: 1px solid var(--light-border) !important;
+  }
+
+  .composer-type-toggle button,
+  .type-toggle button {
+    color: var(--light-text-primary) !important;
+  }
+
+  .composer-type-toggle button.active,
+  .type-toggle button.active {
+    background: var(--light-bg-muted) !important;
+  }
+
+  /* Composer modal - fix textarea */
+  .composer-textarea {
+    color: #ffffff !important;
+    background: linear-gradient(
+      145deg,
+      rgba(15, 12, 25, 0.95) 0%,
+      rgba(25, 20, 40, 0.95) 50%,
+      rgba(15, 15, 30, 0.95) 100%
+    ) !important;
+    border: 1.5px solid rgba(0, 212, 255, 0.4) !important;
+  }
+  
+  .composer-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.4) !important;
+  }
+
+  /* ============================================
+     BLACK HOLOGRAPHIC SIGNATURE COMPOSERS
+     ============================================
+     
+     These inputs STAY DARK in light mode.
+     They maintain the cyberpunk black glass aesthetic
+     as a signature design element.
+   */
+
+  .composer-input,
+  .quick-composer-input,
+  .chat-textarea,
+  .comment-input,
+  .conversations-search {
+    /* Dark cosmic base */
+    background: linear-gradient(
+      145deg,
+      rgba(15, 12, 25, 0.95) 0%,
+      rgba(25, 20, 40, 0.95) 50%,
+      rgba(15, 15, 30, 0.95) 100%
+    ) !important;
+    
+    /* Cyan-purple holographic border */
+    border: 1.5px solid rgba(0, 212, 255, 0.4) !important;
+    
+    /* White text */
+    color: #ffffff !important;
+    
+    /* 3D depth with strong top light rim */
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.7),
+      inset 0 2px 6px rgba(255, 255, 255, 0.35),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.5) !important;
+    
+    clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+  }
+
+  .composer-input::placeholder,
+  .quick-composer-input::placeholder,
+  .chat-textarea::placeholder,
+  .comment-input::placeholder,
+  .conversations-search::placeholder {
+    color: rgba(255, 255, 255, 0.4) !important;
+  }
+
+  .composer-placeholder,
+  .quick-composer-placeholder {
+    color: rgba(255, 255, 255, 0.4) !important;
+    font-size: 0.9rem !important;
+    text-shadow:
+      0 0 5px rgba(138, 43, 226, 0.5),
+      0 0 10px rgba(0, 212, 255, 0.3) !important;
+  }
+
+  .composer-input:focus,
+  .quick-composer-input:focus,
+  .chat-textarea:focus,
+  .comment-input:focus,
+  .conversations-search:focus {
+    border-color: rgba(0, 212, 255, 0.6) !important;
+    box-shadow:
+      0 4px 8px rgba(0, 0, 0, 0.8),
+      0 0 20px rgba(0, 212, 255, 0.3),
+      inset 0 1px 3px rgba(255, 255, 255, 0.2),
+      inset 0 -1px 3px rgba(0, 0, 0, 0.5) !important;
+  }
+
+  /* ============================================
+     PROFILE CARD ANALYTICS - Platinum/Aluminum Texture
+     ============================================ */
+  
+  .activity-wave {
+    /* Platinum/brushed aluminum gradient */
+    background: 
+      linear-gradient(
+        135deg,
+        rgba(220, 225, 230, 0.95) 0%,
+        rgba(200, 208, 215, 0.9) 25%,
+        rgba(230, 235, 240, 0.95) 50%,
+        rgba(195, 205, 212, 0.9) 75%,
+        rgba(215, 222, 228, 0.95) 100%
+      ) !important;
+    border: 1px solid rgba(180, 190, 200, 0.6) !important;
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.05) !important;
+  }
+
+  .activity-wave::before {
+    /* Subtle brushed metal highlight */
+    background: 
+      repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        rgba(255, 255, 255, 0.03) 1px,
+        transparent 2px,
+        transparent 4px
+      ),
+      radial-gradient(
+        ellipse at 50% 0%,
+        rgba(255, 255, 255, 0.4) 0%,
+        transparent 60%
+      ) !important;
+  }
+
+  .activity-wave .wave-title {
+    background: linear-gradient(180deg, #2c3e50 0%, #5a6a7a 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+  }
+
+  .heatmap-container {
+    /* Platinum/brushed aluminum gradient */
+    background: 
+      linear-gradient(
+        135deg,
+        rgba(215, 222, 228, 0.95) 0%,
+        rgba(195, 205, 212, 0.9) 25%,
+        rgba(225, 232, 238, 0.95) 50%,
+        rgba(200, 210, 218, 0.9) 75%,
+        rgba(220, 227, 233, 0.95) 100%
+      ) !important;
+    border: 1px solid rgba(180, 190, 200, 0.6) !important;
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.05) !important;
+    
+    /* Add subtle brushed texture */
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 20px;
+      background: 
+        repeating-linear-gradient(
+          90deg,
+          transparent 0px,
+          rgba(255, 255, 255, 0.02) 1px,
+          transparent 2px,
+          transparent 4px
+        );
+      pointer-events: none;
+    }
+  }
+
+  .heatmap-container {
+    position: relative;
+  }
+
+  .heatmap-header .heatmap-month,
+  .heatmap-days span {
+    color: rgba(60, 70, 80, 0.8) !important;
+  }
+} /* End [data-theme="light"] */

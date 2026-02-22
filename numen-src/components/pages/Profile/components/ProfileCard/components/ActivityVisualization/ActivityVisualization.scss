@@ -1,0 +1,968 @@
+/* ActivityVisualization Component Styles
+   Wave graph and Heatmap views
+   Extracted from ProfileCard.scss
+*/
+
+/* Activity Wave Graph - Holographic Cosmic Black */
+.activity-wave {
+  /* 135° base gradient with banding - matching light mode structure */
+  background: 
+    linear-gradient(
+      135deg,
+      rgba(8, 10, 14, 0.98) 0%,
+      rgba(14, 18, 24, 0.95) 25%,
+      rgba(10, 12, 18, 0.98) 50%,
+      rgba(16, 20, 28, 0.95) 75%,
+      rgba(8, 10, 16, 0.98) 100%
+    );
+  border: 1px solid rgba(0, 212, 255, 0.25);
+  border-radius: 16px;
+  padding: 32px 28px;
+  margin-bottom: 24px;
+  overflow: hidden;
+  position: relative;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(0, 212, 255, 0.12),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Responsive activity wave container */
+@media (max-width: 600px) {
+  .activity-wave {
+    padding: 20px 16px;
+    margin-bottom: 16px;
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .activity-wave {
+    padding: 16px 12px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 375px) {
+  .activity-wave {
+    padding: 12px 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+  }
+}
+
+.activity-wave::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Matching light mode structure: 90° brush + top radial highlight */
+  background: 
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      rgba(0, 212, 255, 0.025) 1px,
+      transparent 2px,
+      transparent 4px
+    ),
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(0, 212, 255, 0.15) 0%,
+      rgba(138, 43, 226, 0.05) 30%,
+      transparent 60%
+    );
+  pointer-events: none;
+}
+
+.activity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+  flex-wrap: wrap;
+}
+
+/* Responsive header - stack on mobile */
+@media (max-width: 480px) {
+  .activity-header {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-bottom: 16px;
+  }
+}
+
+@media (max-width: 375px) {
+  .activity-header {
+    gap: 4px;
+    margin-bottom: 12px;
+  }
+}
+
+.activity-title-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-md);
+  flex: 1;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+/* Responsive title row */
+@media (max-width: 480px) {
+  .activity-title-row {
+    gap: var(--space-sm);
+    flex: 1;
+  }
+}
+
+@media (max-width: 375px) {
+  .activity-title-row {
+    gap: 4px;
+  }
+}
+
+.wave-title {
+  font-family: var(--font-title);
+  font-weight: 400;
+  font-style: normal;
+  font-size: var(--font-size-md);
+  margin: 0;
+  letter-spacing: 0.5px;
+  background: linear-gradient(180deg, #ffffff 22%, rgba(79, 88, 88, 0.699) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Responsive wave title */
+@media (max-width: 480px) {
+  .wave-title {
+    font-size: var(--font-size-sm);
+  }
+}
+
+@media (max-width: 375px) {
+  .wave-title {
+    font-size: 11px;
+  }
+}
+
+.activity-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  margin-left: auto;
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+/* Responsive activity meta - hide on small screens */
+@media (max-width: 600px) {
+  .activity-meta {
+    gap: var(--space-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .activity-meta {
+    display: none; /* Hide on mobile to prioritize toggle */
+  }
+}
+
+.post-frequency {
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  font-weight: 500;
+  font-family: var(--font-title);
+  white-space: nowrap;
+}
+
+/* Responsive post frequency */
+@media (max-width: 600px) {
+  .post-frequency {
+    font-size: var(--font-size-xs);
+  }
+}
+
+.peak-time {
+  font-size: var(--font-size-xs);
+  color: rgba(255, 215, 0, 0.85);
+  font-weight: 600;
+  margin-right: 16px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Responsive peak time */
+@media (max-width: 600px) {
+  .peak-time {
+    font-size: 10px;
+    margin-right: 8px;
+  }
+  
+  .peak-time svg {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+.peak-time:hover {
+  color: rgba(255, 215, 0, 1);
+}
+
+/* View Toggle */
+.view-toggle {
+  display: flex;
+  gap: var(--space-xs);
+  background: rgba(0, 0, 0, 0.3);
+  padding: 3px;
+  border-radius: 6px;
+  border: 1px solid var(--border-default);
+  flex-shrink: 0;
+}
+
+.toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: 6px 10px;
+  min-width: 32px;
+  min-height: 32px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--border-strong);
+  color: var(--text-secondary);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  box-shadow: 
+    inset 0 1px 3px var(--border-default),
+    0 0 10px rgba(26, 115, 231, 0.15);
+}
+
+.toggle-btn svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* Responsive toggle - scales down for mobile */
+@media (max-width: 480px) {
+  .view-toggle {
+    gap: 2px;
+    padding: 2px;
+    border-radius: 5px;
+  }
+  
+  .toggle-btn {
+    padding: 5px 8px;
+    min-width: 28px;
+    min-height: 28px;
+    border-radius: 4px;
+  }
+  
+  .toggle-btn svg {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* iPhone SE and very small screens */
+@media (max-width: 375px) {
+  .view-toggle {
+    gap: 2px;
+    padding: 2px;
+  }
+  
+  .toggle-btn {
+    padding: 4px 6px;
+    min-width: 24px;
+    min-height: 24px;
+  }
+  
+  .toggle-btn svg {
+    width: 11px;
+    height: 11px;
+  }
+}
+
+.toggle-btn:hover {
+  color: var(--text-primary);
+  background: rgba(26, 115, 231, 0.15);
+  border-color: rgba(26, 115, 231, 0.4);
+  box-shadow: 
+    inset 0 1px 4px var(--border-strong),
+    0 0 20px rgba(26, 115, 231, 0.4),
+    0 0 30px rgba(30, 234, 76, 0.2);
+}
+
+.toggle-btn.active {
+  background: linear-gradient(135deg, rgba(30, 234, 76, 0.25), rgba(26, 115, 231, 0.25));
+  color: rgba(30, 234, 76, 1);
+  border: 1px solid rgba(30, 234, 76, 0.6);
+  box-shadow: 
+    0 0 20px rgba(30, 234, 76, 0.5),
+    0 0 35px rgba(26, 115, 231, 0.3),
+    inset 0 1px 5px rgba(30, 234, 76, 0.3),
+    inset 0 0 15px rgba(30, 234, 76, 0.1);
+}
+
+/* Wave Container */
+.wave-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  position: relative;
+  z-index: 1;
+}
+
+.wave-svg {
+  width: 100%;
+  height: 180px;
+  padding: var(--space-md);
+  box-sizing: border-box;
+}
+
+.grid-lines {
+  opacity: 0.5;
+}
+
+.wave-fill {
+  animation: waveFlow 4s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes waveFlow {
+  0%, 100% {
+    opacity: 0.85;
+    transform: scaleY(0.98);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1.02);
+  }
+}
+
+.wave-line {
+  animation: wavePulse 3s ease-in-out infinite;
+}
+
+@keyframes wavePulse {
+  0%, 100% {
+    stroke-opacity: 0.9;
+  }
+  50% {
+    stroke-opacity: 1;
+  }
+}
+
+.peak-marker-bg {
+  animation: peakPulse 2s ease-in-out infinite;
+}
+
+@keyframes peakPulse {
+  0%, 100% {
+    opacity: 0.6;
+    r: 4;
+  }
+  50% {
+    opacity: 1;
+    r: 6;
+  }
+}
+
+.peak-marker {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 3px rgba(26, 231, 132, 0.8));
+}
+
+.peak-marker:hover {
+  r: 4;
+  filter: drop-shadow(0 0 6px rgba(26, 231, 132, 1));
+}
+
+/* Wave Timeline */
+.wave-timeline {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  padding: 0 12px;
+  font-weight: 500;
+}
+
+/* Wave Legend */
+.wave-legend {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-xl);
+  margin-top: 8px;
+}
+
+.wave-legend .legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-size-xs);
+  color: var(--text-primary);
+}
+
+.wave-legend .legend-line {
+  width: 24px;
+  height: 2px;
+  border-radius: 1px;
+}
+
+.wave-legend .legend-line.high {
+  background: linear-gradient(90deg, rgba(26, 115, 231, 0.6), rgba(26, 231, 132, 0.9));
+  box-shadow: 0 0 4px rgba(26, 231, 132, 0.5);
+}
+
+.wave-legend .legend-line.medium {
+  background: linear-gradient(90deg, rgba(220, 8, 188, 0.5), rgba(220, 8, 188, 0.8));
+  box-shadow: 0 0 4px rgba(220, 8, 188, 0.4);
+}
+
+.wave-legend .legend-line.low {
+  background: linear-gradient(90deg, rgba(255, 165, 0, 0.4), rgba(255, 165, 0, 0.7));
+  box-shadow: 0 0 4px rgba(255, 165, 0, 0.3);
+}
+
+/* Heatmap Styles - Holographic Cosmic Black */
+.heatmap-container {
+  width: 100%;
+  padding: var(--space-xl);
+  /* 135° base gradient with banding - matching light mode structure */
+  background: 
+    linear-gradient(
+      135deg,
+      rgba(6, 8, 12, 0.98) 0%,
+      rgba(12, 16, 22, 0.95) 25%,
+      rgba(8, 10, 16, 0.98) 50%,
+      rgba(14, 18, 26, 0.95) 75%,
+      rgba(6, 8, 14, 0.98) 100%
+    );
+  border: 1px solid rgba(0, 212, 255, 0.25);
+  border-radius: 20px;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(0, 212, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Holographic overlay for heatmap - matching light mode structure */
+.heatmap-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 20px;
+  /* 90° brush lines + top radial highlight */
+  background: 
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      rgba(0, 212, 255, 0.02) 1px,
+      transparent 2px,
+      transparent 4px
+    ),
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(0, 212, 255, 0.12) 0%,
+      rgba(138, 43, 226, 0.04) 30%,
+      transparent 60%
+    );
+  pointer-events: none;
+}
+
+.heatmap-header {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 8px;
+  padding-left: 40px;
+}
+
+.heatmap-month {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-family: var(--font-display);
+  letter-spacing: 0.3px;
+}
+
+.heatmap-months {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.heatmap-months span {
+  text-align: left;
+}
+
+.heatmap-grid {
+  display: flex;
+  gap: var(--space-md);
+  align-items: flex-start;
+}
+
+.heatmap-scroll-wrapper {
+  flex: 1;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(30, 234, 76, 0.5) rgba(255, 255, 255, 0.03);
+}
+
+.heatmap-scroll-wrapper::-webkit-scrollbar {
+  height: 10px !important;
+}
+
+.heatmap-scroll-wrapper::-webkit-scrollbar-track {
+  background: var(--surface) !important;
+  backdrop-filter: blur(10px) !important;
+  border-radius: 20px !important;
+  border: 1px solid var(--border-default) !important;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2) !important;
+}
+
+.heatmap-scroll-wrapper::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, 
+    rgba(30, 234, 76, 0.5), 
+    rgba(26, 115, 231, 0.5), 
+    rgba(234, 30, 162, 0.5)
+  ) !important;
+  backdrop-filter: blur(10px) !important;
+  border-radius: 20px !important;
+  border: 1px solid var(--border-strong) !important;
+  box-shadow: 
+    0 0 10px rgba(30, 234, 76, 0.3),
+    0 0 20px rgba(26, 115, 231, 0.2),
+    inset 0 1px 1px var(--border-bright) !important;
+}
+
+.heatmap-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, 
+    rgba(30, 234, 76, 0.8), 
+    rgba(26, 115, 231, 0.8), 
+    rgba(234, 30, 162, 0.8)
+  ) !important;
+  box-shadow: 
+    0 0 15px rgba(30, 234, 76, 0.5),
+    0 0 30px rgba(26, 115, 231, 0.4),
+    0 0 20px rgba(234, 30, 162, 0.3),
+    inset 0 1px 1px var(--border-bright) !important;
+}
+
+.heatmap-days {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  padding-right: 8px;
+  font-weight: 600;
+  padding-top: 22px;
+}
+
+.heatmap-days span {
+  display: flex;
+  align-items: center;
+  height: 13px;
+}
+
+.heatmap-weeks {
+  display: flex;
+  gap: 3px;
+  padding: 4px 0;
+  align-items: flex-start;
+  min-width: min-content;
+}
+
+@media (min-width: 768px) {
+  .heatmap-weeks {
+    justify-content: space-between;
+  }
+  
+  .heatmap-scroll-wrapper {
+    overflow: hidden;
+  }
+}
+
+.heatmap-week {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.heatmap-day {
+  width: 10px;
+  height: 10px;
+  min-width: 10px;
+  min-height: 10px;
+  max-width: 10px;
+  max-height: 10px;
+  border-radius: 50%;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid var(--border-default);
+}
+
+.heatmap-day:hover {
+  transform: scale(1.5);
+  box-shadow: 0 0 16px currentColor,
+              0 0 32px currentColor;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.heatmap-legend {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-default);
+}
+
+.legend-label {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.legend-squares {
+  display: flex;
+  gap: var(--space-xs);
+  align-items: center;
+}
+
+.legend-square {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.legend-square:hover {
+  transform: scale(1.2);
+}
+
+/* ============================================
+   LIGHT MODE OVERRIDES
+   ============================================ */
+[data-theme="light"] {
+  .activity-section {
+    background: rgba(0, 0, 0, 0.02) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .activity-section:hover {
+    border-color: rgba(26, 115, 231, 0.2) !important;
+  }
+
+  .activity-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .section-title {
+    color: #000000 !important;
+    text-shadow: none !important;
+  }
+
+  .section-subtitle {
+    color: rgba(0, 0, 0, 0.5) !important;
+  }
+
+  .viz-toggle-btn {
+    background: rgba(0, 0, 0, 0.05) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    color: rgba(0, 0, 0, 0.6) !important;
+  }
+
+  .viz-toggle-btn.active {
+    background: rgba(26, 115, 231, 0.1) !important;
+    border-color: rgba(26, 115, 231, 0.3) !important;
+    color: #1a73e7 !important;
+  }
+
+  .viz-toggle-btn:hover {
+    background: rgba(26, 115, 231, 0.08) !important;
+    border-color: rgba(26, 115, 231, 0.2) !important;
+  }
+
+  /* Wave visualization */
+  .wave-container {
+    background: rgba(0, 0, 0, 0.02) !important;
+    border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  }
+
+  .wave-gradient-bg {
+    background: linear-gradient(
+      to bottom,
+      rgba(26, 115, 231, 0.05) 0%,
+      rgba(26, 231, 132, 0.03) 50%,
+      transparent 100%
+    ) !important;
+  }
+
+  .wave-grid-lines line,
+  .wave-reference-line {
+    stroke: rgba(0, 0, 0, 0.1) !important;
+  }
+
+  .wave-grid-labels text {
+    fill: rgba(0, 0, 0, 0.4) !important;
+  }
+
+  .wave-legend-item text {
+    fill: rgba(0, 0, 0, 0.7) !important;
+  }
+
+  /* Peak markers - darker green stroke, solid fill */
+  .peak-marker-bg {
+    fill: rgba(26, 231, 132, 0.3) !important;
+    stroke: rgba(20, 160, 90, 0.8) !important;
+    stroke-width: 1 !important;
+  }
+
+  .peak-marker {
+    filter: none !important;
+    stroke: rgba(20, 160, 90, 0.8) !important;
+    stroke-width: 1 !important;
+  }
+
+  /* Grid lines - subtle dark lines for light mode */
+  .grid-lines line {
+    stroke: rgba(0, 0, 0, 0.08) !important;
+  }
+
+  /* Wave timeline labels - simple text, no pills */
+  .wave-timeline {
+    color: rgba(0, 0, 0, 0.45) !important;
+  }
+
+  .wave-timeline span {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    color: rgba(0, 0, 0, 0.45) !important;
+  }
+
+  /* Wave legend */
+  .wave-legend .legend-item {
+    color: rgba(0, 0, 0, 0.7) !important;
+  }
+
+  /* Peak time badge - simple text, no pill */
+  .peak-time {
+    color: rgba(180, 120, 40, 0.85) !important;
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    border-radius: 0 !important;
+    margin-right: 16px !important;
+  }
+
+  .peak-time:hover {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  /* View toggle - cleaner minimal style */
+  .view-toggle {
+    background: rgba(0, 0, 0, 0.03) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .toggle-btn {
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    color: rgba(0, 0, 0, 0.5) !important;
+    box-shadow: none !important;
+  }
+
+  .toggle-btn:hover {
+    background: rgba(0, 0, 0, 0.04) !important;
+    border-color: rgba(0, 0, 0, 0.08) !important;
+    color: rgba(0, 0, 0, 0.7) !important;
+    box-shadow: none !important;
+  }
+
+  .toggle-btn.active {
+    background: rgba(26, 115, 231, 0.08) !important;
+    border: 1px solid rgba(26, 115, 231, 0.2) !important;
+    color: rgba(26, 115, 231, 0.9) !important;
+    box-shadow: none !important;
+  }
+
+  /* Post frequency text */
+  .post-frequency {
+    color: rgba(0, 0, 0, 0.5) !important;
+  }
+
+  /* Activity wave container - Platinum/brushed aluminum */
+  .activity-wave {
+    background: 
+      linear-gradient(
+        135deg,
+        rgba(220, 225, 230, 0.95) 0%,
+        rgba(200, 208, 215, 0.9) 25%,
+        rgba(230, 235, 240, 0.95) 50%,
+        rgba(195, 205, 212, 0.9) 75%,
+        rgba(215, 222, 228, 0.95) 100%
+      ) !important;
+    border: 1px solid rgba(180, 190, 200, 0.6) !important;
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.05) !important;
+  }
+
+  .activity-wave::before {
+    /* Subtle brushed metal highlight */
+    background: 
+      repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        rgba(255, 255, 255, 0.03) 1px,
+        transparent 2px,
+        transparent 4px
+      ),
+      radial-gradient(
+        ellipse at 50% 0%,
+        rgba(255, 255, 255, 0.4) 0%,
+        transparent 60%
+      ) !important;
+  }
+
+  /* Wave title - dark gradient text for light mode */
+  .wave-title {
+    background: linear-gradient(180deg, #2c3e50 0%, #5a6a7a 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+  }
+
+  /* Heatmap - Platinum/brushed aluminum */
+  .heatmap-container {
+    position: relative;
+    background: 
+      linear-gradient(
+        135deg,
+        rgba(215, 222, 228, 0.95) 0%,
+        rgba(195, 205, 212, 0.9) 25%,
+        rgba(225, 232, 238, 0.95) 50%,
+        rgba(200, 210, 218, 0.9) 75%,
+        rgba(220, 227, 233, 0.95) 100%
+      ) !important;
+    border: 1px solid rgba(180, 190, 200, 0.6) !important;
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.05) !important;
+  }
+
+  .heatmap-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    background: 
+      repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        rgba(255, 255, 255, 0.02) 1px,
+        transparent 2px,
+        transparent 4px
+      );
+    pointer-events: none;
+  }
+
+  .heatmap-header .heatmap-month,
+  .heatmap-days span,
+  .heatmap-month-label,
+  .heatmap-weekday-label {
+    color: rgba(60, 70, 80, 0.8) !important;
+  }
+
+  /* Empty heatmap cells - engraved aluminum look */
+  .heatmap-day[style*="rgba(255, 255, 255, 0.05)"] {
+    background: 
+      radial-gradient(
+        ellipse at 30% 30%,
+        rgba(226, 231, 240, 0.636) 0%,
+        rgba(191, 195, 200, 0.6) 90%,
+        rgba(100, 112, 128, 0.7) 100%
+      ) !important;
+    border: none !important;
+    box-shadow:
+      inset 1px 1px 2px rgba(16, 16, 16, 0.25),
+      inset -0.5px -0.5px 1px rgba(255, 255, 255, 0.4) !important;
+  }
+
+  /* Legend empty square - match the engraved style */
+  .legend-square:first-child {
+    background: 
+      radial-gradient(
+        ellipse at 30% 30%,
+        rgba(140, 150, 165, 0.4) 0%,
+        rgba(120, 130, 145, 0.6) 40%,
+        rgba(100, 112, 128, 0.7) 100%
+      ) !important;
+    box-shadow:
+      inset 1px 1px 2px rgba(0, 0, 0, 0.25),
+      inset -0.5px -0.5px 1px rgba(255, 255, 255, 0.4) !important;
+  }
+
+  .heatmap-legend {
+    border-top: 1px solid rgba(10, 10, 14, 0.21) !important;
+  }
+
+  .legend-label {
+    color: rgba(0, 0, 0, 0.5) !important;
+  }
+}

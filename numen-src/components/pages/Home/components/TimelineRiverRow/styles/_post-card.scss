@@ -1,0 +1,599 @@
+/* ============================================
+   POST CARD - Base Card Styling
+   Chamfered cyberpunk card with glow effects
+   ============================================ */
+
+.river-post-card {
+  padding: var(--space-md);
+  color: var(--color-white);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: visible;
+  cursor: pointer;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  /* Cyberpunk cut corners */
+  clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+  
+  /* Advanced 3D Parallax Depth */
+  transform-style: preserve-3d;
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+  
+  /* Entrance Animation */
+  animation: cardEnter 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+  animation-delay: calc(var(--card-index, 0) * 0.08s);
+}
+
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: translateZ(-50px) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0) translateY(0);
+  }
+}
+
+/* Pseudo-element border - glowing edge effect */
+.river-post-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(
+    135deg,
+    var(--card-accent, rgba(79, 255, 255, 0.4)) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    var(--card-accent, rgba(79, 255, 255, 0.4)) 100%
+  );
+  clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+  z-index: -2;
+  transition: background 0.4s ease 0.05s, filter 0.4s ease 0.05s;
+  pointer-events: none;
+}
+
+/* Inner solid background layer - cosmic black holographic */
+.river-post-card::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  background:
+    linear-gradient(145deg, #0a0a0a, #000000),
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1), transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.5), transparent 50%),
+    linear-gradient(
+      45deg,
+      rgba(138, 43, 226, 0.05),
+      rgba(0, 212, 255, 0.05),
+      rgba(138, 43, 226, 0.05)
+    );
+  background-size: 100% 100%, 150% 150%, 150% 150%, 200% 200%;
+  background-position: 0% 50%, 75% 75%, 75% 75%, 50% 50%;
+  background-blend-mode: overlay, multiply, overlay;
+  clip-path: polygon(13px 0, 100% 0, 100% calc(100% - 13px), calc(100% - 13px) 100%, 0 100%, 0 13px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Card accent colors by column */
+.river-column:nth-child(1) .river-post-card {
+  --card-accent: rgba(26, 115, 231, 0.6);
+  --card-glow: rgba(26, 115, 231, 0.25);
+}
+
+@keyframes cardEnter1 {
+  from {
+    opacity: 0;
+    transform: translateZ(-50px) translateY(20px) translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(15px) translateY(0) translateX(0);
+  }
+}
+
+.river-column:nth-child(1) .river-post-card {
+  animation-name: cardEnter1;
+}
+
+.river-column:nth-child(2) .river-post-card {
+  --card-accent: rgba(220, 8, 188, 0.6);
+  --card-glow: rgba(220, 8, 188, 0.25);
+}
+
+@keyframes cardEnter2 {
+  from {
+    opacity: 0;
+    transform: translateZ(-50px) translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(8px) translateY(0) scale(1);
+  }
+}
+
+.river-column:nth-child(2) .river-post-card {
+  animation-name: cardEnter2;
+}
+
+.river-column:nth-child(3) .river-post-card {
+  --card-accent: rgba(255, 215, 0, 0.45);
+  --card-glow: rgba(255, 215, 0, 0.2);
+}
+
+@keyframes cardEnter3 {
+  from {
+    opacity: 0;
+    transform: translateZ(-50px) translateY(20px) translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(3px) translateY(0) translateX(0);
+  }
+}
+
+.river-column:nth-child(3) .river-post-card {
+  animation-name: cardEnter3;
+}
+
+/* Stagger animations */
+.river-post-card {
+  animation-delay: calc(var(--card-index, 0) * 0.05s);
+}
+
+/* Hover state - Subtle lift (reduced from aggressive 3D tilt) */
+.river-post-card:hover {
+  transform: translateY(-2px);
+  transition: all 0.2s ease;
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.4),
+    0 0 0 1px var(--card-accent),
+    0 0 12px var(--card-glow);
+  z-index: 50 !important;
+}
+
+.river-column:nth-child(1) .river-post-card:hover {
+  transform: translateY(-2px);
+}
+
+.river-column:nth-child(2) .river-post-card:hover {
+  transform: translateY(-2px);
+}
+
+.river-column:nth-child(3) .river-post-card:hover {
+  transform: translateY(-2px);
+}
+
+.river-post-card:hover::before {
+  opacity: 1;
+}
+
+/* Enhance layer separation on hover - subtle */
+.river-post-card:hover .river-post-header {
+  transform: translateZ(4px);
+}
+
+.river-post-card:hover .river-post-content {
+  transform: translateZ(2px);
+}
+
+.river-post-card:hover .river-post-actions {
+  transform: translateZ(6px);
+}
+
+.river-post-card:active {
+  transform: translateY(0);
+  transition: all 0.1s ease;
+}
+
+/* ============================================
+   POST HEADER
+   ============================================ */
+
+.river-post-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: 12px;
+  position: relative;
+  
+  /* 3D Layer - Header floats forward */
+  transform: translateZ(12px);
+  transition: transform 0.3s ease;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+.river-avatar {
+  width: 48px;
+  height: 48px;
+  background: var(--bg-card-solid);
+  border: 1px solid var(--border-default);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue-primary);
+  font-size: var(--font-size-sm);
+  flex-shrink: 0;
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.river-avatar svg {
+  color: var(--blue-primary);
+}
+
+.river-post-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.river-author {
+  font-family: var(--font-title);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.2;
+  background: linear-gradient(180deg, var(--text-primary) 22%, rgba(79, 88, 88, 0.699) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Clickable user elements (avatar & username) - navigate to profile */
+.clickable-user {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    filter: drop-shadow(0 0 8px var(--cyan));
+    transform: scale(1.05);
+  }
+}
+
+.river-author.clickable-user:hover {
+  background: linear-gradient(180deg, var(--cyan) 22%, rgba(79, 255, 255, 0.699) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.river-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  font-size: var(--font-size-xs);
+}
+
+.river-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 3px 10px;
+  border-radius: 10px;
+  font-family: var(--font-title);
+  font-size: var(--font-size-xs);
+  font-weight: 400;
+  font-style: normal;
+  border: 1px solid;
+}
+
+/* Thought badge */
+.river-post-card.post--thoughts .river-type-badge {
+  color: var(--blue-primary);
+  background: rgba(26, 115, 231, 0.10);
+  border-color: rgba(26, 115, 231, 0.25);
+}
+
+/* Media badge */
+.river-post-card.post--media .river-type-badge {
+  color: var(--post-media-badge);
+  background: rgba(167, 131, 255, 0.15);
+  border-color: rgba(167, 131, 255, 0.4);
+}
+
+/* Milestone badge */
+.river-post-card.post--milestones .river-type-badge {
+  color: var(--accent);
+  background: rgba(26, 231, 132, 0.15);
+  border-color: rgba(26, 231, 132, 0.4);
+}
+
+.river-timestamp {
+  color: var(--text-muted);
+  font-family: "new-science-mono", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.privacy-icon {
+  color: rgba(167, 131, 255, 0.6);
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 4px rgba(167, 131, 255, 0.3));
+}
+
+/* ============================================
+   POST CONTENT
+   ============================================ */
+
+.river-post-content {
+  font-family: var(--font-main);
+  font-size: var(--font-size-body);
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--content-text);
+  margin-bottom: var(--space-sm);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  
+  /* 3D Layer - Content at base depth */
+  transform: translateZ(6px);
+  transition: transform 0.3s ease;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* Truncated content in grid view */
+.river-post-content--truncated {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
+/* See more link for grid view */
+.see-more-link {
+  font-size: var(--font-size-xs);
+  color: var(--blue-primary);
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+  margin-bottom: var(--space-sm);
+  display: inline-block;
+  
+  &:hover {
+    opacity: 1;
+    text-decoration: underline;
+  }
+}
+
+/* Grid view card adjustments */
+.post--grid-view {
+  padding: var(--space-md);
+  
+  .river-post-header {
+    margin-bottom: var(--space-sm);
+  }
+  
+  .river-post-content {
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--space-sm);
+  }
+  
+  .river-post-media {
+    width: 100%;
+    
+    .river-media-image {
+      width: 100%;
+      height: auto;
+      max-height: none;
+      object-fit: unset;
+    }
+  }
+  
+  .river-post-actions {
+    gap: var(--space-sm);
+  }
+}
+
+/* Grid view responsive - smaller screens */
+@media (max-width: 650px) {
+  .post--grid-view {
+    padding: var(--space-sm);
+    
+    .river-post-header {
+      margin-bottom: var(--space-xs);
+      
+      .river-avatar {
+        width: 24px;
+        height: 24px;
+      }
+      
+      .river-author {
+        font-size: 11px;
+      }
+      
+      .river-post-time {
+        font-size: 9px;
+      }
+    }
+    
+    .river-post-content {
+      font-size: 11px;
+      line-height: 1.3;
+      margin-bottom: var(--space-xs);
+      -webkit-line-clamp: 3;
+    }
+    
+    .river-post-media .river-media-image {
+      max-height: 150px;
+      object-fit: cover;
+    }
+    
+    .river-post-actions {
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+      
+      button, .river-post-likes {
+        font-size: 10px;
+        padding: 2px 4px;
+        
+        svg {
+          width: 12px;
+          height: 12px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .post--grid-view {
+    padding: var(--space-xs);
+    
+    .river-post-header {
+      .river-avatar {
+        width: 20px;
+        height: 20px;
+      }
+    }
+    
+    .river-post-content {
+      font-size: 10px;
+      -webkit-line-clamp: 2;
+    }
+    
+    .river-post-media .river-media-image {
+      max-height: 120px;
+    }
+    
+    .river-post-actions {
+      button, .river-post-likes {
+        font-size: 9px;
+        
+        svg {
+          width: 10px;
+          height: 10px;
+        }
+      }
+    }
+  }
+}
+
+/* Thought posts: larger text */
+.river-column:nth-child(1) .river-post-card {
+  padding: 16px 18px;
+}
+
+.river-column:nth-child(1) .river-post-content {
+  font-size: var(--font-size-md);
+  line-height: 1.45;
+}
+
+/* ============================================
+   POST LIKES
+   ============================================ */
+
+.river-post-likes {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: 'sweet-square-pro', sans-serif;
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  position: relative;
+  overflow: visible;
+  outline: none;
+  
+  /* Ensure SVG has no box */
+  svg {
+    display: block;
+    background: transparent;
+  }
+  
+  /* Heart pulse animation on click */
+  &.heart-pulse svg {
+    animation: heartPulse 0.3s ease-out;
+  }
+  
+  /* Radiating ripple effect on click */
+  &.heart-pulse::before,
+  &.heart-pulse::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  
+  &.heart-pulse::before {
+    border: 2px solid var(--heart-color, #4fffff);
+    animation: heartRipple 0.6s ease-out forwards;
+  }
+  
+  &.heart-pulse::after {
+    border: 1px solid var(--heart-color, #4fffff);
+    animation: heartRipple 0.6s ease-out 0.1s forwards;
+  }
+  
+  /* Liked state - use type-based color from custom property */
+  &.is-liked {
+    color: var(--heart-color, #4fffff);
+    
+    svg path {
+      fill: var(--heart-color, #4fffff) !important;
+      stroke: var(--heart-color, #4fffff) !important;
+      filter: drop-shadow(0 0 8px var(--heart-color, #4fffff));
+    }
+  }
+}
+
+/* Heart pulse keyframes */
+@keyframes heartPulse {
+  0% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(0.3);
+  }
+  40% {
+    transform: scale(1.5);
+  }
+  65% {
+    transform: scale(0.95);
+  }
+  85% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Radiating ripple rings */
+@keyframes heartRipple {
+  0% {
+    width: 20px;
+    height: 20px;
+    opacity: 0.8;
+    border-width: 2px;
+  }
+  100% {
+    width: 50px;
+    height: 50px;
+    opacity: 0;
+    border-width: 1px;
+  }
+}

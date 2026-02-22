@@ -1,0 +1,73 @@
+/**
+ * tokens.css
+ * Centralized design tokens for the entire site
+ * All colors, fonts, spacing, and theme variables defined here
+ */
+
+/* === TYPEKIT FONTS === */
+@import url("https://use.typekit.net/fpe8zfm.css");
+@import url("https://use.typekit.net/pnd4foc.css");
+
+:root {
+  /* === COLORS === */
+  /* Accent colors */
+  --accent-cyan: #00d4ff;
+  --accent-magenta: #ff00cc;
+  --accent-purple: #8338ec;
+  --accent-pink: #ff006e;
+  --accent-blue: #07429f;
+  
+  /* Text colors */
+  --text-primary: #fffdfd;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-muted: rgba(255, 255, 255, 0.5);
+  
+  /* Background colors */
+  --bg-dark: #0a0a0a;
+  --bg-darker: #050510;
+  --bg-card: rgba(15, 15, 30, 0.8);
+  
+  /* === TYPOGRAPHY === */
+  /* Font families */
+  --font-display: 'Orbitron', sans-serif;
+  --font-body: 'aktiv-grotesk', sans-serif;
+  --font-title: 'aktiv-grotesk', sans-serif;
+  --font-hero: 'thornwood-vf', sans-serif;
+  
+  /* Legacy aliases for compatibility */
+  --heading-font-primary: var(--font-display);
+  --heading-font-display: var(--font-body);
+  --heading-font-hero: var(--font-hero);
+  
+  /* === GRADIENTS === */
+  --heading-gradient: linear-gradient(90deg, #ff006e, #8338ec, #07429f);
+  --heading-gradient-alt: linear-gradient(90deg, #ff006e, #8338ec, #07429f, #8338ec, #ff006e);
+  --holographic-gradient: linear-gradient(45deg, 
+    rgba(100,100,255,0.08) 0%, 
+    rgba(255,0,255,0.05) 25%, 
+    rgba(0,255,255,0.05) 50%, 
+    rgba(255,100,255,0.08) 75%, 
+    rgba(100,100,255,0.08) 100%);
+  
+  /* === MASKS === */
+  --heading-mask: linear-gradient(to bottom, black 30%, rgba(0, 0, 0, 0.3) 100%);
+  --heading-mask-soft: linear-gradient(to bottom, black 60%, rgba(0, 0, 0, 0.3) 100%);
+  
+  /* === SPACING === */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 4rem;
+  
+  /* === TRANSITIONS === */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  
+  /* === BORDERS === */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 16px;
+  --border-radius-pill: 50px;
+}

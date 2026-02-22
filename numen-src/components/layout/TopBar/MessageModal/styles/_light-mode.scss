@@ -1,0 +1,266 @@
+/* MessageModal Light Mode Overrides */
+
+[data-theme="light"] {
+  .message-modal-overlay {
+    background: rgba(0, 0, 0, 0.3) !important;
+  }
+
+  .message-modal {
+    background: var(--color-white) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2) !important;
+  }
+
+  .message-modal-header {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .message-modal-header::after {
+    background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent) !important;
+  }
+
+  .message-modal-title {
+    /* Black for visibility in light mode - override green accent */
+    color: #1a1a2e !important;
+    background: none !important;
+    background-image: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: #1a1a2e !important;
+    background-clip: unset !important;
+    text-shadow: none !important;
+  }
+  
+  /* New message button - white plus sign on holographic background */
+  .new-message-btn {
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    
+    svg,
+    svg path,
+    svg line,
+    svg * {
+      color: #ffffff !important;
+      stroke: #ffffff !important;
+      fill: #ffffff !important;
+    }
+    
+    &:hover {
+      color: #ff55dd !important;
+      border-color: rgba(255, 85, 221, 0.5) !important;
+      
+      svg,
+      svg path,
+      svg line,
+      svg * {
+        color: #ff55dd !important;
+        stroke: #ff55dd !important;
+        fill: #ff55dd !important;
+      }
+    }
+  }
+
+  /* Close button uses global .close-btn-glow light mode styles */
+
+  .message-conversations {
+    background: rgba(0, 0, 0, 0.02) !important;
+  }
+
+  .message-conversations::after {
+    background: linear-gradient(180deg, 
+      transparent,
+      rgba(0, 0, 0, 0.1),
+      transparent
+    ) !important;
+  }
+
+  /* conversations-search uses dark holographic style from _light-mode.scss */
+
+  .conversation-item {
+    background: transparent !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+  }
+
+  .conversation-item:hover {
+    background: rgba(26, 115, 231, 0.05) !important;
+  }
+
+  .conversation-item.active {
+    background: rgba(26, 115, 231, 0.1) !important;
+    border-left: 3px solid var(--blue-primary) !important;
+  }
+
+  .conversation-name {
+    /* Same gradient fade as river-author in TimelineRiver */
+    background: linear-gradient(180deg, #000000 22%, rgba(120, 120, 120, 0.6) 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    text-shadow: none !important;
+  }
+
+  .chat-username {
+    /* Solid dark color for legibility */
+    color: #1a1a2e !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: #1a1a2e !important;
+    background-clip: unset !important;
+    text-shadow: none !important;
+    
+    /* Clickable hover state */
+    &.clickable:hover {
+      color: var(--blue-primary) !important;
+      -webkit-text-fill-color: var(--blue-primary) !important;
+    }
+  }
+
+  .conversation-preview {
+    color: rgba(0, 0, 0, 0.5) !important;
+  }
+
+  .conversation-time {
+    color: rgba(0, 0, 0, 0.4) !important;
+  }
+
+  .conversation-avatar {
+    background: rgba(26, 115, 231, 0.1) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  }
+
+  .conversation-avatar .initial-1,
+  .conversation-avatar .initial-2 {
+    color: #1a1a2e !important;
+    text-shadow: none !important;
+  }
+
+  .message-chat {
+    background: var(--color-white) !important;
+  }
+
+  /* Remove dark mode ambient glows */
+  .message-chat::before,
+  .message-chat::after {
+    display: none !important;
+  }
+
+  .chat-header {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .chat-header::after {
+    background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent) !important;
+  }
+
+  .chat-header-name {
+    color: #1a1a2e !important;
+    text-shadow: none !important;
+  }
+
+  .chat-header-status {
+    color: rgba(0, 0, 0, 0.5) !important;
+  }
+
+  .chat-messages {
+    background: rgba(0, 0, 0, 0.02) !important;
+  }
+
+  /* Received messages - light glass style */
+  .chat-message.received {
+    background: rgba(240, 242, 245, 0.95) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+    
+    p {
+      color: #1a1a2e !important;
+    }
+  }
+
+  .chat-message.received .message-bubble {
+    background: rgba(240, 242, 245, 0.95) !important;
+    color: #1a1a2e !important;
+  }
+
+  .chat-message.received .message-time {
+    color: rgba(0, 0, 0, 0.4) !important;
+  }
+
+  /* Sent messages - blue/green gradient */
+  .chat-message.sent {
+    background: linear-gradient(135deg, rgba(26, 115, 231, 0.9), rgba(26, 200, 132, 0.85)) !important;
+    border: none !important;
+    box-shadow: 0 2px 12px rgba(26, 115, 231, 0.25) !important;
+    
+    p {
+      color: #ffffff !important;
+    }
+  }
+
+  .chat-message.sent .message-bubble {
+    background: linear-gradient(135deg, rgba(26, 115, 231, 0.9), rgba(26, 231, 132, 0.8)) !important;
+    color: #ffffff !important;
+  }
+
+  .chat-message.sent .message-time {
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+
+  .chat-message p {
+    color: #1a1a2e !important;
+  }
+
+  .chat-message.sent p {
+    color: #ffffff !important;
+  }
+
+  .message-time {
+    color: rgba(0, 0, 0, 0.4) !important;
+  }
+
+  .chat-input-container {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .chat-send-btn {
+    color: var(--blue-primary) !important;
+    filter: none !important;
+  }
+
+  .chat-send-btn:hover {
+    color: var(--accent) !important;
+  }
+
+  .chat-send-btn.charge-4 {
+    color: var(--accent) !important;
+    filter: drop-shadow(0 0 8px rgba(26, 231, 132, 0.6)) !important;
+  }
+
+  /* Empty/No Selection States - light mode */
+  .chat-no-selection,
+  .chat-empty {
+    color: rgba(0, 0, 0, 0.6) !important;
+  }
+
+  .chat-no-selection p,
+  .chat-empty p {
+    color: rgba(0, 0, 0, 0.65) !important;
+  }
+
+  .no-selection-hint,
+  .empty-hint {
+    color: rgba(0, 0, 0, 0.45) !important;
+  }
+  
+  /* Mobile back button - light mode */
+  .chat-back-btn {
+    background: transparent !important;
+    border: none !important;
+    color: rgba(0, 0, 0, 0.6) !important;
+    
+    &:hover {
+      color: rgba(0, 0, 0, 0.8) !important;
+    }
+  }
+}

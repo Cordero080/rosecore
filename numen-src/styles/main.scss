@@ -1,0 +1,44 @@
+// ================================================
+// NUMENEON MAIN STYLESHEET
+// Single entry point - imports all partials
+// ================================================
+// 🔵 PABLO - UI Architect
+// This file controls the global styling cascade.
+// Import order matters!
+
+// ============================================
+// FOUNDATION
+// Variables and mixins are auto-injected via vite.config.js
+// ============================================
+@use 'variables' as *;
+@use 'mixins' as *;
+@use 'reset';             // CSS reset and base styles
+@use 'typography';        // Font imports and text styles
+
+// ============================================
+// THEME
+// Light/dark mode support
+// ============================================
+@use 'theme';             // Theme configuration and setup
+@use 'light-mode';        // Light mode overrides (data-theme="light")
+
+// ============================================
+// LAYOUT
+// App shell and structural styles
+// ============================================
+@use 'layout';            // .App, .main-content, containers
+@use 'blobs';             // Background blob decorations
+
+// ============================================
+// COMPONENT SYSTEMS
+// Reusable UI patterns
+// ============================================
+@use 'buttons';           // Button variants and states
+@use 'cards';             // Card components
+
+// ============================================
+// UTILITIES
+// Animations and helper classes
+// ============================================
+@use 'animations';        // Keyframes and animation classes
+@use 'utilities';         // Spacing, text, layout helpers, glass effects

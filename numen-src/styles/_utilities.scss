@@ -1,0 +1,212 @@
+// ================================================
+// NUMENEON UTILITIES
+// Helper classes for common patterns
+// ================================================
+// 🔵 PABLO - UI Architect
+// Use these for quick layout and styling.
+// ================================================
+
+// ============================================
+// LAYOUT CONTAINERS
+// ============================================
+
+.container {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.container-narrow {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.container-wide {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+// ============================================
+// TEXT UTILITIES
+// ============================================
+
+.text-muted {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.text-secondary {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.text-primary {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-glow {
+  text-shadow: 0 0 10px rgba(124, 201, 255, 0.4);
+}
+
+// ============================================
+// SPACING UTILITIES
+// ============================================
+
+.gap-sm { gap: var(--space-sm); }
+.gap-md { gap: var(--space-md); }
+.gap-lg { gap: var(--space-lg); }
+.gap-xl { gap: var(--space-xl); }
+
+.p-sm { padding: var(--space-sm); }
+.p-md { padding: var(--space-md); }
+.p-lg { padding: var(--space-lg); }
+.p-xl { padding: var(--space-xl); }
+
+.m-sm { margin: var(--space-sm); }
+.m-md { margin: var(--space-md); }
+.m-lg { margin: var(--space-lg); }
+.m-xl { margin: var(--space-xl); }
+
+// ============================================
+// INTERACTION STATES
+// ============================================
+
+.hover-lift {
+  transition: var(--transition);
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.hover-glow {
+  transition: var(--transition);
+
+  &:hover {
+    box-shadow: var(--glow);
+  }
+}
+
+.active-scale {
+  transition: var(--transition);
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+// ============================================
+// SCROLL EFFECTS
+// ============================================
+
+.scroll-shadow-top {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.4) 0%,
+      transparent 100%
+    );
+    z-index: 10;
+    pointer-events: none;
+    margin-bottom: -20px;
+  }
+}
+
+.scroll-shadow-bottom {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.4) 0%,
+      transparent 100%
+    );
+    z-index: 10;
+    pointer-events: none;
+    margin-top: -20px;
+  }
+}
+
+// ============================================
+// RESPONSIVE CONTAINERS
+// ============================================
+
+@media (max-width: 768px) {
+  .container,
+  .container-narrow,
+  .container-wide {
+    padding: 0 var(--space-md);
+  }
+}
+
+// ============================================
+// AUTH LOADING STATE
+// ============================================
+
+.auth-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  background: transparent;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top-color: var(--cyan);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// ============================================
+// GLASSMORPHISM UTILITIES
+// (Merged from _glass.scss)
+// ============================================
+
+.glass {
+  background: var(--surface);
+  backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid var(--border);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(25px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.glass-subtle {
+  background: rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}

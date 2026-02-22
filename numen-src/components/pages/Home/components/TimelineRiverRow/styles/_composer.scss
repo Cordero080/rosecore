@@ -1,0 +1,885 @@
+/* ============================================
+   COMMENT COMPOSER
+   Inline and full-page comment input
+   ============================================ */
+
+/* ============================================
+   INLINE COMMENT COMPOSER
+   ============================================ */
+
+/* Wrapper for composer + cancel button */
+.inline-comment-composer-wrapper {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.inline-comment-composer {
+  padding: var(--space-sm);
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-sm);
+  min-width: 0;
+  width: 100%;
+}
+
+/* Cancel button - centered below composer */
+.inline-composer-cancel {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 6px 70px;
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  opacity: 0.6;
+  clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);
+  transition: opacity 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  
+  &:hover {
+    opacity: 1;
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+}
+
+/* Category-specific cancel button colors */
+.inline-composer-cancel--thoughts:hover {
+  color: #4fcdff;
+  border-color: #4fffff68;
+}
+
+.inline-composer-cancel--media:hover {
+  color: #c9a8ff;
+  border-color: #c9a8ff;
+}
+
+.inline-composer-cancel--milestones:hover {
+  color: #1ae784;
+  border-color: #1ae784ae;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.comment-input-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* Expand button - positioned inside input wrapper */
+.comment-input-wrapper .expand-composer-btn {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  background: var(--bg-card-solid);
+  border: 1px solid var(--border-default);
+  border-radius: 4px;
+  padding: 0;
+  width: 22px;
+  height: 22px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  opacity: 0.8;
+}
+
+.comment-input-wrapper .expand-composer-btn:hover {
+  color: var(--blue-primary);
+  border-color: rgba(26, 115, 231, 0.5);
+  background: rgba(26, 115, 231, 0.15);
+  opacity: 1;
+  transform: scale(1.1);
+  box-shadow: 0 0 8px rgba(26, 115, 231, 0.3);
+}
+
+.comment-input-wrapper:has(.comment-input:focus) .expand-composer-btn {
+  opacity: 0.9;
+  border-color: rgba(26, 115, 231, 0.3);
+}
+
+/* ============================================
+   COMMENT INPUT FIELD
+   ============================================ */
+
+.comment-input {
+  background:
+    linear-gradient(145deg, #0a0a0a, #000000),
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1), transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.5), transparent 50%),
+    linear-gradient(
+      45deg,
+      rgba(138, 43, 226, 0.05),
+      rgba(0, 212, 255, 0.05),
+      rgba(138, 43, 226, 0.05)
+    );
+  background-size: 100% 100%, 150% 150%, 150% 150%, 200% 200%;
+  background-position: 0% 50%, 75% 75%, 75% 75%, 50% 50%;
+  background-blend-mode: overlay, multiply, overlay;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 8px;
+  padding: 10px 34px 10px 12px;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  color: var(--text-primary);
+  font-family: 'degular', sans-serif;
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  resize: none;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  min-height: 36px;
+  overflow: hidden;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.8),
+    inset 0 1px 3px rgba(255, 255, 255, 0.2),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.comment-input:focus {
+  border-color: rgba(0, 212, 255, 0.6);
+  box-shadow:
+    0 0 20px rgba(0, 212, 255, 0.4),
+    0 4px 8px rgba(0, 0, 0, 0.8),
+    inset 0 1px 3px rgba(255, 255, 255, 0.3),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.comment-input::placeholder {
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.comment-actions {
+  display: none;
+}
+
+.comment-emoji-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: var(--text-muted);
+}
+
+.comment-emoji-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.comment-emoji-btn:hover {
+  color: rgba(26, 231, 132, 0.9);
+  transform: scale(1.1);
+}
+
+/* ============================================
+   COMMENT SUBMIT BUTTON
+   Minimal shapeless chevron
+   ============================================ */
+
+.comment-submit-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: rgba(26, 231, 132, 0.6);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  flex-shrink: 0;
+  position: relative;
+  align-self: center;
+}
+
+.comment-submit-btn::before,
+.comment-submit-btn::after {
+  display: none;
+}
+
+.comment-submit-btn svg {
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.comment-submit-btn:hover:not(:disabled) {
+  color: var(--accent);
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 8px rgba(26, 231, 132, 0.6));
+}
+
+.comment-submit-btn:hover:not(:disabled) svg {
+  transform: translateX(2px);
+}
+
+.comment-submit-btn:active:not(:disabled) {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 12px rgba(26, 231, 132, 0.8));
+}
+
+.comment-submit-btn:active:not(:disabled) svg {
+  transform: translateX(3px);
+}
+
+.comment-submit-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   FULL PAGE COMPOSER
+   Full-screen reply composer with thread view
+   ============================================ */
+
+.full-page-composer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(20px);
+  animation: fadeIn 0.3s ease;
+}
+
+.full-page-composer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-primary);
+}
+
+@media (max-width: 768px) {
+  .full-page-composer {
+    max-width: 100%;
+  }
+}
+
+.full-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: var(--space-md) var(--space-lg);
+  background: transparent;
+  flex-shrink: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.full-page-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--blue-primary), var(--magenta));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.full-page-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--space-xl);
+  padding-bottom: 0;
+  scroll-behavior: smooth;
+  
+  /* Hide scrollbar completely */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.full-page-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* Reply context in full-page composer */
+.full-page-content .reply-context {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-md) 0;
+  width: 100%;
+}
+
+.full-page-content .reply-context-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.full-page-content .reply-context-avatar {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(26, 115, 231, 0.3), rgba(220, 8, 188, 0.3));
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-primary);
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.full-page-content .reply-context-name {
+  font-family: var(--font-title);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text-primary);
+  background: linear-gradient(180deg, var(--text-primary) 22%, rgba(79, 88, 88, 0.699) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.full-page-content .reply-context-handle {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.full-page-content .reply-context-dot {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+}
+
+.full-page-content .reply-context-time {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.full-page-content .reply-context-content {
+  font-size: var(--font-size-lg);
+  line-height: 1.5;
+  color: var(--color-white);
+  margin: 0;
+}
+
+.full-page-content .reply-context-media {
+  margin-top: var(--space-md);
+  border-radius: 12px;
+  overflow: hidden;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.full-page-content .reply-context-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Post Actions in expanded view - matches lightbox/post card style */
+.reply-context-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.reply-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'sweet-square-pro', sans-serif;
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  padding: 6px;
+  transition: all 0.25s ease;
+  
+  &:hover {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 8px currentColor);
+    color: #4fffff;
+  }
+  
+  /* Comment button hover */
+  &:nth-child(2):hover {
+    color: #c9a8ff;
+  }
+  
+  /* Share button hover */
+  &:nth-child(3):hover {
+    color: #1ae784;
+  }
+  
+  /* Bookmark button hover */
+  &:nth-child(4):hover {
+    color: #ffb347;
+  }
+  
+  &.is-liked {
+    color: var(--heart-color, #4fffff);
+    
+    svg path {
+      fill: var(--heart-color, #4fffff);
+      stroke: var(--heart-color, #4fffff);
+      filter: drop-shadow(0 0 8px var(--heart-color, #4fffff));
+    }
+  }
+  
+  span {
+    font-weight: 500;
+  }
+}
+
+.full-page-thread {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.full-page-composer-fixed {
+  position: sticky;
+  bottom: 0;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+  padding: var(--space-md) var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  flex-shrink: 0;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Post actions row at the bottom */
+.full-page-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: var(--space-sm);
+  width: 100%;
+  
+  .reply-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'sweet-square-pro', sans-serif;
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    padding: 6px;
+    
+    &:hover {
+      transform: scale(1.15);
+      filter: drop-shadow(0 0 8px currentColor);
+    }
+    
+    /* Like button hover */
+    &:nth-child(1):hover {
+      color: var(--heart-color, #4fffff);
+    }
+    
+    /* Comment button hover */
+    &:nth-child(2):hover {
+      color: #c9a8ff;
+    }
+    
+    /* Share button hover */
+    &:nth-child(3):hover {
+      color: #1ae784;
+    }
+    
+    /* Bookmark button hover */
+    &:nth-child(4):hover {
+      color: #ffb347;
+    }
+    
+    &.is-liked {
+      color: var(--heart-color, #4fffff);
+      
+      svg path {
+        fill: var(--heart-color, #4fffff);
+        stroke: var(--heart-color, #4fffff);
+        filter: drop-shadow(0 0 8px var(--heart-color, #4fffff));
+      }
+    }
+    
+    span {
+      font-weight: 500;
+    }
+    
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}
+
+.full-page-composer-fixed .comment-input-wrapper {
+  flex: 1;
+  position: relative;
+  width: 100%;
+}
+
+.full-page-composer-fixed .comment-input {
+  min-height: 32px;
+  max-height: 60px;
+  padding-right: 80px; /* Space for buttons */
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  resize: none;
+}
+
+.full-page-composer-fixed .comment-input::placeholder {
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+}
+
+/* Expanded composer row - input + send button side by side */
+.expanded-composer-row {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-sm);
+  width: 100%;
+}
+
+.expanded-composer-row .comment-input-wrapper {
+  flex: 1;
+  position: relative;
+  min-width: 0;
+}
+
+.expanded-composer-row .comment-input {
+  padding-right: 45px;
+  min-height: 44px;
+  font-size: 16px;
+}
+
+.expanded-composer-row .comment-media-btn {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  background: transparent;
+  border: none;
+  padding: 6px;
+  color: rgba(220, 8, 188, 0.5);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.expanded-composer-row .comment-media-btn:hover {
+  color: var(--magenta);
+}
+
+.expanded-send-btn {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(26, 231, 132, 0.072);
+  border: 1px solid rgba(26, 231, 132, 0.3);
+  border-radius: 8px;
+  color: rgba(26, 231, 132, 0.8);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.expanded-send-btn:hover:not(:disabled) {
+  background: rgba(26, 231, 132, 0.15);
+  border-color: rgba(26, 231, 132, 0.5);
+  color: var(--accent);
+}
+
+.expanded-send-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Action buttons container inside textarea */
+.composer-actions {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  z-index: 10;
+}
+
+/* Media upload button - matches post card actions */
+.comment-media-btn {
+  background: transparent;
+  border: none;
+  padding: 6px;
+  color: rgba(220, 8, 188, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.comment-media-btn:hover {
+  color: var(--magenta);
+  background: rgba(220, 8, 188, 0.1);
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 6px rgba(220, 8, 188, 0.4));
+}
+
+.composer-actions .comment-submit-btn {
+  width: 32px;
+  height: 32px;
+  color: rgba(26, 231, 132, 0.5);
+  border-radius: 4px;
+  background: transparent;
+}
+
+.composer-actions .comment-submit-btn:hover:not(:disabled) {
+  color: var(--accent);
+  background: rgba(26, 231, 132, 0.1);
+  filter: drop-shadow(0 0 6px rgba(26, 231, 132, 0.4));
+}
+
+/* ============================================
+   EXPANDED COMPOSER MODAL (Edit Mode)
+   Same as Profile page edit modal
+   ============================================ */
+
+.expanded-composer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.expanded-composer-modal {
+  width: 100%;
+  max-width: 700px;
+  /* Holographic cosmic black background - matching main composer modal */
+  background:
+    linear-gradient(145deg, rgba(10, 10, 10, 0.95), rgba(0, 0, 0, 0.85)),
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1), transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.5), transparent 50%),
+    linear-gradient(
+      45deg,
+      rgba(26, 115, 231, 0.05),
+      rgba(220, 8, 188, 0.05),
+      rgba(26, 115, 231, 0.05)
+    );
+  background-size: 100% 100%, 150% 150%, 150% 150%, 200% 200%;
+  background-blend-mode: overlay, multiply, overlay;
+  background-position: 0% 50%, 75% 75%, 75% 75%, 50% 50%;
+  
+  border: 1px solid rgba(26, 115, 231, 0.4);
+  border-radius: 24px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    0 0 60px rgba(26, 115, 231, 0.15),
+    inset 0 1px 3px rgba(255, 255, 255, 0.1),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  overflow: hidden;
+  
+  &.edit-mode {
+    border-color: rgba(255, 193, 7, 0.4);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.5),
+      0 0 60px rgba(255, 193, 7, 0.15),
+      inset 0 1px 3px rgba(255, 255, 255, 0.1),
+      inset 0 -1px 3px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.expanded-composer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  
+  h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    font-family: var(--font-title);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--blue-primary);
+    
+    svg {
+      color: var(--blue-primary);
+    }
+  }
+  
+  .edit-mode & h3 {
+    color: #ffc107;
+    
+    svg {
+      color: #ffc107;
+    }
+  }
+}
+
+.expanded-composer-body {
+  padding: 20px;
+  
+  .composer-textarea {
+    width: 100%;
+    min-height: 150px;
+    padding: 16px;
+    background:
+      linear-gradient(145deg, #0a0a0a, #000000),
+      radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1), transparent 50%),
+      radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.5), transparent 50%);
+    background-size: 100% 100%, 150% 150%, 150% 150%;
+    background-position: 0% 50%, 75% 75%, 75% 75%;
+    background-blend-mode: overlay, multiply, overlay;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-family: 'degular', sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow:
+      0 4px 8px rgba(0, 0, 0, 0.8),
+      inset 0 1px 3px rgba(255, 255, 255, 0.2),
+      inset 0 -1px 3px rgba(0, 0, 0, 0.5);
+    
+    &:focus {
+      border-color: rgba(0, 212, 255, 0.6);
+      box-shadow:
+        0 0 20px rgba(0, 212, 255, 0.4),
+        0 4px 8px rgba(0, 0, 0, 0.8),
+        inset 0 1px 3px rgba(255, 255, 255, 0.3),
+        inset 0 -1px 3px rgba(0, 0, 0, 0.5);
+    }
+    
+    &::placeholder {
+      color: var(--text-muted);
+    }
+  }
+  
+  .edit-mode & .composer-textarea {
+    border-color: rgba(255, 193, 7, 0.3);
+    
+    &:focus {
+      border-color: rgba(255, 193, 7, 0.6);
+      box-shadow:
+        0 0 20px rgba(255, 193, 7, 0.3),
+        0 4px 8px rgba(0, 0, 0, 0.8),
+        inset 0 1px 3px rgba(255, 255, 255, 0.3),
+        inset 0 -1px 3px rgba(0, 0, 0, 0.5);
+    }
+  }
+}
+
+.expanded-composer-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  
+  .submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    background: linear-gradient(135deg, var(--cyan), var(--magenta));
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    &:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(79, 255, 255, 0.3);
+    }
+    
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+  
+  .edit-mode & .submit-btn {
+    background: linear-gradient(135deg, #ffc107, #ff8800);
+    
+    &:hover:not(:disabled) {
+      box-shadow: 0 4px 12px rgba(255, 193, 7, 0.4);
+    }
+  }
+}

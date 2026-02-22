@@ -1,0 +1,37 @@
+// 🔵 PABLO - MySpace Shared Styles
+// REBEL VIBES: Doto font, no border-radius, holographic black
+
+// ============================================
+// GOOGLE FONT: DOTO (Throwback/Tech feel)
+// ============================================
+@import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap');
+
+// ============================================
+// HOLOGRAPHIC BLACK MIXIN (Pablo's trademark)
+// ============================================
+@mixin holographic-black {
+  background:
+    linear-gradient(145deg, rgba(10, 10, 10, 0.95), rgba(0, 0, 0, 0.85)),
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.05), transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.8), transparent 50%),
+    linear-gradient(45deg, rgba(26, 115, 231, 0.08), rgba(220, 8, 188, 0.06), rgba(26, 115, 231, 0.08));
+  background-size: 100% 100%, 150% 150%, 150% 150%, 200% 200%;
+  background-blend-mode: overlay, multiply, overlay;
+  background-position: 0% 50%, 75% 75%, 75% 75%, 50% 50%;
+  animation: holographic-shimmer 8s ease infinite;
+}
+
+@keyframes holographic-shimmer {
+  0%, 100% { background-position: 0% 50%, 75% 75%, 75% 75%, 0% 50%; }
+  50% { background-position: 100% 50%, 25% 25%, 25% 25%, 100% 50%; }
+}
+
+// ============================================
+// CODEPEN SLIDER THEME VARIABLES
+// ============================================
+$theme-u: .375em;
+$theme-g: 
+  repeating-conic-gradient(
+    hsla(0, 0%, 0%, .235) 0% 25%, 
+    transparent 0% 50%)
+  0 0 / #{$theme-u $theme-u};

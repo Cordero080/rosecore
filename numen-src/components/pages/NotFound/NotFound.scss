@@ -1,0 +1,57 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.not-found {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--space-xl);
+  text-align: center;
+
+  &__content {
+    @include glass-effect(20px, 0.05);
+    border-radius: var(--radius-lg);
+    padding: var(--space-3xl);
+    max-width: 500px;
+  }
+
+  &__code {
+    font-size: 8rem;
+    font-weight: 800;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: var(--space-md);
+  }
+
+  &__title {
+    font-size: var(--font-size-2xl);
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+  }
+
+  &__message {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xl);
+    line-height: 1.6;
+  }
+
+  &__link {
+    display: inline-block;
+    padding: var(--space-md) var(--space-xl);
+    background: var(--gradient-primary);
+    color: var(--text-dark);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: 500;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(109, 223, 246, 0.3);
+    }
+  }
+}

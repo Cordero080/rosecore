@@ -1,0 +1,677 @@
+/* ==========================================
+   ABOUT PAGE STYLES
+   ========================================== */
+
+.about-title {
+  font-family: "omnium-wide", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, #ff207a, #9050ff, #00d4ff, #1060c0, #9050ff, #ff207a);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: heroGradientMoveAlt 12s ease-in-out infinite;
+  -webkit-mask-image: linear-gradient(to bottom, black 60%, rgba(0, 0, 0, 0.3) 100%);
+  mask-image: linear-gradient(to bottom, black 60%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+.about-name {
+  font-family: "thornwood-vf", sans-serif;
+  font-variation-settings: "wght" 200, "wdth" 50;
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(180deg, #ffffff 22%, rgba(79, 88, 88, 0.699) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.about-section {
+  margin-bottom: 4rem;
+}
+
+.about-section h2 {
+  font-family: "aktiv-grotesk", sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 800;
+  background: linear-gradient(90deg, #ff207a, #9050ff, #00d4ff, #1060c0);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: heroGradientMoveAlt 8s linear infinite;
+  margin-bottom: 2rem;
+  letter-spacing: 0.1em;
+  text-align: center;
+  -webkit-mask-image: linear-gradient(to bottom, black 30%, rgba(0, 0, 0, 0.3) 100%);
+  mask-image: linear-gradient(to bottom, black 30%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+.about-section p {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1.5rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.about-section strong {
+  color: var(--accent-cyan);
+}
+
+/* Evolution List */
+.evolution-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.evolution-list li {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1.25rem;
+  padding-left: 2rem;
+  position: relative;
+}
+
+.evolution-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6rem;
+  width: 8px;
+  height: 8px;
+  background: var(--accent-cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent-cyan);
+}
+
+.evolution-list li strong {
+  color: var(--accent-cyan);
+}
+
+/* Achievement Banner */
+.achievement-banner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+  background:
+    linear-gradient(145deg, rgba(0, 255, 136, 0.08), rgba(0, 212, 255, 0.05)),
+    linear-gradient(145deg, #1a1525, #0a0510);
+  border: 1px solid rgba(0, 255, 136, 0.4);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.achievement-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 255, 136, 0.02) 2px,
+    rgba(0, 255, 136, 0.02) 4px
+  );
+  pointer-events: none;
+}
+
+.achievement-icon {
+  color: #00ff88;
+  font-size: 1.25rem;
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.6);
+  animation: achievementPulse 2s ease-in-out infinite;
+}
+
+@keyframes achievementPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.achievement-banner p {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  line-height: 1.5;
+  position: relative;
+  z-index: 1;
+}
+
+.achievement-banner strong {
+  color: #00ff88;
+  font-weight: 600;
+}
+
+/* Project Highlight Cards */
+.project-highlight {
+  background:
+    linear-gradient(145deg, #221d27, #000000),
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.05), transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.5), transparent 50%),
+    linear-gradient(45deg, rgba(138, 43, 226, 0.05), rgba(0, 212, 255, 0.05), rgba(138, 43, 226, 0.05));
+  background-size: 100% 100%, 150% 150%, 150% 150%, 200% 200%;
+  background-blend-mode: overlay, multiply, overlay;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 0;
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.8),
+    inset 0 1px 3px rgba(255, 255, 255, 0.1),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+.project-highlight:hover {
+  border-color: rgba(0, 212, 255, 0.6);
+  box-shadow:
+    0 0 20px rgba(0, 212, 255, 0.3),
+    0 4px 8px rgba(0, 0, 0, 0.8),
+    inset 0 1px 3px rgba(255, 255, 255, 0.2),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.project-highlight h3 {
+  font-family: "aktiv-grotesk", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: linear-gradient(90deg, #ff207a, #9050ff, #00d4ff, #1060c0);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: heroGradientMoveAlt 8s linear infinite;
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+  text-transform: none;
+}
+
+.project-highlight p {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+/* Proof Stats */
+.proof-stats {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: fit-content;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-family: "aktiv-grotesk", sans-serif;
+  font-size: 1.75rem;
+  display: block;
+  background: linear-gradient(90deg, #ff207a, #9050ff, #00d4ff, #1060c0);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: heroGradientMoveAlt 8s linear infinite;
+}
+
+.stat-label {
+  font-family: "aktiv-grotesk", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #ff207a, #9050ff, #00d4ff, #1060c0);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: heroGradientMoveAlt 8s linear infinite;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  -webkit-mask-image: linear-gradient(to bottom, black 60%, rgba(0, 0, 0, 0.3) 100%);
+  mask-image: linear-gradient(to bottom, black 60%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+/* About Content Container */
+.about-content {
+  max-width: 900px;
+  padding-right: 8%;
+  padding-left: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ==========================================
+   RESUME PAGE STYLES
+   ========================================== */
+.project-stack {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.9rem;
+  color: var(--accent-cyan, #00fff7);
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+}
+
+.project-bullets {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0.75rem;
+}
+
+.project-bullets li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.project-bullets li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--accent-cyan, #00fff7);
+  opacity: 0.7;
+}
+
+.date-range {
+  float: right;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 400;
+}
+
+.experience-detail {
+  display: block;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 0.25rem;
+  padding-left: 0;
+}
+
+/* ==========================================
+   ARCHITECTURE BRIDGE - Logic to Life
+   ========================================== */
+.architecture-bridge {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: linear-gradient(145deg, rgba(10, 8, 15, 0.8), rgba(20, 15, 30, 0.6));
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 8px;
+  position: relative;
+}
+
+.architecture-bridge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 212, 255, 0.02) 2px,
+      rgba(0, 212, 255, 0.02) 4px
+    );
+  pointer-events: none;
+  border-radius: 8px;
+}
+
+.architecture-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.architecture-panel img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.5),
+    inset 0 0 20px rgba(0, 212, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.architecture-panel img:hover {
+  border-color: rgba(0, 212, 255, 0.6);
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(0, 212, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.architecture-panel .panel-label {
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.5);
+  padding: 0.25rem 0.75rem;
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 4px;
+}
+
+/* Blueprint styling for wireframes/ERDs */
+.architecture-panel.blueprint img {
+  filter: contrast(1.1) brightness(0.95);
+  border-color: rgba(0, 255, 136, 0.3);
+}
+
+.architecture-panel.blueprint .panel-label {
+  background: rgba(0, 255, 136, 0.1);
+  border-color: rgba(0, 255, 136, 0.2);
+  color: rgba(0, 255, 136, 0.7);
+}
+
+/* Execution panel styling */
+.architecture-panel.execution img {
+  border-color: rgba(138, 43, 226, 0.3);
+}
+
+.architecture-panel.execution .panel-label {
+  background: rgba(138, 43, 226, 0.1);
+  border-color: rgba(138, 43, 226, 0.2);
+  color: rgba(138, 43, 226, 0.7);
+}
+
+/* Technical Achievement Highlight */
+.tech-achievement {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  margin-top: 0.75rem;
+  background: linear-gradient(90deg, rgba(255, 0, 110, 0.15), rgba(138, 43, 226, 0.15));
+  border: 1px solid rgba(255, 0, 110, 0.3);
+  border-radius: 4px;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.8rem;
+  color: #ff006e;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.tech-achievement::before {
+  content: "◆";
+  font-size: 0.6rem;
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+@media (max-width: 768px) {
+  .architecture-bridge {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .architecture-panel .panel-label {
+    font-size: 0.65rem;
+  }
+}
+
+/* ==========================================
+   SYSTEM MANIFESTO CARD
+   ========================================== */
+.system-manifesto {
+  position: relative;
+  background:
+    linear-gradient(145deg, #221d27, #000000),
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.05), transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.5), transparent 50%),
+    linear-gradient(45deg, rgba(138, 43, 226, 0.05), rgba(0, 212, 255, 0.05), rgba(138, 43, 226, 0.05));
+  background-size: 100% 100%, 150% 150%, 150% 150%, 200% 200%;
+  background-blend-mode: overlay, multiply, overlay;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 800px;
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.8),
+    inset 0 1px 3px rgba(255, 255, 255, 0.1),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.system-manifesto:hover {
+  border-color: rgba(0, 212, 255, 0.6);
+  box-shadow:
+    0 0 20px rgba(0, 212, 255, 0.3),
+    0 4px 8px rgba(0, 0, 0, 0.8),
+    inset 0 1px 3px rgba(255, 255, 255, 0.2),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.system-manifesto::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ff006e, #8338ec, #07429f);
+  background-size: 200% auto;
+  animation: heroGradientMoveAlt 8s linear infinite;
+}
+
+.manifesto-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.manifesto-title {
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: rgba(0, 212, 255, 0.9);
+  text-transform: uppercase;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #00ff88;
+  text-transform: uppercase;
+}
+
+.status-light {
+  width: 8px;
+  height: 8px;
+  background: #00ff88;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #00ff88, 0 0 16px rgba(0, 255, 136, 0.5);
+  animation: livePulse 1.5s ease-in-out infinite;
+}
+
+/* Reuse livePulse from project.css */
+@keyframes livePulse {
+  0%, 100% { 
+    opacity: 1; 
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.4; 
+    transform: scale(0.8);
+  }
+}
+
+.manifesto-content {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.system-output {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(138, 43, 226, 0.3);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.output-header {
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: rgba(138, 43, 226, 0.9);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.output-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid rgba(0, 212, 255, 0.3);
+}
+
+.output-item:last-child {
+  margin-bottom: 0;
+}
+
+.output-label {
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: rgba(0, 212, 255, 0.8);
+  text-transform: uppercase;
+  white-space: nowrap;
+  min-width: 120px;
+}
+
+.output-value {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.output-value strong {
+  color: #00ff88;  /* Same green as live indicator */
+}
+
+.output-value em {
+  color: #ff006e;  /* Neon magenta */
+  font-style: normal;
+}
+
+@media (max-width: 768px) {
+  .system-manifesto {
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  
+  .manifesto-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  
+  .output-item {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .output-label {
+    min-width: auto;
+  }
+
+  html, body {
+    height: auto;
+    min-height: 100%;
+    overflow-y: auto !important;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    background-attachment: scroll;
+  }
+  
+  /* Hide fixed elements on mobile to prevent scroll lock */
+  #waves {
+    display: none !important;
+  }
+  
+  .parallax-bg-overlay {
+    display: none !important;
+  }
+  
+  .about-content {
+    padding-right: 0;
+    padding-left: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .proof-stats {
+    gap: 1.2rem;
+    justify-content: center;
+    width: 100%;
+    max-width: none;
+    padding: 0;
+    margin: 2rem auto 0;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+  }
+
+  .date-range {
+    float: none;
+    display: block;
+    margin-top: 0.25rem;
+  }
+}

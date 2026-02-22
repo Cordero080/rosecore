@@ -1,0 +1,59 @@
+// MediaLightbox/_image.scss - Image container and close button
+// 🔵 PABLO - UI/Styling
+
+/* Position the glowing close button in lightbox */
+.media-lightbox-content .close-btn-glow {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10001;
+}
+
+.media-lightbox-image-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+/* Expanded mode - image takes more space */
+.media-lightbox-content.is-expanded .media-lightbox-image-container {
+  flex: 2;
+}
+
+.media-lightbox-image {
+  max-width: 100%;
+  max-height: 60vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 0;
+  box-shadow: none;
+  transition: max-height 0.3s ease;
+}
+
+/* Expanded mode - image fills viewport height */
+.media-lightbox-content.is-expanded .media-lightbox-image {
+  max-height: 100vh;
+}
+
+/* Avatar styling */
+.river-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(26, 115, 231, 0.2), rgba(220, 8, 188, 0.2));
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  border: 1px solid rgba(26, 115, 231, 0.3);
+  flex-shrink: 0;
+}

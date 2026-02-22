@@ -1,0 +1,36 @@
+/**
+ * main.css
+ * Master stylesheet that imports all modular CSS files in the correct order
+ * 
+ * STRUCTURE:
+ * 1. Design tokens (colors, fonts, spacing, variables)
+ * 2. Base styles (body, html, scrollbar, parallax)
+ * 3. Page components (loader, hero, cursor, glitch, waves)
+ * 4. Navigation (side nav, hamburger, audio toggle)
+ * 5. Content sections (bento grid, contact)
+ * 6. Utilities (accessibility, spacebar prompt)
+ */
+
+/* === DESIGN TOKENS === */
+@import url('./tokens.css');
+
+/* === BASE === */
+@import url('./base.css');
+
+/* === PAGE COMPONENTS === */
+@import url('./loader.css');
+@import url('./hero.css');
+@import url('./cursor.css');
+@import url('./glitch.css');
+@import url('./waves.css');
+
+/* === NAVIGATION === */
+@import url('./navigation.css');
+
+/* === CONTENT SECTIONS === */
+@import url('./bento.css');
+@import url('./contact.css');
+
+/* === UTILITIES === */
+@import url('./utilities.css');
+

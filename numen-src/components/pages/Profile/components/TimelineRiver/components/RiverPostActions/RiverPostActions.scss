@@ -1,0 +1,167 @@
+/* RiverPostActions - Action Button Styles */
+
+/* Standardized Post Action Buttons */
+.river-post-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 8px;
+  padding: 12px 8px;
+  margin-top: 12px;
+  border-top: 1px solid rgba(201, 168, 255, 0.15);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+  border-radius: 0 0 12px 12px;
+  
+  .river-post-likes,
+  .river-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 6px 8px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-family: 'sweet-square-pro', sans-serif;
+    font-size: 13px;
+    
+    svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      transition: all 0.25s ease;
+    }
+    
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+  
+  .river-post-likes {
+    color: rgba(201, 168, 255, 0.7);
+    position: relative;
+    overflow: visible;
+    
+    &:hover {
+      color: #c9a8ff;
+      svg path {
+        stroke: #c9a8ff;
+        filter: drop-shadow(0 0 6px rgba(201, 168, 255, 0.6));
+      }
+    }
+    
+    /* Heart pulse animation on click */
+    &.heart-pulse svg {
+      animation: heartPulse 0.4s ease-out;
+    }
+    
+    /* Radiating ripple effect on click */
+    &.heart-pulse::before,
+    &.heart-pulse::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 17px;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    
+    &.heart-pulse::before {
+      border: 1px solid var(--heart-color, #4fffff);
+      animation: heartRipple 0.6s ease-out forwards;
+    }
+    
+    &.heart-pulse::after {
+      border: 1px solid var(--heart-color, #4fffff);
+      animation: heartRipple 0.6s ease-out 0.1s forwards;
+    }
+    
+    &.is-liked {
+      color: var(--heart-color, #c9a8ff);
+      svg path {
+        fill: var(--heart-color, #c9a8ff) !important;
+        stroke: var(--heart-color, #c9a8ff) !important;
+        filter: drop-shadow(0 0 8px var(--heart-color, #c9a8ff));
+      }
+    }
+  }
+  
+  .river-action-btn {
+    color: rgba(201, 168, 255, 0.5);
+    
+    &:hover {
+      color: #c9a8ff;
+      filter: drop-shadow(0 0 6px rgba(201, 168, 255, 0.5));
+    }
+    
+    &--edit:hover {
+      color: rgba(255, 193, 7, 0.9);
+      filter: drop-shadow(0 0 6px rgba(255, 193, 7, 0.5));
+    }
+    
+    &--delete:hover {
+      color: rgba(255, 82, 82, 0.9);
+      filter: drop-shadow(0 0 6px rgba(255, 82, 82, 0.5));
+    }
+    
+    &--message:hover {
+      color: rgba(0, 212, 255, 0.9);
+      filter: drop-shadow(0 0 6px rgba(0, 212, 255, 0.5));
+    }
+  }
+}
+
+/* My Post Actions - Edit/Delete instead of Message/Bookmark */
+.my-post-actions {
+  .river-action-btn--edit {
+    color: rgba(255, 193, 7, 0.6);
+  }
+  .river-action-btn--delete {
+    color: rgba(255, 82, 82, 0.6);
+  }
+  .river-action-btn--save {
+    color: rgba(167, 131, 255, 0.6);
+    
+    &:hover {
+      color: rgba(167, 131, 255, 0.9);
+      filter: drop-shadow(0 0 6px rgba(167, 131, 255, 0.5));
+    }
+  }
+}
+
+/* Friend Post Actions */
+.friend-post-actions {
+  .river-action-btn--message {
+    color: rgba(0, 212, 255, 0.5);
+  }
+}
+
+/* Heart pulse animation for like button */
+@keyframes heartPulse {
+  0% { transform: scale(1); }
+  15% { transform: scale(0.3); }
+  40% { transform: scale(.5); }
+  65% { transform: scale(0.95); }
+  85% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* Radiating ripple rings */
+@keyframes heartRipple {
+  0% {
+    width: 20px;
+    height: 20px;
+    opacity: 0.8;
+    border-width: 2px;
+  }
+  100% {
+    width: 50px;
+    height: 50px;
+    opacity: 0;
+    border-width: 1px;
+  }
+}

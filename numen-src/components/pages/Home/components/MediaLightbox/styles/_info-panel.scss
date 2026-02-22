@@ -1,0 +1,180 @@
+// MediaLightbox/_info-panel.scss - Info panel, header, caption, actions
+// 🔵 PABLO - UI/Styling
+
+.media-lightbox-info {
+  width: 360px;
+  min-width: 360px;
+  max-width: 360px;
+  flex-shrink: 0;
+  background: rgba(0, 0, 0, 0.2);
+  border-left: 1px solid var(--border-subtle);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  max-height: 85vh;
+  position: relative;
+  z-index: 1;
+}
+
+/* Vertical gradient divider on left edge */
+.media-lightbox-info::before {
+  content: '';
+  position: absolute;
+  top: 1rem;
+  bottom: 1rem;
+  left: 0;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 212, 255, 0.25) 20%,
+    rgba(167, 131, 255, 0.2) 50%,
+    rgba(0, 212, 255, 0.25) 80%,
+    transparent 100%
+  );
+}
+
+.media-lightbox-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: 1rem 1.25rem;
+  background: rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+/* Gradient underline for header */
+.media-lightbox-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 1.25rem;
+  right: 1.25rem;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 212, 255, 0.3) 20%,
+    rgba(167, 131, 255, 0.2) 50%,
+    rgba(0, 212, 255, 0.3) 80%,
+    transparent 100%
+  );
+}
+
+.media-lightbox-author {
+  font-family: var(--font-title);
+  font-size: var(--font-size-body);
+  font-weight: 400;
+  background: linear-gradient(180deg, #4fffff 22%, rgba(79, 200, 200, 0.7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 8px rgba(79, 255, 255, 0.4));
+}
+
+.media-lightbox-timestamp {
+  font-family: var(--font-main);
+  font-size: var(--font-size-sm);
+  color: rgba(79, 255, 255, 0.6);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.media-lightbox-caption {
+  font-family: var(--font-main);
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  padding: 1rem 1.25rem;
+}
+
+.media-lightbox-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 1.25rem 0.75rem;
+}
+
+.media-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: 6px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-main);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  min-width: auto;
+}
+
+.media-action-btn:hover {
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 8px currentColor);
+  color: #4fffff;
+}
+
+.media-action-btn:nth-child(2):hover {
+  color: #1ae784;
+}
+
+.media-action-btn:nth-child(3):hover {
+  color: #c9a8ff;
+}
+
+.media-action-btn:nth-child(4):hover {
+  color: #ffb347;
+}
+
+.media-action-btn:nth-child(5):hover {
+  color: #dc08bc;
+}
+
+.media-action-btn--like {
+  flex: 0 0 auto;
+  padding: 6px;
+}
+
+/* Liked state - purple heart for media posts */
+.media-action-btn--liked {
+  color: #c9a8ff !important;
+  
+  svg path {
+    fill: #c9a8ff !important;
+    stroke: #c9a8ff !important;
+    filter: drop-shadow(0 0 8px rgba(201, 168, 255, 0.6));
+  }
+}
+
+.media-action-btn--liked .action-count {
+  color: #c9a8ff !important;
+}
+
+.media-action-btn--liked:hover {
+  color: #c9a8ff !important;
+}
+
+.media-action-btn .action-count {
+  font-family: 'sweet-square-pro', monospace;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.media-action-btn svg {
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.media-action-btn:hover svg {
+  filter: drop-shadow(0 0 4px currentColor);
+}

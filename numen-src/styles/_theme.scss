@@ -1,0 +1,27 @@
+// ================================================
+// NUMENEON THEME CONFIGURATION
+// Light/Dark mode support
+// ================================================
+// 🔵 PABLO - UI Architect
+// 
+// Theme is controlled by data-theme attribute on <html>:
+//   - data-theme="dark"  → Default (uses _variables.scss)
+//   - data-theme="light" → Light mode (uses _light-mode.scss)
+//
+// Toggle theme in JS:
+//   document.documentElement.dataset.theme = 'light';
+//   localStorage.setItem('theme', 'light');
+//
+// Initialize on page load:
+//   const saved = localStorage.getItem('theme') || 'dark';
+//   document.documentElement.dataset.theme = saved;
+// ================================================
+
+// Default: Dark mode (current app state)
+// All dark mode variables are defined in _variables.scss
+// Light mode overrides are in _light-mode.scss
+
+// This file can be extended for:
+// - System preference detection (prefers-color-scheme)
+// - Additional theme variants
+// - Theme transition animations

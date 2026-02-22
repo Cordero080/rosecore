@@ -1,0 +1,12 @@
+/* Media Lightbox Modal - Cyberpunk Style (matches MessageModal)
+   Modularized into partials for maintainability
+   🔵 PABLO - UI/Styling
+*/
+
+@use './styles/animations';
+@use './styles/overlay';
+@use './styles/image';
+@use './styles/info-panel';
+@use './styles/comments';
+@use './styles/responsive';
+@use './styles/light-mode';

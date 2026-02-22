@@ -1,0 +1,515 @@
+/* TimelineRiver Component Styles */
+@use '../ComposerModal/ComposerModal.scss';
+
+.timeline-river {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1600px) {
+  .timeline-river {
+    max-width: 1600px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .timeline-river {
+    max-width: 1800px;
+  }
+}
+
+/* River Column Labels */
+
+.river-labels {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: 30px;
+  position: sticky;
+  top: 60px;
+  background: linear-gradient(180deg, var(--bg-base) 0%, var(--bg-base) 90%, transparent 100%);
+  padding: 20px 0;
+  z-index: 5;
+  box-sizing: border-box;
+  align-items: center;
+  width: 100%;
+}
+
+/* All tabs same size */
+.river-label {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: 8px 12px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: var(--font-title);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+.river-label-count {
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+.river-label-collapse-icon {
+  font-size: 16px;
+  font-weight: bold;
+  opacity: 0.5;
+  margin-left: auto;
+}
+
+/* Collapsed tab - same size, just greyed out */
+.river-label--collapsed {
+  opacity: 0.35;
+  
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+/* Not most recent - slightly dimmed (higher specificity) */
+.river-labels .river-label.river-label--not-recent:not(.river-label--collapsed) {
+  opacity: 0.6;
+  
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+/* Type-specific colors */
+.river-label--thoughts {
+  border-color: rgba(77, 171, 247, 0.4);
+  svg { color: rgba(77, 171, 247, 1); }
+  span, .river-label-collapse-icon { color: rgba(77, 171, 247, 1); }
+}
+
+.river-label--media {
+  border-color: rgba(233, 78, 200, 0.4);
+  svg { color: rgba(233, 78, 200, 1); }
+  span, .river-label-collapse-icon { color: rgba(233, 78, 200, 1); }
+}
+
+.river-label--milestones {
+  border-color: rgba(255, 215, 0, 0.4);
+  svg { color: rgba(255, 215, 0, 1); }
+  span, .river-label-collapse-icon { color: rgba(255, 215, 0, 1); }
+}
+
+/* ============================================
+   RIVER STREAMS - COLUMN LAYOUT
+   ============================================ */
+
+/* ============================================
+   COLLAPSE/EXPAND FUNCTIONALITY
+   Clickable labels and pill buttons for collapsing cards
+   ============================================ */
+
+/* Clickable labels - collapse on click */
+.river-label--clickable {
+  cursor: pointer;
+  position: relative;
+  padding-right: 36px; /* Space for collapse icon */
+  
+  &:hover:not(.river-label--not-recent) {
+    opacity: 1;
+  }
+}
+
+/* Collapsed state - greyed out like mobile non-selected tabs */
+.river-labels .river-label.river-label--collapsed {
+  opacity: 0.35 !important;
+  padding-right: var(--space-md); /* No need for collapse icon space */
+  
+  &:hover {
+    opacity: 0.6 !important;
+  }
+}
+
+/* Collapse icon (minus sign) - positioned in the corner */
+.river-label-collapse-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  font-weight: bold;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+}
+
+.river-label--clickable:hover .river-label-collapse-icon {
+  opacity: 1;
+}
+
+/* Collapsed decks container */
+.collapsed-decks-container {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: var(--space-sm);
+}
+
+/* Pill buttons for collapsed labels */
+.river-label-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-default);
+  cursor: pointer;
+  font-family: var(--font-title);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: all 0.2s ease;
+  height: 32px;
+  
+  &:hover {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+/* Pill count badge */
+.pill-count {
+  font-size: 10px;
+  opacity: 0.8;
+  margin-left: 2px;
+}
+
+/* Thoughts pill - Blue */
+.river-label-pill:has(svg[class*="message"]),
+.river-label-pill:first-child:not(:has(svg[class*="image"])):not(:has(svg[class*="milestone"])) {
+  color: rgba(77, 171, 247, 1);
+  border-color: rgba(77, 171, 247, 0.4);
+  
+  &:hover {
+    border-color: rgba(77, 171, 247, 0.8);
+    box-shadow: 0 0 8px rgba(77, 171, 247, 0.3);
+  }
+}
+
+/* Media pill - Magenta */
+.river-label-pill:has(svg[class*="image"]) {
+  color: rgba(233, 78, 200, 1);
+  border-color: rgba(233, 78, 200, 0.4);
+  
+  &:hover {
+    border-color: rgba(233, 78, 200, 0.8);
+    box-shadow: 0 0 8px rgba(233, 78, 200, 0.3);
+  }
+}
+
+/* Milestones pill - Gold */
+.river-label-pill:has(svg[class*="milestone"]) {
+  color: rgba(255, 215, 0, 1);
+  border-color: rgba(255, 215, 0, 0.4);
+  
+  &:hover {
+    border-color: rgba(255, 215, 0, 0.8);
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+  }
+}
+
+/* Dynamic flexbox layouts for expanded columns - columns fill available space */
+.river-streams--expanded-3,
+.river-streams--expanded-2,
+.river-streams--expanded-1 {
+  /* All columns use flex: 1 to fill available space */
+}
+
+.river-streams--expanded-0 {
+  display: none !important;
+}
+
+/* Labels don't need grid adjustments with flexbox */
+
+/* Override post width constraints when expanded */
+.river-streams--expanded-2 .river-card,
+.river-streams--expanded-1 .river-card {
+  max-width: 100% !important;
+}
+
+.river-streams--expanded-2 .post--single,
+.river-streams--expanded-1 .post--single,
+.river-streams--expanded-2 .post--compact,
+.river-streams--expanded-1 .post--compact {
+  max-width: 100% !important;
+}
+
+/* River Streams Container */
+
+.river-streams {
+  display: flex;
+  gap: var(--space-xl);
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* When only 1 column visible, center it and give reasonable max-width */
+.river-streams--expanded-1 {
+  justify-content: center;
+  
+  .river-column {
+    flex: 0 1 600px; /* Don't grow beyond 600px, but can shrink */
+    max-width: 600px;
+  }
+}
+
+/* River Continuation - All posts after first 12 */
+.river-continuation {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.river-continuation .river-streams {
+  align-items: start;
+}
+
+.river-continuation .river-column {
+  gap: var(--space-lg);
+}
+
+/* Individual River Columns */
+
+.river-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+  position: relative;
+  min-width: 0;
+  box-sizing: border-box;
+  flex: 1 1 0;
+  width: 100%;
+  align-items: stretch; /* Ensure children fill full width */
+}
+
+/* Import global smart-deck styles for carousel navigation */
+@import '../../../Home/components/TimelineRiverRow/styles/_smart-deck';
+@import '../../../Home/components/TimelineRiverRow/styles/_thread';
+@import '../../../Home/components/TimelineRiverRow/styles/_composer';
+
+/* Smart deck navigation styles moved to RiverSmartDeck/RiverSmartDeck.scss */
+
+/* Post action styles moved to RiverPostActions/RiverPostActions.scss */
+/* Friends feed styles moved to RiverFeedView/RiverFeedView.scss */
+
+/* ==============================================
+   FRIEND POST ACTION BUTTONS
+   Action buttons for the friends feed cards
+   ============================================== */
+
+.friend-post-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-top: 10px;
+  margin-top: 8px;
+  position: relative;
+  gap: 4px;
+}
+
+/* Gradient separator line */
+.friend-post-actions::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 212, 255, 0.2) 20%,
+    rgba(167, 131, 255, 0.15) 50%,
+    rgba(0, 212, 255, 0.2) 80%,
+    transparent 100%
+  );
+}
+
+.friend-post-actions .river-post-likes {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: rgba(201, 168, 255, 0.6);
+  padding: 4px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.friend-post-actions .river-post-likes:hover {
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6));
+}
+
+.friend-post-actions .river-post-likes.is-liked {
+  color: var(--heart-color, #c9a8ff);
+}
+
+.friend-post-actions .river-action-btn {
+  background: transparent;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  font-size: 11px;
+  color: rgba(201, 168, 255, 0.5);
+}
+
+.friend-post-actions .river-action-btn:hover {
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 8px currentColor);
+}
+
+.friend-post-actions .river-action-btn:hover svg {
+  opacity: 1;
+}
+
+.friend-post-actions .river-action-btn:active {
+  transform: scale(0.95);
+}
+
+/* Message button hover - cyan glow */
+.friend-post-actions .river-action-btn--message:hover {
+  filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.8));
+}
+
+.friend-post-actions .river-action-btn--message:hover svg {
+  stroke: rgba(0, 212, 255, 1);
+}
+
+.friend-post-actions .reply-count {
+  font-size: 11px;
+  color: rgba(201, 168, 255, 0.6);
+}
+
+.left-stream {
+  animation: floatInLeft 0.8s ease-out;
+}
+
+.center-stream {
+  animation: floatInCenter 1s ease-out;
+}
+
+.right-stream {
+  animation: floatInRight 1.2s ease-out;
+}
+
+@keyframes floatInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+}
+
+@keyframes floatInCenter {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+}
+
+/* Heart pulse/ripple keyframes moved to RiverPostActions/RiverPostActions.scss */
+
+/* River card styles moved to RiverTimelineView/RiverTimelineView.scss */
+/* Mobile category tabs moved to RiverTimelineView/RiverTimelineView.scss */
+
+/* River Responsive Design */
+
+@media (max-width: 1024px) {
+  .river-streams {
+    gap: var(--space-lg);
+  }
+  
+  .river-card {
+    padding: var(--space-lg);
+  }
+}
+
+/* Mobile-only column labels - hidden on desktop */
+.river-column-label.mobile-only {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .river-card,
+  .river-action-btn,
+  .flow-line {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Light mode styles moved to _light-mode.scss */
+@import './_light-mode';
+
+/* ========================================
+   EDIT & DELETE BUTTON STYLES
+======================================== */
+
+.river-action-btn--edit {
+  &:hover {
+    background: rgba(255, 193, 7, 0.15) !important;
+    svg {
+      stroke: rgba(255, 193, 7, 1) !important;
+      filter: drop-shadow(0 0 6px rgba(255, 193, 7, 0.6));
+    }
+  }
+}
+
+.river-action-btn--delete {
+  &:hover {
+    background: rgba(255, 82, 82, 0.15) !important;
+    svg {
+      stroke: rgba(255, 82, 82, 1) !important;
+      filter: drop-shadow(0 0 6px rgba(255, 82, 82, 0.6));
+    }
+  }
+}
+
+/* Expanded composer styles moved to RiverComposer/RiverComposer.scss */

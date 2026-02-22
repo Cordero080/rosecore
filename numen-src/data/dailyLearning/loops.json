@@ -1,0 +1,167 @@
+[
+  {
+    "id": 1,
+    "term": "for...of",
+    "definition": "Iterates over iterable values (arrays, strings, maps, sets)",
+    "definition_es": "Itera sobre valores iterables (arrays, strings, maps, sets)",
+    "bestFor": "When you need the values, not the indices",
+    "bestFor_es": "Cuando necesitas los valores, no los índices",
+    "code": "const fruits = ['apple', 'banana', 'cherry'];\n\nfor (const fruit of fruits) {\n  console.log(fruit);\n}\n// apple\n// banana\n// cherry",
+    "gotcha": "Cannot use on plain objects - use Object.entries() or for...in instead",
+    "gotcha_es": "No se puede usar en objetos simples - usa Object.entries() o for...in"
+  },
+  {
+    "id": 2,
+    "term": "for...in",
+    "definition": "Iterates over enumerable property keys (including inherited ones)",
+    "definition_es": "Itera sobre claves de propiedades enumerables (incluyendo heredadas)",
+    "bestFor": "Iterating over object keys",
+    "bestFor_es": "Iterar sobre claves de objetos",
+    "code": "const user = { name: 'Pablo', age: 25 };\n\nfor (const key in user) {\n  console.log(`${key}: ${user[key]}`);\n}\n// name: Pablo\n// age: 25",
+    "gotcha": "Avoid on arrays - includes inherited properties and doesn't guarantee order",
+    "gotcha_es": "Evitar en arrays - incluye propiedades heredadas y no garantiza orden"
+  },
+  {
+    "id": 3,
+    "term": "forEach()",
+    "definition": "Executes a callback for each array element",
+    "definition_es": "Ejecuta un callback para cada elemento del array",
+    "bestFor": "Side effects (logging, DOM updates) - cannot break or return early",
+    "bestFor_es": "Efectos secundarios (logging, actualizaciones DOM) - no puede interrumpir",
+    "code": "const numbers = [1, 2, 3];\n\nnumbers.forEach((num, index) => {\n  console.log(`Index ${index}: ${num}`);\n});\n// Index 0: 1\n// Index 1: 2\n// Index 2: 3",
+    "gotcha": "Cannot break out early - use for...of or .some() if you need to exit",
+    "gotcha_es": "No puede salir antes - usa for...of o .some() si necesitas salir"
+  },
+  {
+    "id": 4,
+    "term": ".map()",
+    "definition": "Creates a new array by transforming each element",
+    "definition_es": "Crea un nuevo array transformando cada elemento",
+    "bestFor": "Transforming data without mutating the original array",
+    "bestFor_es": "Transformar datos sin mutar el array original",
+    "code": "const prices = [10, 20, 30];\n\nconst withTax = prices.map(price => price * 1.1);\n// [11, 22, 33]\n\n// Original unchanged\nconsole.log(prices); // [10, 20, 30]",
+    "gotcha": "Always returns same-length array - use .filter() to remove elements",
+    "gotcha_es": "Siempre retorna array de misma longitud - usa .filter() para remover"
+  },
+  {
+    "id": 5,
+    "term": ".filter()",
+    "definition": "Creates a new array with elements that pass a test",
+    "definition_es": "Crea un nuevo array con elementos que pasan una prueba",
+    "bestFor": "Removing unwanted elements without mutation",
+    "bestFor_es": "Eliminar elementos no deseados sin mutación",
+    "code": "const scores = [85, 42, 93, 67, 55];\n\nconst passing = scores.filter(score => score >= 60);\n// [85, 93, 67]\n\n// Chain with map\nconst passingGrades = scores\n  .filter(s => s >= 60)\n  .map(s => s >= 90 ? 'A' : 'B');",
+    "gotcha": "Returns empty array if nothing matches, not undefined",
+    "gotcha_es": "Retorna array vacío si nada coincide, no undefined"
+  },
+  {
+    "id": 6,
+    "term": ".reduce()",
+    "definition": "Reduces array to a single value by accumulating results",
+    "definition_es": "Reduce array a un solo valor acumulando resultados",
+    "bestFor": "Summing, counting, grouping, flattening - most powerful array method",
+    "bestFor_es": "Sumar, contar, agrupar, aplanar - método de array más poderoso",
+    "code": "const cart = [\n  { item: 'Book', price: 15 },\n  { item: 'Pen', price: 2 },\n  { item: 'Bag', price: 30 }\n];\n\nconst total = cart.reduce((sum, item) => {\n  return sum + item.price;\n}, 0);\n// 47",
+    "gotcha": "Always provide initial value (second argument) to avoid edge cases",
+    "gotcha_es": "Siempre proporciona valor inicial (segundo argumento) para evitar casos extremos"
+  },
+  {
+    "id": 7,
+    "term": ".find()",
+    "definition": "Returns the first element that passes the test",
+    "definition_es": "Retorna el primer elemento que pasa la prueba",
+    "bestFor": "Finding a single item by condition",
+    "bestFor_es": "Encontrar un solo elemento por condición",
+    "code": "const users = [\n  { id: 1, name: 'Alice' },\n  { id: 2, name: 'Bob' },\n  { id: 3, name: 'Charlie' }\n];\n\nconst bob = users.find(u => u.name === 'Bob');\n// { id: 2, name: 'Bob' }",
+    "gotcha": "Returns undefined if not found - check before accessing properties",
+    "gotcha_es": "Retorna undefined si no encuentra - verifica antes de acceder propiedades"
+  },
+  {
+    "id": 8,
+    "term": ".findIndex()",
+    "definition": "Returns the index of the first element that passes the test",
+    "definition_es": "Retorna el índice del primer elemento que pasa la prueba",
+    "bestFor": "When you need the position, not the element itself",
+    "bestFor_es": "Cuando necesitas la posición, no el elemento",
+    "code": "const tasks = ['eat', 'code', 'sleep', 'repeat'];\n\nconst codeIndex = tasks.findIndex(t => t === 'code');\n// 1\n\n// Useful for updates\ntasks[codeIndex] = 'CODE HARDER';",
+    "gotcha": "Returns -1 if not found (not undefined like .find())",
+    "gotcha_es": "Retorna -1 si no encuentra (no undefined como .find())"
+  },
+  {
+    "id": 9,
+    "term": ".some()",
+    "definition": "Tests if at least one element passes the test",
+    "definition_es": "Prueba si al menos un elemento pasa la prueba",
+    "bestFor": "Checking if ANY element matches a condition",
+    "bestFor_es": "Verificar si ALGÚN elemento cumple una condición",
+    "code": "const ages = [12, 16, 21, 14];\n\nconst hasAdult = ages.some(age => age >= 18);\n// true\n\n// Short-circuits on first match\nconst nums = [1, 2, 3, 4, 5];\nnums.some(n => { console.log(n); return n > 2; });\n// Logs: 1, 2, 3 (stops at 3)",
+    "gotcha": "Returns false for empty arrays",
+    "gotcha_es": "Retorna false para arrays vacíos"
+  },
+  {
+    "id": 10,
+    "term": ".every()",
+    "definition": "Tests if all elements pass the test",
+    "definition_es": "Prueba si todos los elementos pasan la prueba",
+    "bestFor": "Validation - checking if ALL elements meet criteria",
+    "bestFor_es": "Validación - verificar si TODOS los elementos cumplen criterios",
+    "code": "const passwords = ['abc123', 'secure!Pass1', 'x'];\n\nconst allValid = passwords.every(p => p.length >= 8);\n// false\n\n// Form validation example\nconst fields = [email, password, username];\nconst allFilled = fields.every(f => f.trim() !== '');",
+    "gotcha": "Returns true for empty arrays (vacuous truth)",
+    "gotcha_es": "Retorna true para arrays vacíos (verdad vacua)"
+  },
+  {
+    "id": 11,
+    "term": ".flatMap()",
+    "definition": "Maps then flattens one level - combines .map() and .flat(1)",
+    "definition_es": "Mapea y luego aplana un nivel - combina .map() y .flat(1)",
+    "bestFor": "When map produces arrays you want to flatten",
+    "bestFor_es": "Cuando map produce arrays que quieres aplanar",
+    "code": "const sentences = ['Hello world', 'Goodbye moon'];\n\n// Without flatMap\nsentences.map(s => s.split(' '));\n// [['Hello', 'world'], ['Goodbye', 'moon']]\n\n// With flatMap\nsentences.flatMap(s => s.split(' '));\n// ['Hello', 'world', 'Goodbye', 'moon']",
+    "gotcha": "Only flattens one level - use .flat(Infinity) for deeper nesting",
+    "gotcha_es": "Solo aplana un nivel - usa .flat(Infinity) para anidación más profunda"
+  },
+  {
+    "id": 12,
+    "term": "while loop",
+    "definition": "Repeats while a condition is true - checks condition before each iteration",
+    "definition_es": "Repite mientras condición es verdadera - verifica condición antes de cada iteración",
+    "bestFor": "When you don't know how many iterations needed",
+    "bestFor_es": "Cuando no sabes cuántas iteraciones se necesitan",
+    "code": "// Keep halving until < 1\nlet num = 100;\nlet steps = 0;\n\nwhile (num >= 1) {\n  num = num / 2;\n  steps++;\n}\nconsole.log(steps); // 7",
+    "gotcha": "Easy to create infinite loops - ensure condition eventually becomes false",
+    "gotcha_es": "Fácil crear bucles infinitos - asegura que condición eventualmente sea falsa"
+  },
+  {
+    "id": 13,
+    "term": "do...while loop",
+    "definition": "Executes at least once, then repeats while condition is true",
+    "definition_es": "Ejecuta al menos una vez, luego repite mientras condición es verdadera",
+    "bestFor": "When you need at least one iteration (user input, retries)",
+    "bestFor_es": "Cuando necesitas al menos una iteración (input usuario, reintentos)",
+    "code": "let attempts = 0;\nlet success = false;\n\ndo {\n  attempts++;\n  success = Math.random() > 0.7;\n  console.log(`Attempt ${attempts}`);\n} while (!success && attempts < 5);\n\n// Always runs at least once",
+    "gotcha": "Less common - usually for...of or while is clearer",
+    "gotcha_es": "Menos común - usualmente for...of o while es más claro"
+  },
+  {
+    "id": 14,
+    "term": "Classic for loop",
+    "definition": "Traditional C-style loop with init, condition, and increment",
+    "definition_es": "Bucle tradicional estilo C con inicio, condición e incremento",
+    "bestFor": "When you need precise index control or non-standard iteration",
+    "bestFor_es": "Cuando necesitas control preciso de índice o iteración no estándar",
+    "code": "// Count by 2s\nfor (let i = 0; i < 10; i += 2) {\n  console.log(i); // 0, 2, 4, 6, 8\n}\n\n// Iterate backwards\nconst arr = [1, 2, 3];\nfor (let i = arr.length - 1; i >= 0; i--) {\n  console.log(arr[i]); // 3, 2, 1\n}",
+    "gotcha": "More verbose than for...of but offers more control",
+    "gotcha_es": "Más verboso que for...of pero ofrece más control"
+  },
+  {
+    "id": 15,
+    "term": "Object.entries()",
+    "definition": "Returns array of [key, value] pairs for iteration",
+    "definition_es": "Retorna array de pares [clave, valor] para iteración",
+    "bestFor": "Iterating objects when you need both key and value",
+    "bestFor_es": "Iterar objetos cuando necesitas tanto clave como valor",
+    "code": "const scores = { alice: 95, bob: 87, charlie: 92 };\n\nfor (const [name, score] of Object.entries(scores)) {\n  console.log(`${name}: ${score}`);\n}\n// alice: 95\n// bob: 87\n// charlie: 92",
+    "gotcha": "Use Object.keys() for just keys, Object.values() for just values",
+    "gotcha_es": "Usa Object.keys() solo para claves, Object.values() solo para valores"
+  }
+]

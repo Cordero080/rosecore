@@ -1,0 +1,202 @@
+[
+  {
+    "id": 1,
+    "term": ".slice()",
+    "category": "Array",
+    "definition": "Extracts a portion of an array without modifying the original",
+    "definition_es": "Extrae una porción de un array sin modificar el original",
+    "code": "const arr = [0, 1, 2, 3, 4];\n\narr.slice(1, 3);   // [1, 2] - from index 1 to 3 (exclusive)\narr.slice(2);      // [2, 3, 4] - from index 2 to end\narr.slice(-2);     // [3, 4] - last 2 elements\narr.slice();       // [0, 1, 2, 3, 4] - shallow copy",
+    "gotcha": "Does NOT modify original - returns new array",
+    "gotcha_es": "NO modifica el original - retorna nuevo array"
+  },
+  {
+    "id": 2,
+    "term": ".splice()",
+    "category": "Array",
+    "definition": "Adds, removes, or replaces elements IN PLACE",
+    "definition_es": "Agrega, elimina o reemplaza elementos EN SU LUGAR",
+    "code": "const arr = ['a', 'b', 'c', 'd'];\n\n// Remove 1 element at index 1\narr.splice(1, 1);        // returns ['b'], arr = ['a', 'c', 'd']\n\n// Insert at index 1\narr.splice(1, 0, 'x');   // arr = ['a', 'x', 'c', 'd']\n\n// Replace 2 elements\narr.splice(1, 2, 'y', 'z'); // arr = ['a', 'y', 'z', 'd']",
+    "gotcha": "MUTATES the original array - returns removed elements",
+    "gotcha_es": "MUTA el array original - retorna elementos eliminados"
+  },
+  {
+    "id": 3,
+    "term": ".split()",
+    "category": "String",
+    "definition": "Divides a string into an array using a separator",
+    "definition_es": "Divide una cadena en un array usando un separador",
+    "code": "const str = 'hello world';\n\nstr.split(' ');      // ['hello', 'world']\nstr.split('');       // ['h','e','l','l','o',' ','w','o','r','l','d']\nstr.split(' ', 1);   // ['hello'] - limit to 1 result\n\n'a,b,,c'.split(','); // ['a', 'b', '', 'c'] - empty strings preserved",
+    "gotcha": "Use with .join() to reverse: str.split('').reverse().join('')",
+    "gotcha_es": "Usa con .join() para invertir: str.split('').reverse().join('')"
+  },
+  {
+    "id": 4,
+    "term": ".join()",
+    "category": "Array",
+    "definition": "Combines array elements into a string with a separator",
+    "definition_es": "Combina elementos del array en una cadena con un separador",
+    "code": "const arr = ['2024', '01', '15'];\n\narr.join('-');    // '2024-01-15'\narr.join('');     // '20240115'\narr.join();       // '2024,01,15' - default is comma\n\n// Common pattern: reverse a string\n'hello'.split('').reverse().join(''); // 'olleh'",
+    "gotcha": "undefined and null become empty strings",
+    "gotcha_es": "undefined y null se convierten en cadenas vacías"
+  },
+  {
+    "id": 5,
+    "term": "Object.keys()",
+    "category": "Object",
+    "definition": "Returns an array of an object's own enumerable property names",
+    "definition_es": "Retorna un array de los nombres de propiedades enumerables propias de un objeto",
+    "code": "const user = { name: 'Pablo', age: 25, city: 'LA' };\n\nObject.keys(user);  // ['name', 'age', 'city']\n\n// Count properties\nObject.keys(user).length;  // 3\n\n// Check if empty\nObject.keys({}).length === 0;  // true",
+    "gotcha": "Does not include inherited or non-enumerable properties",
+    "gotcha_es": "No incluye propiedades heredadas o no enumerables"
+  },
+  {
+    "id": 6,
+    "term": "Object.values()",
+    "category": "Object",
+    "definition": "Returns an array of an object's own enumerable property values",
+    "definition_es": "Retorna un array de los valores de propiedades enumerables propias de un objeto",
+    "code": "const scores = { math: 95, english: 87, science: 92 };\n\nObject.values(scores);  // [95, 87, 92]\n\n// Sum all values\nObject.values(scores).reduce((a, b) => a + b, 0);  // 274\n\n// Find max\nMath.max(...Object.values(scores));  // 95",
+    "gotcha": "Order matches Object.keys() - usually insertion order",
+    "gotcha_es": "El orden coincide con Object.keys() - usualmente orden de inserción"
+  },
+  {
+    "id": 7,
+    "term": "Object.entries()",
+    "category": "Object",
+    "definition": "Returns array of [key, value] pairs",
+    "definition_es": "Retorna array de pares [clave, valor]",
+    "code": "const obj = { a: 1, b: 2 };\n\nObject.entries(obj);  // [['a', 1], ['b', 2]]\n\n// Convert to Map\nconst map = new Map(Object.entries(obj));\n\n// Destructure in loop\nfor (const [key, val] of Object.entries(obj)) {\n  console.log(`${key}: ${val}`);\n}",
+    "gotcha": "Reverse with Object.fromEntries()",
+    "gotcha_es": "Revertir con Object.fromEntries()"
+  },
+  {
+    "id": 8,
+    "term": "Object.assign()",
+    "category": "Object",
+    "definition": "Copies properties from source objects to a target object",
+    "definition_es": "Copia propiedades de objetos fuente a un objeto destino",
+    "code": "const target = { a: 1 };\nconst source = { b: 2, c: 3 };\n\nObject.assign(target, source);  // { a: 1, b: 2, c: 3 }\n// target is now modified!\n\n// Clone without mutating\nconst clone = Object.assign({}, original);\n\n// Merge multiple\nObject.assign({}, obj1, obj2, obj3);",
+    "gotcha": "Shallow copy only - nested objects are still references",
+    "gotcha_es": "Copia superficial solamente - objetos anidados siguen siendo referencias"
+  },
+  {
+    "id": 9,
+    "term": "Array.from()",
+    "category": "Array",
+    "definition": "Creates an array from an iterable or array-like object",
+    "definition_es": "Crea un array desde un iterable u objeto similar a array",
+    "code": "// From string\nArray.from('hello');  // ['h', 'e', 'l', 'l', 'o']\n\n// From NodeList\nArray.from(document.querySelectorAll('div'));\n\n// With map function\nArray.from({ length: 5 }, (_, i) => i * 2);  // [0, 2, 4, 6, 8]\n\n// Remove duplicates\nArray.from(new Set([1, 1, 2, 3]));  // [1, 2, 3]",
+    "gotcha": "Useful for converting array-like objects (arguments, NodeList)",
+    "gotcha_es": "Útil para convertir objetos tipo-array (arguments, NodeList)"
+  },
+  {
+    "id": 10,
+    "term": "Array.isArray()",
+    "category": "Array",
+    "definition": "Checks if a value is an array",
+    "definition_es": "Verifica si un valor es un array",
+    "code": "Array.isArray([1, 2, 3]);     // true\nArray.isArray('hello');       // false\nArray.isArray({ length: 3 }); // false - array-like but not array\nArray.isArray(null);          // false\n\n// Better than typeof\ntypeof [];  // 'object' - not helpful!\nArray.isArray([]);  // true - definitive answer",
+    "gotcha": "typeof [] returns 'object' - always use Array.isArray()",
+    "gotcha_es": "typeof [] retorna 'object' - siempre usa Array.isArray()"
+  },
+  {
+    "id": 11,
+    "term": ".includes()",
+    "category": "Array/String",
+    "definition": "Checks if an element or substring exists",
+    "definition_es": "Verifica si existe un elemento o subcadena",
+    "code": "// Array\n[1, 2, 3].includes(2);      // true\n[1, 2, NaN].includes(NaN);  // true (unlike indexOf)\n\n// String\n'hello world'.includes('world');  // true\n'hello'.includes('x');            // false\n\n// Case sensitive!\n'Hello'.includes('hello');  // false",
+    "gotcha": "Use .toLowerCase() for case-insensitive search",
+    "gotcha_es": "Usa .toLowerCase() para búsqueda sin importar mayúsculas"
+  },
+  {
+    "id": 12,
+    "term": ".indexOf() / .lastIndexOf()",
+    "category": "Array/String",
+    "definition": "Returns the first/last index of an element, or -1 if not found",
+    "definition_es": "Retorna el primer/último índice de un elemento, o -1 si no se encuentra",
+    "code": "const arr = ['a', 'b', 'c', 'b'];\n\narr.indexOf('b');      // 1 - first occurrence\narr.lastIndexOf('b');  // 3 - last occurrence\narr.indexOf('x');      // -1 - not found\n\n// Common pattern: check existence\nif (arr.indexOf(item) !== -1) { ... }\n// Better: use .includes() for boolean check",
+    "gotcha": "Cannot find NaN - use .includes() or .findIndex() instead",
+    "gotcha_es": "No puede encontrar NaN - usa .includes() o .findIndex()"
+  },
+  {
+    "id": 13,
+    "term": ".concat()",
+    "category": "Array",
+    "definition": "Merges arrays into a new array without modifying originals",
+    "definition_es": "Fusiona arrays en uno nuevo sin modificar los originales",
+    "code": "const a = [1, 2];\nconst b = [3, 4];\n\na.concat(b);        // [1, 2, 3, 4]\na.concat(b, [5]);   // [1, 2, 3, 4, 5]\na.concat(3, 4);     // [1, 2, 3, 4] - non-arrays work too\n\n// Modern alternative: spread\n[...a, ...b];       // [1, 2, 3, 4]",
+    "gotcha": "Creates shallow copy - nested arrays are still references",
+    "gotcha_es": "Crea copia superficial - arrays anidados siguen siendo referencias"
+  },
+  {
+    "id": 14,
+    "term": ".flat()",
+    "category": "Array",
+    "definition": "Flattens nested arrays to a specified depth",
+    "definition_es": "Aplana arrays anidados a una profundidad específica",
+    "code": "const nested = [1, [2, [3, [4]]]];\n\nnested.flat();      // [1, 2, [3, [4]]] - default depth 1\nnested.flat(2);     // [1, 2, 3, [4]]\nnested.flat(Infinity); // [1, 2, 3, 4] - fully flat\n\n// Remove empty slots\n[1, , 3, , 5].flat(); // [1, 3, 5]",
+    "gotcha": "Use Infinity for unknown nesting depth",
+    "gotcha_es": "Usa Infinity para profundidad de anidación desconocida"
+  },
+  {
+    "id": 15,
+    "term": ".sort()",
+    "category": "Array",
+    "definition": "Sorts elements in place (mutates the array)",
+    "definition_es": "Ordena elementos en su lugar (muta el array)",
+    "code": "// Default: converts to strings!\n[10, 2, 1].sort();           // [1, 10, 2] - wrong!\n\n// Numeric sort\n[10, 2, 1].sort((a, b) => a - b);  // [1, 2, 10] ✓\n\n// Descending\n[10, 2, 1].sort((a, b) => b - a);  // [10, 2, 1]\n\n// Objects by property\nusers.sort((a, b) => a.age - b.age);",
+    "gotcha": "MUTATES original - use [...arr].sort() to preserve",
+    "gotcha_es": "MUTA el original - usa [...arr].sort() para preservar"
+  },
+  {
+    "id": 16,
+    "term": ".reverse()",
+    "category": "Array",
+    "definition": "Reverses array in place (mutates the array)",
+    "definition_es": "Invierte el array en su lugar (muta el array)",
+    "code": "const arr = [1, 2, 3];\n\narr.reverse();  // [3, 2, 1] - arr is now reversed!\n\n// Non-mutating reverse\n[...arr].reverse();\n\n// Reverse a string\n'hello'.split('').reverse().join('');  // 'olleh'\n\n// With sort for descending\n[1, 3, 2].sort((a, b) => a - b).reverse();",
+    "gotcha": "MUTATES original - use [...arr].reverse() to preserve",
+    "gotcha_es": "MUTA el original - usa [...arr].reverse() para preservar"
+  },
+  {
+    "id": 17,
+    "term": ".trim() / .trimStart() / .trimEnd()",
+    "category": "String",
+    "definition": "Removes whitespace from string ends",
+    "definition_es": "Elimina espacios en blanco de los extremos de la cadena",
+    "code": "const str = '  hello world  ';\n\nstr.trim();       // 'hello world'\nstr.trimStart();  // 'hello world  '\nstr.trimEnd();    // '  hello world'\n\n// Common: clean user input\nconst email = input.trim().toLowerCase();\n\n// Removes all whitespace types: spaces, tabs, newlines",
+    "gotcha": "Does not modify middle spaces - only leading/trailing",
+    "gotcha_es": "No modifica espacios del medio - solo al inicio/final"
+  },
+  {
+    "id": 18,
+    "term": ".padStart() / .padEnd()",
+    "category": "String",
+    "definition": "Pads string to a target length with a fill character",
+    "definition_es": "Rellena cadena hasta una longitud objetivo con un carácter",
+    "code": "// Zero-padding numbers\n'5'.padStart(3, '0');     // '005'\n'42'.padStart(3, '0');    // '042'\n'123'.padStart(3, '0');   // '123' - already long enough\n\n// Right padding\n'hi'.padEnd(5, '.');      // 'hi...'\n\n// Format time\nconst h = '9', m = '5';\n`${h.padStart(2, '0')}:${m.padStart(2, '0')}`; // '09:05'",
+    "gotcha": "First argument is total length, not padding length",
+    "gotcha_es": "Primer argumento es longitud total, no longitud de relleno"
+  },
+  {
+    "id": 19,
+    "term": ".replace() / .replaceAll()",
+    "category": "String",
+    "definition": "Replaces matched text in a string",
+    "definition_es": "Reemplaza texto coincidente en una cadena",
+    "code": "const str = 'hello world world';\n\nstr.replace('world', 'there');    // 'hello there world' - first only!\nstr.replaceAll('world', 'there'); // 'hello there there' - all\n\n// Regex for more control\nstr.replace(/world/g, 'there');   // 'hello there there'\n\n// With function\n'abc'.replace(/./g, c => c.toUpperCase()); // 'ABC'",
+    "gotcha": ".replace() only replaces FIRST match without /g flag",
+    "gotcha_es": ".replace() solo reemplaza PRIMERA coincidencia sin bandera /g"
+  },
+  {
+    "id": 20,
+    "term": "JSON.stringify() / JSON.parse()",
+    "category": "JSON",
+    "definition": "Convert between JavaScript objects and JSON strings",
+    "definition_es": "Convierte entre objetos JavaScript y cadenas JSON",
+    "code": "const obj = { name: 'Pablo', age: 25 };\n\n// Object → JSON string\nJSON.stringify(obj);  // '{\"name\":\"Pablo\",\"age\":25}'\n\n// JSON string → Object\nJSON.parse('{\"name\":\"Pablo\"}');  // { name: 'Pablo' }\n\n// Deep clone trick\nconst clone = JSON.parse(JSON.stringify(obj));\n\n// Pretty print\nJSON.stringify(obj, null, 2);  // formatted with 2-space indent",
+    "gotcha": "Loses functions, undefined, Symbols, and circular references",
+    "gotcha_es": "Pierde funciones, undefined, Symbols y referencias circulares"
+  }
+]

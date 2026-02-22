@@ -1,0 +1,218 @@
+// ================================================
+// NUMENEON ANIMATIONS
+// Keyframes and animation utilities
+// ================================================
+// 🔵 PABLO - UI Architect
+// Reusable animation classes.
+// ================================================
+
+// ============================================
+// FADE IN
+// ============================================
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(3px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease;
+  animation-fill-mode: both;
+}
+
+// Staggered fade-in for lists
+.fade-in:nth-child(1) { animation-delay: 0.05s; }
+.fade-in:nth-child(2) { animation-delay: 0.1s; }
+.fade-in:nth-child(3) { animation-delay: 0.15s; }
+.fade-in:nth-child(4) { animation-delay: 0.2s; }
+.fade-in:nth-child(5) { animation-delay: 0.25s; }
+.fade-in:nth-child(6) { animation-delay: 0.3s; }
+.fade-in:nth-child(7) { animation-delay: 0.35s; }
+.fade-in:nth-child(8) { animation-delay: 0.4s; }
+
+// ============================================
+// SLIDE IN
+// ============================================
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-in-up {
+  animation: slideInUp 0.4s ease;
+}
+
+// ============================================
+// SCALE IN
+// ============================================
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.scale-in {
+  animation: scaleIn 0.3s ease;
+}
+
+// ============================================
+// HOLOGRAPHIC & CYBERPUNK EFFECTS
+// Consolidated from Login, Signup, Post cards, etc.
+// ============================================
+
+@keyframes dark-holographic-shimmer {
+  0% {
+    background-position: 0% 50%, 50% 50%, 50% 50%, 0% 50%;
+  }
+  50% {
+    background-position: 0% 50%, 100% 100%, 100% 100%, 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%, 50% 50%, 50% 50%, 0% 50%;
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(10px, 10px) rotate(5deg);
+  }
+}
+
+@keyframes gradientShimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateY(300px);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateY(-300px);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+}
+
+@keyframes errorSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spectral-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes cardSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ============================================
+// LOGO GLITCH EFFECT
+// Subtle glitch for TopBar logo hover
+// Toned down for accessibility
+// ============================================
+
+@keyframes logoGlitch {
+  0% {
+    transform: translate(0);
+    text-shadow: 
+      1px 0 rgba(124, 201, 255, 0.4),
+      -1px 0 rgba(255, 107, 157, 0.4);
+  }
+  25% {
+    transform: translate(-1px, 0.5px);
+    text-shadow: 
+      -1px 0 rgba(255, 107, 157, 0.5),
+      1px 0 rgba(124, 201, 255, 0.3);
+  }
+  50% {
+    transform: translate(1px, -0.5px);
+    text-shadow: 
+      1px 0 rgba(251, 191, 36, 0.4),
+      -1px 0 rgba(26, 231, 132, 0.3);
+  }
+  75% {
+    transform: translate(-0.5px, 1px);
+    text-shadow: 
+      -1px 0 rgba(124, 201, 255, 0.4),
+      1px 0 rgba(255, 107, 157, 0.3);
+  }
+  100% {
+    transform: translate(0);
+    text-shadow: 
+      1px 0 rgba(124, 201, 255, 0.4),
+      -1px 0 rgba(255, 107, 157, 0.4);
+  }
+}
