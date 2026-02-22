@@ -23,6 +23,12 @@
 }
 
 @media (max-width: 768px) {
+  .app-shell {
+    background-attachment: scroll;
+    background-size: 100% auto;
+    background-position: center top;
+  }
+
   .app-content {
     margin-left: 0;
   }
