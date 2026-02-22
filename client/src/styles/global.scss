@@ -7,13 +7,18 @@
   padding: 0;
 }
 
-html, body {
+html {
   height: 100%;
   background-color: #f5f7fa;
+}
+
+body {
+  height: 100%;
   font-family: var(--font-main);
   font-size: var(--font-size-body);
   font-weight: 300;
   line-height: 1.5;
+  background: url('/src/assets/dolce-1.png') center center / cover no-repeat fixed;
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
