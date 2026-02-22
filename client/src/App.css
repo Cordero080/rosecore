@@ -1,9 +1,6 @@
 .app-shell {
   display: flex;
   min-height: 100vh;
-
-  /* Photo lives here — fixed so it underlies all sections */
-  background: url('/src/assets/dolce-1.png') center center / cover no-repeat fixed;
 }
 
 .app-content {
