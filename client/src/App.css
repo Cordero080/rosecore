@@ -9,6 +9,8 @@
 .app-content {
   margin-left: 60px;
   flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 #availability {
@@ -17,6 +19,7 @@
   width: calc(100% + 60px);
   padding-left: 60px;
   padding-bottom: 120px;
+  flex: 1;
 }
 
 /* Mobile-only booking bridge between hero and calendar */
