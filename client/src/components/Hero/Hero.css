@@ -30,17 +30,6 @@
     linear-gradient(160deg, rgba(240, 244, 248, 0.68) 0%, rgba(250, 247, 242, 0.63) 10%, rgba(245, 240, 235, 0.797) 40%);
 }
 
-/* Seamless fade to white at the bottom of the hero */
-.hero-bg::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 35%;
-  background: linear-gradient(to bottom, transparent, #f5f7fa);
-  pointer-events: none;
-}
 
 /* Content */
 .hero-content {
@@ -157,7 +146,7 @@
   box-shadow:
     0 8px 24px rgba(0, 0, 0, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  z-index: 1;
+  z-index: 3;
 }
 
 .hero-card-label {

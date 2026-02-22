@@ -1,0 +1,17 @@
+.section-divider {
+  position: relative;
+  margin-top: -180px;
+  z-index: 2;
+  pointer-events: none;
+  line-height: 0;
+
+  /* Bleed left same as hero/availability sections */
+  margin-left: -60px;
+  width: calc(100% + 60px);
+}
+
+.section-divider svg {
+  display: block;
+  width: 100%;
+  height: 180px;
+}
