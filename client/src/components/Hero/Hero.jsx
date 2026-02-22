@@ -7,7 +7,9 @@ export default function Hero() {
 
   return (
     <section className="hero">
-      <div className="hero-bg" />
+      <div className="hero-bg">
+        <div className="hero-bg-veil" />
+      </div>
 
       <div className="hero-content">
         <p className="hero-eyebrow">Private Villa · Dominican Republic</p>

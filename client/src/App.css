@@ -1,9 +1,19 @@
 .app-shell {
   display: flex;
   min-height: 100vh;
+
+  /* Photo lives here — fixed so it underlies all sections */
+  background: url('/src/assets/dolce-1.png') center center / cover no-repeat fixed;
 }
 
 .app-content {
   margin-left: 60px;
   flex: 1;
+}
+
+#availability {
+  background: rgba(245, 247, 250, 0.92);
+  margin-left: -60px;
+  width: calc(100% + 60px);
+  padding-left: 60px;
 }

@@ -15,6 +15,12 @@
   .app-content {
     margin-left: 0;
   }
+
+  #availability {
+    margin-left: 0;
+    width: 100%;
+    padding-left: 0;
+  }
 }
 
 
@@ -160,6 +166,8 @@
 // ── Hero — mobile ─────────────────────────────
 @include tablet {
   .hero {
+    margin-left: 0;
+    width: 100%;
     padding: var(--space-lg);
     align-items: flex-start;
     padding-top: 100px;
