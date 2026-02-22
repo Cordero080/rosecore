@@ -201,8 +201,10 @@
     width: 100%;
     padding: 24px;
     padding-top: 100px;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 24px;
   }
 
   .hero-content {
@@ -212,7 +214,6 @@
   .hero-glass-card {
     position: static;
     display: inline-block;
-    margin: 24px auto;
     text-align: center;
   }
 
