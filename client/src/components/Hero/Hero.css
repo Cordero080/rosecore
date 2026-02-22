@@ -48,7 +48,16 @@
   margin-bottom: var(--space-lg);
 }
 
-.hero-headline em {
+.hero-tagline {
+  font-family: var(--font-main);
+  font-weight: 300;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-2xl);
+}
+
+.hero-tagline em {
   font-style: italic;
   display: inline-block;
   padding: 0 0.05em;

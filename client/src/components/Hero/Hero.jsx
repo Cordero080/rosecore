@@ -10,17 +10,13 @@ export default function Hero() {
       <div className="hero-bg" />
 
       <div className="hero-content">
-        <p className="hero-eyebrow">Private Vacation Rental</p>
+        <p className="hero-eyebrow">Private Villa · Dominican Republic</p>
 
         <h1 className="hero-headline">
-          A place to<br />
-          <em>exhale</em>.
+          La Dolce Vita
         </h1>
 
-        <p className="hero-sub">
-          Tucked away from the ordinary. A private retreat designed for rest,
-          warmth, and unhurried days.
-        </p>
+        <p className="hero-tagline">A place to <em>exhale</em>.</p>
 
         <div className="hero-actions">
           <button className="hero-btn hero-btn--primary" onClick={scrollToCalendar}>

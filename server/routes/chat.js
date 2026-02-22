@@ -10,7 +10,7 @@ const responses = {
   },
   pricing: {
     keywords: ['price', 'cost', 'rate', 'how much', 'fee', 'charge'],
-    reply: 'Nightly rates start at $XXX/night. Weekend and holiday rates may vary. Contact us for extended stay discounts.',
+    reply: 'Nightly rates start at $130/night. Weekend and holiday rates may vary. Contact us for extended stay discounts.',
   },
   amenities: {
     keywords: ['amenities', 'kitchen', 'wifi', 'pool', 'parking', 'washer', 'dryer', 'ac', 'air'],
@@ -26,7 +26,7 @@ const responses = {
   },
   location: {
     keywords: ['where', 'location', 'address', 'area', 'near', 'close', 'beach', 'town'],
-    reply: 'We are located in [Location], just [X] minutes from the beach and [X] minutes from the town center.',
+    reply: 'We are located in Las Terrenas, Samana, just 5 minutes from the beach and 10 minutes from the town center.',
   },
   contact: {
     keywords: ['contact', 'call', 'email', 'reach', 'speak', 'talk', 'phone'],
