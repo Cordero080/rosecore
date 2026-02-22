@@ -175,7 +175,8 @@
 
   .hero-glass-card {
     position: static;
-    margin-top: var(--space-xl);
+    margin-top: var(--space-2xl);
+    align-self: flex-start;
   }
 
   .hero-actions {
@@ -203,10 +204,13 @@
 @include tablet {
   .cal-wrapper {
     padding: var(--space-md);
+    justify-content: center;
   }
 
   .cal-container {
     width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
   }
 }
 

@@ -196,9 +196,23 @@
 }
 
 @media (max-width: 768px) {
+  .hero {
+    margin-left: 0;
+    width: 100%;
+    padding: 24px;
+    padding-top: 100px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+
   .hero-glass-card {
     position: static;
-    margin-top: var(--space-2xl);
+    display: inline-block;
+    margin: 24px auto;
     text-align: center;
   }
 

@@ -170,6 +170,17 @@
   outline-offset: 1px;
 }
 
+@media (max-width: 768px) {
+  .cal-wrapper {
+    padding: 16px;
+  }
+
+  .cal-container {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
 /* ── Loading ── */
 .cal-loading {
   text-align: center;

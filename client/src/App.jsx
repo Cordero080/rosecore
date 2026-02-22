@@ -10,7 +10,7 @@ function App() {
       <SideNav />
       <div className="app-content">
         <Hero />
-        <section id="availability">
+<section id="availability">
           <AvailabilityCalendar />
         </section>
       </div>
