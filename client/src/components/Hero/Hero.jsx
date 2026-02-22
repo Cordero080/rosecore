@@ -28,11 +28,11 @@ export default function Hero() {
             Explore the Property
           </button>
         </div>
+      </div>
 
-        <div className="hero-glass-card">
-          <p className="hero-card-label">Now booking</p>
-          <p className="hero-card-value">Summer 2026</p>
-        </div>
+      <div className="hero-glass-card">
+        <p className="hero-card-label">Now booking</p>
+        <p className="hero-card-value">Summer 2026</p>
       </div>
 
       {/* Curved tongue extending from bottom-left of hero into the next section */}
