@@ -213,7 +213,7 @@
 
   .hero-glass-card {
     position: static;
-    display: inline-block;
+    align-self: center;
     text-align: center;
   }
 
