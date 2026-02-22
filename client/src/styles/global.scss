@@ -24,6 +24,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+  }
+}
+
 #root {
   min-height: 100%;
   display: flex;
