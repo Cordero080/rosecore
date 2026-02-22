@@ -13,5 +13,8 @@
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "node-ical": "^0.25.4"
   }
 }
