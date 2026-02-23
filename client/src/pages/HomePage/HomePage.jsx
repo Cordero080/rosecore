@@ -74,6 +74,10 @@ export default function HomePage() {
       <div className="gallery-scene">
         <Gallery />
       </div>
+      <section id="escape">
+        <h2 className="escape-heading">Book your escape.</h2>
+        <a href="#" className="escape-cta">Reserve your stay</a>
+      </section>
     </>
   )
 }
