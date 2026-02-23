@@ -17,7 +17,7 @@ function useSceneTransition() {
     // Position the veil: 200px overlap above the availability/gallery seam
     function positionVeil() {
       veil.style.top    = (avail.offsetTop + avail.offsetHeight - 200) + 'px'
-      veil.style.height = '600px'
+      veil.style.height = '750px'
     }
 
     positionVeil()
@@ -67,6 +67,10 @@ export default function HomePage() {
         <AvailabilityCalendar />
       </section>
       <div id="gallery-scene-veil" className="gallery-scene-veil" />
+      <section id="interlude">
+        <p className="interlude-quote">A place where time slows, and the sea remembers your name.</p>
+        <div className="interlude-rule" aria-hidden="true" />
+      </section>
       <div className="gallery-scene">
         <Gallery />
       </div>
