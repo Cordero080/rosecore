@@ -10,14 +10,29 @@
 .app-content {
   margin-left: 60px;
   flex: 1;
+  position: relative;
 }
 
 #availability {
+  position: relative;
+  z-index: 10;
   background: rgba(245, 247, 250, 0.92);
   margin-left: -60px;
   width: calc(100% + 60px);
   padding-left: 60px;
   padding-bottom: 120px;
+}
+
+/* Drape that hangs below availability, fading over the top of the gallery */
+#availability::after {
+  content: '';
+  position: absolute;
+  bottom: -500px;
+  left: 0;
+  right: 0;
+  height: 500px;
+  background: linear-gradient(to bottom, rgba(245, 247, 250, 0.92), transparent);
+  pointer-events: none;
 }
 
 /* Mobile-only booking bridge between hero and calendar */

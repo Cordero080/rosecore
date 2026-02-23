@@ -1,9 +1,8 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import SideNav from './components/SideNav/SideNav'
-import Hero from './components/Hero/Hero'
-import AvailabilityCalendar from './components/AvailabilityCalendar/AvailabilityCalendar'
 import ChatWidget from './components/ChatWidget/ChatWidget'
+import HomePage from './pages/HomePage/HomePage'
 import GalleryPage from './pages/GalleryPage/GalleryPage'
 
 function App() {
@@ -14,14 +13,7 @@ function App() {
         <SideNav />
         <div className="app-content">
           <Routes>
-            <Route path="/" element={
-              <>
-                <Hero />
-                <section id="availability">
-                  <AvailabilityCalendar />
-                </section>
-              </>
-            } />
+            <Route path="/" element={<HomePage />} />
             <Route path="/gallery" element={<GalleryPage />} />
           </Routes>
         </div>

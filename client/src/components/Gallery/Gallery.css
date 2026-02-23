@@ -4,7 +4,10 @@
   margin-left: -60px;
   height: 100vh;
   overflow: hidden;
-  background: #0a0e14;
+  background: transparent;
+  will-change: transform, opacity;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 25%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 25%);
 }
 
 /* ── Slides ── */
