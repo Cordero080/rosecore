@@ -41,12 +41,14 @@
 
 /* ── Grid ── */
 .gallery-page-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 10px;
+  justify-content: center;
 }
 
 .gallery-thumb {
+  flex: 0 0 calc(25% - 8px);
   aspect-ratio: 4 / 3;
   overflow: hidden;
   border-radius: 6px;
@@ -172,11 +174,16 @@
 @media (max-width: 768px) {
   .gallery-page {
     padding: 80px 12px 60px;
+    margin-left: 0;
+    width: 100%;
   }
 
   .gallery-page-grid {
-    grid-template-columns: repeat(2, 1fr);
     gap: 6px;
+  }
+
+  .gallery-thumb {
+    flex: 0 0 calc(50% - 4px);
   }
 
   .gallery-lb-stage {
