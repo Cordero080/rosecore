@@ -1,7 +1,6 @@
 .app-shell {
   display: flex;
   min-height: 100vh;
-  background: url('/src/assets/dolce-1.png') center center / cover no-repeat fixed;
 }
 
 .app-content {
@@ -23,12 +22,6 @@
 }
 
 @media (max-width: 768px) {
-  .app-shell {
-    background-attachment: scroll;
-    background-size: 100% auto;
-    background-position: center top;
-  }
-
   .app-content {
     margin-left: 0;
   }

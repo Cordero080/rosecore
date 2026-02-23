@@ -225,6 +225,6 @@
 // ── Chat widget — mobile ──────────────────────
 @include mobile {
   .chat-panel {
-    width: calc(100vw - 48px);
+    width: calc(100vw - 48px); // this
   }
 }
