@@ -60,7 +60,7 @@ export default function Gallery() {
       <div className="gallery-ui">
         <div className="gallery-header">
           <p className="gallery-eyebrow">The Property</p>
-          <h2 className="gallery-title">La Dolce Vita</h2>
+          <h2 className="gallery-title">Las Terrenas</h2>
         </div>
 
         <div className="gallery-controls">
