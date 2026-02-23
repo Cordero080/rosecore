@@ -1,26 +1,34 @@
 import { useState } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import './SideNav.css'
 
 const NAV_ITEMS = [
-  { id: 'home',          label: 'Home'          },
-  { id: 'amenities',     label: 'Amenities'     },
-  { id: 'services',      label: 'Services'      },
-  { id: 'entertainment', label: 'Entertainment' },
-  { id: 'excursions',    label: 'Excursions'    },
-  { id: 'beaches',       label: 'Beaches'       },
-  { id: 'gallery',       label: 'Photo Gallery' },
-  { id: 'contact',       label: 'Contact'       },
+  { id: 'home',          label: 'Home',          path: '/'        },
+  { id: 'amenities',     label: 'Amenities'                       },
+  { id: 'services',      label: 'Services'                        },
+  { id: 'entertainment', label: 'Entertainment'                   },
+  { id: 'excursions',    label: 'Excursions'                      },
+  { id: 'beaches',       label: 'Beaches'                         },
+  { id: 'gallery',       label: 'Photo Gallery', path: '/gallery' },
+  { id: 'contact',       label: 'Contact'                         },
 ]
 
 export default function SideNav() {
-  const [active, setActive] = useState('home')
+  const navigate = useNavigate()
+  const location = useLocation()
   const [mobileOpen, setMobileOpen] = useState(false)
+
+  const activeId = location.pathname === '/gallery' ? 'gallery' : 'home'
 
   function close() { setMobileOpen(false) }
 
+  function handleItem(item) {
+    if (item.path) navigate(item.path)
+    close()
+  }
+
   return (
     <>
-      {/* Hamburger — mobile only, shown via CSS */}
       <button
         className={`hamburger-btn ${mobileOpen ? 'is-active' : ''}`}
         onClick={() => setMobileOpen(p => !p)}
@@ -33,7 +41,6 @@ export default function SideNav() {
         </span>
       </button>
 
-      {/* Overlay — mobile only */}
       <div
         className={`nav-overlay ${mobileOpen ? 'is-visible' : ''}`}
         onClick={close}
@@ -52,8 +59,9 @@ export default function SideNav() {
           {NAV_ITEMS.map(item => (
             <li key={item.id}>
               <button
-                className={`sidenav-item ${active === item.id ? 'sidenav-item--active' : ''}`}
-                onClick={() => { setActive(item.id); close() }}
+                className={`sidenav-item ${activeId === item.id ? 'sidenav-item--active' : ''} ${!item.path ? 'sidenav-item--disabled' : ''}`}
+                onClick={() => handleItem(item)}
+                disabled={!item.path}
               >
                 <span className="sidenav-icon" />
                 <span className="sidenav-label">{item.label}</span>

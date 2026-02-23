@@ -177,6 +177,12 @@
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
 }
 
+.sidenav-item--disabled {
+  opacity: 0.4;
+  cursor: default;
+  pointer-events: none;
+}
+
 /* Pistola active indicator — left edge bar animates height */
 .sidenav-item::before {
   content: '';
