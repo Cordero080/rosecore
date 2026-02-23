@@ -205,7 +205,6 @@
     align-items: center;
     justify-content: center;
     gap: 24px;
-    background: url('../../assets/dolce-1.png') center center / cover no-repeat;
   }
 
   .hero-content {

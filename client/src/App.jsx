@@ -10,6 +10,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="app-shell">
+        <div className="page-bg" aria-hidden="true" />
         <SideNav />
         <div className="app-content">
           <Routes>

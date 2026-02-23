@@ -20,8 +20,11 @@ html, body {
 }
 
 @media (max-width: 768px) {
-  html, body {
+  html {
     background: #f5f7fa;
+  }
+  body {
+    background: transparent;
   }
 }
 
