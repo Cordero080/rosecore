@@ -20,11 +20,8 @@ html, body {
 }
 
 @media (max-width: 768px) {
-  html {
-    background: #f5f7fa; /* canvas / overscroll fallback */
-  }
-  body {
-    background: transparent; /* let .page-bg show through */
+  html, body {
+    background: #f5f7fa;
   }
 }
 
