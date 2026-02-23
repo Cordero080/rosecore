@@ -8,6 +8,7 @@ import ChatWidget from './components/ChatWidget/ChatWidget'
 function App() {
   return (
     <div className="app-shell">
+      <div className="page-bg" aria-hidden="true" />
       <SideNav />
       <div className="app-content">
         <Hero />

@@ -3,6 +3,12 @@
   min-height: 100vh;
 }
 
+/* Mobile-only fixed background layer — iOS Safari doesn't support
+   background-attachment: fixed so we use a positioned element instead */
+.page-bg {
+  display: none;
+}
+
 .app-content {
   margin-left: 60px;
   flex: 1;
@@ -22,6 +28,14 @@
 }
 
 @media (max-width: 768px) {
+  .page-bg {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: url('/src/assets/dolce-1.png') center center / cover no-repeat;
+  }
+
   .app-content {
     margin-left: 0;
   }
