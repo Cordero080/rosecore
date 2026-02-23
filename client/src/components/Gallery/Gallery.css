@@ -1,0 +1,202 @@
+.gallery {
+  position: relative;
+  width: calc(100% + 60px);
+  margin-left: -60px;
+  height: 100vh;
+  overflow: hidden;
+  background: #0a0e14;
+}
+
+/* ── Slides ── */
+.gallery-slides {
+  position: absolute;
+  inset: 0;
+}
+
+.gallery-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.gallery-slide.is-active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.gallery-slide.is-prev {
+  opacity: 0;
+  z-index: 1;
+}
+
+.gallery-slide-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center center;
+  will-change: transform;
+}
+
+/* ── Ken Burns animations ── */
+@keyframes kb1 {
+  0%   { transform: scale(1)    translate(0,    0);    }
+  100% { transform: scale(1.12) translate(-2%, -1.5%); }
+}
+@keyframes kb2 {
+  0%   { transform: scale(1)    translate(0,   0);    }
+  100% { transform: scale(1.1)  translate(2%, -1%);   }
+}
+@keyframes kb3 {
+  0%   { transform: scale(1.06) translate(1%,  1%);   }
+  100% { transform: scale(1.14) translate(-1%, -2%);  }
+}
+@keyframes kb4 {
+  0%   { transform: scale(1.1)  translate(-1%, -1%);  }
+  100% { transform: scale(1)    translate(1%,   1%);  }
+}
+
+.gallery-slide.is-active .kb-1 { animation: kb1 8s ease-in-out forwards; }
+.gallery-slide.is-active .kb-2 { animation: kb2 8s ease-in-out forwards; }
+.gallery-slide.is-active .kb-3 { animation: kb3 8s ease-in-out forwards; }
+.gallery-slide.is-active .kb-4 { animation: kb4 8s ease-in-out forwards; }
+
+/* ── Veil ── */
+.gallery-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background:
+    linear-gradient(to bottom,
+      rgba(10, 14, 20, 0.35) 0%,
+      transparent 30%,
+      transparent 65%,
+      rgba(10, 14, 20, 0.6) 100%
+    );
+  pointer-events: none;
+}
+
+/* ── UI layer ── */
+.gallery-ui {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 56px 48px 48px;
+  pointer-events: none;
+}
+
+/* ── Header ── */
+.gallery-header {
+  text-align: center;
+}
+
+.gallery-eyebrow {
+  font-family: var(--font-label);
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 10px;
+}
+
+.gallery-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: -0.01em;
+}
+
+/* ── Controls ── */
+.gallery-controls {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  pointer-events: all;
+}
+
+.gallery-arrow {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-arrow:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: scale(1.08);
+}
+
+.gallery-dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.gallery-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+  padding: 0;
+}
+
+.gallery-dot.is-active {
+  background: rgba(255, 255, 255, 0.9);
+  transform: scale(1.5);
+}
+
+.gallery-dot:hover {
+  background: rgba(255, 255, 255, 0.65);
+}
+
+/* ── Counter ── */
+.gallery-counter {
+  font-family: var(--font-label);
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.45);
+  pointer-events: none;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .gallery {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .gallery-ui {
+    padding: 48px 24px 40px;
+  }
+
+  .gallery-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  .gallery-dots {
+    gap: 6px;
+    max-width: 200px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
