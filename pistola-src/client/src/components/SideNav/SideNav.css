@@ -1,0 +1,257 @@
+/* ─────────────────────────────────────────────
+   ROSECORE SIDENAV
+   Structure from pistola · dressed in platinum
+───────────────────────────────────────────── */
+
+.sidenav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 60px;
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1rem 0;
+  overflow: hidden;
+
+  /* Same border-radius on both states — percentage scales with width */
+  border-radius: 0 0 100% 0 / 0 0 60% 0;
+
+  /* Platinum brushed metal */
+  background: linear-gradient(
+    170deg,
+    rgba(228, 232, 236, 0.98) 0%,
+    rgba(208, 216, 223, 0.96) 35%,
+    rgba(235, 239, 242, 0.98) 65%,
+    rgba(202, 212, 220, 0.96) 100%
+  );
+  border-right: 1px solid rgba(180, 190, 200, 0.55);
+  box-shadow:
+    4px 0 12px rgba(0, 0, 0, 0.06),
+    inset -1px 0 0 rgba(255, 255, 255, 0.75),
+    inset  1px 0 0 rgba(0, 0, 0, 0.03);
+
+  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.sidenav:hover {
+  width: 180px;
+}
+
+/* ── Brushed grain overlay ── */
+.sidenav-grain {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      rgba(255, 255, 255, 0.04) 1px,
+      transparent 2px,
+      transparent 4px
+    ),
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(255, 255, 255, 0.45) 0%,
+      transparent 55%
+    );
+}
+
+/* ── Side glow — hides on expand like pistola ── */
+.sidenav-glow {
+  position: absolute;
+  right: -1px;
+  top: 0;
+  width: 2px;
+  height: 40%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(180, 200, 220, 0.7) 50%,
+    rgba(160, 185, 210, 0.5) 100%
+  );
+  animation: sideGlow 4s ease-in-out infinite;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.sidenav:hover .sidenav-glow {
+  opacity: 0;
+}
+
+@keyframes sideGlow {
+  0%, 100% { opacity: 0.3; }
+  50%       { opacity: 1;   }
+}
+
+/* ── Brand ── */
+.sidenav-brand {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  margin-bottom: 2rem;
+  padding-left: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.sidenav-brand-short {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  background: linear-gradient(180deg, #2c3e50 0%, #7a94aa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.sidenav-brand-full {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.2rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  background: linear-gradient(180deg, #2c3e50 0%, #7a94aa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: absolute;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.25s ease 0.1s, transform 0.3s ease 0.1s;
+}
+
+.sidenav:hover .sidenav-brand-short {
+  opacity: 0;
+  transform: scale(0.85);
+}
+
+.sidenav:hover .sidenav-brand-full {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── Nav list ── */
+.sidenav-list {
+  list-style: none;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  position: relative;
+  z-index: 1;
+  padding-left: 8px;
+  padding-bottom: 120px; /* space for the curved bottom */
+}
+
+/* ── Nav item ── */
+.sidenav-item {
+  position: relative;
+  width: calc(100% - 12px);
+  margin: 0 6px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.sidenav-item:hover {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.sidenav-item--active {
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+.sidenav-item--disabled {
+  opacity: 0.4;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Pistola active indicator — left edge bar animates height */
+.sidenav-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.5px;
+  height: 0;
+  background: linear-gradient(180deg, #7a94aa, #4a6a8a);
+  border-radius: 2px;
+  transition: height 0.3s ease;
+}
+
+.sidenav-item:hover::before,
+.sidenav-item--active::before {
+  height: 65%;
+}
+
+/* ── Icon dot ── */
+.sidenav-icon {
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(120, 145, 165, 0.45);
+  border: 1px solid rgba(180, 195, 210, 0.7);
+  box-shadow: inset 0.5px 0.5px 1px rgba(255, 255, 255, 0.7);
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.sidenav-item:hover .sidenav-icon {
+  background: rgba(90, 122, 154, 0.65);
+  box-shadow:
+    inset 0.5px 0.5px 1px rgba(255, 255, 255, 0.5),
+    0 0 6px rgba(90, 122, 154, 0.35);
+  transform: scale(1.15);
+}
+
+.sidenav-item--active .sidenav-icon {
+  background: rgba(70, 105, 140, 0.75);
+  box-shadow:
+    inset 0.5px 0.5px 1px rgba(255, 255, 255, 0.5),
+    0 0 8px rgba(70, 105, 140, 0.4);
+}
+
+/* ── Label — slides in from left on nav hover ── */
+.sidenav-label {
+  font-family: var(--font-main);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(50, 65, 80, 0.65);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.3s ease 0.08s, transform 0.3s ease 0.08s, color 0.2s ease;
+}
+
+.sidenav:hover .sidenav-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.sidenav-item:hover .sidenav-label,
+.sidenav-item--active .sidenav-label {
+  color: rgba(30, 48, 65, 0.92);
+}
+
+/* ── App layout offset ── */
+/* handled in App.css — keeps fixed at 60px regardless of hover */

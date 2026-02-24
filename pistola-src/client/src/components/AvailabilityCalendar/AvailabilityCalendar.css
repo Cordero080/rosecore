@@ -1,0 +1,240 @@
+.cal-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-xl);
+}
+
+/* ── Platinum container — from numen-src _light-mode.scss ── */
+.cal-container {
+  position: relative;
+  width: 420px;
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  overflow: hidden;
+
+  background: linear-gradient(
+    135deg,
+    rgba(220, 225, 230, 0.95) 0%,
+    rgba(200, 208, 215, 0.9)  25%,
+    rgba(230, 235, 240, 0.95) 50%,
+    rgba(195, 205, 212, 0.9)  75%,
+    rgba(215, 222, 228, 0.95) 100%
+  );
+  border: 1px solid rgba(180, 190, 200, 0.6);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* Brushed grain + top light catch */
+.cal-grain {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 2px,
+      transparent 4px
+    ),
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(255, 255, 255, 0.4) 0%,
+      transparent 60%
+    );
+}
+
+/* ── Header ── */
+.cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+  position: relative;
+  z-index: 1;
+}
+
+.cal-month-label {
+  font-family: var(--font-title);
+  font-size: var(--font-size-title);
+  background: linear-gradient(180deg, #2c3e50 0%, #5a6a7a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.03em;
+}
+
+.cal-nav {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(180, 190, 200, 0.5);
+  box-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  font-size: 20px;
+  color: rgba(60, 70, 80, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform var(--transition), background var(--transition);
+}
+
+.cal-nav:hover {
+  transform: scale(1.08);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+/* ── Day name headers ── */
+.cal-day-headers {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: var(--space-sm);
+  position: relative;
+  z-index: 1;
+}
+
+.cal-day-name {
+  text-align: center;
+  font-family: var(--font-label);
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.06em;
+  color: rgba(60, 70, 80, 0.6);
+  padding-bottom: var(--space-sm);
+}
+
+/* ── Grid ── */
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.cal-cell {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-main);
+  font-weight: 400;
+  transition: transform var(--transition);
+}
+
+.cal-cell--empty {
+  background: transparent;
+}
+
+/* Available — clean white, lifts on hover */
+.cal-cell--available {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(180, 190, 200, 0.3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  color: rgba(40, 50, 60, 0.9);
+  cursor: default;
+}
+
+.cal-cell--available:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Blocked — engraved aluminum from numen-src heatmap empty cell */
+.cal-cell--blocked {
+  background: radial-gradient(
+    ellipse at 30% 30%,
+    rgba(226, 231, 240, 0.636) 0%,
+    rgba(191, 195, 200, 0.6)   90%,
+    rgba(100, 112, 128, 0.7)   100%
+  );
+  border: none;
+  box-shadow:
+    inset 1px 1px 2px rgba(16, 16, 16, 0.25),
+    inset -0.5px -0.5px 1px rgba(255, 255, 255, 0.4);
+  color: rgba(80, 90, 100, 0.45);
+  cursor: default;
+}
+
+/* Today — blue accent ring */
+.cal-cell--today {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 1px;
+}
+
+@media (max-width: 768px) {
+  .cal-wrapper {
+    padding: 16px;
+  }
+
+  .cal-container {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* ── Loading ── */
+.cal-loading {
+  text-align: center;
+  padding: var(--space-xl) 0;
+  font-size: var(--font-size-sm);
+  color: rgba(60, 70, 80, 0.5);
+  font-family: var(--font-label);
+  letter-spacing: 0.04em;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Legend ── */
+.cal-legend {
+  display: flex;
+  gap: var(--space-lg);
+  justify-content: center;
+  margin-top: var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(10, 10, 14, 0.12);
+  position: relative;
+  z-index: 1;
+}
+
+.cal-legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--font-size-xs);
+  font-family: var(--font-label);
+  letter-spacing: 0.04em;
+  color: rgba(60, 70, 80, 0.7);
+}
+
+.cal-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.cal-legend-dot--available {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(180, 190, 200, 0.5);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.cal-legend-dot--blocked {
+  background: radial-gradient(
+    ellipse at 30% 30%,
+    rgba(140, 150, 165, 0.4) 0%,
+    rgba(120, 130, 145, 0.6) 40%,
+    rgba(100, 112, 128, 0.7) 100%
+  );
+  box-shadow:
+    inset 1px 1px 2px rgba(0, 0, 0, 0.25),
+    inset -0.5px -0.5px 1px rgba(255, 255, 255, 0.4);
+}

@@ -1,0 +1,17 @@
+.section-divider {
+  position: relative;
+  /* Pull up into hero by 150px, extend 170px past the boundary into availability */
+  margin-top: -150px;
+  z-index: 2;
+  pointer-events: none;
+  line-height: 0;
+
+  margin-left: -60px;
+  width: calc(100% + 60px);
+}
+
+.section-divider svg {
+  display: block;
+  width: 100%;
+  height: 320px;
+}

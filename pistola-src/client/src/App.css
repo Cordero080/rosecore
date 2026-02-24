@@ -1,0 +1,99 @@
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.page-bg {
+  display: none;
+}
+
+.app-content {
+  margin-left: 60px;
+  flex: 1;
+  position: relative;
+}
+
+#availability {
+  position: relative;
+  z-index: 10;
+  background: rgba(245, 247, 250, 0.92);
+  margin-left: -60px;
+  width: calc(100% + 60px);
+  padding-left: 60px;
+  padding-bottom: 120px;
+}
+
+/* Drape that hangs below availability, fading over the top of the gallery */
+#availability::after {
+  content: '';
+  position: absolute;
+  bottom: -500px;
+  left: 0;
+  right: 0;
+  height: 500px;
+  background: linear-gradient(to bottom, rgba(245, 247, 250, 0.92), transparent);
+  pointer-events: none;
+}
+
+/* Mobile-only booking bridge between hero and calendar */
+.booking-bridge {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .page-bg {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: url('./assets/dolce-1.png') center center / cover no-repeat;
+  }
+
+  .app-content {
+    margin-left: 0;
+  }
+
+  #availability {
+    margin-left: 0;
+    width: 100%;
+    padding-left: 0;
+  }
+
+  .booking-bridge {
+    display: flex;
+    justify-content: center;
+    padding: 32px 24px;
+    background: rgba(245, 247, 250, 0.92);
+  }
+
+  .booking-bridge-card {
+    display: inline-block;
+    text-align: center;
+    padding: 16px 32px;
+    border-radius: var(--radius);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+
+  .booking-bridge-label {
+    font-family: var(--font-label);
+    font-size: var(--font-size-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+
+  .booking-bridge-value {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--font-size-title);
+    color: #2c3e50;
+    letter-spacing: 0.01em;
+  }
+}
