@@ -1,10 +1,6 @@
 import { google } from 'googleapis'
-import { readFileSync } from 'fs'
-import { join, dirname } from 'path'
-import { fileURLToPath } from 'url'
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
-const creds = JSON.parse(readFileSync(join(__dirname, '..', 'credentials.json'), 'utf-8'))
+const creds = JSON.parse(process.env.GOOGLE_CREDENTIALS || '{}')
 
 const auth = new google.auth.GoogleAuth({
   credentials: creds,
