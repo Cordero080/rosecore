@@ -184,9 +184,8 @@ const responses = {
     reply: "Check-in is at 3:00 PM and check-out is at 11:00 AM.",
   },
   pets: {
-    keywords: ["pet", "dog", "cat", "animal"],
-    reply:
-      "We are a pet-friendly property! Please let us know in advance so we can prepare accordingly.",
+    keywords: ['pet', 'dog', 'cats', 'animal'],
+    reply: 'We are a pet-friendly property! Please let us know in advance so we can prepare accordingly.',
   },
   location: {
     keywords: [
