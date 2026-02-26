@@ -2,8 +2,9 @@ import { useState, useRef, useEffect } from 'react'
 import './ChatWidget.css'
 // const N8N_URL = 'http://localhost:5678/webhook-test/chat';
 
-// This allows you to toggle easily or default to n8n
-const CHAT_URL = 'http://localhost:3001/api/chat' ;
+// uncomment to use local host 
+// const CHAT_URL = 'http://localhost:3001/api/chat' ;
+const CHAT_URL = 'https://rosecore-gyvw.onrender.com/api/chat';
 
 export default function ChatWidget() {
   const [open, setOpen] = useState(false)
