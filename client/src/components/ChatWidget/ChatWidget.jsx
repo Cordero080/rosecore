@@ -1,7 +1,9 @@
 import { useState, useRef, useEffect } from 'react'
 import './ChatWidget.css'
+// const N8N_URL = 'http://localhost:5678/webhook-test/chat';
 
-const CHAT_URL = 'http://localhost:3001/api/chat'
+// This allows you to toggle easily or default to n8n
+const CHAT_URL = 'http://localhost:3001/api/chat' ;
 
 export default function ChatWidget() {
   const [open, setOpen] = useState(false)
@@ -28,7 +30,7 @@ export default function ChatWidget() {
       const res = await fetch(CHAT_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text }),
+       body: JSON.stringify({ message: text, sessionId: window.__chatSessionId || (window.__chatSessionId = crypto.randomUUID()) }),
       })
       const data = await res.json()
       setMessages(prev => [...prev, { from: 'bot', text: data.reply }])
