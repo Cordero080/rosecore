@@ -198,6 +198,24 @@ const responses = {
     reply:
       "La Dolce Vita is located in Las Terrenas, Dominican Republic — just 5 minutes from the beach and 10 minutes from the town center.",
   },
+  rooms: {
+    keywords: [
+      "bedroom",
+      "bathroom",
+      "bed",
+      "room",
+      "layout",
+      "sleep",
+      "capacity",
+      "twin",
+      "master",
+      "how many people",
+      "floor plan",
+      "suite",
+    ],
+    reply:
+      "The residence has two bedrooms and two bathrooms. The master bedroom has a private en-suite bathroom. The second bedroom has two twin beds with its own bathroom. There's also a comfortable living room and a full kitchen.",
+  },
   contact: {
     keywords: ["contact", "call", "email", "reach", "speak", "talk", "phone"],
     reply:

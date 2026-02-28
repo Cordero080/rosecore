@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom'
 import './Hero.css'
 
 export default function Hero() {
+  const navigate = useNavigate()
+
   function scrollToCalendar() {
     document.getElementById('availability')?.scrollIntoView({ behavior: 'smooth' })
   }
@@ -24,7 +27,7 @@ export default function Hero() {
           <button className="hero-btn hero-btn--primary" onClick={scrollToCalendar}>
             Check Availability
           </button>
-          <button className="hero-btn hero-btn--ghost">
+          <button className="hero-btn hero-btn--ghost" onClick={() => navigate('/gallery')}>
             Explore the Property
           </button>
         </div>

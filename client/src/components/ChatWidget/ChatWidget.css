@@ -266,3 +266,26 @@
   opacity: 0.4;
   cursor: default;
 }
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  /* Pull the panel out of the bottom-right flow and center it on screen */
+  .chat-panel {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    top: 50%;
+    width: auto;
+    height: auto;
+    max-height: 80vh;
+    /* Closed: centered but nudged down + faded */
+    transform: translateY(calc(-50% + 12px)) scale(0.97);
+  }
+
+  .chat-panel--open {
+    /* Open: perfectly centered */
+    transform: translateY(-50%) scale(1);
+  }
+
+  /* Teaser sits above the bottom-right corner as before, unchanged */
+}

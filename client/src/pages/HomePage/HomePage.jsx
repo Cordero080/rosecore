@@ -65,6 +65,9 @@ export default function HomePage() {
       <Hero />
       <section id="availability">
         <AvailabilityCalendar />
+        <div className="availability-cta">
+          <a href="https://www.airbnb.com/rooms/37812103" target="_blank" rel="noopener noreferrer" className="escape-cta">Reserve your stay</a>
+        </div>
       </section>
       <div id="gallery-scene-veil" className="gallery-scene-veil" />
       <section id="interlude">
@@ -76,7 +79,7 @@ export default function HomePage() {
       </div>
       <section id="escape">
         <h2 className="escape-heading">Book your escape.</h2>
-        <a href="#" className="escape-cta">Reserve your stay</a>
+        <a href="https://www.airbnb.com/rooms/37812103" target="_blank" rel="noopener noreferrer" className="escape-cta">Reserve your stay</a>
       </section>
     </>
   )

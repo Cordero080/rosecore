@@ -44,6 +44,12 @@
 }
 
 /* ── Escape / CTA ── */
+.availability-cta {
+  display: flex;
+  justify-content: center;
+  padding: 32px 24px 64px;
+}
+
 #escape {
   min-height: 100vh;
   margin-left: -60px;
