@@ -8,8 +8,9 @@ const CHAT_URL = 'https://rosecore-gyvw.onrender.com/api/chat';
 
 export default function ChatWidget() {
   const [open, setOpen] = useState(false)
+  const [teaserVisible, setTeaserVisible] = useState(true)
   const [messages, setMessages] = useState([
-    { from: 'bot', text: 'Hi! Ask me anything about the property — availability, pricing, amenities, and more.' }
+    { from: 'bot', text: "Hi, I'm Vita! Ask me anything about the property — availability, pricing, amenities, and more." }
   ])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
@@ -49,11 +50,18 @@ export default function ChatWidget() {
     }
   }
 
+  function openChat() {
+    setOpen(true)
+  }
+
   return (
     <div className="chat-widget">
       <div className={`chat-panel ${open ? 'chat-panel--open' : ''}`}>
         <div className="chat-header">
-          <span className="chat-title">Have a question?</span>
+          <div className="chat-header-identity">
+            <span className="chat-vita-name">Vita</span>
+            <span className="chat-vita-role">Villa Concierge</span>
+          </div>
           <button className="chat-close" onClick={() => setOpen(false)} aria-label="Close chat">✕</button>
         </div>
 
@@ -89,13 +97,12 @@ export default function ChatWidget() {
         </div>
       </div>
 
-      <button
-        className={`chat-trigger ${open ? 'chat-trigger--active' : ''}`}
-        onClick={() => setOpen(prev => !prev)}
-        aria-label="Open chat"
-      >
-        {open ? '✕' : '💬'}
-      </button>
+      {teaserVisible && !open && (
+        <button className="chat-teaser" onClick={openChat} aria-label="Chat with Vita">
+          <span className="chat-teaser-text">Hi, I'm Vita — ask me anything!</span>
+          <span className="chat-teaser-dismiss" onClick={e => { e.stopPropagation(); setTeaserVisible(false) }}>✕</span>
+        </button>
+      )}
     </div>
   )
 }

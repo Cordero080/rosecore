@@ -144,39 +144,6 @@
   transform: translateY(-1px);
 }
 
-/* Floating glass card */
-.hero-glass-card {
-  position: absolute;
-  bottom: 48px;
-  right: 64px;
-  padding: 16px 24px;
-  border-radius: var(--radius);
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  box-shadow:
-    0 8px 24px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  z-index: 1;
-}
-
-.hero-card-label {
-  font-family: var(--font-label);
-  font-size: var(--font-size-xs);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 4px;
-}
-
-.hero-card-value {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: var(--font-size-title);
-  color: #2c3e50;
-  letter-spacing: 0.01em;
-}
 
 /* Curved tongue — hangs from bottom-left of hero into the section below */
 .hero-tongue {
@@ -211,11 +178,6 @@
     text-align: center;
   }
 
-  .hero-glass-card {
-    position: static;
-    align-self: center;
-    text-align: center;
-  }
 
   .hero-headline {
     font-size: clamp(2.8rem, 10vw, 4rem);

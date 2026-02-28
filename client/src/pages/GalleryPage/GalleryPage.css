@@ -1,17 +1,17 @@
+/* ── Page shell ── */
 .gallery-page {
   min-height: 100vh;
-  /* Full-bleed under fixed sidenav — same pattern as #availability */
   margin-left: -60px;
   width: calc(100% + 60px);
   padding: 72px 48px 80px calc(60px + 48px);
-  background: #f5f7fa;
+  background: #f5f7fae7;
   overflow: hidden;
 }
 
-/* ── Header ── */
+/* ── Page header ── */
 .gallery-page-header {
   text-align: center;
-  margin-bottom: 48px;
+  margin-bottom: 72px;
 }
 
 .gallery-page-eyebrow {
@@ -39,36 +39,247 @@
   color: var(--text-muted);
 }
 
-/* ── Grid ── */
-.gallery-page-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
+/* ── Category section ── */
+.gs-section {
+  margin-bottom: 80px;
 }
 
-.gallery-thumb {
-  flex: 0 0 calc(25% - 8px);
-  aspect-ratio: 4 / 3;
+.gs-header {
+  margin-bottom: 20px;
+}
+
+.gs-eyebrow {
+  font-family: var(--font-label);
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.gs-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: #1a2230;
+  letter-spacing: -0.01em;
+}
+
+/* ── Stage ── */
+.gs-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
-  border-radius: 6px;
-  cursor: pointer;
-  background: #dce2e8;
-  padding: 0;
-  border: none;
-  display: block;
+  background: #0a0e14;
+  border-radius: 12px;
 }
 
-.gallery-thumb img {
+/* Bottom gradient so captions always read cleanly */
+.gs-stage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 45%);
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* ── Slides ── */
+.gs-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.gs-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
   display: block;
+  user-select: none;
 }
 
-.gallery-thumb:hover img {
-  transform: scale(1.05);
+/* Directional fade-in for entering slide */
+.gs-slide-forward {
+  animation: gs-enter-fwd 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.gs-slide-backward {
+  animation: gs-enter-bwd 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes gs-enter-fwd {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0);    }
+}
+
+@keyframes gs-enter-bwd {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0);     }
+}
+
+/* ── Caption ── */
+.gs-caption {
+  position: absolute;
+  bottom: 44px;
+  left: 40px;
+  z-index: 10;
+  animation: gs-caption-in 0.55s 0.45s ease both;
+  pointer-events: none;
+}
+
+/* Fades in with a gentle upward drift, delayed until the slide arrives */
+@keyframes gs-caption-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+.gs-caption-label {
+  display: block;
+  font-family: var(--font-label);
+  font-size: 0.6rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 5px;
+}
+
+.gs-caption-text {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
+}
+
+/* ── Progress bar ── */
+.gs-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.12);
+  z-index: 10;
+}
+
+.gs-progress-fill {
+  height: 100%;
+  width: 0;
+  background: rgba(255, 255, 255, 0.55);
+  animation: gs-prog 7s linear forwards;
+}
+
+@keyframes gs-prog {
+  from { width: 0%;   }
+  to   { width: 100%; }
+}
+
+/* ── Counter ── */
+.gs-counter {
+  position: absolute;
+  bottom: 14px;
+  right: 20px;
+  z-index: 10;
+  font-family: var(--font-label);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.32);
+  pointer-events: none;
+}
+
+/* ── Nav row ── */
+.gs-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 18px;
+}
+
+/* ── Editorial SVG arrows ── */
+.gs-btn {
+  background: none;
+  border: none;
+  padding: 8px 4px;
+  cursor: pointer;
+  color: #1a2230;
+  opacity: 0.5;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.gs-btn:hover { opacity: 1; }
+
+/* Arrow slides outward on hover — the high-end editorial micro-motion */
+.gs-btn--prev:hover { transform: translateX(-4px); }
+.gs-btn--next:hover { transform: translateX(4px);  }
+
+/* ── Progress track ── */
+.gs-track {
+  flex: 1;
+  max-width: 180px;
+  height: 1px;
+  background: rgba(26, 34, 48, 0.15);
+  border-radius: 1px;
+  cursor: pointer;
+  position: relative;
+}
+
+.gs-track-fill {
+  height: 100%;
+  background: #1a2230;
+  opacity: 0.55;
+  border-radius: 1px;
+  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  pointer-events: none;
+}
+
+/* ── Expand (lightbox) button ── */
+.gs-expand {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 10;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(8px);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+
+.gs-expand:hover {
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+}
+
+/* ── Empty state ── */
+.gs-empty {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #e8ecf0;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-label);
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
 }
 
 /* ── Lightbox ── */
@@ -156,7 +367,7 @@
   transform: translateY(-50%) scale(1.06);
 }
 
-.gallery-lb-prev { left: 20px; }
+.gallery-lb-prev { left: 20px;  }
 .gallery-lb-next { right: 20px; }
 
 .gallery-lb-counter {
@@ -178,12 +389,13 @@
     width: 100%;
   }
 
-  .gallery-page-grid {
-    gap: 6px;
+  .gs-stage {
+    border-radius: 8px;
   }
 
-  .gallery-thumb {
-    flex: 0 0 calc(50% - 4px);
+  .gs-caption {
+    left: 20px;
+    bottom: 36px;
   }
 
   .gallery-lb-stage {
@@ -196,6 +408,6 @@
     font-size: 1rem;
   }
 
-  .gallery-lb-prev { left: 8px; }
+  .gallery-lb-prev { left: 8px;  }
   .gallery-lb-next { right: 8px; }
 }
