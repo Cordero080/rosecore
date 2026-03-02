@@ -6,11 +6,15 @@ const sceneryModules  = import.meta.glob('../../assets/images/*.jpeg',          
 const propertyModules = import.meta.glob('../../assets/images/property/*.{jpg,jpeg}', { eager: true })
 
 function buildSlides(modules, config) {
-  return Object.entries(modules).map(([path, m]) => ({
-    src:     m.default,
-    caption: config.captions[path.split('/').pop()] ?? config.defaultCaption,
-    label:   config.label,
-  }))
+  return Object.entries(modules).map(([path, m]) => {
+    const filename = path.split('/').pop()
+    return {
+      src:     m.default,
+      caption: config.captions[filename] ?? config.defaultCaption,
+      alt:     config.alts?.[filename]   ?? config.defaultAlt,
+      label:   config.label,
+    }
+  })
 }
 
 const CATEGORIES = {
@@ -64,7 +68,7 @@ function Slideshow({ slides, eyebrow, title, onOpenLightbox }) {
       <div className="gs-stage" aria-label={`${title} photo gallery`}>
         {/* Slide — key change remounts element, triggering CSS enter animation */}
         <div key={idx} className={`gs-slide gs-slide-${dir}`} aria-hidden="true">
-          <img src={slide.src} alt="" draggable={false} />
+          <img src={slide.src} alt={slide.alt} draggable={false} />
         </div>
 
         {/* Caption */}
@@ -162,7 +166,7 @@ function Lightbox({ slides, index, onClose, onPrev, onNext }) {
         <img
           key={index}
           src={slides[index].src}
-          alt={`Photo ${index + 1}`}
+          alt={slides[index].alt}
           className="gallery-lb-img"
         />
       </div>
@@ -181,7 +185,24 @@ function Lightbox({ slides, index, onClose, onPrev, onNext }) {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function GalleryPage() {
-  const [lightbox, setLightbox] = useState(null) // { category, index } | null
+  const [lightbox, setLightbox] = useState(null)
+
+  // Set page-specific title and description for SEO
+  useEffect(() => {
+    const prevTitle = document.title
+    const metaDesc  = document.querySelector('meta[name="description"]')
+    const prevDesc  = metaDesc?.getAttribute('content')
+
+    document.title = 'Photo Gallery — La Dolce Vita · Las Terrenas, Samaná'
+    metaDesc?.setAttribute('content',
+      'Browse photos of the private pool, bedrooms, living spaces, and Caribbean coastal scenery at La Dolce Vita in Las Terrenas, Samaná, Dominican Republic.'
+    )
+
+    return () => {
+      document.title = prevTitle
+      if (metaDesc && prevDesc) metaDesc.setAttribute('content', prevDesc)
+    }
+  }, []) // { category, index } | null
 
   const openLightbox  = (category, index) => setLightbox({ category, index })
   const closeLightbox = useCallback(() => setLightbox(null), [])
