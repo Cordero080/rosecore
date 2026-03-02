@@ -67,6 +67,7 @@ export default function HomePage() {
         <AvailabilityCalendar />
         <div className="availability-cta">
           <a href="https://www.airbnb.com/rooms/37812103" target="_blank" rel="noopener noreferrer" className="escape-cta">Reserve your stay</a>
+          <a href="https://search.google.com/local/writereview?placeid=ChIJJUn42O37ro4R_FeKqU3BNEM" target="_blank" rel="noopener noreferrer" className="escape-review">Leave a review</a>
         </div>
       </section>
       <div id="gallery-scene-veil" className="gallery-scene-veil" />
@@ -80,6 +81,7 @@ export default function HomePage() {
       <section id="escape">
         <h2 className="escape-heading">Book your escape.</h2>
         <a href="https://www.airbnb.com/rooms/37812103" target="_blank" rel="noopener noreferrer" className="escape-cta">Reserve your stay</a>
+        <a href="https://search.google.com/local/writereview?placeid=ChIJJUn42O37ro4R_FeKqU3BNEM" target="_blank" rel="noopener noreferrer" className="escape-review">Leave a review</a>
       </section>
     </>
   )
