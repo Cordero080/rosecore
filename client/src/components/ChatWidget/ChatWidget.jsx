@@ -6,6 +6,17 @@ import './ChatWidget.css'
 // const CHAT_URL = 'http://localhost:3001/api/chat' ;
 const CHAT_URL = 'https://rosecore-gyvw.onrender.com/api/chat';
 
+/* Turn URLs in a string into clickable <a> tags */
+function linkify(text) {
+  const urlRegex = /(https?:\/\/[^\s]+)/g
+  const parts = text.split(urlRegex)
+  return parts.map((part, i) =>
+    urlRegex.test(part)
+      ? <a key={i} href={part} target="_blank" rel="noopener noreferrer">{part}</a>
+      : part
+  )
+}
+
 export default function ChatWidget() {
   const [open, setOpen] = useState(false)
   const [teaserVisible, setTeaserVisible] = useState(true)
@@ -68,7 +79,7 @@ export default function ChatWidget() {
         <div className="chat-messages">
           {messages.map((msg, i) => (
             <div key={i} className={`chat-bubble chat-bubble--${msg.from}`}>
-              {msg.text}
+              {linkify(msg.text)}
             </div>
           ))}
           {loading && (

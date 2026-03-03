@@ -1,7 +1,6 @@
 import OpenAI from "openai";
 import { getSheetData } from "./getSheetData.js";
 
-
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 export async function askAI(userMessage) {
@@ -28,6 +27,7 @@ RULES:
 - If the answer is not in the data, say something like "I'd love to help with that — let me connect you with the host who'll have the answer."
 - Never mention spreadsheets, databases, or that you're an AI reading data.
 - Never say "as a concierge" or "as an AI."
+- When a guest wants to book or reserve, always include the Airbnb booking link: https://www.airbnb.com/rooms/37812103
 
 LOCAL KNOWLEDGE:
 - La Dolce Vita is near Playa Bonita — widely considered one of the most beautiful beaches in the Dominican Republic. Calm turquoise water, white sand, palm trees, and stunning sunsets.

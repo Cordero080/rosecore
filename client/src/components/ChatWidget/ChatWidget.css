@@ -185,6 +185,16 @@
   color: var(--text-primary);
 }
 
+.chat-bubble a {
+  color: var(--accent, #b8860b);
+  text-decoration: underline;
+  word-break: break-all;
+}
+
+.chat-bubble a:hover {
+  opacity: 0.8;
+}
+
 /* ── Loading dots ── */
 .chat-dots {
   display: flex;

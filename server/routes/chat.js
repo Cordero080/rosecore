@@ -1,6 +1,6 @@
 import express from "express";
 import { getBlockedDates } from "../lib/getBlockedDates.js";
-import { saveChat } from '../lib/chatHistory.js'
+import { saveChat } from "../lib/chatHistory.js";
 
 const router = express.Router();
 
@@ -153,12 +153,32 @@ function friendlyRange(dates) {
 
 const responses = {
   pricing: {
-    keywords: ["price", "cost", "rate", "how much", "fee", "charge"],
+    keywords: [
+      // English
+      "price",
+      "cost",
+      "rate",
+      "how much",
+      "fee",
+      "charge",
+      // Spanish
+      "precio",
+      "costo",
+      "tarifa",
+      "cuánto",
+      "cuanto",
+      // French
+      "prix",
+      "coût",
+      "tarif",
+      "combien",
+    ],
     reply:
       "Nightly rates start at $130/night. Weekend and holiday rates may vary. Contact us for extended stay discounts.",
   },
   amenities: {
     keywords: [
+      // English
       "amenities",
       "kitchen",
       "wifi",
@@ -168,38 +188,91 @@ const responses = {
       "dryer",
       "ac",
       "air",
+      // Spanish
+      "comodidades",
+      "cocina",
+      "piscina",
+      "estacionamiento",
+      "lavadora",
+      "secadora",
+      "aire",
+      // French
+      "équipements",
+      "cuisine",
+      "piscine",
+      "stationnement",
+      "climatisation",
     ],
     reply:
       "The property includes a full kitchen, high-speed WiFi, private pool, parking, washer/dryer, and central AC.",
   },
   checkInOut: {
     keywords: [
+      // English
       "check in",
       "check-in",
       "check out",
       "check-out",
       "arrival",
       "departure",
-    ], // cspell:disable-line
+      // Spanish
+      "entrada",
+      "salida",
+      "llegada",
+      "hora de entrada",
+      // French
+      "arrivée",
+      "départ",
+      "heure d'arrivée",
+    ],
     reply: "Check-in is at 3:00 PM and check-out is at 11:00 AM.",
   },
   pets: {
-    keywords: ['pet', 'dog', 'cats', 'animal'],
-    reply: 'We are a pet-friendly property! Please let us know in advance so we can prepare accordingly.',
+    keywords: [
+      // English
+      "pet",
+      "dog",
+      "cats",
+      "animal",
+      // Spanish
+      "mascota",
+      "perro",
+      "gato",
+      "animal",
+      // French
+      "animal",
+      "chien",
+      "chat",
+      "animaux",
+    ],
+    reply:
+      "We are a pet-friendly property! Please let us know in advance so we can prepare accordingly.",
   },
   location: {
     keywords: [
+      // English
       "location",
       "address",
       "where is the property",
       "where are you located",
       "how far",
+      // Spanish
+      "ubicación",
+      "dirección",
+      "dónde está",
+      "donde queda",
+      // French
+      "emplacement",
+      "adresse",
+      "où se trouve",
+      "localisation",
     ],
     reply:
       "La Dolce Vita is located in Las Terrenas, Dominican Republic — just 5 minutes from the beach and 10 minutes from the town center.",
   },
   rooms: {
     keywords: [
+      // English
       "bedroom",
       "bathroom",
       "bed",
@@ -212,12 +285,46 @@ const responses = {
       "how many people",
       "floor plan",
       "suite",
+      // Spanish
+      "habitación",
+      "dormitorio",
+      "baño",
+      "cama",
+      "cuántas personas",
+      "capacidad",
+      // French
+      "chambre",
+      "salle de bain",
+      "lit",
+      "combien de personnes",
+      "capacité",
     ],
     reply:
       "The residence has two bedrooms and two bathrooms. The master bedroom has a private en-suite bathroom. The second bedroom has two twin beds with its own bathroom. There's also a comfortable living room and a full kitchen.",
   },
   contact: {
-    keywords: ["contact", "call", "email", "reach", "speak", "talk", "phone"],
+    keywords: [
+      // English
+      "contact",
+      "call",
+      "email",
+      "reach",
+      "speak",
+      "talk",
+      "phone",
+      // Spanish
+      "contacto",
+      "llamar",
+      "correo",
+      "teléfono",
+      "hablar",
+      // French
+      "contact",
+      "appeler",
+      "courriel",
+      "téléphone",
+      "parler",
+    ],
     reply:
       "You can reach us at [email] or [phone]. We typically respond within a few hours.",
   },
@@ -229,6 +336,7 @@ const fallback =
 // ── Route ─────────────────────────────────────────────────────────────────────
 
 const AVAIL_KEYWORDS = [
+  // English
   "available",
   "availability",
   "book",
@@ -237,62 +345,91 @@ const AVAIL_KEYWORDS = [
   "free",
   "reserve",
   "stay",
+  // Spanish
+  "disponible",
+  "disponibilidad",
+  "reservar",
+  "reserva",
+  "fechas",
+  "libre",
+  "quedarse",
+  // French
+  "disponible",
+  "réserver",
+  "réservation",
+  "dates",
+  "libre",
 ];
 
-router.post('/', async (req, res) => {
-  const { message, sessionId } = req.body
-  if (!message) return res.status(400).json({ error: 'Message is required' })
+router.post("/", async (req, res) => {
+  const { message, sessionId } = req.body;
+  if (!message) return res.status(400).json({ error: "Message is required" });
 
-  const lower = message.toLowerCase()
-  let reply
+  const lower = message.toLowerCase();
+  let reply;
 
   // Availability check
-  const requestedDates = parseDates(message)
-  const isAvailQuery   = AVAIL_KEYWORDS.some(kw => lower.includes(kw))
+  const requestedDates = parseDates(message);
+  const isAvailQuery = AVAIL_KEYWORDS.some((kw) => lower.includes(kw));
 
   if (requestedDates.length > 0 || isAvailQuery) {
     if (requestedDates.length > 0) {
       try {
-        const blocked    = await getBlockedDates()
-        const blockedSet = new Set(blocked)
-        const conflicts  = requestedDates.filter(d => blockedSet.has(d))
+        const blocked = await getBlockedDates();
+        const blockedSet = new Set(blocked);
+        const conflicts = requestedDates.filter((d) => blockedSet.has(d));
 
         if (conflicts.length === 0) {
-          reply = `Good news — ${friendlyRange(requestedDates)} ${requestedDates.length === 1 ? 'is' : 'are'} available! Would you like to go ahead and reserve your stay?`
+          reply = `Good news — ${friendlyRange(requestedDates)} ${requestedDates.length === 1 ? "is" : "are"} available! You can reserve your stay here: https://www.airbnb.com/rooms/37812103`;
         } else {
-          reply = `Unfortunately, ${friendlyRange(conflicts)} ${conflicts.length === 1 ? 'is' : 'are'} already booked. Would you like to check alternative dates?`
+          reply = `Unfortunately, ${friendlyRange(conflicts)} ${conflicts.length === 1 ? "is" : "are"} already booked. Would you like to check alternative dates?`;
         }
       } catch {
-        reply = "I wasn't able to check the calendar right now — please contact us directly and we'll confirm availability."
+        reply =
+          "I wasn't able to check the calendar right now — please contact us directly and we'll confirm availability.";
       }
     }
 
-    if (!reply) reply = 'I can check availability for you — which dates are you looking at?'
+    if (!reply)
+      reply =
+        "I can check availability for you — which dates are you looking at?";
 
-    try { await saveChat(sessionId || 'anonymous', message, reply) } catch (e) { console.error('Mongo save error:', e.message) }
-    return res.json({ reply })
+    try {
+      await saveChat(sessionId || "anonymous", message, reply);
+    } catch (e) {
+      console.error("Mongo save error:", e.message);
+    }
+    return res.json({ reply });
   }
 
   // Keyword responses
   for (const category of Object.values(responses)) {
-    if (category.keywords.some(kw => lower.includes(kw))) {
-      reply = category.reply
-      try { await saveChat(sessionId || 'anonymous', message, reply) } catch (e) { console.error('Mongo save error:', e.message) }
-      return res.json({ reply })
+    if (category.keywords.some((kw) => lower.includes(kw))) {
+      reply = category.reply;
+      try {
+        await saveChat(sessionId || "anonymous", message, reply);
+      } catch (e) {
+        console.error("Mongo save error:", e.message);
+      }
+      return res.json({ reply });
     }
   }
 
   // OpenAI fallback
   try {
-    const { askAI } = await import('../lib/openaiChat.js')
-    reply = await askAI(message)
+    const { askAI } = await import("../lib/openaiChat.js");
+    reply = await askAI(message);
   } catch (err) {
-    console.error('OpenAI error:', err.message)
-    reply = fallback
+    console.error("OpenAI error:", err.message);
+    reply = fallback;
   }
 
-  try { await saveChat(sessionId || 'anonymous', message, reply) } catch (e) { console.error('Mongo save error:', e.message) }
-  return res.json({ reply })
+  try {
+    await saveChat(sessionId || "anonymous", message, reply);
+  } catch (e) {
+    console.error("Mongo save error:", e.message);
+  }
+  return res.json({ reply });
 });
 
 export default router;

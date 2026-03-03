@@ -5,10 +5,12 @@ Ordered by priority.
 ---
 
 ## 1. "Reserve Your Stay" Button
+
 **Status:** Placeholder (`href="#"` scrolls to top)
 **Location:** `client/src/pages/HomePage/HomePage.jsx:79`
 
 **Options:**
+
 - Link to Airbnb listing (new tab) — simplest, just needs the URL
 - Open the chat widget — triggers bot so user can ask about dates
 - Smooth-scroll to the availability calendar
@@ -18,10 +20,12 @@ Ordered by priority.
 ---
 
 ## 2. Property Details in Chatbot
+
 **Status:** Not started
 **Location:** `server/routes/chat.js` — `responses` object
 
 Expand keyword responses with real property info:
+
 - Bedrooms / capacity / layout
 - House rules (quiet hours, no smoking, etc.)
 - Nearby beaches, restaurants, activities
@@ -32,10 +36,11 @@ Low effort — just add entries to the `responses` object.
 ---
 
 ## 3. Conversational Context
+
 **Status:** Not started
 
 Currently every chat message is stateless. To support follow-ups like
-*"what about the 16th?"* after *"is March 15 available?"*:
+_"what about the 16th?"_ after _"is March 15 available?"_:
 
 - `ChatWidget` sends full message history with each request
 - `/api/chat` resolves date/topic references from prior turns
@@ -44,6 +49,7 @@ Currently every chat message is stateless. To support follow-ups like
 ---
 
 ## 4. Real Property Photos
+
 **Status:** Not started
 **Location:** `client/src/assets/images/` + `client/src/components/Gallery/Gallery.jsx`
 
@@ -53,10 +59,12 @@ Consider optimizing images (WebP, proper sizing) before adding.
 ---
 
 ## 5. First Nav Page
+
 **Status:** Not started
 **Location:** `client/src/components/SideNav/SideNav.jsx` — disabled items
 
 Build out at least one of:
+
 - **Amenities** — pool, kitchen, WiFi, AC details with visuals
 - **Services** — concierge, cleaning, transfers
 - **Beaches** — nearby beaches with descriptions/photos
@@ -67,9 +75,11 @@ Pattern to follow: `client/src/pages/GalleryPage/` as reference for page structu
 ---
 
 ## 6. Google Analytics / Search Console
+
 **Status:** Not started
 
 Set up tracking to monitor traffic and indexing:
+
 - Create a Google Analytics 4 (GA4) property
 - Add the GA4 measurement ID (`G-XXXXXXXXXX`) script tag to `client/index.html`
 - Set up Google Search Console and verify domain ownership
@@ -79,9 +89,11 @@ Set up tracking to monitor traffic and indexing:
 ---
 
 ## 7. Accessibility — Image Alt Text
+
 **Status:** Not started
 
 Audit all `<img>` tags across the React app and add descriptive `alt` attributes:
+
 - `client/src/components/Gallery/Gallery.jsx`
 - `client/src/components/Hero/Hero.jsx`
 - `client/src/pages/GalleryPage/GalleryPage.jsx`
