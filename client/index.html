@@ -3,46 +3,84 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <meta
+      name="keywords"
+      content="La Dolce Vita, beachfront rental, Las Terrenas, Samaná, Dominican Republic, vacation, private residence, Caribbean, weekly stays, pet friendly, luxury apartment, ocean view, pool, family friendly, Airbnb, holiday rental"
+    />
 
     <!-- ── Favicon ── -->
-    <!-- Replace /vite.svg with your own icon file once you have one -->
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <!-- Updated favicon to use the simple, square logo -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/src/assets/images/logos/dolce-vita.png"
+    />
 
     <!-- ── Canonical & Alternate Language ── -->
     <!-- Tells Google the "official" URL for this page (prevents duplicate content issues) -->
     <!-- ⚠️ Replace YOURDOMAIN.com with the real domain once mom buys it -->
-    <link rel="canonical" href="https://YOURDOMAIN.com/" />
+    <link rel="canonical" href="https://ladolcevitabeach.com/" />
     <!-- Tells Google a Spanish version exists at /es — add that route in React when ready -->
-    <link rel="alternate" hreflang="es" href="https://YOURDOMAIN.com/es" />
-    <link rel="alternate" hreflang="en" href="https://YOURDOMAIN.com/" />
+    <link
+      rel="alternate"
+      hreflang="es"
+      href="https://ladolcevitabeach.com/es"
+    />
+    <link rel="alternate" hreflang="en" href="https://ladolcevitabeach.com/" />
 
     <!-- ── Primary SEO ── -->
     <!-- This is the blue link title Google shows in search results -->
-    <title>La Dolce Vita — Private Residence · Samaná, Dominican Republic</title>
+    <title>
+      La Dolce Vita — Private Residence · Samaná, Dominican Republic
+    </title>
     <!-- This is the 1–2 line description shown under the link in Google -->
-    <meta name="description" content="A private residence at La Dolce Vita, Las Terrenas, Samaná. Caribbean views, steps from the beach. Available for weekly stays." />
+    <meta
+      name="description"
+      content="A private residence at La Dolce Vita, Las Terrenas, Samaná. Caribbean views, steps from the beach. Available for weekly stays."
+    />
 
     <!-- ── Open Graph (Facebook, WhatsApp, iMessage, etc.) ── -->
     <!-- og:title — the bold headline in the share preview card -->
-    <meta property="og:title" content="La Dolce Vita — Private Residence · Samaná, Dominican Republic" />
+    <meta
+      property="og:title"
+      content="La Dolce Vita — Private Residence · Samaná, Dominican Republic"
+    />
     <!-- og:description — the smaller text under the headline in the card -->
-    <meta property="og:description" content="A private residence at La Dolce Vita, Las Terrenas, Samaná. Caribbean views, steps from the beach." />
+    <meta
+      property="og:description"
+      content="A private residence at La Dolce Vita, Las Terrenas, Samaná. Caribbean views, steps from the beach."
+    />
     <!-- og:type — tells platforms this is a website, not an article or profile -->
     <meta property="og:type" content="website" />
     <!-- og:url — ⚠️ Replace YOURDOMAIN.com once you have a custom domain -->
-    <meta property="og:url" content="https://YOURDOMAIN.com/" />
-    <!-- og:image — ⚠️ Replace YOURDOMAIN.com. Recommended size: 1200×630px -->
-    <meta property="og:image" content="https://YOURDOMAIN.com/og-image.jpg" />
-    <meta property="og:image:alt" content="La Dolce Vita private residence, Samaná Dominican Republic" />
+    <meta property="og:url" content="https://ladolcevitabeach.com/" />
+    <!-- og:image — Uses the gold square logo. Recommended size: 1200×630px -->
+    <meta
+      property="og:image"
+      content="https://ladolcevitabeach.com/og-image.jpg"
+    />
+    <meta
+      property="og:image:alt"
+      content="La Dolce Vita private residence, Samaná Dominican Republic"
+    />
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="La Dolce Vita" />
 
     <!-- ── Twitter / X Card ── -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="La Dolce Vita — Private Residence · Samaná, Dominican Republic" />
-    <meta name="twitter:description" content="A private residence at La Dolce Vita, Las Terrenas, Samaná. Caribbean views, steps from the beach." />
-    <!-- ⚠️ Replace YOURDOMAIN.com -->
-    <meta name="twitter:image" content="https://YOURDOMAIN.com/og-image.jpg" />
+    <meta
+      name="twitter:title"
+      content="La Dolce Vita — Private Residence · Samaná, Dominican Republic"
+    />
+    <meta
+      name="twitter:description"
+      content="A private residence at La Dolce Vita, Las Terrenas, Samaná. Caribbean views, steps from the beach."
+    />
+    <meta
+      name="twitter:image"
+      content="https://ladolcevitabeach.com/og-image.jpg"
+    />
 
     <!-- ── Structured Data: VacationRental + LodgingBusiness ── -->
     <!--
@@ -52,69 +90,97 @@
       Schema.org/VacationRental is the most specific type available.
     -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": ["LodgingBusiness", "VacationRental"],
-      "name": "La Dolce Vita Beachfront Rental Apt 2",
-      "description": "Beachfront 2-bedroom, 2-bathroom apartment in Las Terrenas, Samaná. Private pool, Caribbean views, steps from the beach. Sleeps 4, pets welcome.",
-      "url": "https://YOURDOMAIN.com/",
-      "telephone": "+17048022216",
-      "image": [
-        "https://YOURDOMAIN.com/assets/pool.jpg",
-        "https://YOURDOMAIN.com/assets/master-bed.jpg",
-        "https://YOURDOMAIN.com/assets/Porch.jpg",
-        "https://YOURDOMAIN.com/assets/living-room.jpg"
-      ],
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Ave 27 de Febrero, La Dolce Vita Residence Apt 2",
-        "addressLocality": "Las Terrenas",
-        "addressRegion": "Samaná",
-        "postalCode": "32000",
-        "addressCountry": "DO"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 19.3230496,
-        "longitude": -69.5337566
-      },
-      "hasMap": "http://google.com/maps/place/La+Dolce+Vita+Beachfront+Rental+Apt+2/@19.3230496,-69.5363369,17z/data=!4m9!3m8!1s0x8eaefbedd8f84925:0x4334c14da98a57fc!5m2!4m1!1i2!8m2!3d19.3230496!4d-69.5337566!16s%2Fg%2F11qqk3h2cy?entry=ttu",
-      "sameAs": [
-        "https://www.airbnb.com/rooms/37812103",
-        "https://search.google.com/local/maps?placeid=ChIJJUn42O37ro4R_FeKqU3BNEM",
-        "https://www.instagram.com/YOURACCOUNT" 
-      ],
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "5",
-        "reviewCount": "6",
-        "bestRating": "5",
-        "worstRating": "1"
-      },
-      "amenityFeature": [
-        { "@type": "LocationFeatureSpecification", "name": "Private Pool", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Beachfront", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Air Conditioning", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "WiFi", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Full Kitchen", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Pets Allowed", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Washer/Dryer", "value": true }
-      ],
-      "numberOfRooms": 2,
-      "occupancy": {
-        "@type": "QuantitativeValue",
-        "minValue": 1,
-        "maxValue": 4
-      },
-      "checkinTime": "15:00",
-      "checkoutTime": "12:00",
-      "petsAllowed": true,
-      "priceRange": "$130+/night",
-      "starRating": {
-        "@type": "Rating",
-        "ratingValue": "5"
+      {
+        "@context": "https://schema.org",
+        "@type": ["LodgingBusiness", "VacationRental"],
+        "name": "La Dolce Vita Beachfront Rental Apt 2",
+        "description": "Beachfront 2-bedroom, 2-bathroom apartment in Las Terrenas, Samaná. Private pool, Caribbean views, steps from the beach. Sleeps 4, pets welcome.",
+        "url": "https://ladolcevitabeach.com/",
+        "telephone": "+17048022216",
+        "image": [
+          "https://ladolcevitabeach.com/assets/pool.jpg",
+          "https://ladolcevitabeach.com/assets/master-bed.jpg",
+          "https://ladolcevitabeach.com/assets/Porch.jpg",
+          "https://ladolcevitabeach.com/assets/living-room.jpg"
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Ave 27 de Febrero, La Dolce Vita Residence Apt 2",
+          "addressLocality": "Las Terrenas",
+          "addressRegion": "Samaná",
+          "postalCode": "32000",
+          "addressCountry": "DO"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 19.3230496,
+          "longitude": -69.5337566
+        },
+        "hasMap": "http://google.com/maps/place/La+Dolce+Vita+Beachfront+Rental+Apt+2/@19.3230496,-69.5363369,17z/data=!4m9!3m8!1s0x8eaefbedd8f84925:0x4334c14da98a57fc!5m2!4m1!1i2!8m2!3d19.3230496!4d-69.5337566!16s%2Fg%2F11qqk3h2cy?entry=ttu",
+        "sameAs": [
+          "https://www.airbnb.com/rooms/37812103",
+          "https://search.google.com/local/maps?placeid=ChIJJUn42O37ro4R_FeKqU3BNEM",
+          "https://www.instagram.com/YOURACCOUNT"
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5",
+          "reviewCount": "6",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "amenityFeature": [
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Private Pool",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Beachfront",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Air Conditioning",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "WiFi",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Full Kitchen",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Pets Allowed",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Washer/Dryer",
+            "value": true
+          }
+        ],
+        "numberOfRooms": 2,
+        "occupancy": {
+          "@type": "QuantitativeValue",
+          "minValue": 1,
+          "maxValue": 4
+        },
+        "checkinTime": "15:00",
+        "checkoutTime": "12:00",
+        "petsAllowed": true,
+        "priceRange": "$130+/night",
+        "starRating": {
+          "@type": "Rating",
+          "ratingValue": "5"
+        }
       }
-    }
     </script>
 
     <!-- ── Structured Data: FAQ ── -->
@@ -124,60 +190,60 @@
       These questions are based on what guests typically ask in the chatbot.
     -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "How much does it cost to stay at La Dolce Vita?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Nightly rates start at $130/night depending on the season and dates. Book through our Airbnb listing at https://www.airbnb.com/rooms/37812103 for exact pricing and availability."
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How much does it cost to stay at La Dolce Vita?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nightly rates start at $130/night depending on the season and dates. Book through our Airbnb listing at https://www.airbnb.com/rooms/37812103 for exact pricing and availability."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are pets allowed at La Dolce Vita?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! Pets are welcome at La Dolce Vita Beachfront Rental Apt 2. Please mention your pet when booking."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What time is check-in and check-out?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Check-in is at 3:00 PM and check-out is at 12:00 PM (noon)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where is La Dolce Vita located?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La Dolce Vita is located at Ave 27 de Febrero, Las Terrenas, Samaná, Dominican Republic — steps from the beach with Caribbean views."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How many guests can stay at La Dolce Vita?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The apartment sleeps up to 4 guests across 2 bedrooms with 4 beds total."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is there a pool?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, La Dolce Vita has a private pool surrounded by palm trees, available to guests staying at the residence."
+            }
           }
-        },
-        {
-          "@type": "Question",
-          "name": "Are pets allowed at La Dolce Vita?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes! Pets are welcome at La Dolce Vita Beachfront Rental Apt 2. Please mention your pet when booking."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What time is check-in and check-out?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Check-in is at 3:00 PM and check-out is at 12:00 PM (noon)."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Where is La Dolce Vita located?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "La Dolce Vita is located at Ave 27 de Febrero, Las Terrenas, Samaná, Dominican Republic — steps from the beach with Caribbean views."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How many guests can stay at La Dolce Vita?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "The apartment sleeps up to 4 guests across 2 bedrooms with 4 beds total."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Is there a pool?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, La Dolce Vita has a private pool surrounded by palm trees, available to guests staying at the residence."
-          }
-        }
-      ]
-    }
+        ]
+      }
     </script>
 
     <link rel="stylesheet" href="https://use.typekit.net/lle4hoe.css" />

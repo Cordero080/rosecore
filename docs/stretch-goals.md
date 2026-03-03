@@ -63,3 +63,29 @@ Build out at least one of:
 - **Excursions** — local activities
 
 Pattern to follow: `client/src/pages/GalleryPage/` as reference for page structure.
+
+---
+
+## 6. Google Analytics / Search Console
+**Status:** Not started
+
+Set up tracking to monitor traffic and indexing:
+- Create a Google Analytics 4 (GA4) property
+- Add the GA4 measurement ID (`G-XXXXXXXXXX`) script tag to `client/index.html`
+- Set up Google Search Console and verify domain ownership
+- Submit `sitemap.xml` (already created at `client/public/sitemap.xml`)
+- Monitor: indexing status, search queries, click-through rates
+
+---
+
+## 7. Accessibility — Image Alt Text
+**Status:** Not started
+
+Audit all `<img>` tags across the React app and add descriptive `alt` attributes:
+- `client/src/components/Gallery/Gallery.jsx`
+- `client/src/components/Hero/Hero.jsx`
+- `client/src/pages/GalleryPage/GalleryPage.jsx`
+- Any other components rendering images
+
+Good alt text improves SEO (Google uses it to understand images) and is required for screen readers.
+Example: `alt="Beachfront pool at La Dolce Vita residence"` instead of `alt="pool"`.
