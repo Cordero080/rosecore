@@ -13,6 +13,45 @@ This folder documents every feature of the website and AI chatbot, with honest a
 
 ---
 
+## How It Works — The Plain-English Version
+
+### What is Vita?
+
+Vita is a trilingual AI concierge chatbot built into the vacation rental website. A guest opens the chat, types a question in English, Spanish, or French, and gets an instant, personalized answer. It can check live availability, answer property questions, recommend local restaurants, and link directly to the Airbnb booking page.
+
+### How does it pull data from Google Sheets?
+
+The property owners (non-technical) can't edit code. So all property information — pricing, amenities, house rules, check-in instructions, local recommendations — lives in a Google Sheet.
+
+When a guest sends a message, the server:
+1. Pulls the spreadsheet data via the Google Sheets API
+2. Caches it for 5 minutes (so we're not hammering the API)
+3. Injects it into the AI's system prompt as context
+
+The AI doesn't have hardcoded knowledge — it reads the sheet every time. If the owners change the price from $150 to $200 a night, or add a new restaurant recommendation, the chatbot knows about it within 5 minutes. No code change. No redeploy. They edit a cell and the AI picks it up.
+
+### Why is it efficient? The 3-tier pipeline
+
+Not every message goes to OpenAI. That's the obvious approach — and it's expensive and slow. Instead, messages flow through three tiers:
+
+**Tier 1 — Date Parsing (free, instant).** If the guest types "are you available March 15 to 20?", a custom date parser extracts the dates — no AI involved — and checks them against the live Airbnb calendar via iCal. The guest gets an instant answer with a booking link.
+
+**Tier 2 — Keyword Matching (free, instant).** If it's a common question like "how much per night?" or "do you allow pets?" — in English, Spanish, or French — keywords are matched and a canned answer is returned from the property data. No API call needed.
+
+**Tier 3 — GPT-4o-mini (pennies, ~1 second).** Only if the message doesn't match tiers 1 or 2 does it go to OpenAI. This handles genuinely unique questions like "what's the best beach for kids?" or "can you recommend a day trip?"
+
+**The result:** ~70% of messages never hit OpenAI. The whole chatbot costs roughly **3 cents per month** at normal traffic. And common questions are answered *faster* because there's no API round-trip.
+
+### Why not just use ChatGPT for everything?
+
+Anyone can call the OpenAI API — that's 10 lines of code. The interesting engineering decision was knowing when NOT to use it. If 500 guests ask "how much per night?", paying OpenAI to answer the same question 500 times is wasteful. The tiered approach delivers AI quality where it matters and instant free responses everywhere else. It scales without the cost scaling with it.
+
+### One-liner
+
+> A trilingual AI concierge that pulls live data from Google Sheets and Airbnb, answers 70% of questions without AI for zero cost, and only escalates to GPT when it actually needs to think.
+
+---
+
 ## Quick Feature Inventory
 
 ### Genuinely Innovative (Rare in Vacation Rental Sites)
