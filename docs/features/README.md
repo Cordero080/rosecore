@@ -19,6 +19,33 @@ This folder documents every feature of the website and AI chatbot, with honest a
 
 Vita is a trilingual AI concierge chatbot built into the vacation rental website. A guest opens the chat, types a question in English, Spanish, or French, and gets an instant, personalized answer. It can check live availability, answer property questions, recommend local restaurants, and link directly to the Airbnb booking page.
 
+### The Personality Prompt — Not Just an API Call
+
+Vita isn't a generic chatbot. It has a crafted personality and strict guardrails baked into the system prompt:
+
+**Personality:**
+- Warm, witty, Caribbean-relaxed — like a friend who happens to know everything about the property
+- Never repeats itself — if a guest asks something similar twice, it rephrases with a fresh angle
+- Light humor when it fits, never forced — charming dinner-party host, not a stand-up comedian
+- Weaves in local color — the breeze, the ocean, the smell of fresh coffee — so the guest *feels* the place before they arrive
+- Auto-detects language (English/Spanish/French) and responds entirely in that language — never asks "what language do you prefer?"
+
+**Guardrails (what Vita is NOT allowed to do):**
+- Never invents amenities, prices, or details — it can only use the property data from the Google Sheet and the curated local knowledge
+- If the answer isn't in the data, it says "let me connect you with the host" instead of making something up
+- Never mentions spreadsheets, databases, or that it's an AI reading data
+- Never says "as a concierge" or "as an AI" — it just *is* the concierge
+- Always includes the Airbnb booking link when a guest wants to book
+- Responses capped at 300 tokens — keeps replies concise, controls costs
+
+**Curated local knowledge built into the prompt:**
+- Real beaches with real descriptions (Playa Bonita, Cosón, Las Ballenas, Punta Popy)
+- Real restaurants by name (Boulangerie Française, Restaurant Luis, Paco Cabana, Mosquito Bar)
+- Real activities (El Limón waterfall, Los Haitises National Park, whale watching seasons)
+- Transportation tips, nightlife areas, airport info, weather seasons
+
+This isn't just "I plugged in ChatGPT." The system prompt is ~800 tokens of carefully written personality, rules, and local knowledge — plus the dynamic property data from Google Sheets. The AI reads all of this on every message so it responds in character, with real information, without hallucinating.
+
 ### How does it pull data from Google Sheets?
 
 The property owners (non-technical) can't edit code. So all property information — pricing, amenities, house rules, check-in instructions, local recommendations — lives in a Google Sheet.
