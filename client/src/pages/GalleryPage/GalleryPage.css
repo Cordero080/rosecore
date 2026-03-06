@@ -32,6 +32,13 @@
   margin-bottom: 8px;
 }
 
+.gallery-title-gold {
+  background: linear-gradient(135deg, #c9a84c 0%, #e8c96a 45%, #a8832a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .gallery-page-subtitle {
   font-family: var(--font-label);
   font-size: var(--font-size-xs);

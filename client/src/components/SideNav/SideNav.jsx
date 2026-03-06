@@ -3,14 +3,15 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import './SideNav.css'
 
 const NAV_ITEMS = [
-  { id: 'home',          label: 'Home',          path: '/'        },
-  { id: 'amenities',     label: 'Amenities'                       },
-  { id: 'services',      label: 'Services'                        },
-  { id: 'entertainment', label: 'Entertainment'                   },
-  { id: 'excursions',    label: 'Excursions'                      },
-  { id: 'beaches',       label: 'Beaches'                         },
-  { id: 'gallery',       label: 'Photo Gallery', path: '/gallery' },
-  { id: 'contact',       label: 'Contact'                         },
+  { id: 'home',          label: 'Home',          path: '/'           },
+  { id: 'about',         label: 'About',         path: '/about'      },
+  { id: 'amenities',     label: 'Amenities',     path: '/amenities'  },
+  { id: 'services',      label: 'Services'                           },
+  { id: 'entertainment', label: 'Entertainment'                      },
+  { id: 'excursions',    label: 'Excursions'                         },
+  { id: 'beaches',       label: 'Beaches',       path: '/beaches'    },
+  { id: 'gallery',       label: 'Photo Gallery', path: '/gallery'    },
+  { id: 'contact',       label: 'Contact',       path: '/contact'    },
 ]
 
 export default function SideNav() {
@@ -18,7 +19,8 @@ export default function SideNav() {
   const location = useLocation()
   const [mobileOpen, setMobileOpen] = useState(false)
 
-  const activeId = location.pathname === '/gallery' ? 'gallery' : 'home'
+  const pathToId = { '/': 'home', '/about': 'about', '/gallery': 'gallery', '/amenities': 'amenities', '/contact': 'contact', '/beaches': 'beaches' }
+  const activeId = pathToId[location.pathname] ?? 'home'
 
   function close() { setMobileOpen(false) }
 

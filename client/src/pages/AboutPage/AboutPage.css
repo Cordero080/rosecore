@@ -1,0 +1,313 @@
+/* ── Page shell ── */
+.about-page {
+  min-height: 100vh;
+  margin-left: -60px;
+  width: calc(100% + 60px);
+  padding: 80px 64px 100px calc(60px + 64px);
+  background: #f5f7fa;
+}
+
+/* ── Header ── */
+.about-header {
+  margin-bottom: 72px;
+}
+
+.about-eyebrow {
+  font-family: var(--font-label);
+  font-size: 0.62rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.about-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(3rem, 8vw, 6rem);
+  color: #1a2230;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.about-title-gold {
+  background: linear-gradient(135deg, #c9a84c 0%, #e8c96a 45%, #a8832a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.about-tagline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  color: var(--text-secondary);
+  letter-spacing: 0;
+}
+
+/* ── Intro ── */
+.about-intro {
+  max-width: 720px;
+  margin-bottom: 72px;
+}
+
+.about-body {
+  font-family: var(--font-main);
+  font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.about-intro-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-default);
+}
+
+.about-meta-address {
+  font-family: var(--font-label);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.about-meta-address strong {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.about-map-link {
+  display: inline-block;
+  flex-shrink: 0;
+  font-family: var(--font-label);
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  text-decoration: none;
+  border: 1px solid rgba(201, 168, 76, 0.45);
+  border-radius: var(--radius-full);
+  padding: 8px 16px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+
+.about-map-link:hover {
+  background: rgba(201, 168, 76, 0.08);
+  border-color: rgba(201, 168, 76, 0.75);
+  color: #a8882e;
+}
+
+/* ── Gold divider ── */
+.about-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0 0 72px;
+}
+
+.about-divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--accent-gold) 40%, var(--accent-gold));
+  opacity: 0.5;
+}
+
+.about-divider-line:last-child {
+  background: linear-gradient(to left, transparent, var(--accent-gold) 40%, var(--accent-gold));
+}
+
+.about-divider-diamond {
+  width: 5px;
+  height: 5px;
+  background: var(--accent-gold);
+  transform: rotate(45deg);
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+/* ── Section header shared ── */
+.about-section-eyebrow {
+  font-family: var(--font-label);
+  font-size: 0.58rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 10px;
+}
+
+.about-section-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 3.5vw, 2.4rem);
+  color: #1a2230;
+  letter-spacing: -0.015em;
+  margin-bottom: 48px;
+}
+
+/* ── Recognition ── */
+.about-recognition {
+  margin-bottom: 72px;
+}
+
+.about-recognition-row {
+  display: flex;
+  gap: 80px;
+  align-items: flex-start;
+}
+
+.about-award {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.about-award-score {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.about-award-number {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.8rem, 6vw, 4rem);
+  color: #1a2230;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.about-award-outof {
+  font-family: var(--font-label);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  align-self: flex-end;
+  padding-bottom: 6px;
+}
+
+.about-award-source {
+  font-family: var(--font-main);
+  font-size: var(--font-size-sm);
+  color: #1a2230;
+  font-weight: 500;
+}
+
+.about-award-label {
+  font-family: var(--font-label);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── Beaches ── */
+.about-beaches {
+  margin-bottom: 72px;
+}
+
+.about-beach-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.about-beach-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.about-beach-row:first-child {
+  border-top: 1px solid var(--border-default);
+}
+
+.about-beach-distance {
+  font-family: var(--font-label);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  width: 56px;
+  flex-shrink: 0;
+}
+
+.about-beach-rule {
+  width: 1px;
+  height: 24px;
+  background: var(--border-default);
+  flex-shrink: 0;
+}
+
+.about-beach-name {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  color: #1a2230;
+  letter-spacing: -0.01em;
+}
+
+/* ── Area facts ── */
+.about-area {
+  max-width: 680px;
+}
+
+.about-area-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.about-area-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.about-area-dot {
+  width: 4px;
+  height: 4px;
+  background: var(--accent-gold);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 9px;
+}
+
+.about-area-fact {
+  font-family: var(--font-main);
+  font-size: clamp(0.9rem, 1.3vw, 1rem);
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .about-page {
+    margin-left: 0;
+    width: 100%;
+    padding: 80px 20px 60px;
+  }
+
+  .about-recognition-row {
+    gap: 40px;
+  }
+
+  .about-beach-row {
+    align-items: flex-start;
+  }
+}

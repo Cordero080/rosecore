@@ -224,7 +224,7 @@ export default function GalleryPage() {
     <div className="gallery-page">
       <header className="gallery-page-header">
         <p className="gallery-page-eyebrow">The Property</p>
-        <h1 className="gallery-page-title">La Dolce Vita</h1>
+        <h1 className="gallery-page-title">La <span className="gallery-title-gold">Dolce</span> Vita</h1>
         <p className="gallery-page-subtitle">{total} photos</p>
       </header>
 

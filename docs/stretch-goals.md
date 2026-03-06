@@ -88,7 +88,45 @@ Set up tracking to monitor traffic and indexing:
 
 ---
 
-## 7. Accessibility — Image Alt Text
+## 7. Contact Page — Email Address
+
+**Status:** Not started
+**Location:** `client/src/pages/ContactPage/ContactPage.jsx` — comment marked `{/* Email — stretch goal */}`
+
+Add an email contact row once the address is ready:
+
+```jsx
+<li className="contact-row">
+  <span className="contact-row-label">Email</span>
+  <span className="contact-row-dash" />
+  <a className="contact-row-value" href="mailto:YOUR@EMAIL.com">YOUR@EMAIL.com</a>
+</li>
+```
+
+---
+
+## 8. Contact Page — Booking.com Link
+
+**Status:** Not started
+**Location:** `client/src/pages/ContactPage/ContactPage.jsx` — comment marked `{/* Booking.com — stretch goal */}`
+
+Add once the Booking.com property URL is confirmed:
+
+```jsx
+<li className="contact-row">
+  <span className="contact-row-label">Booking.com</span>
+  <span className="contact-row-dash" />
+  <a className="contact-row-value" href="YOUR_BOOKING_URL" target="_blank" rel="noopener noreferrer">
+    View listing ↗
+  </a>
+</li>
+```
+
+Also consider adding the 9.7/10 Booking.com recognition to the About page recognition block once the link is confirmed.
+
+---
+
+## 9. Accessibility — Image Alt Text
 
 **Status:** Not started
 

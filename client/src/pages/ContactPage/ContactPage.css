@@ -1,0 +1,203 @@
+/* ── Page shell ── */
+.contact-page {
+  min-height: 100vh;
+  margin-left: -60px;
+  width: calc(100% + 60px);
+  padding: 80px 64px 100px calc(60px + 64px);
+  background: #f5f7fa;
+}
+
+/* ── Header ── */
+.contact-header {
+  margin-bottom: 64px;
+}
+
+.contact-eyebrow {
+  font-family: var(--font-label);
+  font-size: 0.62rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.contact-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  color: #1a2230;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  margin-bottom: 14px;
+}
+
+.contact-title-gold {
+  background: linear-gradient(135deg, #c9a84c 0%, #e8c96a 45%, #a8832a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.contact-subtitle {
+  font-family: var(--font-main);
+  font-size: clamp(0.9rem, 1.4vw, 1rem);
+  color: var(--text-secondary);
+}
+
+/* ── Gold divider ── */
+.contact-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0 0 72px;
+}
+
+.contact-divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--accent-gold) 40%, var(--accent-gold));
+  opacity: 0.5;
+}
+
+.contact-divider-line:last-child {
+  background: linear-gradient(to left, transparent, var(--accent-gold) 40%, var(--accent-gold));
+}
+
+.contact-divider-diamond {
+  width: 5px;
+  height: 5px;
+  background: var(--accent-gold);
+  transform: rotate(45deg);
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+/* ── Body ── */
+.contact-body {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+/* ── Section ── */
+.contact-section-eyebrow {
+  font-family: var(--font-label);
+  font-size: 0.58rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 20px;
+}
+
+/* ── Rows ── */
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-row {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.contact-row:first-child {
+  border-top: 1px solid var(--border-default);
+}
+
+.contact-row-label {
+  font-family: var(--font-label);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  width: 130px;
+  flex-shrink: 0;
+}
+
+.contact-row-dash {
+  flex: 1;
+  height: 1px;
+  background: var(--border-default);
+  align-self: center;
+}
+
+.contact-row-value {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: #1a2230;
+  letter-spacing: -0.01em;
+  line-height: 1.6;
+  text-align: right;
+}
+
+a.contact-row-value {
+  text-decoration: none;
+  color: #1a2230;
+  transition: color var(--transition);
+}
+
+a.contact-row-value:hover {
+  color: var(--accent-gold);
+}
+
+.contact-note {
+  font-family: var(--font-main);
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-top: 16px;
+}
+
+/* ── Chat CTA ── */
+.contact-chat-cta {
+  padding: 28px 32px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+}
+
+.contact-chat-label {
+  font-family: var(--font-label);
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 10px;
+}
+
+.contact-chat-note {
+  font-family: var(--font-main);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .contact-page {
+    margin-left: 0;
+    width: 100%;
+    padding: 80px 20px 60px;
+  }
+
+  .contact-row {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .contact-row-dash {
+    display: none;
+  }
+
+  .contact-row-value {
+    text-align: left;
+    width: 100%;
+    padding-left: 0;
+  }
+}

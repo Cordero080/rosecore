@@ -1,0 +1,287 @@
+/* ── Page shell ── */
+.amenities-page {
+  min-height: 100vh;
+  margin-left: -60px;
+  width: calc(100% + 60px);
+  padding: 80px 64px 100px calc(60px + 64px);
+  background: #f5f7fa;
+}
+
+/* ── Header ── */
+.amenities-header {
+  margin-bottom: 64px;
+}
+
+.amenities-eyebrow {
+  font-family: var(--font-label);
+  font-size: 0.62rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.amenities-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  color: #1a2230;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  margin-bottom: 14px;
+}
+
+.amenities-title-gold {
+  background: linear-gradient(135deg, #c9a84c 0%, #e8c96a 45%, #a8832a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.amenities-subtitle {
+  font-family: var(--font-label);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── Stats strip ── */
+.amenities-stats {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 56px;
+}
+
+.amenities-stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-right: 40px;
+  border-right: 1px solid var(--border-default);
+  margin-right: 40px;
+}
+
+.amenities-stat:last-child {
+  border-right: none;
+  padding-right: 0;
+  margin-right: 0;
+}
+
+.amenities-stat-value {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  color: #1a2230;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.amenities-stat-label {
+  font-family: var(--font-label);
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── Gold divider ── */
+.amenities-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0 0 72px;
+}
+
+.amenities-divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--accent-gold) 40%, var(--accent-gold));
+  opacity: 0.5;
+}
+
+.amenities-divider-line:last-child {
+  background: linear-gradient(to left, transparent, var(--accent-gold) 40%, var(--accent-gold));
+}
+
+.amenities-divider-diamond {
+  width: 5px;
+  height: 5px;
+  background: var(--accent-gold);
+  transform: rotate(45deg);
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+/* ── Section header ── */
+.amenities-section {
+  margin-bottom: 80px;
+}
+
+.amenities-section-eyebrow {
+  font-family: var(--font-label);
+  font-size: 0.58rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 10px;
+}
+
+.amenities-section-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 3.5vw, 2.4rem);
+  color: #1a2230;
+  letter-spacing: -0.015em;
+  margin-bottom: 52px;
+}
+
+/* ── Amenities grid ── */
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.amenity-card {
+  padding: 36px 32px 36px 0;
+  border-right: 1px solid var(--border-default);
+  border-bottom: 1px solid var(--border-default);
+  padding-right: 32px;
+  padding-left: 32px;
+}
+
+/* Flush left edge on first column */
+.amenity-card:nth-child(4n+1) {
+  padding-left: 0;
+}
+
+/* No right border on last column */
+.amenity-card:nth-child(4n) {
+  border-right: none;
+  padding-right: 0;
+}
+
+/* No bottom border on last row */
+.amenity-card:nth-last-child(-n+4) {
+  border-bottom: none;
+}
+
+.amenity-rule {
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: var(--accent-gold);
+  margin-bottom: 20px;
+}
+
+.amenity-name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  color: #1a2230;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+}
+
+.amenity-detail {
+  font-family: var(--font-main);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* ── House rules ── */
+.amenities-rules-section {
+  max-width: 520px;
+}
+
+.amenities-rules-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.amenities-rule-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.amenities-rule-row:first-child {
+  border-top: 1px solid var(--border-default);
+}
+
+.amenities-rule-label {
+  font-family: var(--font-label);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  width: 90px;
+  flex-shrink: 0;
+}
+
+.amenities-rule-dash {
+  flex: 1;
+  height: 1px;
+  background: var(--border-default);
+}
+
+.amenities-rule-value {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: #1a2230;
+  letter-spacing: -0.01em;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .amenities-page {
+    margin-left: 0;
+    width: 100%;
+    padding: 80px 20px 60px;
+  }
+
+  .amenities-stats {
+    flex-wrap: wrap;
+    gap: 36px 0;
+    margin-bottom: 56px;
+    padding-bottom: 48px;
+  }
+
+  .amenities-stat {
+    flex: 50%;
+    border-right: none;
+    margin-right: 0;
+    padding-right: 0;
+  }
+
+  .amenities-stat:nth-child(odd) {
+    border-right: 1px solid var(--border-default);
+    padding-right: 24px;
+    margin-right: 0;
+  }
+
+  .amenities-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Reset desktop nth-child rules for 2-col grid */
+  .amenity-card {
+    padding: 28px 20px 28px 0;
+    border-right: 1px solid var(--border-default);
+    border-bottom: 1px solid var(--border-default);
+    padding-left: 20px;
+  }
+
+  .amenity-card:nth-child(4n+1) { padding-left: 20px; }
+  .amenity-card:nth-child(4n)   { border-right: 1px solid var(--border-default); padding-right: 20px; }
+  .amenity-card:nth-last-child(-n+4) { border-bottom: 1px solid var(--border-default); }
+
+  .amenity-card:nth-child(2n+1) { padding-left: 0; }
+  .amenity-card:nth-child(2n)   { border-right: none; padding-right: 0; }
+  .amenity-card:nth-last-child(-n+2) { border-bottom: none; }
+}

@@ -1,0 +1,249 @@
+/* ── Page shell ── */
+.beaches-page {
+  min-height: 100vh;
+  margin-left: -60px;
+  width: calc(100% + 60px);
+  padding: 80px 64px 100px calc(60px + 64px);
+  background: #f5f7fa;
+}
+
+/* ── Header ── */
+.beaches-header {
+  margin-bottom: 64px;
+}
+
+.beaches-eyebrow {
+  font-family: var(--font-label);
+  font-size: 0.62rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.beaches-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  color: #1a2230;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  margin-bottom: 14px;
+}
+
+.beaches-title-gold {
+  background: linear-gradient(135deg, #c9a84c 0%, #e8c96a 45%, #a8832a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.beaches-subtitle {
+  font-family: var(--font-main);
+  font-size: clamp(0.9rem, 1.4vw, 1rem);
+  color: var(--text-secondary);
+}
+
+/* ── Gold divider ── */
+.beaches-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0 0 72px;
+}
+
+.beaches-divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--accent-gold) 40%, var(--accent-gold));
+  opacity: 0.5;
+}
+
+.beaches-divider-line:last-child {
+  background: linear-gradient(to left, transparent, var(--accent-gold) 40%, var(--accent-gold));
+}
+
+.beaches-divider-diamond {
+  width: 5px;
+  height: 5px;
+  background: var(--accent-gold);
+  transform: rotate(45deg);
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+/* ── Beach list ── */
+.beaches-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Beach entry ── */
+.beach-entry {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 40px;
+  padding: 56px 0;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.beach-entry:first-child {
+  border-top: 1px solid var(--border-default);
+}
+
+/* ── Left meta column ── */
+.beach-entry-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 4px;
+}
+
+.beach-entry-id {
+  font-family: var(--font-label);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  color: var(--accent-gold);
+  opacity: 0.8;
+}
+
+.beach-entry-distance {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  color: #1a2230;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+.beach-entry-drive {
+  font-family: var(--font-label);
+  font-size: 0.56rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ── Right body column ── */
+.beach-entry-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* ── Image ── */
+.beach-image-wrap {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.beach-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.beach-image-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg,
+    rgba(201, 168, 76, 0.06) 0%,
+    rgba(180, 195, 210, 0.12) 50%,
+    rgba(201, 168, 76, 0.04) 100%
+  );
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+}
+
+.beach-image-placeholder-name {
+  font-family: var(--font-label);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── Content ── */
+.beach-entry-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 4px;
+}
+
+.beach-name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  color: #1a2230;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.beach-body {
+  font-family: var(--font-main);
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* ── Tags ── */
+.beach-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin-top: 4px;
+}
+
+.beach-tag {
+  font-family: var(--font-label);
+  font-size: 0.56rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-full);
+  padding: 5px 12px;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .beaches-page {
+    margin-left: 0;
+    width: 100%;
+    padding: 80px 20px 60px;
+  }
+
+  .beach-entry {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 40px 0;
+  }
+
+  .beach-entry-meta {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .beach-entry-drive {
+    display: none;
+  }
+
+  .beach-entry-body {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}

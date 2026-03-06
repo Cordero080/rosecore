@@ -4,6 +4,10 @@ import SideNav from './components/SideNav/SideNav'
 import ChatWidget from './components/ChatWidget/ChatWidget'
 import HomePage from './pages/HomePage/HomePage'
 import GalleryPage from './pages/GalleryPage/GalleryPage'
+import AmenitiesPage from './pages/AmenitiesPage/AmenitiesPage'
+import AboutPage from './pages/AboutPage/AboutPage'
+import ContactPage from './pages/ContactPage/ContactPage'
+import BeachesPage from './pages/BeachesPage/BeachesPage'
 
 function App() {
   return (
@@ -15,6 +19,10 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/gallery" element={<GalleryPage />} />
+            <Route path="/amenities" element={<AmenitiesPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/beaches" element={<BeachesPage />} />
           </Routes>
         </div>
         <ChatWidget />
