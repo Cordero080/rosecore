@@ -24,7 +24,7 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 20% 40%, rgba(255, 235, 200, 0.5)  0%, transparent 55%), /* ← WARM AMBER ellipse — bottom-left: color, opacity, spread% */
+    radial-gradient(ellipse at 50% 40%, rgba(255, 235, 200, 0.5)  0%, transparent 55%), /* ← WARM AMBER ellipse — bottom-left: color, opacity, spread% */
     radial-gradient(ellipse at 80% 20%, rgba(210, 230, 255, 0.38) 0%, transparent 50%), /* ← BLUE ellipse — top-right: THIS bleeds through the SectionDivider wave */
     radial-gradient(ellipse at 60% 90%, rgba(220, 240, 220, 0.35) 0%, transparent 45%), /* ← SOFT GREEN ellipse — bottom-center */
     linear-gradient(160deg, rgba(240, 244, 248, 0.68) 0%, rgba(250, 247, 242, 0.63) 10%, rgba(245, 240, 235, 0.797) 40%); /* ← BASE veil tint */

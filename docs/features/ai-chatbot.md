@@ -18,11 +18,12 @@ User message
 3. GPT-4o-mini with personality prompt →  AI-generated conversational reply
 ```
 
-**Why this matters:** Anyone can send every message to GPT — that's 10 lines of code. The harder, more interesting decision is choosing *not* to.
+**Why this matters:** Anyone can send every message to GPT — that's 10 lines of code. The harder, more interesting decision is choosing _not_ to.
 
 Most guest messages are predictable: "how much per night?", "do you allow pets?", "are you available March 15-20?" Sending those to OpenAI means paying for the same answers hundreds of times. A junior developer ships the "send everything to GPT" version, gets a $50 bill in week one, and scrambles to fix it.
 
 This pipeline skips that mistake entirely. It intercepts the easy stuff — date queries and common questions — before it ever reaches the API. The result:
+
 - **70%+ of messages are handled instantly, at zero cost**
 - **GPT is reserved for genuinely unique questions** where AI adds real value
 - **Response times are faster** for common questions (no API round-trip)
@@ -37,6 +38,7 @@ The architecture says: "I thought about what happens when real users hit this at
 ## Feature List
 
 ### Natural Language Date Parser
+
 - Parses human-friendly dates: "March 15", "March 15-20", "March 15 to April 2", "first week of March", "15th"
 - Handles cross-month ranges and ordinals
 - Smart year inference — if the month has already passed, assumes next year
@@ -45,6 +47,7 @@ The architecture says: "I thought about what happens when real users hit this at
 > **Innovative:** Most vacation rental chatbots require guests to use a calendar picker. Vita understands natural language dates and checks them against live availability in real time.
 
 ### Live Availability Checking
+
 - Parses the Airbnb iCal feed to get blocked dates
 - Compares user's requested dates against the live calendar
 - Returns specific feedback: which dates are available, which are booked
@@ -54,6 +57,7 @@ The architecture says: "I thought about what happens when real users hit this at
 > **Innovative:** Real-time calendar sync from Airbnb's iCal feed means the chatbot always has up-to-date availability without manual updates.
 
 ### Booking Link Integration
+
 - When dates are available, the reply includes a direct link to the Airbnb listing
 - The chat UI automatically converts URLs into clickable links
 - Reduces friction from "interested" to "booked" to a single click
@@ -62,6 +66,7 @@ The architecture says: "I thought about what happens when real users hit this at
 > **Attracts clients:** Guests can go from asking about dates to booking in seconds, without leaving the chat.
 
 ### Trilingual Support (English, Spanish, French)
+
 - Keyword matching works in all three languages
 - GPT responses auto-detect the user's language and reply in kind
 - Same warm personality in every language
@@ -71,6 +76,7 @@ The architecture says: "I thought about what happens when real users hit this at
 > **Attracts clients:** Las Terrenas has a strong French and Italian expat community. Greeting a French-speaking guest in their language immediately builds trust.
 
 ### GPT-4o-mini with Rich System Prompt
+
 - Model: `gpt-4o-mini` (fast, cheap, high quality)
 - Personality: warm, witty, Caribbean-relaxed — like a friend who knows everything about the property
 - Packed with local knowledge: restaurants, beaches, activities, airports, nightlife, transportation
@@ -81,6 +87,7 @@ The architecture says: "I thought about what happens when real users hit this at
 > **Innovative:** The system prompt contains curated local knowledge (real restaurants, real beaches, real activities) that goes far beyond generic property FAQ data. Most vacation rental bots just answer "what's the WiFi password."
 
 ### Google Sheets → AI Knowledge Pipeline
+
 - Property data (amenities, pricing, rules, etc.) is pulled from a Google Sheet
 - Data is cached for 5 minutes to avoid excessive API calls
 - Injected into the GPT system prompt on every request
@@ -90,6 +97,7 @@ The architecture says: "I thought about what happens when real users hit this at
 > **Innovative:** Most chatbots require developer intervention to update their knowledge base. This one updates automatically from a Google Sheet that anyone can edit.
 
 ### Conversation Logging (MongoDB)
+
 - Every chat exchange is saved: sessionId, user message, bot reply, timestamp
 - Enables analysis of what guests ask most
 - Can inform future keyword responses and property improvements
@@ -98,6 +106,7 @@ The architecture says: "I thought about what happens when real users hit this at
 > **Attracts employers:** Demonstrates real-world data pipeline thinking — not just building a chatbot, but instrumenting it for continuous improvement.
 
 ### Chat UI Polish
+
 - **Teaser bubble:** Proactive greeting that invites engagement ("Hi, I'm Vita — ask me anything!")
 - **Glass-morphism panel:** Frosted glass effect with blur, semi-transparent background
 - **Typing indicator:** Three-dot bounce animation while waiting for response
@@ -109,6 +118,7 @@ The architecture says: "I thought about what happens when real users hit this at
 > **Attracts clients:** The chat feels native and premium, not like a clunky third-party widget bolted on.
 
 ### Serverless Fallback
+
 - If the main server (Render) is down, a lightweight Vercel serverless function handles basic keyword-based chat
 - No OpenAI or database — just fast keyword matching with trilingual support
 - **File:** `api/chat.js`
@@ -121,36 +131,38 @@ The architecture says: "I thought about what happens when real users hit this at
 
 ### Model: GPT-4o-mini
 
-| Metric | Cost |
-|--------|------|
-| Input tokens | $0.15 per 1M tokens |
+| Metric        | Cost                |
+| ------------- | ------------------- |
+| Input tokens  | $0.15 per 1M tokens |
 | Output tokens | $0.60 per 1M tokens |
 
 ### Per-message cost estimate
 
-| Component | Tokens | Cost |
-|-----------|--------|------|
-| System prompt (personality + local knowledge + property data) | ~800 tokens | ~$0.00012 |
-| User message | ~20-50 tokens | ~$0.000005 |
-| Bot reply | ~50-150 tokens | ~$0.00006 |
-| **Total per GPT message** | **~900-1000 tokens** | **~$0.0002** |
+| Component                                                     | Tokens               | Cost         |
+| ------------------------------------------------------------- | -------------------- | ------------ |
+| System prompt (personality + local knowledge + property data) | ~800 tokens          | ~$0.00012    |
+| User message                                                  | ~20-50 tokens        | ~$0.000005   |
+| Bot reply                                                     | ~50-150 tokens       | ~$0.00006    |
+| **Total per GPT message**                                     | **~900-1000 tokens** | **~$0.0002** |
 
 ### Monthly cost projections
 
-| Scenario | Messages/month | GPT messages* | Estimated cost |
-|----------|---------------|---------------|----------------|
-| Low traffic | 100 | 30 | ~$0.006 |
-| Medium traffic | 500 | 150 | ~$0.03 |
-| High traffic | 2,000 | 600 | ~$0.12 |
-| Very high traffic | 10,000 | 3,000 | ~$0.60 |
+| Scenario          | Messages/month | GPT messages\* | Estimated cost |
+| ----------------- | -------------- | -------------- | -------------- |
+| Low traffic       | 100            | 30             | ~$0.006        |
+| Medium traffic    | 500            | 150            | ~$0.03         |
+| High traffic      | 2,000          | 600            | ~$0.12         |
+| Very high traffic | 10,000         | 3,000          | ~$0.60         |
 
-*\*Not all messages hit GPT — keyword matches and availability checks are free. Roughly 30% of messages reach the OpenAI tier.*
+_\*Not all messages hit GPT — keyword matches and availability checks are free. Roughly 30% of messages reach the OpenAI tier._
 
 ### Why it's so cheap
+
 1. **GPT-4o-mini** is 15x cheaper than GPT-4o and 60x cheaper than GPT-4
 2. **3-tier pipeline** means most messages never reach OpenAI
 3. **300 max_tokens** cap prevents runaway responses
 4. **Trilingual keywords** catch more common questions before they hit GPT
 
 ### Bottom line
+
 Even at high traffic (2,000 messages/month), the AI chatbot costs **less than a cup of coffee per month.** The cost of NOT having it — losing potential bookings because guests couldn't get instant answers — is far greater.

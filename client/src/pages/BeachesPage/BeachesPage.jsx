@@ -1,5 +1,10 @@
 import { useEffect } from 'react'
 import './BeachesPage.css'
+import bonitaImg   from '../../assets/images/beaches/bonita.jpg'
+import puntaPopImg   from '../../assets/images/beaches/punta-popy.jpg'
+import ballenasImg   from '../../assets/images/beaches/las-ballenas.jpg'
+import rinconImg     from '../../assets/images/beaches/rincon.jpg'
+import galerasImg    from '../../assets/images/beaches/las-galeras.jpg'
 
 const BEACHES = [
   {
@@ -9,7 +14,7 @@ const BEACHES = [
     drive:    'Walking distance',
     body:     'The closest beach to the residence and the one you\'ll return to most. Calm turquoise water, white sand, and palm trees that lean into the wind. The sunsets here are unhurried and spectacular — the kind that make you stay longer than planned.',
     tags:     ['Swimming', 'Sunsets', 'Palms'],
-    image:    null, // replace with: import img from '../../assets/images/beaches/bonita.jpg'
+    image:    bonitaImg,
   },
   {
     id:       '02',
@@ -18,7 +23,7 @@ const BEACHES = [
     drive:    'Short drive or walk',
     body:     'The town beach. Calmer water, a string of cafés and beach bars along the shore. Good for a morning coffee with your feet in the sand, or a long afternoon with nowhere to be.',
     tags:     ['Cafés', 'Town beach', 'Calm water'],
-    image:    null,
+    image:    puntaPopImg,
   },
   {
     id:       '03',
@@ -27,7 +32,7 @@ const BEACHES = [
     drive:    'Short drive',
     body:     'Quiet and windswept, with an end-of-the-world feeling that the other beaches lack. Best walked at golden hour, when the light turns amber and the beach is mostly empty.',
     tags:     ['Walking', 'Golden hour', 'Quiet'],
-    image:    null,
+    image:    ballenasImg,
   },
   {
     id:       '04',
@@ -54,7 +59,7 @@ const BEACHES = [
     drive:    'Drive required',
     body:     'Consistently ranked among the best beaches in the Caribbean — and it earns it. A long arc of white sand backed by coconut palms, with a river at one end and clear Atlantic water. Worth every minute of the drive.',
     tags:     ['Top-rated', 'Caribbean classic', 'River'],
-    image:    null,
+    image:    rinconImg,
   },
   {
     id:       '07',
@@ -63,7 +68,7 @@ const BEACHES = [
     drive:    'Drive required',
     body:     'A small fishing village at the far tip of the Samaná Peninsula. The drive alone is worth it — winding roads through jungle and hills. Several small beaches within the village, each one more secluded than the last.',
     tags:     ['Village', 'Secluded', 'Scenic drive'],
-    image:    null,
+    image:    galerasImg,
   },
 ]
 
