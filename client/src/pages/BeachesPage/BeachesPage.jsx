@@ -5,6 +5,7 @@ import puntaPopImg   from '../../assets/images/beaches/punta-popy.jpg'
 import ballenasImg   from '../../assets/images/beaches/las-ballenas.jpg'
 import rinconImg     from '../../assets/images/beaches/rincon.jpg'
 import galerasImg    from '../../assets/images/beaches/las-galeras.jpg'
+import cosonImg     from '../../assets/images/beaches/coson.jpg'
 
 const BEACHES = [
   {
@@ -41,7 +42,7 @@ const BEACHES = [
     drive:    'Short drive',
     body:     'Seven kilometres of wild, undeveloped beach — one of the longest in the Dominican Republic. A favourite among surfers and anyone who wants to feel genuinely far from civilisation. Bring water.',
     tags:     ['Surfing', 'Wild beach', 'Long stretch'],
-    image:    null,
+    image:    cosonImg,
   },
   {
     id:       '05',
