@@ -28,6 +28,19 @@
   z-index: 2;
 }
 
+/* Edge blur — sharp center, softened perimeter */
+.gallery-slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  mask-image: radial-gradient(ellipse at center, transparent 50%, black 82%);
+  -webkit-mask-image: radial-gradient(ellipse at center, transparent 50%, black 82%);
+  pointer-events: none;
+}
+
 .gallery-slide.is-prev {
   opacity: 0;
   z-index: 1;

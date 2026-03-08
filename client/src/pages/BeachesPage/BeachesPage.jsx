@@ -6,6 +6,7 @@ import ballenasImg   from '../../assets/images/beaches/las-ballenas.jpg'
 import rinconImg     from '../../assets/images/beaches/rincon.jpg'
 import galerasImg    from '../../assets/images/beaches/las-galeras.jpg'
 import cosonImg     from '../../assets/images/beaches/coson.jpg'
+import moronImg     from '../../assets/images/beaches/moron.jpg'
 
 const BEACHES = [
   {
@@ -51,7 +52,7 @@ const BEACHES = [
     drive:    'Drive required',
     body:     'Remote and peaceful, with almost no crowds even in high season. Pristine water, dramatic cliffs nearby, and the kind of silence that\'s hard to find anywhere on the peninsula.',
     tags:     ['Remote', 'Uncrowded', 'Pristine'],
-    image:    null,
+    image:    moronImg,
   },
   {
     id:       '06',
