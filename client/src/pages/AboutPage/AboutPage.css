@@ -14,10 +14,11 @@
 
 .about-eyebrow {
   font-family: var(--font-label);
-  font-size: 0.62rem;
-  letter-spacing: 0.24em;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   margin-bottom: 14px;
 }
 
@@ -42,8 +43,8 @@
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(1rem, 2vw, 1.4rem);
-  color: var(--text-secondary);
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  color: #1a2230;
   letter-spacing: 0;
 }
 
@@ -55,7 +56,8 @@
 
 .about-body {
   font-family: var(--font-main);
-  font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  font-weight: 400;
   color: var(--text-secondary);
   line-height: 1.8;
   margin-bottom: 20px;
@@ -72,11 +74,10 @@
 }
 
 .about-meta-address {
-  font-family: var(--font-label);
-  font-size: 0.62rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text-muted);
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--text-secondary);
   line-height: 1.6;
 }
 
@@ -89,10 +90,11 @@
   display: inline-block;
   flex-shrink: 0;
   font-family: var(--font-label);
-  font-size: 0.6rem;
-  letter-spacing: 0.16em;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--accent-gold);
+  color: #a8832a;
   text-decoration: none;
   border: 1px solid rgba(201, 168, 76, 0.45);
   border-radius: var(--radius-full);
@@ -140,10 +142,11 @@
 /* ── Section header shared ── */
 .about-section-eyebrow {
   font-family: var(--font-label);
-  font-size: 0.58rem;
-  letter-spacing: 0.26em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--accent-gold);
+  color: #a8832a;
   margin-bottom: 10px;
 }
 
@@ -190,9 +193,10 @@
 
 .about-award-outof {
   font-family: var(--font-label);
-  font-size: 0.65rem;
+  font-size: 0.8rem;
+  font-weight: 500;
   letter-spacing: 0.1em;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   align-self: flex-end;
   padding-bottom: 6px;
 }
@@ -206,10 +210,11 @@
 
 .about-award-label {
   font-family: var(--font-label);
-  font-size: 0.6rem;
-  letter-spacing: 0.14em;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--text-secondary);
 }
 
 /* ── Beaches ── */
@@ -237,10 +242,11 @@
 
 .about-beach-distance {
   font-family: var(--font-label);
-  font-size: 0.6rem;
-  letter-spacing: 0.18em;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   width: 56px;
   flex-shrink: 0;
 }
@@ -290,7 +296,8 @@
 
 .about-area-fact {
   font-family: var(--font-main);
-  font-size: clamp(0.9rem, 1.3vw, 1rem);
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
+  font-weight: 400;
   color: var(--text-secondary);
   line-height: 1.7;
 }

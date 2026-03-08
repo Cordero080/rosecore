@@ -14,10 +14,11 @@
 
 .amenities-eyebrow {
   font-family: var(--font-label);
-  font-size: 0.62rem;
-  letter-spacing: 0.24em;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   margin-bottom: 14px;
 }
 
@@ -40,10 +41,11 @@
 
 .amenities-subtitle {
   font-family: var(--font-label);
-  font-size: 0.65rem;
-  letter-spacing: 0.18em;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--text-secondary);
 }
 
 /* ── Stats strip ── */
@@ -80,10 +82,11 @@
 
 .amenities-stat-label {
   font-family: var(--font-label);
-  font-size: 0.58rem;
-  letter-spacing: 0.22em;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--text-secondary);
 }
 
 /* ── Gold divider ── */
@@ -121,10 +124,11 @@
 
 .amenities-section-eyebrow {
   font-family: var(--font-label);
-  font-size: 0.58rem;
-  letter-spacing: 0.26em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--accent-gold);
+  color: #a8832a;
   margin-bottom: 10px;
 }
 
@@ -177,16 +181,20 @@
 
 .amenity-name {
   font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  font-weight: 500;
+  font-size: clamp(1.25rem, 2.2vw, 1.5rem);
   color: #1a2230;
   letter-spacing: -0.01em;
-  margin-bottom: 10px;
+  display: inline-block;
+  border-bottom: 1.5px solid rgba(201, 168, 76, 0.6);
+  padding-bottom: 6px;
+  margin-bottom: 14px;
 }
 
 .amenity-detail {
   font-family: var(--font-main);
-  font-size: var(--font-size-sm);
+  font-size: 1rem;
+  font-weight: 400;
   color: var(--text-secondary);
   line-height: 1.65;
 }
@@ -216,11 +224,12 @@
 
 .amenities-rule-label {
   font-family: var(--font-label);
-  font-size: 0.62rem;
-  letter-spacing: 0.2em;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--text-muted);
-  width: 90px;
+  color: var(--text-secondary);
+  width: 110px;
   flex-shrink: 0;
 }
 
@@ -232,7 +241,8 @@
 
 .amenities-rule-value {
   font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-size: 1.3rem;
+  font-weight: 500;
   color: #1a2230;
   letter-spacing: -0.01em;
 }

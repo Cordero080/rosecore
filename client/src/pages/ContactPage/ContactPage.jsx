@@ -77,7 +77,7 @@ export default function ContactPage() {
               <span className="contact-row-dash" />
               <a
                 className="contact-row-value"
-                href="https://www.google.com/maps?q=19.3230496,-69.5337566"
+                href="https://www.google.com/maps/place/La+Dolce+Vita+Beachfront+Rental+Apt+2/@19.3228721,-69.5348155,19z/data=!4m9!3m8!1s0x8eaefbedd8f84925:0x4334c14da98a57fc!5m2!4m1!1i2!8m2!3d19.3230496!4d-69.5337566!16s%2Fg%2F11qqk3h2cy?entry=ttu&g_ep=EgoyMDI2MDMwNC4xIKXMDSoASAFQAw%3D%3D"
                 target="_blank"
                 rel="noopener noreferrer"
               >

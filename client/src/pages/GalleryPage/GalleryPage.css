@@ -16,10 +16,11 @@
 
 .gallery-page-eyebrow {
   font-family: var(--font-label);
-  font-size: var(--font-size-xs);
+  font-size: 0.78rem;
+  font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   margin-bottom: 10px;
 }
 
@@ -41,9 +42,10 @@
 
 .gallery-page-subtitle {
   font-family: var(--font-label);
-  font-size: var(--font-size-xs);
+  font-size: 0.78rem;
+  font-weight: 500;
   letter-spacing: 0.12em;
-  color: var(--text-muted);
+  color: var(--text-secondary);
 }
 
 /* ── Category section ── */
@@ -57,10 +59,11 @@
 
 .gs-eyebrow {
   font-family: var(--font-label);
-  font-size: 0.65rem;
-  letter-spacing: 0.22em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: #a8832a;
   margin-bottom: 6px;
 }
 
