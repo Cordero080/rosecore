@@ -218,14 +218,11 @@ export default function GalleryPage() {
     setLightbox(lb => ({ ...lb, index: (lb.index + 1) % lbSlides.length }))
   , [lbSlides.length])
 
-  const total = CATEGORIES.scenery.length + CATEGORIES.property.length
-
   return (
     <div className="gallery-page">
       <header className="gallery-page-header">
         <p className="gallery-page-eyebrow">The Property</p>
         <h1 className="gallery-page-title">La <span className="gallery-title-gold">Dolce</span> Vita</h1>
-        <p className="gallery-page-subtitle">{total} photos</p>
       </header>
 
       <Slideshow
@@ -237,7 +234,7 @@ export default function GalleryPage() {
 
       <Slideshow
         slides={CATEGORIES.property}
-        eyebrow="The Villa"
+        eyebrow="The Villa · Apt 2"
         title="La Dolce Vita"
         onOpenLightbox={i => openLightbox('property', i)}
       />

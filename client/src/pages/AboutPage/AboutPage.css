@@ -39,6 +39,14 @@
   background-clip: text;
 }
 
+.about-title-row {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  margin-bottom: 16px;
+}
+
+
 .about-tagline {
   font-family: var(--font-display);
   font-style: italic;
