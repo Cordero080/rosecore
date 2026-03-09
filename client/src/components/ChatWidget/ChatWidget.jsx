@@ -3,8 +3,8 @@ import './ChatWidget.css'
 // const N8N_URL = 'http://localhost:5678/webhook-test/chat';
 
 // uncomment to use local host 
-// const CHAT_URL = 'http://localhost:3001/api/chat' ;
-const CHAT_URL = 'https://rosecore-gyvw.onrender.com/api/chat';
+const CHAT_URL = 'http://localhost:3001/api/chat' ;
+// const CHAT_URL = 'https://rosecore-gyvw.onrender.com/api/chat';
 
 /* Turn URLs in a string into clickable <a> tags */
 function linkify(text) {
@@ -17,6 +17,9 @@ function linkify(text) {
   )
 }
 
+const DEFAULT_W = 340
+const DEFAULT_H = 460
+
 export default function ChatWidget() {
   const [open, setOpen] = useState(false)
   const [teaserVisible, setTeaserVisible] = useState(true)
@@ -25,6 +28,7 @@ export default function ChatWidget() {
   ])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
+  const [size, setSize] = useState({ width: DEFAULT_W, height: DEFAULT_H })
   const bottomRef = useRef(null)
 
   useEffect(() => {
@@ -65,9 +69,36 @@ export default function ChatWidget() {
     setOpen(true)
   }
 
+  function startResize(e) {
+    e.preventDefault()
+    const startX = e.clientX
+    const startY = e.clientY
+    const startW = size.width
+    const startH = size.height
+
+    function onMove(e) {
+      setSize({
+        width:  Math.max(280, Math.min(800, startW + (startX - e.clientX))),
+        height: Math.max(360, Math.min(860, startH + (startY - e.clientY))),
+      })
+    }
+    function onUp() {
+      window.removeEventListener('mousemove', onMove)
+      window.removeEventListener('mouseup', onUp)
+    }
+    window.addEventListener('mousemove', onMove)
+    window.addEventListener('mouseup', onUp)
+  }
+
   return (
     <div className="chat-widget">
-      <div className={`chat-panel ${open ? 'chat-panel--open' : ''}`}>
+      {open && (
+        <div className="chat-resize-handle" onMouseDown={startResize} title="Drag to resize" />
+      )}
+      <div
+        className={`chat-panel ${open ? 'chat-panel--open' : ''}`}
+        style={open ? { width: size.width, height: size.height } : undefined}
+      >
         <div className="chat-header">
           <div className="chat-header-identity">
             <span className="chat-vita-name">Vita</span>

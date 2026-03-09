@@ -226,17 +226,17 @@ export default function GalleryPage() {
       </header>
 
       <Slideshow
-        slides={CATEGORIES.scenery}
-        eyebrow="Scenery"
-        title="The Coast"
-        onOpenLightbox={i => openLightbox('scenery',  i)}
-      />
-
-      <Slideshow
         slides={CATEGORIES.property}
         eyebrow="The Villa · Apt 2"
         title="La Dolce Vita"
         onOpenLightbox={i => openLightbox('property', i)}
+      />
+
+      <Slideshow
+        slides={CATEGORIES.scenery}
+        eyebrow="Scenery"
+        title="The Coast"
+        onOpenLightbox={i => openLightbox('scenery',  i)}
       />
 
       {lightbox && (
