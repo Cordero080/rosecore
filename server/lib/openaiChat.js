@@ -4,7 +4,8 @@ import { getSheetData } from "./getSheetData.js";
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 export async function askAI(userMessage) {
-  const propertyData = await getSheetData();
+  let propertyData = ''
+  try { propertyData = await getSheetData() } catch { /* sheet unavailable locally */ };
 
   const completion = await openai.chat.completions.create({
     model: "gpt-4o-mini",
@@ -30,17 +31,51 @@ RULES:
 - When a guest wants to book or reserve, always include the Airbnb booking link: https://www.airbnb.com/rooms/37812103
 
 LOCAL KNOWLEDGE:
-- La Dolce Vita is near Playa Bonita — widely considered one of the most beautiful beaches in the Dominican Republic. Calm turquoise water, white sand, palm trees, and stunning sunsets.
-- Other nearby beaches: Playa Cosón (7km wild stretch, great for surfers), Playa Las Ballenas (gorgeous sunset walks), Playa Punta Popy (city center beach, calm water, cafés nearby).
-- Las Terrenas has a strong French and Italian expat community — you'll hear French, Italian, and Spanish on the streets. It's cosmopolitan but still Caribbean-relaxed.
-- Dining near Playa Bonita: Mosquito Bar (beachfront cocktails and seafood), Bodega Bonita (gourmet wines, cheeses, fresh produce).
-- In town: Boulangerie Française (best croissants and pastries — run by an actual French woman), Restaurant Luis (fresh grilled seafood overlooking the ocean), El Dieciocho (top-rated Italian), Paco Cabana (amazing ramen — yes, ramen in the Caribbean), Los Chamos food truck (empanadas), El Captain food truck (fish burgers).
-- The food truck park opens daily at 4pm with 12 trucks — Dominican and European street food.
-- Activities: El Limón waterfall hike (40-meter waterfall), Los Haitises National Park (caves and mangroves by boat), kite surfing, snorkeling, ATV tours, coffee plantation tours, whale watching (January–March season), bachata and merengue dance lessons.
-- Getting around: moto-taxis from the main street (agree on price before riding), scooter rental (~$15/day), or rent a car for exploring the peninsula.
-- Nightlife centers around Pueblo de los Pescadores — beach bars, live music, dancing.
-- Nearest airport: Samaná El Catey International (AZS). Santo Domingo (SDQ) is about 2 hours by highway.
-- Best weather: December–March (peak season, higher prices). April–May (still great weather, lower prices). Rainy season starts June.
+
+BEACHES (closest to furthest):
+- Playa Punta Popy: the closest beach to the property — lively city-center beach, calm clear water, boardwalk lined with restaurants and bars, live music and dancing most evenings.
+- Playa Las Ballenas: just west of town, long white-sand beach, great for sunset walks, watersports, beach chairs and shade, restaurants on the sand. The Marico river mouth runs through it.
+- Playa Bonita: ~10 min by mototaxi or scooter, widely considered the most beautiful beach in Las Terrenas — calm turquoise water, coconut palms dipping into the sea, boutique hotels and restaurants including Mosquito Bar and Bodega Bonita.
+- Playa Cosón: west of town, the longest single beach in Samaná (~5.5km), wild and natural, great for kitesurfing, surfing, and long walks.
+- Playa El Portillo: east of town, over 5km long, very uncrowded, popular kitesurfing spot.
+- Playa Esperanza: 15-min walk from Portillo, small secluded bay with extremely calm transparent water — very tranquil.
+- Playa Escondida: hidden beach between cliffs, only accessible by boat or on foot from Playa Bonita, completely preserved and isolated.
+- Playa El Limón: ~30 min east, 5km of golden sand with views of Cayo El Limón — calm crystal pools and wild surf sections.
+- Playa Morón: remote deserted beach surrounded by lush palms, great for solitude; legend says ancient pirate cannons are buried nearby.
+- Playa Rincón: by boat or car (~1hr), often listed among the best beaches in the Caribbean — 3km of white sand, coconut palms, mangroves, and a river.
+- Playa Frontón: accessible by boat or jungle hike, dramatic cliffs, crystal water, excellent snorkeling.
+
+RIVERS & WATERFALLS:
+- Salto El Limón (El Limón Waterfall): ~30 min from the property, 40-meter waterfall crashing into a jade pool at the base of a cliff. Best visited on horseback with a local guide (~45 min ride). Entrance fee: 50 pesos/person. One of the top natural attractions in the Caribbean.
+- Río Marico: runs through Playa Las Ballenas — guests can play in the cool fresh water where it meets the sea.
+- Saltos de Jima: 9 waterfalls and natural spa pools fed by the Jima River, strong clear cool waters, great eco-tourism spot.
+
+OTHER NATURAL ATTRACTIONS:
+- Los Haitises National Park: ~1.5 hrs by boat, 2000+ square miles of virgin rainforest, mangroves, caves with Taíno petroglyphs, and 230 bird species. Best visited on a full-day boat excursion.
+- Whale watching: January–March, humpback whales breed in Samaná Bay — one of the best whale watching experiences in the world.
+
+DINING:
+- Mosquito Bar: beachfront at Playa Bonita, cocktails and fresh seafood.
+- Bodega Bonita: Playa Bonita, gourmet wines, cheeses, and fresh produce.
+- Boulangerie Française: best croissants and pastries in town, run by an actual French woman.
+- Restaurant Luis: fresh grilled seafood overlooking the ocean.
+- El Dieciocho: top-rated Italian.
+- Paco Cabana: amazing ramen — yes, ramen in the Caribbean.
+- Los Chamos food truck: empanadas.
+- El Capitán food truck: fish burgers.
+- Food truck park: opens daily at 4pm, 12 trucks, Dominican and European street food.
+
+GETTING AROUND:
+- Mototaxi: from the main street, agree on price before riding — best for short beach hops.
+- Scooter rental: ~$15/day, ideal for exploring on your own.
+- Car rental: recommended for day trips to Rincón, El Limón, or Los Haitises.
+
+PRACTICAL:
+- Las Terrenas has a strong French and Italian expat community — cosmopolitan but Caribbean-relaxed.
+- Nightlife: Pueblo de los Pescadores — beach bars, live music, dancing.
+- Nearest airport: Samaná El Catey International (AZS), ~45 min. Santo Domingo (SDQ) is ~2 hrs by highway.
+- Best weather: December–March (peak season). April–May (great weather, fewer crowds). Rainy season starts June.
+- Activities: kitesurfing, snorkeling, ATV tours, coffee plantation tours, bachata and merengue dance lessons.
 
 
 PROPERTY DATA:

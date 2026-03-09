@@ -149,6 +149,40 @@ function friendlyRange(dates) {
   return `${friendlyDate(dates[0])} – ${friendlyDate(dates[dates.length - 1])}`;
 }
 
+// ── Language detection ────────────────────────────────────────────────────────
+
+const SPANISH_MARKERS = [
+  // question words
+  "cuánto","cuanto","cuántas","cuantas","cuántos","cuantos",
+  "dónde","donde","cómo","como está","qué","cuál","cual","cuándo","cuando",
+  // common verbs / phrases
+  "tiene","tengo","puedo","quiero","necesito","hay","están","está","es que",
+  "por favor","muchas gracias","gracias","hola","buenos días","buenas tardes",
+  "buenas noches","buenas","buen día","de nada","claro","sí","también","cómo así",
+  // property-specific
+  "disponible","habitación","habitaciones","dormitorio","dormitorios",
+  "precio","tarifa","mascota","ubicación","estacionamiento","baño","baños",
+  "cocina","piscina","lavadora","entrada","salida","llegada",
+  "reservar","reserva","contacto","llamar","correo","teléfono",
+  "hogar","casa","propiedad","alquiler","alojamiento","estadía",
+];
+
+const FRENCH_MARKERS = [
+  "bonjour","merci","s'il vous plaît","comment","combien","où","qu'est",
+  "disponible","réserver","réservation","chambre","salle de bain",
+  "prix","tarif","piscine","cuisine","stationnement","climatisation",
+  "arrivée","départ","animaux","chien","emplacement","adresse",
+];
+
+function detectLang(text) {
+  const lower = text.toLowerCase();
+  const esScore = SPANISH_MARKERS.filter((m) => lower.includes(m)).length;
+  const frScore = FRENCH_MARKERS.filter((m) => lower.includes(m)).length;
+  if (esScore > 0 && esScore >= frScore) return "es";
+  if (frScore > 0) return "fr";
+  return "en";
+}
+
 // ── Keyword responses ─────────────────────────────────────────────────────────
 
 const responses = {
@@ -173,8 +207,11 @@ const responses = {
       "tarif",
       "combien",
     ],
-    reply:
-      "Nightly rates start at $130/night. Weekend and holiday rates may vary. Contact us for extended stay discounts.",
+    reply: {
+      en: "Nightly rates start at $130/night. Weekend and holiday rates may vary. Contact us for extended stay discounts.",
+      es: "Las tarifas comienzan en $130/noche. Las tarifas de fin de semana y festivos pueden variar. Contáctenos para descuentos en estadías prolongadas.",
+      fr: "Les tarifs commencent à 130 $/nuit. Les tarifs du week-end et des jours fériés peuvent varier. Contactez-nous pour des réductions sur les longs séjours.",
+    },
   },
   amenities: {
     keywords: [
@@ -186,8 +223,8 @@ const responses = {
       "parking",
       "washer",
       "dryer",
-      "ac",
-      "air",
+      "air conditioning",
+      "air conditioner",
       // Spanish
       "comodidades",
       "cocina",
@@ -195,7 +232,7 @@ const responses = {
       "estacionamiento",
       "lavadora",
       "secadora",
-      "aire",
+      "aire acondicionado",
       // French
       "équipements",
       "cuisine",
@@ -203,8 +240,11 @@ const responses = {
       "stationnement",
       "climatisation",
     ],
-    reply:
-      "The property includes a full kitchen, high-speed WiFi, private pool, parking, washer/dryer, and central AC.",
+    reply: {
+      en: "The property includes a full kitchen, high-speed WiFi, private pool, parking, washer/dryer, and central AC.",
+      es: "La propiedad cuenta con cocina completa, WiFi de alta velocidad, piscina privada, estacionamiento, lavadora/secadora y aire acondicionado central.",
+      fr: "La propriété comprend une cuisine équipée, le WiFi haut débit, une piscine privée, un parking, un lave-linge/sèche-linge et la climatisation centrale.",
+    },
   },
   checkInOut: {
     keywords: [
@@ -225,7 +265,11 @@ const responses = {
       "départ",
       "heure d'arrivée",
     ],
-    reply: "Check-in is at 3:00 PM and check-out is at 11:00 AM.",
+    reply: {
+      en: "Check-in is at 3:00 PM and check-out is at 11:00 AM.",
+      es: "El check-in es a las 3:00 PM y el check-out es a las 11:00 AM.",
+      fr: "L'arrivée est à 15h00 et le départ est à 11h00.",
+    },
   },
   pets: {
     keywords: [
@@ -238,15 +282,16 @@ const responses = {
       "mascota",
       "perro",
       "gato",
-      "animal",
       // French
-      "animal",
       "chien",
       "chat",
       "animaux",
     ],
-    reply:
-      "We are a pet-friendly property! Please let us know in advance so we can prepare accordingly.",
+    reply: {
+      en: "We are a pet-friendly property! Please let us know in advance so we can prepare accordingly.",
+      es: "¡Aceptamos mascotas! Por favor avísenos con anticipación para prepararnos.",
+      fr: "Nous acceptons les animaux de compagnie ! Veuillez nous en informer à l'avance afin que nous puissions nous préparer.",
+    },
   },
   location: {
     keywords: [
@@ -261,14 +306,18 @@ const responses = {
       "dirección",
       "dónde está",
       "donde queda",
+      "donde está",
       // French
       "emplacement",
       "adresse",
       "où se trouve",
       "localisation",
     ],
-    reply:
-      "La Dolce Vita is located in Las Terrenas, Dominican Republic — just 5 minutes from the beach and 10 minutes from the town center.",
+    reply: {
+      en: "La Dolce Vita is located in Las Terrenas, Dominican Republic — just 5 minutes from the beach and 10 minutes from the town center.",
+      es: "La Dolce Vita está ubicada en Las Terrenas, República Dominicana — a solo 5 minutos de la playa y 10 minutos del centro del pueblo.",
+      fr: "La Dolce Vita est située à Las Terrenas, en République dominicaine — à seulement 5 minutes de la plage et 10 minutes du centre-ville.",
+    },
   },
   rooms: {
     keywords: [
@@ -287,11 +336,18 @@ const responses = {
       "suite",
       // Spanish
       "habitación",
+      "habitaciones",
       "dormitorio",
+      "dormitorios",
       "baño",
+      "baños",
       "cama",
+      "camas",
       "cuántas personas",
+      "cuantas personas",
       "capacidad",
+      "recámara",
+      "cuartos",
       // French
       "chambre",
       "salle de bain",
@@ -299,8 +355,11 @@ const responses = {
       "combien de personnes",
       "capacité",
     ],
-    reply:
-      "The residence has two bedrooms and two bathrooms. The master bedroom has a private en-suite bathroom. The second bedroom has two twin beds with its own bathroom. There's also a comfortable living room and a full kitchen.",
+    reply: {
+      en: "The residence has two bedrooms and two bathrooms. The master bedroom has a private en-suite bathroom. The second bedroom has two twin beds with its own bathroom. There's also a comfortable living room and a full kitchen.",
+      es: "La residencia cuenta con dos habitaciones y dos baños. La habitación principal tiene baño privado en suite. La segunda habitación tiene dos camas individuales con su propio baño. También hay una sala de estar y cocina completa.",
+      fr: "La résidence dispose de deux chambres et deux salles de bain. La chambre principale dispose d'une salle de bain privative. La deuxième chambre a deux lits simples avec sa propre salle de bain. Il y a aussi un salon confortable et une cuisine complète.",
+    },
   },
   contact: {
     keywords: [
@@ -319,19 +378,24 @@ const responses = {
       "teléfono",
       "hablar",
       // French
-      "contact",
       "appeler",
       "courriel",
       "téléphone",
       "parler",
     ],
-    reply:
-      "You can reach us at [email] or [phone]. We typically respond within a few hours.",
+    reply: {
+      en: "You can reach us at [email] or [phone]. We typically respond within a few hours.",
+      es: "Puede contactarnos en [email] o [teléfono]. Generalmente respondemos en pocas horas.",
+      fr: "Vous pouvez nous joindre à [email] ou [téléphone]. Nous répondons généralement en quelques heures.",
+    },
   },
 };
 
-const fallback =
-  "I'm not sure about that — feel free to reach out to us directly and we'll be happy to help!";
+const fallback = {
+  en: "I'm not sure about that — feel free to reach out to us directly and we'll be happy to help!",
+  es: "No estoy seguro sobre eso — no dude en contactarnos directamente y con gusto le ayudaremos.",
+  fr: "Je ne suis pas sûr de cela — n'hésitez pas à nous contacter directement et nous serons heureux de vous aider.",
+};
 
 // ── Route ─────────────────────────────────────────────────────────────────────
 
@@ -366,6 +430,7 @@ router.post("/", async (req, res) => {
   if (!message) return res.status(400).json({ error: "Message is required" });
 
   const lower = message.toLowerCase();
+  const lang = detectLang(message);
   let reply;
 
   // Availability check
@@ -380,19 +445,46 @@ router.post("/", async (req, res) => {
         const conflicts = requestedDates.filter((d) => blockedSet.has(d));
 
         if (conflicts.length === 0) {
-          reply = `Good news — ${friendlyRange(requestedDates)} ${requestedDates.length === 1 ? "is" : "are"} available! You can reserve your stay here: https://www.airbnb.com/rooms/37812103`;
+          const range = friendlyRange(requestedDates);
+          const plural = requestedDates.length !== 1;
+          if (lang === "es") {
+            reply = `¡Buenas noticias! ${range} ${plural ? "están" : "está"} disponible${plural ? "s" : ""}. Puede reservar su estadía aquí: https://www.airbnb.com/rooms/37812103`;
+          } else if (lang === "fr") {
+            reply = `Bonne nouvelle — ${range} ${plural ? "sont" : "est"} disponible${plural ? "s" : ""} ! Vous pouvez réserver votre séjour ici : https://www.airbnb.com/rooms/37812103`;
+          } else {
+            reply = `Good news — ${range} ${plural ? "are" : "is"} available! You can reserve your stay here: https://www.airbnb.com/rooms/37812103`;
+          }
         } else {
-          reply = `Unfortunately, ${friendlyRange(conflicts)} ${conflicts.length === 1 ? "is" : "are"} already booked. Would you like to check alternative dates?`;
+          const range = friendlyRange(conflicts);
+          const plural = conflicts.length !== 1;
+          if (lang === "es") {
+            reply = `Lamentablemente, ${range} ya ${plural ? "están reservadas" : "está reservada"}. ¿Le gustaría consultar otras fechas?`;
+          } else if (lang === "fr") {
+            reply = `Malheureusement, ${range} ${plural ? "sont déjà réservées" : "est déjà réservée"}. Souhaitez-vous vérifier d'autres dates ?`;
+          } else {
+            reply = `Unfortunately, ${range} ${plural ? "are" : "is"} already booked. Would you like to check alternative dates?`;
+          }
         }
       } catch {
-        reply =
-          "I wasn't able to check the calendar right now — please contact us directly and we'll confirm availability.";
+        if (lang === "es") {
+          reply = "No pude verificar el calendario en este momento — contáctenos directamente y confirmaremos la disponibilidad.";
+        } else if (lang === "fr") {
+          reply = "Je n'ai pas pu vérifier le calendrier pour le moment — contactez-nous directement et nous confirmerons la disponibilité.";
+        } else {
+          reply = "I wasn't able to check the calendar right now — please contact us directly and we'll confirm availability.";
+        }
       }
     }
 
-    if (!reply)
-      reply =
-        "I can check availability for you — which dates are you looking at?";
+    if (!reply) {
+      if (lang === "es") {
+        reply = "Puedo verificar la disponibilidad — ¿qué fechas le interesan?";
+      } else if (lang === "fr") {
+        reply = "Je peux vérifier la disponibilité — quelles dates vous intéressent ?";
+      } else {
+        reply = "I can check availability for you — which dates are you looking at?";
+      }
+    }
 
     try {
       await saveChat(sessionId || "anonymous", message, reply);
@@ -405,7 +497,7 @@ router.post("/", async (req, res) => {
   // Keyword responses
   for (const category of Object.values(responses)) {
     if (category.keywords.some((kw) => lower.includes(kw))) {
-      reply = category.reply;
+      reply = category.reply[lang] || category.reply.en;
       try {
         await saveChat(sessionId || "anonymous", message, reply);
       } catch (e) {
@@ -421,7 +513,7 @@ router.post("/", async (req, res) => {
     reply = await askAI(message);
   } catch (err) {
     console.error("OpenAI error:", err.message);
-    reply = fallback;
+    reply = fallback[lang] || fallback.en;
   }
 
   try {
