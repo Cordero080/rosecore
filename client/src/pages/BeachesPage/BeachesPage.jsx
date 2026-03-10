@@ -7,6 +7,7 @@ import rinconImg     from '../../assets/images/beaches/rincon.jpg'
 import galerasImg    from '../../assets/images/beaches/las-galeras.jpg'
 import cosonImg     from '../../assets/images/beaches/coson.jpg'
 import moronImg     from '../../assets/images/beaches/moron.jpg'
+import cayoImg      from '../../assets/images/beaches/el-cayo-levantado.jpg'
 
 const BEACHES = [
   {
@@ -65,6 +66,15 @@ const BEACHES = [
   },
   {
     id:       '07',
+    name:     'Cayo Levantado',
+    distance: '1 hr + ferry',
+    drive:    'Drive to Samaná, then boat',
+    body:     'A small island in Samaná Bay — also known as Bacardi Island after a commercial filmed here in the 1970s. Voted one of the world\'s top 50 beaches, and the reputation is earned. White sand, palm trees leaning over the water, and turquoise you can see straight through to the bottom. Only reachable by ferry from Samaná town, which keeps it quieter than it deserves to be.',
+    tags:     ['Island', 'Ferry required', 'World top 50'],
+    image:    cayoImg,
+  },
+  {
+    id:       '08',
     name:     'Las Galeras',
     distance: '45 min',
     drive:    'Drive required',
@@ -78,7 +88,7 @@ export default function BeachesPage() {
   useEffect(() => {
     document.title = 'Beaches — La Dolce Vita · Las Terrenas'
     const meta = document.querySelector('meta[name="description"]')
-    if (meta) meta.setAttribute('content', 'Seven beaches within 45 minutes of La Dolce Vita — from Playa Bonita steps away to the legendary Playa Rincón. Las Terrenas, Samaná.')
+    if (meta) meta.setAttribute('content', 'Eight beaches from La Dolce Vita — from Playa Bonita steps away to Cayo Levantado island and the legendary Playa Rincón. Las Terrenas, Samaná.')
   }, [])
 
   return (
@@ -87,7 +97,7 @@ export default function BeachesPage() {
       <header className="beaches-header">
         <p className="beaches-eyebrow">Las Terrenas · Samaná · Dominican Republic</p>
         <h1 className="beaches-title">The <span className="beaches-title-gold">Coast</span></h1>
-        <p className="beaches-subtitle">Seven beaches within 45 minutes.</p>
+        <p className="beaches-subtitle">Eight beaches worth knowing.</p>
       </header>
 
       <div className="beaches-divider" aria-hidden="true">
