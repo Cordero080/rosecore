@@ -8,7 +8,7 @@ const NAV_ITEMS = [
   { id: 'amenities',     label: 'Amenities',     path: '/amenities'  },
   { id: 'services',      label: 'Services'                           },
   { id: 'entertainment', label: 'Entertainment'                      },
-  { id: 'excursions',    label: 'Excursions'                         },
+  { id: 'excursions',    label: 'Excursions',    path: '/excursions'  },
   { id: 'beaches',       label: 'Beaches',       path: '/beaches'    },
   { id: 'gallery',       label: 'Photo Gallery', path: '/gallery'    },
   { id: 'contact',       label: 'Contact',       path: '/contact'    },
@@ -19,7 +19,7 @@ export default function SideNav() {
   const location = useLocation()
   const [mobileOpen, setMobileOpen] = useState(false)
 
-  const pathToId = { '/': 'home', '/about': 'about', '/gallery': 'gallery', '/amenities': 'amenities', '/contact': 'contact', '/beaches': 'beaches' }
+  const pathToId = { '/': 'home', '/about': 'about', '/gallery': 'gallery', '/amenities': 'amenities', '/contact': 'contact', '/beaches': 'beaches', '/excursions': 'excursions' }
   const activeId = pathToId[location.pathname] ?? 'home'
 
   function close() { setMobileOpen(false) }

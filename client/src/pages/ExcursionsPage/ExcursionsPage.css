@@ -1,5 +1,5 @@
 /* ── Page shell ── */
-.beaches-page {
+.excursions-page {
   min-height: 100vh;
   margin-left: -60px;
   width: calc(100% + 60px);
@@ -8,11 +8,11 @@
 }
 
 /* ── Header ── */
-.beaches-header {
+.excursions-header {
   margin-bottom: 64px;
 }
 
-.beaches-eyebrow {
+.excursions-eyebrow {
   font-family: var(--font-label);
   font-size: 0.78rem;
   font-weight: 500;
@@ -22,7 +22,7 @@
   margin-bottom: 14px;
 }
 
-.beaches-title {
+.excursions-title {
   font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(2.8rem, 7vw, 5rem);
@@ -32,14 +32,14 @@
   margin-bottom: 14px;
 }
 
-.beaches-title-gold {
+.excursions-title-gold {
   background: linear-gradient(135deg, #c9a84c 0%, #e8c96a 45%, #a8832a 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.beaches-subtitle {
+.excursions-subtitle {
   font-family: var(--font-main);
   font-size: clamp(1rem, 1.5vw, 1.15rem);
   font-weight: 400;
@@ -47,25 +47,25 @@
 }
 
 /* ── Gold divider ── */
-.beaches-divider {
+.excursions-divider {
   display: flex;
   align-items: center;
   gap: 16px;
   margin: 0 0 72px;
 }
 
-.beaches-divider-line {
+.excursions-divider-line {
   flex: 1;
   height: 1px;
   background: linear-gradient(to right, transparent, var(--accent-gold) 40%, var(--accent-gold));
   opacity: 0.5;
 }
 
-.beaches-divider-line:last-child {
+.excursions-divider-line:last-child {
   background: linear-gradient(to left, transparent, var(--accent-gold) 40%, var(--accent-gold));
 }
 
-.beaches-divider-diamond {
+.excursions-divider-diamond {
   width: 5px;
   height: 5px;
   background: var(--accent-gold);
@@ -74,8 +74,8 @@
   flex-shrink: 0;
 }
 
-/* ── Beach list ── */
-.beaches-list {
+/* ── Excursion list ── */
+.excursions-list {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -83,8 +83,8 @@
   flex-direction: column;
 }
 
-/* ── Beach entry ── */
-.beach-entry {
+/* ── Excursion entry ── */
+.excursion-entry {
   display: grid;
   grid-template-columns: 80px 1fr;
   gap: 40px;
@@ -92,19 +92,19 @@
   border-bottom: 1px solid var(--border-default);
 }
 
-.beach-entry:first-child {
+.excursion-entry:first-child {
   border-top: 1px solid var(--border-default);
 }
 
 /* ── Left meta column ── */
-.beach-entry-meta {
+.excursion-entry-meta {
   display: flex;
   flex-direction: column;
   gap: 6px;
   padding-top: 4px;
 }
 
-.beach-entry-id {
+.excursion-entry-id {
   font-family: var(--font-label);
   font-size: 0.72rem;
   font-weight: 600;
@@ -112,16 +112,16 @@
   color: #a8832a;
 }
 
-.beach-entry-distance {
+.excursion-entry-duration {
   font-family: var(--font-display);
-  font-size: clamp(1.2rem, 1.8vw, 1.4rem);
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
   font-weight: 500;
   color: #1a2230;
   letter-spacing: -0.01em;
-  line-height: 1.1;
+  line-height: 1.2;
 }
 
-.beach-entry-drive {
+.excursion-entry-season {
   font-family: var(--font-label);
   font-size: 0.7rem;
   font-weight: 500;
@@ -132,7 +132,7 @@
 }
 
 /* ── Right body column ── */
-.beach-entry-body {
+.excursion-entry-body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
@@ -140,7 +140,7 @@
 }
 
 /* ── Image ── */
-.beach-image-wrap {
+.excursion-image-wrap {
   width: 100%;
   aspect-ratio: 4 / 3;
   border-radius: var(--radius);
@@ -148,14 +148,14 @@
   box-shadow: inset 0 0 40px 16px #f5f7fa;
 }
 
-.beach-image {
+.excursion-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.beach-image-placeholder {
+.excursion-image-placeholder {
   width: 100%;
   height: 100%;
   background: linear-gradient(135deg,
@@ -170,7 +170,7 @@
   padding: 20px;
 }
 
-.beach-image-placeholder-name {
+.excursion-image-placeholder-name {
   font-family: var(--font-label);
   font-size: 0.75rem;
   font-weight: 500;
@@ -179,15 +179,14 @@
   color: var(--text-secondary);
 }
 
-/* ── Content ── */
-.beach-entry-content {
+.excursion-entry-content {
   display: flex;
   flex-direction: column;
   gap: 16px;
   padding-top: 4px;
 }
 
-.beach-name {
+.excursion-name {
   font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(1.4rem, 2.5vw, 2rem);
@@ -196,16 +195,17 @@
   line-height: 1.1;
 }
 
-.beach-body {
+.excursion-body {
   font-family: var(--font-main);
   font-size: clamp(1rem, 1.4vw, 1.1rem);
   font-weight: 400;
   color: var(--text-secondary);
   line-height: 1.8;
+  max-width: 640px;
 }
 
 /* ── Tags ── */
-.beach-tags {
+.excursion-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -214,7 +214,7 @@
   margin-top: 4px;
 }
 
-.beach-tag {
+.excursion-tag {
   font-family: var(--font-label);
   font-size: 0.72rem;
   font-weight: 500;
@@ -231,29 +231,29 @@
 
 /* ── Mobile ── */
 @media (max-width: 768px) {
-  .beaches-page {
+  .excursions-page {
     margin-left: 0;
     width: 100%;
     padding: 80px 20px 60px;
   }
 
-  .beach-entry {
+  .excursion-entry {
     grid-template-columns: 1fr;
     gap: 20px;
     padding: 40px 0;
   }
 
-  .beach-entry-meta {
+  .excursion-entry-meta {
     flex-direction: row;
     align-items: baseline;
     gap: 12px;
   }
 
-  .beach-entry-drive {
+  .excursion-entry-season {
     display: none;
   }
 
-  .beach-entry-body {
+  .excursion-entry-body {
     grid-template-columns: 1fr;
     gap: 20px;
   }

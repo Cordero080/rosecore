@@ -37,6 +37,27 @@ The architecture says: "I thought about what happens when real users hit this at
 
 ## Feature List
 
+### Language Detection
+
+- Auto-detects English, Spanish, or French from every incoming message
+- Implemented as `detectLang()` — scores the message against ~40 Spanish markers and ~20 French markers
+- No API call needed — pure string matching, instant, free
+- Detection result flows through the entire pipeline: keyword replies, availability messages, and fallback all respond in the detected language
+- **File:** `server/routes/chat.js`
+
+> **Innovative:** Most multilingual bots require the user to pick a language at the start. Vita detects it silently and switches mid-conversation if needed — the guest never has to think about it.
+
+### Trilingual Responses (English, Spanish, French)
+
+- Every keyword category has three reply variants: `{ en, es, fr }`
+- All availability messages (available, booked, can't check, no dates found) are trilingual
+- Fallback response is trilingual
+- GPT system prompt instructs the model to respond in the guest's language
+- Covers the three most common languages in Las Terrenas (Dominican Spanish, French expat community, English tourists)
+- **Files:** `server/routes/chat.js`, `server/lib/openaiChat.js`
+
+> **Attracts clients:** Las Terrenas has a strong French and Italian expat community. Greeting a French-speaking guest in their own language immediately builds trust.
+
 ### Natural Language Date Parser
 
 - Parses human-friendly dates: "March 15", "March 15-20", "March 15 to April 2", "first week of March", "15th"
@@ -50,7 +71,7 @@ The architecture says: "I thought about what happens when real users hit this at
 
 - Parses the Airbnb iCal feed to get blocked dates
 - Compares user's requested dates against the live calendar
-- Returns specific feedback: which dates are available, which are booked
+- Returns specific feedback: which dates are available, which are booked — in the guest's language
 - Includes the Airbnb booking link when dates are available
 - **Files:** `server/routes/chat.js`, `server/lib/getBlockedDates.js`
 
@@ -59,59 +80,71 @@ The architecture says: "I thought about what happens when real users hit this at
 ### Booking Link Integration
 
 - When dates are available, the reply includes a direct link to the Airbnb listing
-- The chat UI automatically converts URLs into clickable links
+- The chat UI automatically converts URLs into clickable links (`linkify()`)
 - Reduces friction from "interested" to "booked" to a single click
 - **Files:** `server/routes/chat.js`, `client/src/components/ChatWidget/ChatWidget.jsx`
 
-> **Attracts clients:** Guests can go from asking about dates to booking in seconds, without leaving the chat.
+### Keyword Response Categories
 
-### Trilingual Support (English, Spanish, French)
+Seven categories handled instantly at zero cost, all trilingual:
 
-- Keyword matching works in all three languages
-- GPT responses auto-detect the user's language and reply in kind
-- Same warm personality in every language
-- Covers the three most common languages in Las Terrenas (Dominican Spanish, French expat community, English tourists)
-- **Files:** `server/routes/chat.js`, `api/chat.js`, `server/lib/openaiChat.js`
+| Category   | Example triggers (EN/ES/FR)                          |
+| ---------- | ---------------------------------------------------- |
+| Pricing    | "how much", "precio", "combien"                      |
+| Amenities  | "pool", "cocina", "piscine"                          |
+| Check-in   | "check in", "entrada", "arrivée"                     |
+| Pets       | "pet", "mascota", "chien"                            |
+| Location   | "where is", "dónde está", "où se trouve"             |
+| Rooms      | "bedroom", "habitaciones", "chambre"                 |
+| Contact    | "phone", "teléfono", "téléphone"                     |
 
-> **Attracts clients:** Las Terrenas has a strong French and Italian expat community. Greeting a French-speaking guest in their language immediately builds trust.
+> **Note:** Keywords are matched with `String.includes()` — short keywords like `"ac"` were removed to avoid false matches (e.g., `"habit**ac**iones"` used to incorrectly trigger the amenities response).
 
 ### GPT-4o-mini with Rich System Prompt
 
-- Model: `gpt-4o-mini` (fast, cheap, high quality)
+- Model: `gpt-4o-mini` (fast, cheap, high quality for conversational tasks)
 - Personality: warm, witty, Caribbean-relaxed — like a friend who knows everything about the property
-- Packed with local knowledge: restaurants, beaches, activities, airports, nightlife, transportation
-- Auto-detects language and responds accordingly
-- Never mentions being an AI or reading from a spreadsheet
+- System prompt (~800 tokens) covers:
+  - **11 nearby beaches** with descriptions, distances, and character (closest: Playa Punta Popy)
+  - **Waterfalls & rivers:** Salto El Limón (40m waterfall, 30 min away), Río Marico, Saltos de Jima (9 waterfalls)
+  - **Natural attractions:** Los Haitises National Park, whale watching (Jan–Mar season)
+  - **Dining:** Mosquito Bar, Bodega Bonita, Boulangerie Française, Restaurant Luis, El Dieciocho, Paco Cabana, food trucks
+  - **Transportation:** mototaxi, scooter rental (~$15/day), car rental
+  - **Practical info:** airports, best weather seasons, nightlife areas
+- Max tokens: 300 (keeps replies concise, controls costs)
 - **File:** `server/lib/openaiChat.js`
 
-> **Innovative:** The system prompt contains curated local knowledge (real restaurants, real beaches, real activities) that goes far beyond generic property FAQ data. Most vacation rental bots just answer "what's the WiFi password."
+> **Innovative:** The system prompt contains curated, verified local knowledge that goes far beyond generic property FAQ data. Most vacation rental bots just answer "what's the WiFi password." Vita can recommend the best beach for kids, the closest waterfall, or where to get ramen at midnight.
 
 ### Google Sheets → AI Knowledge Pipeline
 
-- Property data (amenities, pricing, rules, etc.) is pulled from a Google Sheet
-- Data is cached for 5 minutes to avoid excessive API calls
+- Property data (amenities, pricing, rules, etc.) pulled from a Google Sheet via API
+- Cached for 5 minutes to avoid excessive API calls
 - Injected into the GPT system prompt on every request
-- **Why this matters:** The property owners (non-technical) can update property details in a spreadsheet, and the AI automatically picks up the changes
+- Fails gracefully — if Google Sheets is unavailable, the AI continues with the curated local knowledge in the base prompt
+- **Why this matters:** Property owners (non-technical) can update details in a spreadsheet, and the AI automatically picks up the changes — no code change, no redeploy
 - **File:** `server/lib/getSheetData.js`
 
-> **Innovative:** Most chatbots require developer intervention to update their knowledge base. This one updates automatically from a Google Sheet that anyone can edit.
+> **Innovative:** Most chatbots require developer intervention to update their knowledge base. This one updates automatically from a spreadsheet that anyone can edit.
 
 ### Conversation Logging (MongoDB)
 
 - Every chat exchange is saved: sessionId, user message, bot reply, timestamp
 - Enables analysis of what guests ask most
 - Can inform future keyword responses and property improvements
+- Graceful error handling — MongoDB failure never breaks the chat
 - **File:** `server/lib/chatHistory.js`
 
 > **Attracts employers:** Demonstrates real-world data pipeline thinking — not just building a chatbot, but instrumenting it for continuous improvement.
 
 ### Chat UI Polish
 
-- **Teaser bubble:** Proactive greeting that invites engagement ("Hi, I'm Vita — ask me anything!")
-- **Glass-morphism panel:** Frosted glass effect with blur, semi-transparent background
+- **Teaser bubble:** Proactive greeting ("Hi, I'm Vita — ask me anything!") — dismissible
+- **Resizable panel:** Drag handle lets users resize the chat freely on desktop (280–800px wide, 360–860px tall)
+- **Glass-morphism panel:** Frosted glass with blur and semi-transparent background
 - **Typing indicator:** Three-dot bounce animation while waiting for response
 - **Auto-linkification:** URLs in bot replies become clickable links
-- **Mobile responsive:** Full-screen overlay on mobile devices
+- **Mobile responsive:** Full-screen centered overlay on mobile
 - **Keyboard support:** Enter to send, Shift+Enter for newlines
 - **File:** `client/src/components/ChatWidget/ChatWidget.jsx`
 

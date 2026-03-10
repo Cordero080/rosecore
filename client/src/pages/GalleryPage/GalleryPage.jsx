@@ -6,15 +6,27 @@ const sceneryModules  = import.meta.glob('../../assets/images/*.jpeg',          
 const propertyModules = import.meta.glob('../../assets/images/property/*.{jpg,jpeg}', { eager: true })
 
 function buildSlides(modules, config) {
-  return Object.entries(modules).map(([path, m]) => {
+  let slides = Object.entries(modules).map(([path, m]) => {
     const filename = path.split('/').pop()
     return {
+      filename,
       src:     m.default,
       caption: config.captions[filename] ?? config.defaultCaption,
       alt:     config.alts?.[filename]   ?? config.defaultAlt,
       label:   config.label,
     }
   })
+
+  if (config.order) {
+    slides.sort((a, b) => {
+      const ai = config.order.indexOf(a.filename)
+      const bi = config.order.indexOf(b.filename)
+      return (ai === -1 ? Infinity : ai) - (bi === -1 ? Infinity : bi)
+    })
+  }
+
+  // eslint-disable-next-line no-unused-vars
+  return slides.map(({ filename: _f, ...rest }) => rest)
 }
 
 const CATEGORIES = {
