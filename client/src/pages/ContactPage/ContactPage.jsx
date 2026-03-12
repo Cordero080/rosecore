@@ -35,7 +35,10 @@ export default function ContactPage() {
             <li className="contact-row">
               <span className="contact-row-label">{t('contact.phoneLabel')}</span>
               <span className="contact-row-dash" />
-              <a className="contact-row-value" href="tel:+17048022216">+1 (704) 802-2216</a>
+              <span className="contact-row-value">
+                <a href="tel:+17187598441">+1 (718) 759-8441</a><br />
+                <a href="tel:+19176746543">+1 (917) 674-6543</a>
+              </span>
             </li>
             {/* Email — stretch goal */}
           </ul>

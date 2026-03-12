@@ -384,9 +384,9 @@ const responses = {
       "parler",
     ],
     reply: {
-      en: "You can reach us at [email] or [phone]. We typically respond within a few hours.",
-      es: "Puede contactarnos en [email] o [teléfono]. Generalmente respondemos en pocas horas.",
-      fr: "Vous pouvez nous joindre à [email] ou [téléphone]. Nous répondons généralement en quelques heures.",
+      en: "You can reach us by phone or WhatsApp at +1 (718) 759-8441 or +1 (917) 674-6543. We typically respond within a few hours.",
+      es: "Puede contactarnos por teléfono o WhatsApp al +1 (718) 759-8441 o +1 (917) 674-6543. Generalmente respondemos en pocas horas.",
+      fr: "Vous pouvez nous joindre par téléphone ou WhatsApp au +1 (718) 759-8441 ou +1 (917) 674-6543. Nous répondons généralement en quelques heures.",
     },
   },
 };
