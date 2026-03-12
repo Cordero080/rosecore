@@ -275,5 +275,54 @@
   color: rgba(30, 48, 65, 0.92);
 }
 
+/* ── Language switcher ── */
+.sidenav-lang {
+  position: absolute;
+  bottom: 148px;
+  left: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 1;
+}
+
+.sidenav-lang-btn {
+  font-family: var(--font-label);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: rgba(50, 65, 80, 0.5);
+  padding: 4px 7px;
+  border-radius: 5px;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  /* inactive buttons hidden by default, slide in on nav hover */
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+/* Active lang always visible — acts as a hint when nav is collapsed */
+.sidenav-lang-btn--active {
+  opacity: 1;
+  transform: translateX(0);
+  color: #a8832a;
+  background: rgba(201, 168, 76, 0.1);
+  border-color: rgba(201, 168, 76, 0.35);
+}
+
+/* Reveal all on nav hover */
+.sidenav:hover .sidenav-lang-btn {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.sidenav-lang-btn:hover {
+  color: rgba(30, 48, 65, 0.85);
+  background: rgba(255, 255, 255, 0.4);
+}
+
 /* ── App layout offset ── */
 /* handled in App.css — keeps fixed at 60px regardless of hover */

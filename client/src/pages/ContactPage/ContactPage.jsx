@@ -1,7 +1,10 @@
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import './ContactPage.css'
 
 export default function ContactPage() {
+  const { t } = useTranslation()
+
   useEffect(() => {
     document.title = 'Contact — La Dolce Vita · Las Terrenas'
     const meta = document.querySelector('meta[name="description"]')
@@ -12,9 +15,9 @@ export default function ContactPage() {
     <main className="contact-page">
 
       <header className="contact-header">
-        <p className="contact-eyebrow">La Dolce Vita · Las Terrenas</p>
-        <h1 className="contact-title">Get in <span className="contact-title-gold">touch</span></h1>
-        <p className="contact-subtitle">We're happy to answer questions before you book.</p>
+        <p className="contact-eyebrow">{t('contact.eyebrow')}</p>
+        <h1 className="contact-title">{t('contact.title')} <span className="contact-title-gold">{t('contact.titleGold')}</span></h1>
+        <p className="contact-subtitle">{t('contact.subtitle')}</p>
       </header>
 
       <div className="contact-divider" aria-hidden="true">
@@ -27,21 +30,21 @@ export default function ContactPage() {
 
         {/* ── Direct contact ── */}
         <section className="contact-section">
-          <p className="contact-section-eyebrow">Direct</p>
+          <p className="contact-section-eyebrow">{t('contact.directLabel')}</p>
           <ul className="contact-list">
             <li className="contact-row">
-              <span className="contact-row-label">Phone / WhatsApp</span>
+              <span className="contact-row-label">{t('contact.phoneLabel')}</span>
               <span className="contact-row-dash" />
               <a className="contact-row-value" href="tel:+17048022216">+1 (704) 802-2216</a>
             </li>
             {/* Email — stretch goal */}
           </ul>
-          <p className="contact-note">WhatsApp is the fastest way to reach us. We typically respond within a few hours.</p>
+          <p className="contact-note">{t('contact.whatsappNote')}</p>
         </section>
 
         {/* ── Book online ── */}
         <section className="contact-section">
-          <p className="contact-section-eyebrow">Book online</p>
+          <p className="contact-section-eyebrow">{t('contact.bookLabel')}</p>
           <ul className="contact-list">
             <li className="contact-row">
               <span className="contact-row-label">Airbnb</span>
@@ -52,7 +55,7 @@ export default function ContactPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                View listing ↗
+                {t('contact.airbnbLink')}
               </a>
             </li>
             {/* Booking.com — stretch goal: add link here */}
@@ -61,10 +64,10 @@ export default function ContactPage() {
 
         {/* ── Find us ── */}
         <section className="contact-section">
-          <p className="contact-section-eyebrow">Find us</p>
+          <p className="contact-section-eyebrow">{t('contact.findUsLabel')}</p>
           <ul className="contact-list">
             <li className="contact-row">
-              <span className="contact-row-label">Address</span>
+              <span className="contact-row-label">{t('contact.addressLabel')}</span>
               <span className="contact-row-dash" />
               <span className="contact-row-value">
                 Ave 27 de Febrero, Apt 2<br />
@@ -73,7 +76,7 @@ export default function ContactPage() {
               </span>
             </li>
             <li className="contact-row">
-              <span className="contact-row-label">Maps</span>
+              <span className="contact-row-label">{t('contact.mapsLabel')}</span>
               <span className="contact-row-dash" />
               <a
                 className="contact-row-value"
@@ -81,7 +84,7 @@ export default function ContactPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Open in Google Maps ↗
+                {t('contact.mapsLink')}
               </a>
             </li>
           </ul>
@@ -89,11 +92,8 @@ export default function ContactPage() {
 
         {/* ── Chat widget callout ── */}
         <section className="contact-chat-cta">
-          <p className="contact-chat-label">Or use the chat</p>
-          <p className="contact-chat-note">
-            The concierge in the bottom-right corner can answer most questions instantly —
-            availability, pricing, check-in, and more.
-          </p>
+          <p className="contact-chat-label">{t('contact.chatLabel')}</p>
+          <p className="contact-chat-note">{t('contact.chatNote')}</p>
         </section>
 
       </div>

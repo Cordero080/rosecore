@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 import './GalleryPage.css'
 import * as manifest from './galleryManifest'
 
@@ -8,13 +9,8 @@ const propertyModules = import.meta.glob('../../assets/images/property/*.{jpg,jp
 function buildSlides(modules, config) {
   let slides = Object.entries(modules).map(([path, m]) => {
     const filename = path.split('/').pop()
-    return {
-      filename,
-      src:     m.default,
-      caption: config.captions[filename] ?? config.defaultCaption,
-      alt:     config.alts?.[filename]   ?? config.defaultAlt,
-      label:   config.label,
-    }
+    const stem = filename.replace(/\.[^.]+$/, '')
+    return { filename, stem, src: m.default, alt: config.alts?.[filename] ?? config.defaultAlt }
   })
 
   if (config.order) {
@@ -25,11 +21,10 @@ function buildSlides(modules, config) {
     })
   }
 
-  // eslint-disable-next-line no-unused-vars
-  return slides.map(({ filename: _f, ...rest }) => rest)
+  return slides
 }
 
-const CATEGORIES = {
+const RAW = {
   scenery:  buildSlides(sceneryModules,  manifest.scenery),
   property: buildSlides(propertyModules, manifest.property),
 }
@@ -198,6 +193,24 @@ function Lightbox({ slides, index, onClose, onPrev, onNext }) {
 
 export default function GalleryPage() {
   const [lightbox, setLightbox] = useState(null)
+  const { t } = useTranslation()
+
+  const propertyCaptions = t('gallery.propertyCaptions', { returnObjects: true })
+
+  const CATEGORIES = {
+    property: RAW.property.map(s => ({
+      src:     s.src,
+      alt:     s.alt,
+      label:   t('gallery.propertyLabel'),
+      caption: propertyCaptions[s.stem] ?? t('gallery.propertyDefaultCaption'),
+    })),
+    scenery: RAW.scenery.map(s => ({
+      src:     s.src,
+      alt:     s.alt,
+      label:   t('gallery.sceneryLabel'),
+      caption: t('gallery.sceneryDefaultCaption'),
+    })),
+  }
 
   // Set page-specific title and description for SEO
   useEffect(() => {
@@ -214,7 +227,7 @@ export default function GalleryPage() {
       document.title = prevTitle
       if (metaDesc && prevDesc) metaDesc.setAttribute('content', prevDesc)
     }
-  }, []) // { category, index } | null
+  }, [])
 
   const openLightbox  = (category, index) => setLightbox({ category, index })
   const closeLightbox = useCallback(() => setLightbox(null), [])
@@ -239,15 +252,15 @@ export default function GalleryPage() {
 
       <Slideshow
         slides={CATEGORIES.property}
-        eyebrow="The Villa · Apt 2"
+        eyebrow={t('gallery.propertyLabel')}
         title="La Dolce Vita"
         onOpenLightbox={i => openLightbox('property', i)}
       />
 
       <Slideshow
         slides={CATEGORIES.scenery}
-        eyebrow="Scenery"
-        title="The Coast"
+        eyebrow={t('gallery.sceneryLabel')}
+        title={t('gallery.sceneryDefaultCaption')}
         onOpenLightbox={i => openLightbox('scenery',  i)}
       />
 

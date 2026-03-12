@@ -4,6 +4,8 @@ A premium vacation rental website built for a private villa in Las Terrenas, Dom
 
 When guests are ready to book, they're redirected to the Airbnb listing. The goal is brand differentiation and direct marketing control, not replacing Airbnb.
 
+The site is fully multilingual — English, Spanish, and French — reflecting the international guest mix of Las Terrenas, where the town itself is a mix of Dominican, French, and Italian communities.
+
 ---
 
 ## Screenshots
@@ -86,6 +88,9 @@ Every chat exchange is saved to **MongoDB Atlas** with a session ID and timestam
 ### Client-Managed Content
 The entire knowledge base lives in a Google Sheet. The client updates it like a spreadsheet. The server picks up changes automatically within 5 minutes. No developer involvement required for day-to-day content updates.
 
+### Multilingual — EN / ES / FR
+Full internationalisation via `react-i18next`. Every page, label, description, and gallery caption switches instantly when the guest selects their language from the sidenav toggle. Language is auto-detected from the browser and remembered in `localStorage`.
+
 ### Visual Identity
 - Glassmorphic UI with warm platinum brushed-metal accents
 - Ken Burns photo gallery with keyboard/touch navigation
@@ -99,7 +104,7 @@ The entire knowledge base lives in a Google Sheet. The client updates it like a 
 
 | Layer | Technology |
 |---|---|
-| Frontend | React 18, Vite, plain CSS |
+| Frontend | React 18, Vite, plain CSS, react-i18next |
 | Backend | Express.js, Node 22 |
 | AI | OpenAI GPT-4o-mini |
 | Availability | Airbnb iCal feed (`node-ical`) |
@@ -205,9 +210,17 @@ rose-core/
 │       │   ├── Hero/
 │       │   ├── SectionDivider/
 │       │   └── SideNav/
+│       ├── i18n/
+│       │   ├── i18n.js              # i18next config + language detector
+│       │   └── locales/             # en.json, es.json, fr.json
 │       ├── pages/
 │       │   ├── HomePage/
-│       │   └── GalleryPage/
+│       │   ├── GalleryPage/
+│       │   ├── BeachesPage/         # 8 beaches with photos
+│       │   ├── ExcursionsPage/      # 8 excursions with photos
+│       │   ├── AmenitiesPage/
+│       │   ├── AboutPage/
+│       │   └── ContactPage/
 │       └── styles/          # Design tokens, global styles
 ├── server/                  # Express backend
 │   ├── routes/

@@ -50,6 +50,12 @@
     transform: translateX(0);
   }
 
+  // Show all lang buttons in open mobile nav
+  .sidenav.is-open .sidenav-lang-btn {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
   // Staggered item entrance — borrowed from pistola
   .sidenav.is-open .sidenav-item {
     opacity: 0;

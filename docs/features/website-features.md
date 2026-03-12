@@ -268,10 +268,35 @@ This document covers every visual, interactive, and structural feature of the we
 - Overlay dismissal (click outside to close)
 - Animated icon transition to ✕ on open
 
+### Language Switcher
+
+- Vertical EN / ES / FR toggle at the bottom of the sidenav rail
+- Active language always visible as a gold-highlighted button — acts as a hint when nav is collapsed
+- Inactive options fade in when the nav is hovered (desktop) or the hamburger menu is open (mobile)
+- Selection persists in `localStorage` — remembered across visits
+- Auto-detects browser language on first visit via `i18next-browser-languagedetector`
+- **File:** `client/src/components/SideNav/SideNav.jsx`
+
 ### Navigation Items
 
-- Active: Home, About, Amenities, Beaches, Gallery, Contact
-- Disabled (placeholder): Services, Entertainment, Excursions
+- Active: Home, About, Amenities, Excursions, Beaches, Gallery, Contact
+- Disabled (placeholder): Services, Entertainment
+- Nav labels translate with the selected language
+
+---
+
+## Internationalisation (i18n)
+
+### react-i18next
+
+- Full EN / ES / FR support across every page and component
+- Translation files: `client/src/i18n/locales/{en,es,fr}.json`
+- Covers: all page headers, body text, tags, stats, house rules, gallery captions, nav labels, chat UI strings
+- `returnObjects: true` used for arrays (beaches, excursions, amenities, area facts) — structured translation without duplicating component logic
+- Gallery photo captions (`The Arrival`, `The Terrace`, etc.) translate at render time — captions are resolved inside the component, not baked into the manifest at module load
+- **Config:** `client/src/i18n/i18n.js`
+
+> **Attracts clients:** Directly serves the Las Terrenas guest mix — the town has large French and Spanish-speaking communities alongside English speakers. Language switching is immediate with no page reload.
 
 ---
 
@@ -279,12 +304,22 @@ This document covers every visual, interactive, and structural feature of the we
 
 ### Beaches Page (`/beaches`)
 
-- 7 beaches with sequential IDs (01–07)
+- 8 beaches with sequential IDs (01–08) — includes Cayo Levantado (Bacardi Island, world top 50)
 - Per-beach: distance from property, travel method, atmospheric description, photo, tag pills
-- Tags: Swimming, Sunsets, Cafés, Surfing, etc.
+- Tags translate with language selection
 - Distance labels: walking distance → short drive → drive required
 - SEO metadata per page
 - **File:** `client/src/pages/BeachesPage/`
+
+### Excursions Page (`/excursions`)
+
+- 8 excursions with sequential IDs (01–08)
+- Per-excursion: duration, season, atmospheric description, photo, tag pills
+- Photos sourced from Wikimedia Commons (CC-licensed), stored in `assets/images/excursions/`
+- Meta column shows duration + season (Jan–Mar only vs Year-round)
+- Same grid layout as Beaches page for visual consistency
+- Fully translated EN / ES / FR
+- **File:** `client/src/pages/ExcursionsPage/`
 
 ### Amenities Page (`/amenities`)
 

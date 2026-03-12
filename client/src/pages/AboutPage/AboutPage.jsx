@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import './AboutPage.css'
 
 const RECOGNITIONS = [
@@ -7,24 +8,19 @@ const RECOGNITIONS = [
 ]
 
 const BEACHES = [
-  { name: 'Playa Bonita',     distance: '5 min'  },
-  { name: 'Playa Punta Popy', distance: '10 min' },
-  { name: 'Playa Las Ballenas',distance: '15 min' },
-  { name: 'Playa Cosón',      distance: '20 min' },
-  { name: 'Playa Morón',      distance: '35 min' },
-  { name: 'Playa Rincón',     distance: '40 min' },
-  { name: 'Las Galeras',      distance: '45 min' },
-]
-
-const AREA_FACTS = [
-  'French and Italian expat community — cosmopolitan but Caribbean-relaxed.',
-  'Three languages on the street: Dominican Spanish, French, and English.',
-  'Food truck park in town, open daily from 4 pm with twelve trucks.',
-  'Nearest airport: Samaná El Catey (AZS). Santo Domingo (SDQ) is two hours by road.',
-  'Best weather: December through May. Whale watching season January through March.',
+  { name: 'Playa Bonita',      distance: '5 min'  },
+  { name: 'Playa Punta Popy',  distance: '10 min' },
+  { name: 'Playa Las Ballenas', distance: '15 min' },
+  { name: 'Playa Cosón',       distance: '20 min' },
+  { name: 'Playa Morón',       distance: '35 min' },
+  { name: 'Playa Rincón',      distance: '40 min' },
+  { name: 'Las Galeras',       distance: '45 min' },
 ]
 
 export default function AboutPage() {
+  const { t } = useTranslation()
+  const areaFacts = t('about.areaFacts', { returnObjects: true })
+
   useEffect(() => {
     document.title = 'About — La Dolce Vita · Las Terrenas'
     const meta = document.querySelector('meta[name="description"]')
@@ -36,34 +32,24 @@ export default function AboutPage() {
 
       {/* ── Hero header ── */}
       <header className="about-header">
-        <p className="about-eyebrow">Las Terrenas · Samaná · Dominican Republic</p>
-        <h1 className="about-title">La <span className="about-title-gold">Dolce</span> Vita</h1>
-        <p className="about-tagline">A place to exhale.</p>
+        <p className="about-eyebrow">{t('about.eyebrow')}</p>
+        <h1 className="about-title">La <span className="about-title-gold">{t('about.titleAccent')}</span> Vita</h1>
+        <p className="about-tagline">{t('about.tagline')}</p>
       </header>
 
       {/* ── Property intro ── */}
       <section className="about-intro">
-        <p className="about-body">
-          A private two-bedroom residence on the Samaná Peninsula, steps from one of the most
-          beautiful beaches in the Dominican Republic. The apartment sits on Ave 27 de Febrero
-          in Las Terrenas — a town that feels like the south of France dropped into the Caribbean.
-        </p>
-        <p className="about-body">
-          Two bedrooms, two private bathrooms, a full kitchen, and a private pool shaded by palms.
-          Comfortable enough for a family. Quiet enough for two. The kind of place where a week
-          turns into a longer conversation.
-        </p>
+        <p className="about-body">{t('about.intro1')}</p>
+        <p className="about-body">{t('about.intro2')}</p>
         <div className="about-intro-meta">
-          <span className="about-meta-address">
-            Ave 27 de Febrero, <strong>Apartment 2</strong> · Las Terrenas, Samaná · Dominican Republic
-          </span>
+          <span className="about-meta-address">{t('about.address')}</span>
           <a
             className="about-map-link"
             href="https://www.google.com/maps/place/La+Dolce+Vita+Beachfront+Rental+Apt+2/@19.3228721,-69.5348155,19z/data=!4m9!3m8!1s0x8eaefbedd8f84925:0x4334c14da98a57fc!5m2!4m1!1i2!8m2!3d19.3230496!4d-69.5337566!16s%2Fg%2F11qqk3h2cy?entry=ttu&g_ep=EgoyMDI2MDMwNC4xIKXMDSoASAFQAw%3D%3D"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Open in Google Maps ↗
+            {t('about.mapsLink')}
           </a>
         </div>
       </section>
@@ -77,7 +63,7 @@ export default function AboutPage() {
 
       {/* ── Recognition ── */}
       <section className="about-recognition">
-        <p className="about-section-eyebrow">Recognition</p>
+        <p className="about-section-eyebrow">{t('about.recognitionLabel')}</p>
         <div className="about-recognition-row">
           {RECOGNITIONS.map(({ score, outOf, source, award }) => (
             <div className="about-award" key={source}>
@@ -101,8 +87,8 @@ export default function AboutPage() {
 
       {/* ── Beaches ── */}
       <section className="about-beaches">
-        <p className="about-section-eyebrow">The Coast</p>
-        <h2 className="about-section-title">Nearby beaches</h2>
+        <p className="about-section-eyebrow">{t('about.coastLabel')}</p>
+        <h2 className="about-section-title">{t('about.nearbyBeachesTitle')}</h2>
         <ul className="about-beach-list">
           {BEACHES.map(({ name, distance }) => (
             <li className="about-beach-row" key={name}>
@@ -123,10 +109,10 @@ export default function AboutPage() {
 
       {/* ── The area ── */}
       <section className="about-area">
-        <p className="about-section-eyebrow">Las Terrenas</p>
-        <h2 className="about-section-title">The area</h2>
+        <p className="about-section-eyebrow">{t('about.areaLabel')}</p>
+        <h2 className="about-section-title">{t('about.areaTitle')}</h2>
         <ul className="about-area-list">
-          {AREA_FACTS.map((fact, i) => (
+          {areaFacts.map((fact, i) => (
             <li className="about-area-item" key={i}>
               <span className="about-area-dot" />
               <p className="about-area-fact">{fact}</p>

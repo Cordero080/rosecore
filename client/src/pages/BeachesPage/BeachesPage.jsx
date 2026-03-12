@@ -1,90 +1,21 @@
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import './BeachesPage.css'
 import bonitaImg   from '../../assets/images/beaches/bonita.jpg'
-import puntaPopImg   from '../../assets/images/beaches/punta-popy.jpg'
-import ballenasImg   from '../../assets/images/beaches/las-ballenas.jpg'
-import rinconImg     from '../../assets/images/beaches/rincon.jpg'
-import galerasImg    from '../../assets/images/beaches/las-galeras.jpg'
-import cosonImg     from '../../assets/images/beaches/coson.jpg'
-import moronImg     from '../../assets/images/beaches/moron.jpg'
-import cayoImg      from '../../assets/images/beaches/el-cayo-levantado.jpg'
+import puntaPopImg from '../../assets/images/beaches/punta-popy.jpg'
+import ballenasImg from '../../assets/images/beaches/las-ballenas.jpg'
+import rinconImg   from '../../assets/images/beaches/rincon.jpg'
+import galerasImg  from '../../assets/images/beaches/las-galeras.jpg'
+import cosonImg    from '../../assets/images/beaches/coson.jpg'
+import moronImg    from '../../assets/images/beaches/moron.jpg'
+import cayoImg     from '../../assets/images/beaches/el-cayo-levantado.jpg'
 
-const BEACHES = [
-  {
-    id:       '01',
-    name:     'Playa Bonita',
-    distance: '5 min',
-    drive:    'Walking distance',
-    body:     'The closest beach to the residence and the one you\'ll return to most. Calm turquoise water, white sand, and palm trees that lean into the wind. The sunsets here are unhurried and spectacular — the kind that make you stay longer than planned.',
-    tags:     ['Swimming', 'Sunsets', 'Palms'],
-    image:    bonitaImg,
-  },
-  {
-    id:       '02',
-    name:     'Playa Punta Popy',
-    distance: '10 min',
-    drive:    'Short drive or walk',
-    body:     'The town beach. Calmer water, a string of cafés and beach bars along the shore. Good for a morning coffee with your feet in the sand, or a long afternoon with nowhere to be.',
-    tags:     ['Cafés', 'Town beach', 'Calm water'],
-    image:    puntaPopImg,
-  },
-  {
-    id:       '03',
-    name:     'Playa Las Ballenas',
-    distance: '15 min',
-    drive:    'Short drive',
-    body:     'Quiet and windswept, with an end-of-the-world feeling that the other beaches lack. Best walked at golden hour, when the light turns amber and the beach is mostly empty.',
-    tags:     ['Walking', 'Golden hour', 'Quiet'],
-    image:    ballenasImg,
-  },
-  {
-    id:       '04',
-    name:     'Playa Cosón',
-    distance: '20 min',
-    drive:    'Short drive',
-    body:     'Seven kilometres of wild, undeveloped beach — one of the longest in the Dominican Republic. A favourite among surfers and anyone who wants to feel genuinely far from civilisation. Bring water.',
-    tags:     ['Surfing', 'Wild beach', 'Long stretch'],
-    image:    cosonImg,
-  },
-  {
-    id:       '05',
-    name:     'Playa Morón',
-    distance: '35 min',
-    drive:    'Drive required',
-    body:     'Remote and peaceful, with almost no crowds even in high season. Pristine water, dramatic cliffs nearby, and the kind of silence that\'s hard to find anywhere on the peninsula.',
-    tags:     ['Remote', 'Uncrowded', 'Pristine'],
-    image:    moronImg,
-  },
-  {
-    id:       '06',
-    name:     'Playa Rincón',
-    distance: '40 min',
-    drive:    'Drive required',
-    body:     'Consistently ranked among the best beaches in the Caribbean — and it earns it. A long arc of white sand backed by coconut palms, with a river at one end and clear Atlantic water. Worth every minute of the drive.',
-    tags:     ['Top-rated', 'Caribbean classic', 'River'],
-    image:    rinconImg,
-  },
-  {
-    id:       '07',
-    name:     'Cayo Levantado',
-    distance: '1 hr + ferry',
-    drive:    'Drive to Samaná, then boat',
-    body:     'A small island in Samaná Bay — also known as Bacardi Island after a commercial filmed here in the 1970s. Voted one of the world\'s top 50 beaches, and the reputation is earned. White sand, palm trees leaning over the water, and turquoise you can see straight through to the bottom. Only reachable by ferry from Samaná town, which keeps it quieter than it deserves to be.',
-    tags:     ['Island', 'Ferry required', 'World top 50'],
-    image:    cayoImg,
-  },
-  {
-    id:       '08',
-    name:     'Las Galeras',
-    distance: '45 min',
-    drive:    'Drive required',
-    body:     'A small fishing village at the far tip of the Samaná Peninsula. The drive alone is worth it — winding roads through jungle and hills. Several small beaches within the village, each one more secluded than the last.',
-    tags:     ['Village', 'Secluded', 'Scenic drive'],
-    image:    galerasImg,
-  },
-]
+const IMAGES = [bonitaImg, puntaPopImg, ballenasImg, cosonImg, moronImg, rinconImg, cayoImg, galerasImg]
 
 export default function BeachesPage() {
+  const { t } = useTranslation()
+  const beaches = t('beaches.beaches', { returnObjects: true })
+
   useEffect(() => {
     document.title = 'Beaches — La Dolce Vita · Las Terrenas'
     const meta = document.querySelector('meta[name="description"]')
@@ -95,9 +26,9 @@ export default function BeachesPage() {
     <main className="beaches-page">
 
       <header className="beaches-header">
-        <p className="beaches-eyebrow">Las Terrenas · Samaná · Dominican Republic</p>
-        <h1 className="beaches-title">The <span className="beaches-title-gold">Coast</span></h1>
-        <p className="beaches-subtitle">Eight beaches worth knowing.</p>
+        <p className="beaches-eyebrow">{t('beaches.eyebrow')}</p>
+        <h1 className="beaches-title">{t('beaches.title')} <span className="beaches-title-gold">{t('beaches.titleGold')}</span></h1>
+        <p className="beaches-subtitle">{t('beaches.subtitle')}</p>
       </header>
 
       <div className="beaches-divider" aria-hidden="true">
@@ -107,30 +38,30 @@ export default function BeachesPage() {
       </div>
 
       <ul className="beaches-list">
-        {BEACHES.map(({ id, name, distance, drive, body, tags, image }) => (
-          <li className="beach-entry" key={id}>
+        {beaches.map((beach, i) => (
+          <li className="beach-entry" key={i}>
 
             <div className="beach-entry-meta">
-              <span className="beach-entry-id">{id}</span>
-              <span className="beach-entry-distance">{distance}</span>
-              <span className="beach-entry-drive">{drive}</span>
+              <span className="beach-entry-id">{String(i + 1).padStart(2, '0')}</span>
+              <span className="beach-entry-distance">{beach.distance}</span>
+              <span className="beach-entry-drive">{beach.drive}</span>
             </div>
 
             <div className="beach-entry-body">
               <div className="beach-image-wrap">
-                {image
-                  ? <img src={image} alt={name} className="beach-image" />
+                {IMAGES[i]
+                  ? <img src={IMAGES[i]} alt={beach.name} className="beach-image" />
                   : <div className="beach-image-placeholder">
-                      <span className="beach-image-placeholder-name">{name}</span>
+                      <span className="beach-image-placeholder-name">{beach.name}</span>
                     </div>
                 }
               </div>
 
               <div className="beach-entry-content">
-                <h2 className="beach-name">{name}</h2>
-                <p className="beach-body">{body}</p>
+                <h2 className="beach-name">{beach.name}</h2>
+                <p className="beach-body">{beach.body}</p>
                 <ul className="beach-tags">
-                  {tags.map(tag => (
+                  {beach.tags.map(tag => (
                     <li className="beach-tag" key={tag}>{tag}</li>
                   ))}
                 </ul>

@@ -1,23 +1,31 @@
 import { useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import './SideNav.css'
 
-const NAV_ITEMS = [
-  { id: 'home',          label: 'Home',          path: '/'           },
-  { id: 'about',         label: 'About',         path: '/about'      },
-  { id: 'amenities',     label: 'Amenities',     path: '/amenities'  },
-  { id: 'services',      label: 'Services'                           },
-  { id: 'entertainment', label: 'Entertainment'                      },
-  { id: 'excursions',    label: 'Excursions',    path: '/excursions'  },
-  { id: 'beaches',       label: 'Beaches',       path: '/beaches'    },
-  { id: 'gallery',       label: 'Photo Gallery', path: '/gallery'    },
-  { id: 'contact',       label: 'Contact',       path: '/contact'    },
+const LANGS = [
+  { code: 'en', label: 'EN' },
+  { code: 'es', label: 'ES' },
+  { code: 'fr', label: 'FR' },
 ]
 
 export default function SideNav() {
   const navigate = useNavigate()
   const location = useLocation()
   const [mobileOpen, setMobileOpen] = useState(false)
+  const { t, i18n } = useTranslation()
+
+  const NAV_ITEMS = [
+    { id: 'home',          label: t('nav.home'),          path: '/'           },
+    { id: 'about',         label: t('nav.about'),         path: '/about'      },
+    { id: 'amenities',     label: t('nav.amenities'),     path: '/amenities'  },
+    { id: 'services',      label: t('nav.services')                           },
+    { id: 'entertainment', label: t('nav.entertainment')                      },
+    { id: 'excursions',    label: t('nav.excursions'),    path: '/excursions' },
+    { id: 'beaches',       label: t('nav.beaches'),       path: '/beaches'    },
+    { id: 'gallery',       label: t('nav.gallery'),       path: '/gallery'    },
+    { id: 'contact',       label: t('nav.contact'),       path: '/contact'    },
+  ]
 
   const pathToId = { '/': 'home', '/about': 'about', '/gallery': 'gallery', '/amenities': 'amenities', '/contact': 'contact', '/beaches': 'beaches', '/excursions': 'excursions' }
   const activeId = pathToId[location.pathname] ?? 'home'
@@ -71,6 +79,18 @@ export default function SideNav() {
             </li>
           ))}
         </ul>
+
+        <div className="sidenav-lang">
+          {LANGS.map(lang => (
+            <button
+              key={lang.code}
+              className={`sidenav-lang-btn ${i18n.resolvedLanguage === lang.code ? 'sidenav-lang-btn--active' : ''}`}
+              onClick={() => i18n.changeLanguage(lang.code)}
+            >
+              {lang.label}
+            </button>
+          ))}
+        </div>
       </nav>
     </>
   )

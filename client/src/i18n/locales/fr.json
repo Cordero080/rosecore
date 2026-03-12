@@ -1,0 +1,253 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "La Résidence",
+    "amenities": "Équipements",
+    "services": "Services",
+    "entertainment": "Loisirs",
+    "excursions": "Excursions",
+    "beaches": "Plages",
+    "gallery": "Galerie Photos",
+    "contact": "Contact"
+  },
+  "home": {
+    "eyebrow": "Las Terrenas · Samaná · République Dominicaine",
+    "title": "Un endroit pour souffler.",
+    "subtitle": "Une villa privée sur la péninsule de Samaná. Deux chambres, piscine privée et la Caraïbe à votre porte.",
+    "cta": "Réserver votre séjour",
+    "availabilityTitle": "Disponibilités",
+    "availabilitySubtitle": "Calendrier en temps réel synchronisé avec Airbnb.",
+    "interludeTitle": "Entre la jungle et la mer.",
+    "interludeBody": "Las Terrenas est située sur la côte nord de la péninsule de Samaná — un endroit qui a mystérieusement échappé au développement touristique massif qui a transformé le reste de l'île. Les plages sont longues et tranquilles. Le village est petit et d'esprit européen. La jungle recouvre la péninsule jusqu'au bord de l'eau.",
+    "escapeTitle": "Un coin privé des Caraïbes.",
+    "escapeBody": "La Dolce Vita est un appartement de deux chambres dans une résidence calme à cinq minutes de la plage. Piscine privée, cuisine équipée, terrasse extérieure. Conçu pour ceux qui voyagent pour vraiment être quelque part.",
+    "escapeLink": "Voir la résidence"
+  },
+  "about": {
+    "eyebrow": "Las Terrenas · Samaná · République Dominicaine",
+    "titleAccent": "Dolce",
+    "tagline": "Un endroit pour souffler.",
+    "intro1": "Une résidence privée de deux chambres sur la péninsule de Samaná, à deux pas de l'une des plus belles plages de la République Dominicaine. L'appartement se trouve sur l'Ave 27 de Febrero à Las Terrenas — un village qui ressemble au sud de la France transplanté dans les Caraïbes.",
+    "intro2": "Deux chambres, deux salles de bain privées, une cuisine équipée et une piscine privée à l'ombre des palmiers. Assez confortable pour une famille. Assez calme pour deux. Le genre d'endroit où une semaine devient une conversation plus longue.",
+    "address": "Ave 27 de Febrero, Appartement 2 · Las Terrenas, Samaná · République Dominicaine",
+    "mapsLink": "Ouvrir dans Google Maps ↗",
+    "recognitionLabel": "Distinctions",
+    "coastLabel": "La Côte",
+    "nearbyBeachesTitle": "Plages à proximité",
+    "areaLabel": "Las Terrenas",
+    "areaTitle": "La région",
+    "areaFacts": [
+      "Communauté d'expatriés français et italiens — cosmopolite mais détendue à la mode caribéenne.",
+      "Trois langues dans les rues : espagnol dominicain, français et anglais.",
+      "Parc de food trucks en ville, ouvert tous les jours dès 16h avec douze camions.",
+      "Aéroport le plus proche : Samaná El Catey (AZS). Saint-Domingue (SDQ) est à deux heures par la route.",
+      "Meilleure météo : de décembre à mai. Saison d'observation des baleines de janvier à mars."
+    ]
+  },
+  "beaches": {
+    "eyebrow": "Las Terrenas · Samaná · République Dominicaine",
+    "title": "La",
+    "titleGold": "Côte",
+    "subtitle": "Huit plages qui méritent le détour.",
+    "beaches": [
+      {
+        "name": "Playa Bonita",
+        "distance": "5 min",
+        "drive": "À pied",
+        "body": "La plage la plus proche de la résidence, celle où vous reviendrez le plus souvent. Eau turquoise calme, sable blanc et palmiers qui se penchent dans le vent. Les couchers de soleil ici sont lents et spectaculaires — le genre qui vous fait rester plus longtemps que prévu.",
+        "tags": ["Baignade", "Couchers de soleil", "Palmiers"]
+      },
+      {
+        "name": "Playa Punta Popy",
+        "distance": "10 min",
+        "drive": "Courte distance",
+        "body": "La plage du village. Eau plus calme, une rangée de cafés et de bars de plage le long du rivage. Idéale pour un café du matin les pieds dans le sable, ou un long après-midi sans contrainte.",
+        "tags": ["Cafés", "Plage du village", "Eau calme"]
+      },
+      {
+        "name": "Playa Las Ballenas",
+        "distance": "15 min",
+        "drive": "Court trajet",
+        "body": "Tranquille et venteuse, avec une sensation de bout du monde que les autres plages n'ont pas. Mieux à l'heure dorée, quand la lumière vire à l'ambre et que la plage est presque vide.",
+        "tags": ["Promenades", "Heure dorée", "Tranquille"]
+      },
+      {
+        "name": "Playa Cosón",
+        "distance": "20 min",
+        "drive": "Court trajet",
+        "body": "Sept kilomètres de plage sauvage non aménagée — l'une des plus longues de la République Dominicaine. Favorite des surfeurs et de ceux qui veulent se sentir vraiment loin de la civilisation. Prenez de l'eau.",
+        "tags": ["Surf", "Plage sauvage", "Grande étendue"]
+      },
+      {
+        "name": "Playa Morón",
+        "distance": "35 min",
+        "drive": "Voiture nécessaire",
+        "body": "Isolée et paisible, presque sans foule même en haute saison. Eau cristalline, falaises dramatiques à proximité et le genre de silence difficile à trouver ailleurs sur la péninsule.",
+        "tags": ["Isolée", "Sans foule", "Cristalline"]
+      },
+      {
+        "name": "Playa Rincón",
+        "distance": "40 min",
+        "drive": "Voiture nécessaire",
+        "body": "Régulièrement classée parmi les meilleures plages des Caraïbes — et elle le mérite. Un long arc de sable blanc bordé de cocotiers, avec une rivière à une extrémité et une eau atlantique claire. Ça vaut chaque minute de trajet.",
+        "tags": ["Top Caraïbes", "Classique caraïbe", "Rivière"]
+      },
+      {
+        "name": "Cayo Levantado",
+        "distance": "1 h + ferry",
+        "drive": "Voiture jusqu'à Samaná, puis bateau",
+        "body": "Une petite île dans la baie de Samaná — aussi connue sous le nom d'Île Bacardi après une publicité tournée ici dans les années 70. Élue parmi les 50 meilleures plages du monde. Sable blanc, palmiers penchés sur l'eau et un turquoise que l'on voit jusqu'au fond. Accessible uniquement en ferry depuis la ville de Samaná.",
+        "tags": ["Île", "Ferry requis", "Top 50 mondial"]
+      },
+      {
+        "name": "Las Galeras",
+        "distance": "45 min",
+        "drive": "Voiture nécessaire",
+        "body": "Un petit village de pêcheurs à la pointe de la péninsule de Samaná. Le trajet seul en vaut la peine — routes sinueuses à travers la jungle et les collines. Plusieurs petites plages dans le village, chacune plus isolée que la précédente.",
+        "tags": ["Village", "Isolée", "Route panoramique"]
+      }
+    ]
+  },
+  "excursions": {
+    "eyebrow": "Las Terrenas · Samaná · République Dominicaine",
+    "title": "La",
+    "titleGold": "Péninsule",
+    "subtitle": "Huit excursions qui valent le déplacement.",
+    "excursions": [
+      {
+        "name": "Observation des Baleines à Bosse",
+        "duration": "Demi-journée",
+        "season": "Jan – mars seulement",
+        "body": "Chaque année, des milliers de baleines à bosse migrent vers la baie de Samaná pour se reproduire — l'une des concentrations les plus élevées de la planète. Vous les entendrez avant de les voir. Un bateau avec guide local vous emmène assez près pour les voir sauter, et parfois assez près pour sentir les embruns.",
+        "tags": ["Saisonnier", "Faune", "Tour en bateau"]
+      },
+      {
+        "name": "Salto El Limón",
+        "duration": "Demi-journée",
+        "season": "Toute l'année",
+        "body": "Une cascade de 40 mètres au cœur des collines de la jungle de Samaná, accessible à cheval sur un sentier à travers des bananiers et des bambous. Le bassin à la base est froid, clair et complètement caché du monde. À environ 30 minutes de la résidence.",
+        "tags": ["Cascade", "Équitation", "Jungle"]
+      },
+      {
+        "name": "Parc National Los Haitises",
+        "duration": "Journée entière",
+        "season": "Toute l'année",
+        "body": "Une vaste réserve naturelle de mangroves, de formations karstiques calcaires et de grottes ornées de pétroglyphes taïnos. Plus de 230 espèces d'oiseaux, dont plusieurs endémiques à la République Dominicaine. Accessible en bateau à travers des canaux de forêt verte ancestrale.",
+        "tags": ["Parc national", "Tour en bateau", "Faune", "Histoire"]
+      },
+      {
+        "name": "Excursion à Playa Rincón",
+        "duration": "Journée entière",
+        "season": "Toute l'année",
+        "body": "Régulièrement classée parmi les meilleures plages des Caraïbes — et difficile d'accès, c'est exactement pourquoi elle reste préservée. Trois kilomètres de sable blanc, une rivière à une extrémité, des cocotiers tout au long. Prenez le bateau pour l'expérience d'arrivée complète.",
+        "tags": ["Plage", "Bateau ou voiture", "Top-rated"]
+      },
+      {
+        "name": "Snorkeling et Charter Bateau Privé",
+        "duration": "Demi-journée ou journée",
+        "season": "Toute l'année",
+        "body": "Louez un bateau local et choisissez votre route — criques cachées, récifs peu profonds et plages accessibles uniquement par la mer. L'eau au large de la péninsule de Samaná est suffisamment claire pour voir des formations coralliennes et des tortues marines depuis la surface.",
+        "tags": ["Snorkeling", "Bateau", "Privé", "Tortues"]
+      },
+      {
+        "name": "Tour en Quad et Plantation de Café",
+        "duration": "Demi-journée",
+        "season": "Toute l'année",
+        "body": "Parcourez en quad les sentiers de la jungle dans les collines au-dessus de Las Terrenas, avec des arrêts dans des fermes locales où poussent cacao, café et fruits tropicaux. Vous goûterez des choses directement sur l'arbre.",
+        "tags": ["Quad", "Café", "Jungle", "Culture locale"]
+      },
+      {
+        "name": "Tyrolienne dans la Forêt Tropicale",
+        "duration": "Demi-journée",
+        "season": "Toute l'année",
+        "body": "Plus de deux kilomètres de câbles de tyrolienne à travers la canopée au-dessus de Las Terrenas. Les vues s'ouvrent entre les arbres — l'océan d'un côté, les montagnes de l'autre. Une bonne option pour les familles ou quiconque veut des sensations fortes sans aller loin.",
+        "tags": ["Tyrolienne", "Adrénaline", "Canopée"]
+      },
+      {
+        "name": "Kitesurf et Cours de Surf",
+        "duration": "Demi-journée",
+        "season": "Toute l'année",
+        "body": "Playa Cosón et El Portillo ont un vent et des vagues constants, avec des instructeurs locaux pour tous les niveaux. Les écoles de kitesurf fonctionnent toute l'année avec location de matériel incluse. Si vous n'avez jamais essayé, ces plages vides et spacieuses sont le meilleur endroit pour commencer.",
+        "tags": ["Kitesurf", "Surf", "Cours", "Plage"]
+      }
+    ]
+  },
+  "gallery": {
+    "eyebrow": "La Dolce Vita · Las Terrenas",
+    "title": "La",
+    "titleGold": "Galerie",
+    "subtitle": "La résidence et la péninsule.",
+    "propertyLabel": "La Dolce Vita · Apt 2",
+    "propertyDefaultCaption": "La Résidence",
+    "sceneryLabel": "Las Terrenas · Samaná",
+    "sceneryDefaultCaption": "Samaná, République Dominicaine",
+    "propertyCaptions": {
+      "flowers-property": "L'Arrivée",
+      "porch-2": "La Terrasse",
+      "Porch": "Terrasse au Crépuscule",
+      "living-room": "Le Salon",
+      "kitchen": "La Cuisine",
+      "kitchen-angle": "Cuisine, Plan Ouvert",
+      "twin-bed": "La Deuxième Chambre",
+      "bathroom": "La Salle de Bain du Couloir",
+      "master-bed": "La Chambre Principale",
+      "master-bath": "La Salle de Bain Principale",
+      "pool": "La Piscine Privée"
+    }
+  },
+  "contact": {
+    "eyebrow": "La Dolce Vita · Las Terrenas",
+    "title": "Nous",
+    "titleGold": "Contacter",
+    "subtitle": "Nous répondons volontiers à vos questions avant de réserver.",
+    "directLabel": "Direct",
+    "phoneLabel": "Téléphone / WhatsApp",
+    "whatsappNote": "WhatsApp est le moyen le plus rapide de nous joindre. Nous répondons généralement en quelques heures.",
+    "bookLabel": "Réserver en ligne",
+    "airbnbLink": "Voir l'annonce ↗",
+    "findUsLabel": "Nous trouver",
+    "addressLabel": "Adresse",
+    "mapsLabel": "Cartes",
+    "mapsLink": "Ouvrir dans Google Maps ↗",
+    "chatLabel": "Ou utilisez le chat",
+    "chatNote": "Le concierge en bas à droite peut répondre à la plupart des questions instantanément — disponibilités, tarifs, check-in et plus encore."
+  },
+  "amenities": {
+    "eyebrow": "La Dolce Vita · Las Terrenas",
+    "title": "L'",
+    "titleGold": "Espace",
+    "subtitle": "Ave 27 de Febrero · Samaná, République Dominicaine",
+    "includedLabel": "Inclus",
+    "whatsHereTitle": "Ce qui est disponible",
+    "detailsLabel": "Détails",
+    "houseRulesTitle": "Règles de la maison",
+    "stats": [
+      { "value": "2",    "label": "Chambres"      },
+      { "value": "2",    "label": "Salles de bain" },
+      { "value": "4",    "label": "Voyageurs max"  },
+      { "value": "$130", "label": "Par nuit"       }
+    ],
+    "amenities": [
+      { "name": "Piscine Privée",       "detail": "Réservée aux voyageurs. Ombragée par des palmiers, ouverte toute l'année."    },
+      { "name": "Vue sur la mer",       "detail": "À 5 minutes à pied de Playa Bonita — eau turquoise, sable blanc."            },
+      { "name": "Climatisation",        "detail": "Climatisation centrale dans toutes les pièces."                               },
+      { "name": "Cuisine Équipée",      "detail": "Entièrement équipée. Cuisinez chez vous ou faites le marché local."          },
+      { "name": "WiFi Haut Débit",      "detail": "Connexion fiable pour le télétravail ou le streaming."                       },
+      { "name": "Lave-linge & Sèche-linge", "detail": "Buanderie dans l'appartement. Idéal pour les longs séjours."           },
+      { "name": "Animaux acceptés",     "detail": "Animaux bien élevés acceptés. Merci de le mentionner lors de la réservation." },
+      { "name": "Parking Privé",        "detail": "Parking sur place disponible pour les voyageurs avec un véhicule."           }
+    ],
+    "rules": [
+      { "label": "Check-in",   "value": "15h00"       },
+      { "label": "Check-out",  "value": "11h00"       },
+      { "label": "Voyageurs",  "value": "Jusqu'à 4"   },
+      { "label": "Animaux",    "value": "Acceptés"    }
+    ]
+  },
+  "chat": {
+    "title": "Vita",
+    "subtitle": "Votre concierge",
+    "placeholder": "Posez n'importe quelle question sur la résidence…",
+    "send": "Envoyer"
+  }
+}
