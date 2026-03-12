@@ -51,18 +51,18 @@
     "subtitle": "Huit plages qui méritent le détour.",
     "beaches": [
       {
-        "name": "Playa Bonita",
+        "name": "Playa Punta Popy",
         "distance": "5 min",
         "drive": "À pied",
-        "body": "La plage la plus proche de la résidence, celle où vous reviendrez le plus souvent. Eau turquoise calme, sable blanc et palmiers qui se penchent dans le vent. Les couchers de soleil ici sont lents et spectaculaires — le genre qui vous fait rester plus longtemps que prévu.",
-        "tags": ["Baignade", "Couchers de soleil", "Palmiers"]
+        "body": "La plage la plus proche de la résidence. La plage du village — eau claire et calme, une promenade bordée de cafés et de bars, et une ambiance animée la plupart des soirs. Idéale pour un café du matin les pieds dans le sable, ou un long après-midi sans contrainte.",
+        "tags": ["Cafés", "Plage du village", "Eau calme"]
       },
       {
-        "name": "Playa Punta Popy",
+        "name": "Playa Bonita",
         "distance": "10 min",
         "drive": "Courte distance",
-        "body": "La plage du village. Eau plus calme, une rangée de cafés et de bars de plage le long du rivage. Idéale pour un café du matin les pieds dans le sable, ou un long après-midi sans contrainte.",
-        "tags": ["Cafés", "Plage du village", "Eau calme"]
+        "body": "Largement considérée comme la plus belle plage de Las Terrenas. Eau turquoise calme, sable blanc et palmiers qui se penchent dans le vent. Hôtels boutique et restaurants le long du rivage. Les couchers de soleil ici sont lents et spectaculaires — le genre qui vous fait rester plus longtemps que prévu.",
+        "tags": ["Baignade", "Couchers de soleil", "Palmiers"]
       },
       {
         "name": "Playa Las Ballenas",

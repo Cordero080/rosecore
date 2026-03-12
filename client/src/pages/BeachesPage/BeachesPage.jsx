@@ -10,7 +10,7 @@ import cosonImg    from '../../assets/images/beaches/coson.jpg'
 import moronImg    from '../../assets/images/beaches/moron.jpg'
 import cayoImg     from '../../assets/images/beaches/el-cayo-levantado.jpg'
 
-const IMAGES = [bonitaImg, puntaPopImg, ballenasImg, cosonImg, moronImg, rinconImg, cayoImg, galerasImg]
+const IMAGES = [puntaPopImg, bonitaImg, ballenasImg, cosonImg, moronImg, rinconImg, cayoImg, galerasImg]
 
 export default function BeachesPage() {
   const { t } = useTranslation()

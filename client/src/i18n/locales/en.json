@@ -51,18 +51,18 @@
     "subtitle": "Eight beaches worth knowing.",
     "beaches": [
       {
-        "name": "Playa Bonita",
+        "name": "Playa Punta Popy",
         "distance": "5 min",
         "drive": "Walking distance",
-        "body": "The closest beach to the residence and the one you'll return to most. Calm turquoise water, white sand, and palm trees that lean into the wind. The sunsets here are unhurried and spectacular — the kind that make you stay longer than planned.",
-        "tags": ["Swimming", "Sunsets", "Palms"]
+        "body": "The closest beach to the residence. The town beach — calm clear water, a boardwalk lined with cafés and beach bars, and a lively atmosphere most evenings. Good for a morning coffee with your feet in the sand, or a long afternoon with nowhere to be.",
+        "tags": ["Cafés", "Town beach", "Calm water"]
       },
       {
-        "name": "Playa Punta Popy",
+        "name": "Playa Bonita",
         "distance": "10 min",
         "drive": "Short drive or walk",
-        "body": "The town beach. Calmer water, a string of cafés and beach bars along the shore. Good for a morning coffee with your feet in the sand, or a long afternoon with nowhere to be.",
-        "tags": ["Cafés", "Town beach", "Calm water"]
+        "body": "Widely considered the most beautiful beach in Las Terrenas. Calm turquoise water, white sand, and palm trees that lean into the wind. Boutique hotels and restaurants along the shore. The sunsets here are unhurried and spectacular — the kind that make you stay longer than planned.",
+        "tags": ["Swimming", "Sunsets", "Palms"]
       },
       {
         "name": "Playa Las Ballenas",

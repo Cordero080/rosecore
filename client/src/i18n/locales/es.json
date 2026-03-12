@@ -51,18 +51,18 @@
     "subtitle": "Ocho playas que vale la pena conocer.",
     "beaches": [
       {
-        "name": "Playa Bonita",
+        "name": "Playa Punta Popy",
         "distance": "5 min",
         "drive": "A poca distancia a pie",
-        "body": "La playa más cercana a la residencia y a la que más volverás. Agua turquesa tranquila, arena blanca y palmeras que se inclinan con el viento. Los atardeceres aquí son pausados y espectaculares — del tipo que te hace quedarte más de lo planeado.",
-        "tags": ["Natación", "Atardeceres", "Palmeras"]
+        "body": "La playa más cercana a la residencia. La playa del pueblo — agua clara y tranquila, un malecón bordeado de cafés y bares, y un ambiente animado la mayoría de las noches. Ideal para un café por la mañana con los pies en la arena, o una tarde larga sin prisa.",
+        "tags": ["Cafés", "Playa del pueblo", "Agua tranquila"]
       },
       {
-        "name": "Playa Punta Popy",
+        "name": "Playa Bonita",
         "distance": "10 min",
         "drive": "Corto en coche o a pie",
-        "body": "La playa del pueblo. Agua más tranquila, una hilera de cafés y bares de playa a lo largo de la orilla. Ideal para un café por la mañana con los pies en la arena, o una tarde larga sin prisa.",
-        "tags": ["Cafés", "Playa del pueblo", "Agua tranquila"]
+        "body": "Considerada ampliamente la playa más hermosa de Las Terrenas. Agua turquesa tranquila, arena blanca y palmeras que se inclinan con el viento. Hoteles boutique y restaurantes a lo largo de la orilla. Los atardeceres aquí son pausados y espectaculares — del tipo que te hace quedarte más de lo planeado.",
+        "tags": ["Natación", "Atardeceres", "Palmeras"]
       },
       {
         "name": "Playa Las Ballenas",

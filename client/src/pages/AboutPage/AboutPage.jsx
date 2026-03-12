@@ -8,8 +8,8 @@ const RECOGNITIONS = [
 ]
 
 const BEACHES = [
-  { name: 'Playa Bonita',      distance: '5 min'  },
-  { name: 'Playa Punta Popy',  distance: '10 min' },
+  { name: 'Playa Punta Popy',  distance: '5 min'  },
+  { name: 'Playa Bonita',      distance: '10 min' },
   { name: 'Playa Las Ballenas', distance: '15 min' },
   { name: 'Playa Cosón',       distance: '20 min' },
   { name: 'Playa Morón',       distance: '35 min' },
