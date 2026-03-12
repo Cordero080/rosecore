@@ -287,3 +287,18 @@
     width: calc(100vw - 48px); // this
   }
 }
+
+
+// ── Lang switcher — mobile ────────────────────
+@include tablet {
+  .sidenav.is-open .sidenav-lang {
+    left: 12px;
+  }
+
+  .sidenav.is-open .sidenav-lang-btn {
+    font-size: 0.78rem;
+    padding: 10px 14px;
+    min-width: 52px;
+    min-height: 40px;
+  }
+}

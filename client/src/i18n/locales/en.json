@@ -11,6 +11,14 @@
     "contact": "Contact"
   },
   "home": {
+    "heroEyebrow": "Private Residence · Dominican Republic",
+    "heroTagline": "A place to exhale.",
+    "checkAvailability": "Check Availability",
+    "exploreProperty": "Explore the Property",
+    "reserveStay": "Reserve your stay",
+    "leaveReview": "Leave a review",
+    "interludeQuote": "A place where time slows, and the sea remembers your name.",
+    "bookEscape": "Book your escape.",
     "eyebrow": "Las Terrenas · Samaná · Dominican Republic",
     "title": "A place to exhale.",
     "subtitle": "A private villa on the Samaná Peninsula. Two bedrooms, a private pool, and the Caribbean at your door.",
@@ -233,21 +241,29 @@
       { "name": "Air Conditioning", "detail": "Central AC throughout all rooms."                              },
       { "name": "Full Kitchen",     "detail": "Fully equipped. Cook at home or stock up at the local market." },
       { "name": "High-Speed WiFi",  "detail": "Reliable connection for remote work or streaming."             },
-      { "name": "Washer & Dryer",   "detail": "In-unit laundry. Ideal for longer stays."                     },
-      { "name": "Pets Welcome",     "detail": "Well-behaved pets allowed. Please mention when booking."       },
       { "name": "Private Parking",  "detail": "On-site parking available for guests with a vehicle."         }
     ],
     "rules": [
       { "label": "Check-in",  "value": "3:00 PM"  },
       { "label": "Check-out", "value": "11:00 AM" },
       { "label": "Guests",    "value": "Up to 4"  },
-      { "label": "Pets",      "value": "Allowed"  }
+      { "label": "Pets",      "value": "Not allowed"  }
     ]
+  },
+  "calendar": {
+    "days": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    "available": "Available",
+    "booked": "Booked",
+    "loading": "Loading availability..."
   },
   "chat": {
     "title": "Vita",
-    "subtitle": "Your concierge",
-    "placeholder": "Ask anything about the residence…",
-    "send": "Send"
+    "role": "Villa Concierge",
+    "greeting": "Hi, I'm Vita! Ask me anything about the property — availability, pricing, amenities, and more.",
+    "teaser": "Hi, I'm Vita — ask me anything!",
+    "placeholder": "Ask about availability, pricing…",
+    "send": "Send",
+    "error": "Sorry, something went wrong. Please try again."
   }
 }

@@ -11,6 +11,14 @@
     "contact": "Contacto"
   },
   "home": {
+    "heroEyebrow": "Residencia Privada · República Dominicana",
+    "heroTagline": "Un lugar para respirar.",
+    "checkAvailability": "Ver Disponibilidad",
+    "exploreProperty": "Explorar la Propiedad",
+    "reserveStay": "Reservar tu estadía",
+    "leaveReview": "Dejar una reseña",
+    "interludeQuote": "Un lugar donde el tiempo se detiene y el mar recuerda tu nombre.",
+    "bookEscape": "Reserva tu escape.",
     "eyebrow": "Las Terrenas · Samaná · República Dominicana",
     "title": "Un lugar para respirar.",
     "subtitle": "Una villa privada en la Península de Samaná. Dos habitaciones, piscina privada y el Caribe a tu puerta.",
@@ -233,21 +241,29 @@
       { "name": "Aire Acondicionado",   "detail": "Aire central en todas las habitaciones."                                       },
       { "name": "Cocina Completa",      "detail": "Totalmente equipada. Cocina en casa o abastécete en el mercado local."         },
       { "name": "WiFi de Alta Velocidad","detail": "Conexión confiable para trabajo remoto o streaming."                          },
-      { "name": "Lavadora y Secadora",  "detail": "Lavandería en la unidad. Ideal para estancias más largas."                    },
-      { "name": "Se aceptan mascotas",  "detail": "Se permiten mascotas bien portadas. Por favor menciónalo al reservar."        },
       { "name": "Estacionamiento",      "detail": "Estacionamiento en el lugar disponible para huéspedes con vehículo."          }
     ],
     "rules": [
       { "label": "Check-in",  "value": "3:00 PM"      },
       { "label": "Check-out", "value": "11:00 AM"     },
       { "label": "Huéspedes", "value": "Hasta 4"      },
-      { "label": "Mascotas",  "value": "Permitidas"   }
+      { "label": "Mascotas",  "value": "No permitidas"   }
     ]
+  },
+  "calendar": {
+    "days": ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+    "months": ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+    "available": "Disponible",
+    "booked": "Reservado",
+    "loading": "Cargando disponibilidad..."
   },
   "chat": {
     "title": "Vita",
-    "subtitle": "Tu concierge",
-    "placeholder": "Pregunta lo que quieras sobre la residencia…",
-    "send": "Enviar"
+    "role": "Concierge de la Villa",
+    "greeting": "¡Hola, soy Vita! Pregúntame lo que quieras sobre la propiedad — disponibilidad, precios, comodidades y más.",
+    "teaser": "¡Hola, soy Vita — pregúntame lo que quieras!",
+    "placeholder": "Pregunta sobre disponibilidad, precios…",
+    "send": "Enviar",
+    "error": "Lo sentimos, algo salió mal. Por favor intenta de nuevo."
   }
 }

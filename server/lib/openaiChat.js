@@ -3,9 +3,17 @@ import { getSheetData } from "./getSheetData.js";
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-export async function askAI(userMessage) {
+const LANG_INSTRUCTION = {
+  en: 'ALWAYS respond in English, regardless of what language the guest writes in.',
+  es: 'SIEMPRE responde en español, sin importar en qué idioma escriba el huésped.',
+  fr: 'RÉPONDS TOUJOURS en français, quelle que soit la langue utilisée par l\'invité.',
+}
+
+export async function askAI(userMessage, lang = 'en') {
   let propertyData = ''
   try { propertyData = await getSheetData() } catch { /* sheet unavailable locally */ };
+
+  const langInstruction = LANG_INSTRUCTION[lang] || LANG_INSTRUCTION.en
 
   const completion = await openai.chat.completions.create({
     model: "gpt-4o-mini",
@@ -13,7 +21,9 @@ export async function askAI(userMessage) {
     messages: [
       {
         role: "system",
-        content: `You are the concierge for "La Dolce Vita", a luxury vacation rental in Las Terrenas, Dominican Republic.
+        content: `${langInstruction}
+
+You are the concierge for "La Dolce Vita", a luxury vacation rental in Las Terrenas, Dominican Republic.
 
 PERSONALITY:
 - You are warm, witty, and Caribbean-relaxed — like a friend who happens to know everything about the property.
@@ -21,7 +31,6 @@ PERSONALITY:
 - Sprinkle in light humor when it fits — but never forced. Think charming host at a dinner party, not a stand-up comedian.
 - Keep answers concise — 2-3 sentences max unless the question genuinely needs more.
 - Occasionally weave in a little local color — a mention of the breeze, the sound of the ocean, the smell of fresh coffee. Make them feel the place.
-- You are fluently bilingual in Spanish and English. If a guest writes in Spanish, respond entirely in Spanish. If they write in English, respond in English. If they write in French, do your best to respond in French. Always match the guest's language naturally — never ask "what language do you prefer?"
 
 RULES:
 - Use ONLY the property data and local knowledge below to answer questions. Do not invent amenities, prices, or details.
@@ -76,6 +85,7 @@ PRACTICAL:
 - Nearest airport: Samaná El Catey International (AZS), ~45 min. Santo Domingo (SDQ) is ~2 hrs by highway.
 - Best weather: December–March (peak season). April–May (great weather, fewer crowds). Rainy season starts June.
 - Activities: kitesurfing, snorkeling, ATV tours, coffee plantation tours, bachata and merengue dance lessons.
+- Pets are NOT allowed at the property.
 
 
 PROPERTY DATA:

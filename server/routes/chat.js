@@ -288,9 +288,9 @@ const responses = {
       "animaux",
     ],
     reply: {
-      en: "We are a pet-friendly property! Please let us know in advance so we can prepare accordingly.",
-      es: "¡Aceptamos mascotas! Por favor avísenos con anticipación para prepararnos.",
-      fr: "Nous acceptons les animaux de compagnie ! Veuillez nous en informer à l'avance afin que nous puissions nous préparer.",
+      en: "Unfortunately, pets are not allowed at the property.",
+      es: "Lamentablemente, no se permiten mascotas en la propiedad.",
+      fr: "Malheureusement, les animaux de compagnie ne sont pas autorisés dans la propriété.",
     },
   },
   location: {
@@ -426,11 +426,11 @@ const AVAIL_KEYWORDS = [
 ];
 
 router.post("/", async (req, res) => {
-  const { message, sessionId } = req.body;
+  const { message, sessionId, lang: clientLang } = req.body;
   if (!message) return res.status(400).json({ error: "Message is required" });
 
   const lower = message.toLowerCase();
-  const lang = detectLang(message);
+  const lang = clientLang || detectLang(message);
   let reply;
 
   // Availability check
@@ -510,7 +510,7 @@ router.post("/", async (req, res) => {
   // OpenAI fallback
   try {
     const { askAI } = await import("../lib/openaiChat.js");
-    reply = await askAI(message);
+    reply = await askAI(message, lang);
   } catch (err) {
     console.error("OpenAI error:", err.message);
     reply = fallback[lang] || fallback.en;

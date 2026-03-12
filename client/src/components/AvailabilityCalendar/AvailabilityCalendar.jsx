@@ -1,13 +1,8 @@
 import { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import './AvailabilityCalendar.css'
 
 const ICAL_URL = 'http://localhost:3001/api/ical'
-
-const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-const MONTHS = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December'
-]
 
 function toKey(year, month, day) {
   return `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`
@@ -19,6 +14,10 @@ export default function AvailabilityCalendar() {
   const [month, setMonth] = useState(today.getMonth())
   const [blockedSet, setBlockedSet] = useState(new Set())
   const [loading, setLoading] = useState(true)
+  const { t } = useTranslation()
+
+  const DAYS   = t('calendar.days',   { returnObjects: true })
+  const MONTHS = t('calendar.months', { returnObjects: true })
 
   useEffect(() => {
     fetch(ICAL_URL)
@@ -38,7 +37,6 @@ export default function AvailabilityCalendar() {
     else setMonth(m => m + 1)
   }
 
-  // Build the grid
   const firstDay = new Date(year, month, 1).getDay()
   const daysInMonth = new Date(year, month + 1, 0).getDate()
   const cells = []
@@ -62,7 +60,7 @@ export default function AvailabilityCalendar() {
         </div>
 
         {loading ? (
-          <div className="cal-loading">Loading availability...</div>
+          <div className="cal-loading">{t('calendar.loading')}</div>
         ) : (
           <div className="cal-grid">
             {cells.map((day, i) => {
@@ -84,7 +82,7 @@ export default function AvailabilityCalendar() {
                     isBlocked ? 'cal-cell--blocked' : 'cal-cell--available',
                     isToday ? 'cal-cell--today' : '',
                   ].join(' ')}
-                  title={isBlocked ? 'Booked' : 'Available'}
+                  title={isBlocked ? t('calendar.booked') : t('calendar.available')}
                 >
                   {day}
                 </span>
@@ -96,11 +94,11 @@ export default function AvailabilityCalendar() {
         <div className="cal-legend">
           <span className="cal-legend-item">
             <span className="cal-legend-dot cal-legend-dot--available" />
-            Available
+            {t('calendar.available')}
           </span>
           <span className="cal-legend-item">
             <span className="cal-legend-dot cal-legend-dot--blocked" />
-            Booked
+            {t('calendar.booked')}
           </span>
         </div>
       </div>

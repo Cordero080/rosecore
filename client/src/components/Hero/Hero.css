@@ -168,7 +168,7 @@
     margin-left: 0;
     width: 100%;
     padding: 24px;
-    padding-top: 100px;
+    padding-top: 24px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -177,6 +177,7 @@
 
   .hero-content {
     text-align: center;
+    margin-top: -50px;
   }
 
 

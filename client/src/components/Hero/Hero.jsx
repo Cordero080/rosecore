@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import './Hero.css'
 
 export default function Hero() {
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   function scrollToCalendar() {
     document.getElementById('availability')?.scrollIntoView({ behavior: 'smooth' })
@@ -15,20 +17,20 @@ export default function Hero() {
       </div>
 
       <div className="hero-content">
-        <p className="hero-eyebrow">Private Residence · Dominican Republic</p>
+        <p className="hero-eyebrow">{t('home.heroEyebrow')}</p>
 
         <h1 className="hero-headline">
           La Dolce Vita
         </h1>
 
-        <p className="hero-tagline">A place to <em>exhale</em>.</p>
+        <p className="hero-tagline"><em>{t('home.heroTagline')}</em></p>
 
         <div className="hero-actions">
           <button className="hero-btn hero-btn--primary" onClick={scrollToCalendar}>
-            Check Availability
+            {t('home.checkAvailability')}
           </button>
           <button className="hero-btn hero-btn--ghost" onClick={() => navigate('/gallery')}>
-            Explore the Property
+            {t('home.exploreProperty')}
           </button>
         </div>
       </div>

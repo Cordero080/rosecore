@@ -1,12 +1,9 @@
 import { useState, useRef, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import './ChatWidget.css'
-// const N8N_URL = 'http://localhost:5678/webhook-test/chat';
 
-// uncomment to use local host 
-const CHAT_URL = 'http://localhost:3001/api/chat' ;
-// const CHAT_URL = 'https://rosecore-gyvw.onrender.com/api/chat';
+const CHAT_URL = 'http://localhost:3001/api/chat'
 
-/* Turn URLs in a string into clickable <a> tags */
 function linkify(text) {
   const urlRegex = /(https?:\/\/[^\s]+)/g
   const parts = text.split(urlRegex)
@@ -21,15 +18,22 @@ const DEFAULT_W = 340
 const DEFAULT_H = 460
 
 export default function ChatWidget() {
+  const { t, i18n } = useTranslation()
   const [open, setOpen] = useState(false)
   const [teaserVisible, setTeaserVisible] = useState(true)
-  const [messages, setMessages] = useState([
-    { from: 'bot', text: "Hi, I'm Vita! Ask me anything about the property — availability, pricing, amenities, and more." }
-  ])
+  const [messages, setMessages] = useState([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const [size, setSize] = useState({ width: DEFAULT_W, height: DEFAULT_H })
   const bottomRef = useRef(null)
+
+  // Set initial greeting and update it when language changes
+  useEffect(() => {
+    setMessages(prev => [
+      { from: 'bot', text: t('chat.greeting') },
+      ...prev.slice(1),
+    ])
+  }, [i18n.resolvedLanguage]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (open) bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -47,12 +51,16 @@ export default function ChatWidget() {
       const res = await fetch(CHAT_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-       body: JSON.stringify({ message: text, sessionId: window.__chatSessionId || (window.__chatSessionId = crypto.randomUUID()) }),
+        body: JSON.stringify({
+          message: text,
+          sessionId: window.__chatSessionId || (window.__chatSessionId = crypto.randomUUID()),
+          lang: i18n.resolvedLanguage || 'en',
+        }),
       })
       const data = await res.json()
       setMessages(prev => [...prev, { from: 'bot', text: data.reply }])
     } catch {
-      setMessages(prev => [...prev, { from: 'bot', text: 'Sorry, something went wrong. Please try again.' }])
+      setMessages(prev => [...prev, { from: 'bot', text: t('chat.error') }])
     } finally {
       setLoading(false)
     }
@@ -63,10 +71,6 @@ export default function ChatWidget() {
       e.preventDefault()
       send()
     }
-  }
-
-  function openChat() {
-    setOpen(true)
   }
 
   function startResize(e) {
@@ -101,8 +105,8 @@ export default function ChatWidget() {
       >
         <div className="chat-header">
           <div className="chat-header-identity">
-            <span className="chat-vita-name">Vita</span>
-            <span className="chat-vita-role">Villa Concierge</span>
+            <span className="chat-vita-name">{t('chat.title')}</span>
+            <span className="chat-vita-role">{t('chat.role')}</span>
           </div>
           <button className="chat-close" onClick={() => setOpen(false)} aria-label="Close chat">✕</button>
         </div>
@@ -127,7 +131,7 @@ export default function ChatWidget() {
           <input
             className="chat-input"
             type="text"
-            placeholder="Ask about availability, pricing..."
+            placeholder={t('chat.placeholder')}
             value={input}
             onChange={e => setInput(e.target.value)}
             onKeyDown={handleKey}
@@ -140,8 +144,8 @@ export default function ChatWidget() {
       </div>
 
       {teaserVisible && !open && (
-        <button className="chat-teaser" onClick={openChat} aria-label="Chat with Vita">
-          <span className="chat-teaser-text">Hi, I'm Vita — ask me anything!</span>
+        <button className="chat-teaser" onClick={() => setOpen(true)} aria-label="Chat with Vita">
+          <span className="chat-teaser-text">{t('chat.teaser')}</span>
           <span className="chat-teaser-dismiss" onClick={e => { e.stopPropagation(); setTeaserVisible(false) }}>✕</span>
         </button>
       )}
