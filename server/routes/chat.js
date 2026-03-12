@@ -266,9 +266,9 @@ const responses = {
       "heure d'arrivée",
     ],
     reply: {
-      en: "Check-in is at 3:00 PM and check-out is at 11:00 AM.",
-      es: "El check-in es a las 3:00 PM y el check-out es a las 11:00 AM.",
-      fr: "L'arrivée est à 15h00 et le départ est à 11h00.",
+      en: "Check-in is at 3:00 PM and check-out is at 10:00 AM.",
+      es: "El check-in es a las 3:00 PM y el check-out es a las 10:00 AM.",
+      fr: "L'arrivée est à 15h00 et le départ est à 10h00.",
     },
   },
   pets: {

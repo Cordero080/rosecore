@@ -245,7 +245,7 @@
     ],
     "rules": [
       { "label": "Check-in",  "value": "3:00 PM"      },
-      { "label": "Check-out", "value": "11:00 AM"     },
+      { "label": "Check-out", "value": "10:00 AM"     },
       { "label": "Huéspedes", "value": "Hasta 4"      },
       { "label": "Mascotas",  "value": "No permitidas"   }
     ]
