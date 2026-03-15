@@ -153,25 +153,103 @@ function friendlyRange(dates) {
 
 const SPANISH_MARKERS = [
   // question words
-  "cuánto","cuanto","cuántas","cuantas","cuántos","cuantos",
-  "dónde","donde","cómo","como está","qué","cuál","cual","cuándo","cuando",
+  "cuánto",
+  "cuanto",
+  "cuántas",
+  "cuantas",
+  "cuántos",
+  "cuantos",
+  "dónde",
+  "donde",
+  "cómo",
+  "como está",
+  "qué",
+  "cuál",
+  "cual",
+  "cuándo",
+  "cuando",
   // common verbs / phrases
-  "tiene","tengo","puedo","quiero","necesito","hay","están","está","es que",
-  "por favor","muchas gracias","gracias","hola","buenos días","buenas tardes",
-  "buenas noches","buenas","buen día","de nada","claro","sí","también","cómo así",
+  "tiene",
+  "tengo",
+  "puedo",
+  "quiero",
+  "necesito",
+  "hay",
+  "están",
+  "está",
+  "es que",
+  "por favor",
+  "muchas gracias",
+  "gracias",
+  "hola",
+  "buenos días",
+  "buenas tardes",
+  "buenas noches",
+  "buenas",
+  "buen día",
+  "de nada",
+  "claro",
+  "sí",
+  "también",
+  "cómo así",
   // property-specific
-  "disponible","habitación","habitaciones","dormitorio","dormitorios",
-  "precio","tarifa","mascota","ubicación","estacionamiento","baño","baños",
-  "cocina","piscina","lavadora","entrada","salida","llegada",
-  "reservar","reserva","contacto","llamar","correo","teléfono",
-  "hogar","casa","propiedad","alquiler","alojamiento","estadía",
+  "disponible",
+  "habitación",
+  "habitaciones",
+  "dormitorio",
+  "dormitorios",
+  "precio",
+  "tarifa",
+  "mascota",
+  "ubicación",
+  "estacionamiento",
+  "baño",
+  "baños",
+  "cocina",
+  "piscina",
+  "lavadora",
+  "entrada",
+  "salida",
+  "llegada",
+  "reservar",
+  "reserva",
+  "contacto",
+  "llamar",
+  "correo",
+  "teléfono",
+  "hogar",
+  "casa",
+  "propiedad",
+  "alquiler",
+  "alojamiento",
+  "estadía",
 ];
 
 const FRENCH_MARKERS = [
-  "bonjour","merci","s'il vous plaît","comment","combien","où","qu'est",
-  "disponible","réserver","réservation","chambre","salle de bain",
-  "prix","tarif","piscine","cuisine","stationnement","climatisation",
-  "arrivée","départ","animaux","chien","emplacement","adresse",
+  "bonjour",
+  "merci",
+  "s'il vous plaît",
+  "comment",
+  "combien",
+  "où",
+  "qu'est",
+  "disponible",
+  "réserver",
+  "réservation",
+  "chambre",
+  "salle de bain",
+  "prix",
+  "tarif",
+  "piscine",
+  "cuisine",
+  "stationnement",
+  "climatisation",
+  "arrivée",
+  "départ",
+  "animaux",
+  "chien",
+  "emplacement",
+  "adresse",
 ];
 
 function detectLang(text) {
@@ -186,6 +264,28 @@ function detectLang(text) {
 // ── Keyword responses ─────────────────────────────────────────────────────────
 
 const responses = {
+  greeting: {
+    keywords: [
+      "hi",
+      "hey",
+      "hello",
+      "good morning",
+      "good afternoon",
+      "good evening",
+      "hola",
+      "buenos",
+      "buenas",
+      "saludos",
+      "bonjour",
+      "salut",
+      "bonsoir",
+    ],
+    reply: {
+      en: "Hello! I'm Vita, your villa concierge. I can help with availability, pricing, amenities, check-in times, and more. What can I help you with?",
+      es: "¡Hola! Soy Vita, su conserje de la villa. Puedo ayudarle con disponibilidad, tarifas, comodidades, horarios de check-in y más. ¿En qué le puedo ayudar?",
+      fr: "Bonjour ! Je suis Vita, votre conciergerie de villa. Je peux vous aider avec les disponibilités, les tarifs, les équipements, les horaires d'arrivée et plus encore. Comment puis-je vous aider ?",
+    },
+  },
   pricing: {
     keywords: [
       // English
@@ -467,11 +567,14 @@ router.post("/", async (req, res) => {
         }
       } catch {
         if (lang === "es") {
-          reply = "No pude verificar el calendario en este momento — contáctenos directamente y confirmaremos la disponibilidad.";
+          reply =
+            "No pude verificar el calendario en este momento — contáctenos directamente y confirmaremos la disponibilidad.";
         } else if (lang === "fr") {
-          reply = "Je n'ai pas pu vérifier le calendrier pour le moment — contactez-nous directement et nous confirmerons la disponibilité.";
+          reply =
+            "Je n'ai pas pu vérifier le calendrier pour le moment — contactez-nous directement et nous confirmerons la disponibilité.";
         } else {
-          reply = "I wasn't able to check the calendar right now — please contact us directly and we'll confirm availability.";
+          reply =
+            "I wasn't able to check the calendar right now — please contact us directly and we'll confirm availability.";
         }
       }
     }
@@ -480,9 +583,11 @@ router.post("/", async (req, res) => {
       if (lang === "es") {
         reply = "Puedo verificar la disponibilidad — ¿qué fechas le interesan?";
       } else if (lang === "fr") {
-        reply = "Je peux vérifier la disponibilité — quelles dates vous intéressent ?";
+        reply =
+          "Je peux vérifier la disponibilité — quelles dates vous intéressent ?";
       } else {
-        reply = "I can check availability for you — which dates are you looking at?";
+        reply =
+          "I can check availability for you — which dates are you looking at?";
       }
     }
 
