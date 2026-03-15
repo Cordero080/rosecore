@@ -1,4 +1,4 @@
-import OpenAI from "openai";
+const OpenAI = require("openai");
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
@@ -8,9 +8,8 @@ const LANG_INSTRUCTION = {
   fr: "RÉPONDS TOUJOURS en français, quelle que soit la langue utilisée par l'invité.",
 };
 
-const SYSTEM_PROMPT = (
-  lang,
-) => `${LANG_INSTRUCTION[lang] || LANG_INSTRUCTION.en}
+function buildPrompt(lang) {
+  return `${LANG_INSTRUCTION[lang] || LANG_INSTRUCTION.en}
 
 You are the concierge for "La Dolce Vita", a luxury vacation rental in Las Terrenas, Dominican Republic.
 
@@ -69,6 +68,7 @@ PRACTICAL:
 - Nearest airport: Samaná El Catey International (AZS), ~45 min. Santo Domingo (SDQ) ~2 hrs.
 - Best weather: December–March. Rainy season starts June.
 - Activities: kitesurfing, snorkeling, ATV tours, whale watching (Jan–Mar), El Limón waterfall.`;
+}
 
 const fallback = {
   en: "I'd love to help with that — reach out to us directly at +1 (718) 759-8441 and we'll have an answer for you right away!",
@@ -76,7 +76,7 @@ const fallback = {
   fr: "Je serais ravi de vous aider — contactez-nous directement au +1 (718) 759-8441 et nous vous répondrons immédiatement.",
 };
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -93,7 +93,7 @@ export default async function handler(req, res) {
       model: "gpt-4o-mini",
       max_tokens: 300,
       messages: [
-        { role: "system", content: SYSTEM_PROMPT(lang) },
+        { role: "system", content: buildPrompt(lang) },
         { role: "user", content: message },
       ],
     });
@@ -102,4 +102,4 @@ export default async function handler(req, res) {
     console.error("OpenAI error:", err.message);
     return res.json({ reply: fallback[lang] || fallback.en });
   }
-}
+};
