@@ -222,38 +222,6 @@
 }
 
 
-// ── Base font + titles — mobile ───────────────
-@include mobile {
-  html, body {
-    font-size: 1.05rem;
-  }
-
-  // Section/page intro body copy
-  .interlude-quote {
-    font-size: 1.25rem;
-  }
-
-  // Page subtitles / lead text
-  .contact-subtitle,
-  .excursions-subtitle,
-  .beaches-subtitle,
-  .amenities-subtitle,
-  .gallery-page-subtitle {
-    font-size: 1.1rem;
-  }
-
-  // Page display titles — push clamp minimums up
-  .contact-title,
-  .excursions-title,
-  .beaches-title,
-  .amenities-title,
-  .about-title,
-  .gallery-page-title {
-    font-size: clamp(2.4rem, 11vw, 3.5rem);
-  }
-}
-
-
 // ── Hero — mobile ─────────────────────────────
 @include tablet {
   .hero {
