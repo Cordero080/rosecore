@@ -15,9 +15,9 @@
   background: linear-gradient(
     135deg,
     rgba(220, 225, 230, 0.95) 0%,
-    rgba(200, 208, 215, 0.9)  25%,
+    rgba(200, 208, 215, 0.9) 25%,
     rgba(230, 235, 240, 0.95) 50%,
-    rgba(195, 205, 212, 0.9)  75%,
+    rgba(195, 205, 212, 0.9) 75%,
     rgba(215, 222, 228, 0.95) 100%
   );
   border: 1px solid rgba(180, 190, 200, 0.6);
@@ -83,7 +83,9 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: transform var(--transition), background var(--transition);
+  transition:
+    transform var(--transition),
+    background var(--transition);
 }
 
 .cal-nav:hover {
@@ -148,20 +150,13 @@
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Blocked — engraved aluminum from numen-src heatmap empty cell */
+/* Blocked — clearly unavailable */
 .cal-cell--blocked {
-  background: radial-gradient(
-    ellipse at 30% 30%,
-    rgba(226, 231, 240, 0.636) 0%,
-    rgba(191, 195, 200, 0.6)   90%,
-    rgba(100, 112, 128, 0.7)   100%
-  );
-  border: none;
-  box-shadow:
-    inset 1px 1px 2px rgba(16, 16, 16, 0.25),
-    inset -0.5px -0.5px 1px rgba(255, 255, 255, 0.4);
-  color: rgba(80, 90, 100, 0.45);
+  background: rgba(180, 60, 60, 0.12);
+  border: 1px solid rgba(180, 60, 60, 0.25);
+  color: rgba(140, 60, 60, 0.5);
   cursor: default;
+  text-decoration: line-through;
 }
 
 /* Today — blue accent ring */
@@ -228,13 +223,6 @@
 }
 
 .cal-legend-dot--blocked {
-  background: radial-gradient(
-    ellipse at 30% 30%,
-    rgba(140, 150, 165, 0.4) 0%,
-    rgba(120, 130, 145, 0.6) 40%,
-    rgba(100, 112, 128, 0.7) 100%
-  );
-  box-shadow:
-    inset 1px 1px 2px rgba(0, 0, 0, 0.25),
-    inset -0.5px -0.5px 1px rgba(255, 255, 255, 0.4);
+  background: rgba(180, 60, 60, 0.2);
+  border: 1px solid rgba(180, 60, 60, 0.35);
 }
