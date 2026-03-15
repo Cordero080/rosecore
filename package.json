@@ -15,6 +15,7 @@
     "concurrently": "^8.2.2"
   },
   "dependencies": {
-    "node-ical": "^0.25.4"
+    "node-ical": "^0.25.4",
+    "openai": "^6.25.0"
   }
 }

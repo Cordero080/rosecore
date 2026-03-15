@@ -1,210 +1,105 @@
-const responses = {
-  availability: {
-    keywords: [
-      // English
-      "available",
-      "availability",
-      "book",
-      "dates",
-      "open",
-      "free",
-      // Spanish
-      "disponible",
-      "disponibilidad",
-      "reservar",
-      "reserva",
-      "fechas",
-      "libre",
-      // French
-      "disponible",
-      "réserver",
-      "réservation",
-      "dates",
-      "libre",
-    ],
-    reply: "Let me check the calendar for you. What dates are you looking at?",
-  },
-  pricing: {
-    keywords: [
-      // English
-      "price",
-      "cost",
-      "rate",
-      "how much",
-      "fee",
-      "charge",
-      // Spanish
-      "precio",
-      "costo",
-      "tarifa",
-      "cuánto",
-      "cuanto",
-      // French
-      "prix",
-      "coût",
-      "tarif",
-      "combien",
-    ],
-    reply:
-      "Nightly rates start at $130/night. Weekend and holiday rates may vary. Contact us for extended stay discounts. Book here: https://www.airbnb.com/rooms/37812103",
-  },
-  amenities: {
-    keywords: [
-      // English
-      "amenities",
-      "kitchen",
-      "wifi",
-      "pool",
-      "parking",
-      "washer",
-      "dryer",
-      "ac",
-      "air",
-      // Spanish
-      "comodidades",
-      "cocina",
-      "piscina",
-      "estacionamiento",
-      "lavadora",
-      "secadora",
-      "aire",
-      // French
-      "équipements",
-      "cuisine",
-      "piscine",
-      "stationnement",
-      "climatisation",
-    ],
-    reply:
-      "The property includes a full kitchen, high-speed WiFi, private pool, parking, washer/dryer, and central AC.",
-  },
-  checkin: {
-    keywords: [
-      // English
-      "check in",
-      "check-in",
-      "checkin",
-      "check out",
-      "check-out",
-      "checkout",
-      "arrival",
-      "departure",
-      // Spanish
-      "entrada",
-      "salida",
-      "llegada",
-      "hora de entrada",
-      // French
-      "arrivée",
-      "départ",
-      "heure d'arrivée",
-    ],
-    reply: "Check-in is at 3:00 PM and check-out is at 11:00 AM.",
-  },
-  pets: {
-    keywords: [
-      // English
-      "pet",
-      "dog",
-      "cat",
-      "animal",
-      // Spanish
-      "mascota",
-      "perro",
-      "gato",
-      // French
-      "animal",
-      "chien",
-      "chat",
-      "animaux",
-    ],
-    reply:
-      "We are a pet-friendly property! Please let us know in advance so we can prepare accordingly.",
-  },
-  location: {
-    keywords: [
-      // English
-      "where",
-      "location",
-      "address",
-      "area",
-      "near",
-      "close",
-      "beach",
-      "town",
-      // Spanish
-      "ubicación",
-      "dirección",
-      "dónde",
-      "donde",
-      "playa",
-      "pueblo",
-      "cerca",
-      // French
-      "emplacement",
-      "adresse",
-      "où",
-      "plage",
-      "ville",
-      "près",
-    ],
-    reply:
-      "We are located in Las Terrenas, Samana, just 5 minutes from the beach and 10 minutes from the town center.",
-  },
-  contact: {
-    keywords: [
-      // English
-      "contact",
-      "call",
-      "email",
-      "reach",
-      "speak",
-      "talk",
-      "phone",
-      // Spanish
-      "contacto",
-      "llamar",
-      "correo",
-      "teléfono",
-      "hablar",
-      // French
-      "contact",
-      "appeler",
-      "courriel",
-      "téléphone",
-      "parler",
-    ],
-    reply:
-      "You can reach us at [email] or [phone]. We typically respond within a few hours.",
-  },
+import OpenAI from "openai";
+
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+const LANG_INSTRUCTION = {
+  en: "ALWAYS respond in English, regardless of what language the guest writes in.",
+  es: "SIEMPRE responde en español, sin importar en qué idioma escriba el huésped.",
+  fr: "RÉPONDS TOUJOURS en français, quelle que soit la langue utilisée par l'invité.",
 };
 
-const fallback =
-  "I'm not sure about that — feel free to reach out to us directly and we'll be happy to help!";
+const SYSTEM_PROMPT = (
+  lang,
+) => `${LANG_INSTRUCTION[lang] || LANG_INSTRUCTION.en}
 
-module.exports = function handler(req, res) {
+You are the concierge for "La Dolce Vita", a luxury vacation rental in Las Terrenas, Dominican Republic.
+
+PERSONALITY:
+- You are warm, witty, and Caribbean-relaxed — like a friend who happens to know everything about the property.
+- Never repeat yourself. If a guest asks something similar twice, rephrase your answer with a fresh angle.
+- Sprinkle in light humor when it fits — but never forced. Think charming host at a dinner party, not a stand-up comedian.
+- Keep answers concise — 2-3 sentences max unless the question genuinely needs more.
+- Occasionally weave in a little local color — a mention of the breeze, the sound of the ocean, the smell of fresh coffee. Make them feel the place.
+
+RULES:
+- Use ONLY the property data and local knowledge below to answer questions. Do not invent amenities, prices, or details.
+- If the answer is not in the data, say something like "I'd love to help with that — let me connect you with the host who'll have the answer."
+- Never mention spreadsheets, databases, or that you're an AI reading data.
+- Never say "as a concierge" or "as an AI."
+- When a guest wants to book or reserve, always include the Airbnb booking link: https://www.airbnb.com/rooms/37812103
+
+PROPERTY:
+- 2 bedrooms, 2 bathrooms. Master bedroom has private en-suite. Second bedroom has two twin beds with its own bathroom.
+- Private pool, full kitchen, high-speed WiFi, washer/dryer, central AC, parking.
+- Nightly rates start at $130/night. Weekend and holiday rates may vary.
+- Check-in: 3:00 PM. Check-out: 10:00 AM.
+- Pets are NOT allowed.
+- Located at Ave 27 de Febrero, Las Terrenas, Samaná, Dominican Republic.
+- 5 minutes from the beach, 10 minutes from town center.
+- Contact: +1 (718) 759-8441 or +1 (917) 674-6543 (phone/WhatsApp).
+
+LOCAL KNOWLEDGE:
+
+BEACHES (closest to furthest):
+- Playa Punta Popy: closest beach — lively, calm clear water, boardwalk with restaurants and bars, live music most evenings.
+- Playa Las Ballenas: just west of town, long white-sand beach, watersports, sunset walks, Río Marico runs through it.
+- Playa Bonita: ~10 min by mototaxi, widely considered the most beautiful beach in Las Terrenas — turquoise water, coconut palms, Mosquito Bar and Bodega Bonita.
+- Playa Cosón: longest single beach in Samaná (~5.5km), wild and natural, great for kitesurfing.
+- Playa El Portillo: east of town, over 5km long, uncrowded, popular kitesurfing spot.
+- Playa Escondida: hidden beach between cliffs, only accessible by boat or foot from Playa Bonita, completely preserved.
+- Playa Rincón: by boat or car (~1hr), often listed among the best beaches in the Caribbean.
+
+RIVERS & WATERFALLS:
+- Salto El Limón: ~30 min away, 40-meter waterfall into a jade pool. Best by horseback with a local guide.
+- Saltos de Jima: 9 waterfalls and natural spa pools.
+
+DINING:
+- Mosquito Bar: beachfront at Playa Bonita, cocktails and fresh seafood.
+- Boulangerie Française: best croissants and pastries in town.
+- El Dieciocho: top-rated Italian.
+- Paco Cabana: amazing ramen — yes, ramen in the Caribbean.
+- Food truck park: opens daily at 4pm, 12 trucks, Dominican and European street food.
+
+GETTING AROUND:
+- Mototaxi: agree on price before riding — best for short beach hops.
+- Scooter rental: ~$15/day, ideal for exploring.
+- Car rental: recommended for day trips.
+
+PRACTICAL:
+- Nearest airport: Samaná El Catey International (AZS), ~45 min. Santo Domingo (SDQ) ~2 hrs.
+- Best weather: December–March. Rainy season starts June.
+- Activities: kitesurfing, snorkeling, ATV tours, whale watching (Jan–Mar), El Limón waterfall.`;
+
+const fallback = {
+  en: "I'd love to help with that — reach out to us directly at +1 (718) 759-8441 and we'll have an answer for you right away!",
+  es: "Me encantaría ayudarle — contáctenos directamente al +1 (718) 759-8441 y le responderemos de inmediato.",
+  fr: "Je serais ravi de vous aider — contactez-nous directement au +1 (718) 759-8441 et nous vous répondrons immédiatement.",
+};
+
+export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-  if (req.method === "OPTIONS") {
-    return res.status(200).end();
-  }
-
-  if (req.method !== "POST") {
+  if (req.method === "OPTIONS") return res.status(200).end();
+  if (req.method !== "POST")
     return res.status(405).json({ error: "Method not allowed" });
-  }
 
-  const { message } = req.body;
+  const { message, lang = "en" } = req.body;
   if (!message) return res.status(400).json({ error: "Message is required" });
 
-  const lower = message.toLowerCase();
-
-  for (const category of Object.values(responses)) {
-    if (category.keywords.some((kw) => lower.includes(kw))) {
-      return res.json({ reply: category.reply });
-    }
+  try {
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o-mini",
+      max_tokens: 300,
+      messages: [
+        { role: "system", content: SYSTEM_PROMPT(lang) },
+        { role: "user", content: message },
+      ],
+    });
+    return res.json({ reply: completion.choices[0].message.content });
+  } catch (err) {
+    console.error("OpenAI error:", err.message);
+    return res.json({ reply: fallback[lang] || fallback.en });
   }
-
-  res.json({ reply: fallback });
-};
+}
