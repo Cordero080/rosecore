@@ -120,7 +120,7 @@
 
 .chat-teaser-text {
   font-family: var(--font-main);
-  font-size: var(--font-size-sm);
+  font-size: 1rem;
   color: var(--text-secondary);
   line-height: 1.4;
 }
