@@ -1,19 +1,38 @@
 import OpenAI from "openai";
 import { getSheetData } from "./getSheetData.js";
+import { getBlockedDates } from "./getBlockedDates.js";
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 const LANG_INSTRUCTION = {
-  en: 'ALWAYS respond in English, regardless of what language the guest writes in.',
-  es: 'SIEMPRE responde en español, sin importar en qué idioma escriba el huésped.',
-  fr: 'RÉPONDS TOUJOURS en français, quelle que soit la langue utilisée par l\'invité.',
-}
+  en: "ALWAYS respond in English, regardless of what language the guest writes in.",
+  es: "SIEMPRE responde en español, sin importar en qué idioma escriba el huésped.",
+  fr: "RÉPONDS TOUJOURS en français, quelle que soit la langue utilisée par l'invité.",
+};
 
-export async function askAI(userMessage, lang = 'en') {
-  let propertyData = ''
-  try { propertyData = await getSheetData() } catch { /* sheet unavailable locally */ };
+export async function askAI(userMessage, lang = "en") {
+  let propertyData = "";
+  try {
+    propertyData = await getSheetData();
+  } catch {
+    /* sheet unavailable locally */
+  }
 
-  const langInstruction = LANG_INSTRUCTION[lang] || LANG_INSTRUCTION.en
+  let availabilitySection =
+    "AVAILABILITY: Calendar data unavailable — direct guests to contact the host to confirm availability.";
+  try {
+    const blocked = await getBlockedDates();
+    const today = new Date().toISOString().split("T")[0];
+    const future = blocked.filter((d) => d >= today).sort();
+    availabilitySection =
+      future.length > 0
+        ? `LIVE AVAILABILITY (as of ${today}): The following dates are already booked and NOT available: ${future.join(", ")}. All other dates are available. When a guest asks about specific dates, check this list directly and give a clear yes/no answer.`
+        : `LIVE AVAILABILITY (as of ${today}): No bookings found — all dates appear to be available.`;
+  } catch {
+    /* calendar unavailable */
+  }
+
+  const langInstruction = LANG_INSTRUCTION[lang] || LANG_INSTRUCTION.en;
 
   const completion = await openai.chat.completions.create({
     model: "gpt-4o-mini",
@@ -89,7 +108,9 @@ PRACTICAL:
 
 
 PROPERTY DATA:
-${propertyData}`,
+${propertyData}
+
+${availabilitySection}`,
       },
       { role: "user", content: userMessage },
     ],

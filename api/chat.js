@@ -1,6 +1,40 @@
 const OpenAI = require("openai");
+const ical = require("node-ical");
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const ICAL_URL = process.env.ICAL_URL || "";
+
+async function getAvailabilitySection() {
+  if (!ICAL_URL)
+    return "AVAILABILITY: Calendar data unavailable — direct guests to contact the host.";
+  try {
+    const res = await fetch(ICAL_URL, {
+      headers: {
+        "User-Agent": "Mozilla/5.0 (compatible; calendar-reader/1.0)",
+        Accept: "text/calendar, text/plain, */*",
+      },
+    });
+    if (!res.ok) throw new Error(`iCal fetch failed: ${res.status}`);
+    const text = await res.text();
+    const events = ical.sync.parseICS(text);
+    const blocked = [];
+    for (const event of Object.values(events)) {
+      if (event.type !== "VEVENT") continue;
+      const start = new Date(event.start);
+      const end = new Date(event.end);
+      for (let d = new Date(start); d < end; d.setDate(d.getDate() + 1)) {
+        blocked.push(d.toISOString().split("T")[0]);
+      }
+    }
+    const today = new Date().toISOString().split("T")[0];
+    const future = blocked.filter((d) => d >= today).sort();
+    return future.length > 0
+      ? `LIVE AVAILABILITY (as of ${today}): The following dates are already booked and NOT available: ${future.join(", ")}. All other dates are available. When a guest asks about specific dates, check this list directly and give a clear yes/no answer.`
+      : `LIVE AVAILABILITY (as of ${today}): No bookings found — all dates appear to be available.`;
+  } catch {
+    return "AVAILABILITY: Calendar data unavailable — direct guests to contact the host.";
+  }
+}
 
 const LANG_INSTRUCTION = {
   en: "ALWAYS respond in English, regardless of what language the guest writes in.",
@@ -89,11 +123,13 @@ module.exports = async function handler(req, res) {
   if (!message) return res.status(400).json({ error: "Message is required" });
 
   try {
+    const availabilitySection = await getAvailabilitySection();
+    const systemPrompt = buildPrompt(lang) + "\n\n" + availabilitySection;
     const completion = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       max_tokens: 300,
       messages: [
-        { role: "system", content: buildPrompt(lang) },
+        { role: "system", content: systemPrompt },
         { role: "user", content: message },
       ],
     });
