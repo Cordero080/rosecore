@@ -65,6 +65,58 @@ async function getAvailabilitySection() {
   }
 }
 
+function detectLang(text) {
+  const lower = text.toLowerCase();
+  const es = [
+    "hola",
+    "gracias",
+    "buenos",
+    "buenas",
+    "cómo",
+    "como",
+    "cuánto",
+    "cuanto",
+    "precio",
+    "disponible",
+    "reservar",
+    "habitación",
+    "piscina",
+    "mascotas",
+    "dónde",
+    "donde",
+    "puedo",
+    "quiero",
+    "hay",
+    "está",
+    "están",
+    "sí",
+    "también",
+    "por favor",
+  ];
+  const fr = [
+    "bonjour",
+    "merci",
+    "comment",
+    "combien",
+    "disponible",
+    "réserver",
+    "chambre",
+    "piscine",
+    "prix",
+    "tarif",
+    "où",
+    "animaux",
+    "arrivée",
+    "départ",
+    "s'il",
+  ];
+  const esScore = es.filter((w) => lower.includes(w)).length;
+  const frScore = fr.filter((w) => lower.includes(w)).length;
+  if (esScore > 0 && esScore >= frScore) return "es";
+  if (frScore > 0) return "fr";
+  return "en";
+}
+
 const LANG_INSTRUCTION = {
   en: "ALWAYS respond in English, regardless of what language the guest writes in.",
   es: "SIEMPRE responde en español, sin importar en qué idioma escriba el huésped.",
@@ -148,8 +200,10 @@ module.exports = async function handler(req, res) {
   if (req.method !== "POST")
     return res.status(405).json({ error: "Method not allowed" });
 
-  const { message, lang = "en" } = req.body;
+  const { message } = req.body;
   if (!message) return res.status(400).json({ error: "Message is required" });
+
+  const lang = detectLang(message);
 
   try {
     const availabilitySection = await getAvailabilitySection();

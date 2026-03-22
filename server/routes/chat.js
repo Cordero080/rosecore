@@ -526,11 +526,11 @@ const AVAIL_KEYWORDS = [
 ];
 
 router.post("/", async (req, res) => {
-  const { message, sessionId, lang: clientLang } = req.body;
+  const { message, sessionId } = req.body;
   if (!message) return res.status(400).json({ error: "Message is required" });
 
   const lower = message.toLowerCase();
-  const lang = clientLang || detectLang(message);
+  const lang = detectLang(message);
   let reply;
 
   // Availability check
