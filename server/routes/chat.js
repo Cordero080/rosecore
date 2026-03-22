@@ -492,9 +492,9 @@ const responses = {
 };
 
 const fallback = {
-  en: "I'm not sure about that — feel free to reach out to us directly and we'll be happy to help!",
-  es: "No estoy seguro sobre eso — no dude en contactarnos directamente y con gusto le ayudaremos.",
-  fr: "Je ne suis pas sûr de cela — n'hésitez pas à nous contacter directement et nous serons heureux de vous aider.",
+  en: "I'm not sure about that — reach out to the host directly at +1 (718) 759-8441 (call or WhatsApp) and they'll help you right away!",
+  es: "No estoy seguro sobre eso — contáctenos directamente al +1 (718) 759-8441 (llamada o WhatsApp) y le ayudaremos de inmediato.",
+  fr: "Je ne suis pas sûr de cela — contactez directement l'hôte au +1 (718) 759-8441 (appel ou WhatsApp) et il vous répondra immédiatement.",
 };
 
 // ── Route ─────────────────────────────────────────────────────────────────────
