@@ -150,11 +150,11 @@
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Blocked — warm cream, clearly unavailable */
+/* Blocked — greyed out, clearly unavailable */
 .cal-cell--blocked {
-  background: rgba(210, 195, 175, 0.45);
-  border: 1px solid rgba(180, 160, 130, 0.35);
-  color: rgba(120, 105, 85, 0.6);
+  background: rgba(180, 185, 190, 0.35);
+  border: 1px solid rgba(150, 155, 160, 0.3);
+  color: rgba(100, 105, 110, 0.45);
   cursor: default;
   text-decoration: line-through;
 }
@@ -226,6 +226,6 @@
 }
 
 .cal-legend-dot--blocked {
-  background: rgba(210, 195, 175, 0.6);
-  border: 1px solid rgba(180, 160, 130, 0.4);
+  background: rgba(180, 185, 190, 0.5);
+  border: 1px solid rgba(150, 155, 160, 0.4);
 }
