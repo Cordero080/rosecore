@@ -4,11 +4,50 @@ import { getBlockedDates } from "./getBlockedDates.js";
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-const LANG_INSTRUCTION = {
-  en: "ALWAYS respond in English, regardless of what language the guest writes in.",
-  es: "SIEMPRE responde en español, sin importar en qué idioma escriba el huésped.",
-  fr: "RÉPONDS TOUJOURS en français, quelle que soit la langue utilisée par l'invité.",
-};
+// Collapse a sorted array of YYYY-MM-DD strings into "start to end" ranges
+function toRanges(sortedDates) {
+  if (!sortedDates.length) return "";
+  const ranges = [];
+  let start = sortedDates[0],
+    prev = sortedDates[0];
+  for (let i = 1; i < sortedDates.length; i++) {
+    const expected = new Date(prev + "T00:00:00");
+    expected.setDate(expected.getDate() + 1);
+    if (expected.toISOString().split("T")[0] === sortedDates[i]) {
+      prev = sortedDates[i];
+    } else {
+      ranges.push(start === prev ? start : `${start} to ${prev}`);
+      start = prev = sortedDates[i];
+    }
+  }
+  ranges.push(start === prev ? start : `${start} to ${prev}`);
+  return ranges.join("; ");
+}
+
+// Compute contiguous available windows for the next daysAhead days
+function computeWindows(blockedSet, today, daysAhead = 180) {
+  const base = new Date(today + "T00:00:00");
+  const windows = [];
+  let wStart = null,
+    wEnd = null;
+  for (let i = 0; i <= daysAhead; i++) {
+    const d = new Date(base);
+    d.setDate(base.getDate() + i);
+    const key = d.toISOString().split("T")[0];
+    if (!blockedSet.has(key)) {
+      if (!wStart) wStart = key;
+      wEnd = key;
+    } else if (wStart) {
+      windows.push(`${wStart} to ${wEnd}`);
+      wStart = wEnd = null;
+    }
+  }
+  if (wStart) windows.push(`${wStart} onwards`);
+  return windows.length > 0 ? windows.join("; ") : "none in the next 6 months";
+}
+
+const LANG_INSTRUCTION =
+  "Detect the language the guest is writing in and respond in that exact language — Spanish if they write Spanish, French if French, English if English. Follow their language naturally even if it changes mid-conversation. Never respond in a different language than what the guest is currently using.";
 
 export async function askAI(userMessage, lang = "en") {
   let propertyData = "";
@@ -24,23 +63,26 @@ export async function askAI(userMessage, lang = "en") {
     const blocked = await getBlockedDates();
     const today = new Date().toISOString().split("T")[0];
     const future = blocked.filter((d) => d >= today).sort();
-    availabilitySection =
-      future.length > 0
-        ? `LIVE AVAILABILITY (as of ${today}): The following dates are already booked and NOT available: ${future.join(", ")}. All other dates are available. When a guest asks about specific dates, check this list directly and give a clear yes/no answer.`
-        : `LIVE AVAILABILITY (as of ${today}): No bookings found — all dates appear to be available.`;
+    if (future.length > 0) {
+      const blockedRanges = toRanges(future);
+      const availWindows = computeWindows(new Set(future), today);
+      availabilitySection = `LIVE AVAILABILITY (as of ${today}):
+NOT AVAILABLE (booked): ${blockedRanges}
+AVAILABLE WINDOWS: ${availWindows}`;
+    } else {
+      availabilitySection = `LIVE AVAILABILITY (as of ${today}): No bookings found — all upcoming dates are available.`;
+    }
   } catch {
     /* calendar unavailable */
   }
 
-  const langInstruction = LANG_INSTRUCTION[lang] || LANG_INSTRUCTION.en;
-
   const completion = await openai.chat.completions.create({
     model: "gpt-4o-mini",
-    max_tokens: 300,
+    max_tokens: 400,
     messages: [
       {
         role: "system",
-        content: `${langInstruction}
+        content: `${LANG_INSTRUCTION}
 
 You are the concierge for "La Dolce Vita", a luxury vacation rental in Las Terrenas, Dominican Republic.
 
@@ -52,11 +94,15 @@ PERSONALITY:
 - Occasionally weave in a little local color — a mention of the breeze, the sound of the ocean, the smell of fresh coffee. Make them feel the place.
 
 RULES:
-- Use ONLY the property data and local knowledge below to answer questions. Do not invent amenities, prices, or details.
-- If the answer is not in the data, say something like "I'd love to help with that — reach out to the host directly at +1 (718) 759-8441 (call or WhatsApp) and they'll have the answer for you right away."
+- Use ONLY the property data and local knowledge below. Never invent amenities, prices, or details.
+- AVAILABILITY: Always check the LIVE AVAILABILITY section before answering any date question. Never confirm a date is available if it appears in NOT AVAILABLE.
+- If a guest asks what dates are available (without specifying), list the AVAILABLE WINDOWS in a friendly way — do NOT ask them to pick dates first. They may be planning around availability, not the other way around.
+- If a guest mentions a date and the year is ambiguous (e.g. "April 20" when April is almost over), ask: "Just to confirm — are you thinking this year or next year?" before answering. One clarifying question beats a wrong answer.
+- When you are unsure what a guest is asking, ask a short curious follow-up question instead of guessing.
+- If the answer is not in the data, say: "I'd love to help with that — reach out to the host directly at +1 (718) 759-8441 (call or WhatsApp) and they'll have the answer right away."
 - Never mention spreadsheets, databases, or that you're an AI reading data.
 - Never say "as a concierge" or "as an AI."
-- When a guest wants to book or reserve, always include the Airbnb booking link: https://www.airbnb.com/rooms/37812103
+- When a guest wants to book or reserve, always include: https://www.airbnb.com/rooms/37812103
 
 LOCAL KNOWLEDGE:
 

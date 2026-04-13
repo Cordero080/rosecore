@@ -63,9 +63,9 @@ function expandRange(start, end) {
   return dates;
 }
 
-function inferYear(month) {
+function inferYear(month, day = 28) {
   const now = new Date();
-  const candidate = new Date(now.getFullYear(), month - 1, 1);
+  const candidate = new Date(now.getFullYear(), month - 1, day);
   return candidate < now ? now.getFullYear() + 1 : now.getFullYear();
 }
 
@@ -80,8 +80,8 @@ function parseDates(text) {
     const weekNum = WEEK_NUM[weekMatch[1]];
     const month = MONTHS[weekMatch[2]];
     if (weekNum && month) {
-      const year = inferYear(month);
       const startDay = (weekNum - 1) * 7 + 1;
+      const year = inferYear(month, startDay);
       const endDay = Math.min(startDay + 6, new Date(year, month, 0).getDate());
       return expandRange(
         toStr(year, month, startDay),
@@ -100,7 +100,7 @@ function parseDates(text) {
       const startDay = parseInt(rangeMatch[2]);
       const month2 = rangeMatch[3] ? MONTHS[rangeMatch[3]] || month1 : month1;
       const endDay = parseInt(rangeMatch[4]);
-      const year = inferYear(month1);
+      const year = inferYear(month1, startDay);
       return expandRange(
         toStr(year, month1, startDay),
         toStr(year, month2, endDay),
@@ -114,7 +114,7 @@ function parseDates(text) {
     const month = MONTHS[singleMatch[1]];
     if (month) {
       const day = parseInt(singleMatch[2]);
-      const year = inferYear(month);
+      const year = inferYear(month, day);
       return [toStr(year, month, day)];
     }
   }
@@ -580,14 +580,61 @@ router.post("/", async (req, res) => {
     }
 
     if (!reply) {
-      if (lang === "es") {
-        reply = "Puedo verificar la disponibilidad — ¿qué fechas le interesan?";
-      } else if (lang === "fr") {
-        reply =
-          "Je peux vérifier la disponibilité — quelles dates vous intéressent ?";
-      } else {
-        reply =
-          "I can check availability for you — which dates are you looking at?";
+      // Guest asked about availability generally — compute and list open windows
+      try {
+        const blocked = await getBlockedDates();
+        const today = new Date().toISOString().split("T")[0];
+        const futureBlocked = new Set(blocked.filter((d) => d >= today));
+        const base = new Date(today + "T00:00:00");
+        const windows = [];
+        let wStart = null,
+          wEnd = null;
+        for (let i = 0; i <= 90; i++) {
+          const d = new Date(base);
+          d.setDate(base.getDate() + i);
+          const key = d.toISOString().split("T")[0];
+          if (!futureBlocked.has(key)) {
+            if (!wStart) wStart = key;
+            wEnd = key;
+          } else if (wStart) {
+            windows.push(`${friendlyDate(wStart)} – ${friendlyDate(wEnd)}`);
+            wStart = wEnd = null;
+          }
+        }
+        if (wStart) windows.push(`${friendlyDate(wStart)} onwards`);
+
+        if (windows.length > 0) {
+          const list = windows.join(", ");
+          if (lang === "es") {
+            reply = `¡Claro! Los períodos disponibles próximamente son: ${list}. ¿Alguno le funciona?`;
+          } else if (lang === "fr") {
+            reply = `Bien sûr ! Voici les périodes disponibles prochainement : ${list}. L'une d'elles vous convient-elle ?`;
+          } else {
+            reply = `Here are the upcoming available windows: ${list}. Do any of those work for you?`;
+          }
+        } else {
+          if (lang === "es") {
+            reply =
+              "Las próximas semanas están bastante ocupadas. Contáctenos al +1 (718) 759-8441 y revisamos opciones juntos.";
+          } else if (lang === "fr") {
+            reply =
+              "Les prochaines semaines sont très chargées. Contactez-nous au +1 (718) 759-8441 et nous trouverons quelque chose ensemble.";
+          } else {
+            reply =
+              "The coming weeks are pretty fully booked. Reach out at +1 (718) 759-8441 and we can look at options together.";
+          }
+        }
+      } catch {
+        if (lang === "es") {
+          reply =
+            "Puedo verificar la disponibilidad — ¿qué fechas le interesan?";
+        } else if (lang === "fr") {
+          reply =
+            "Je peux vérifier la disponibilité — quelles dates vous intéressent ?";
+        } else {
+          reply =
+            "I can check availability for you — which dates are you looking at?";
+        }
       }
     }
 
