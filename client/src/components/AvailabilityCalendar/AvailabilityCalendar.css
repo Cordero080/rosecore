@@ -69,6 +69,8 @@
 }
 
 .cal-nav {
+  appearance: none;
+  -webkit-appearance: none;
   width: 32px;
   height: 32px;
   border-radius: var(--radius-full);

@@ -291,7 +291,18 @@
       }
     </script>
 
-    <link rel="stylesheet" href="https://use.typekit.net/lle4hoe.css" />
+    <link
+      rel="preload"
+      href="https://use.typekit.net/lle4hoe.css"
+      as="style"
+      onload="
+        this.onload = null;
+        this.rel = 'stylesheet';
+      "
+    />
+    <noscript
+      ><link rel="stylesheet" href="https://use.typekit.net/lle4hoe.css"
+    /></noscript>
   </head>
   <body>
     <div id="root"></div>
