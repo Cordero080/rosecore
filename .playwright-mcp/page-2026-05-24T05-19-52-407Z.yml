@@ -1,0 +1,175 @@
+- generic [ref=e3]:
+  - text: ×
+  - navigation [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: RC
+      - generic [ref=e7]: Rosecore
+    - list [ref=e8]:
+      - listitem [ref=e9]:
+        - button "Home" [ref=e10] [cursor=pointer]:
+          - generic [ref=e12]: Home
+      - listitem [ref=e13]:
+        - button "About" [ref=e14] [cursor=pointer]:
+          - generic [ref=e16]: About
+      - listitem [ref=e17]:
+        - button "Amenities" [ref=e18] [cursor=pointer]:
+          - generic [ref=e20]: Amenities
+      - listitem [ref=e21]:
+        - button "Services" [disabled]:
+          - generic: Services
+      - listitem [ref=e22]:
+        - button "Entertainment" [disabled]:
+          - generic: Entertainment
+      - listitem [ref=e23]:
+        - button "Excursions" [ref=e24] [cursor=pointer]:
+          - generic [ref=e26]: Excursions
+      - listitem [ref=e27]:
+        - button "Beaches" [ref=e28] [cursor=pointer]:
+          - generic [ref=e30]: Beaches
+      - listitem [ref=e31]:
+        - button "Photo Gallery" [ref=e32] [cursor=pointer]:
+          - generic [ref=e34]: Photo Gallery
+      - listitem [ref=e35]:
+        - button "Contact" [ref=e36] [cursor=pointer]:
+          - generic [ref=e38]: Contact
+    - generic [ref=e39]:
+      - button "EN" [ref=e40] [cursor=pointer]
+      - button "ES" [ref=e41] [cursor=pointer]
+      - button "FR" [ref=e42] [cursor=pointer]
+  - main [ref=e44]:
+    - generic [ref=e45]:
+      - paragraph [ref=e46]: Las Terrenas · Samaná · Dominican Republic
+      - heading "The Peninsula" [level=1] [ref=e47]
+      - paragraph [ref=e48]: Eight excursions worth leaving the residence for.
+    - list [ref=e53]:
+      - listitem [ref=e54]:
+        - generic [ref=e55]:
+          - generic [ref=e56]: "01"
+          - generic [ref=e57]: Half day
+          - generic [ref=e58]: Jan – Mar only
+        - generic [ref=e59]:
+          - img "Humpback Whale Watching" [ref=e61]
+          - generic [ref=e62]:
+            - heading "Humpback Whale Watching" [level=2] [ref=e63]
+            - paragraph [ref=e64]: Every year, thousands of humpback whales migrate to Samaná Bay to breed — one of the highest concentrations on the planet. You'll hear them before you see them. A local guide boat takes you close enough to watch them breach, and sometimes close enough to feel the spray. There is nothing else like this in the Caribbean.
+            - list [ref=e65]:
+              - listitem [ref=e66]: Seasonal
+              - listitem [ref=e67]: Wildlife
+              - listitem [ref=e68]: Boat tour
+      - listitem [ref=e69]:
+        - generic [ref=e70]:
+          - generic [ref=e71]: "02"
+          - generic [ref=e72]: Half day
+          - generic [ref=e73]: Year-round
+        - generic [ref=e74]:
+          - img "Salto El Limón" [ref=e76]
+          - generic [ref=e77]:
+            - heading "Salto El Limón" [level=2] [ref=e78]
+            - paragraph [ref=e79]: A 40-metre waterfall deep in the jungle hills of Samaná, reached by horseback on a trail through banana trees and bamboo groves. The pool at the base is cold, clear, and completely hidden from the world. About 30 minutes from the residence. One of the best half-days you can spend on the peninsula.
+            - list [ref=e80]:
+              - listitem [ref=e81]: Waterfall
+              - listitem [ref=e82]: Horseback
+              - listitem [ref=e83]: Jungle
+      - listitem [ref=e84]:
+        - generic [ref=e85]:
+          - generic [ref=e86]: "03"
+          - generic [ref=e87]: Full day
+          - generic [ref=e88]: Year-round
+        - generic [ref=e89]:
+          - img "Los Haitises National Park" [ref=e91]
+          - generic [ref=e92]:
+            - heading "Los Haitises National Park" [level=2] [ref=e93]
+            - paragraph [ref=e94]: A vast protected wilderness of mangroves, limestone karst formations, and caves lined with Taíno petroglyphs. Over 230 bird species, including several endemic to the Dominican Republic. Reached by boat through channels of ancient green forest. Bring a camera and a full day.
+            - list [ref=e95]:
+              - listitem [ref=e96]: National park
+              - listitem [ref=e97]: Boat tour
+              - listitem [ref=e98]: Wildlife
+              - listitem [ref=e99]: History
+      - listitem [ref=e100]:
+        - generic [ref=e101]:
+          - generic [ref=e102]: "04"
+          - generic [ref=e103]: Full day
+          - generic [ref=e104]: Year-round
+        - generic [ref=e105]:
+          - img "Playa Rincón Day Trip" [ref=e107]
+          - generic [ref=e108]:
+            - heading "Playa Rincón Day Trip" [level=2] [ref=e109]
+            - paragraph [ref=e110]: Consistently ranked among the top beaches in the Caribbean — and difficult to reach, which is exactly why it stays pristine. Three kilometres of white sand, a river at one end, coconut palms the whole way. Go by boat for the full arrival experience. Bring lunch, or eat at the small local spots on the beach.
+            - list [ref=e111]:
+              - listitem [ref=e112]: Beach
+              - listitem [ref=e113]: Boat or car
+              - listitem [ref=e114]: Top-rated
+      - listitem [ref=e115]:
+        - generic [ref=e116]:
+          - generic [ref=e117]: "05"
+          - generic [ref=e118]: Half day or full day
+          - generic [ref=e119]: Year-round
+        - generic [ref=e120]:
+          - img "Snorkeling & Private Boat Charter" [ref=e122]
+          - generic [ref=e123]:
+            - heading "Snorkeling & Private Boat Charter" [level=2] [ref=e124]
+            - paragraph [ref=e125]: Charter a local boat and pick your own route — hidden coves, shallow reefs, and beaches only accessible by sea. The water off the Samaná Peninsula is clear enough to see coral formations and sea turtles from the surface. Best arranged through a local guide who knows the spots that don't appear on any map.
+            - list [ref=e126]:
+              - listitem [ref=e127]: Snorkeling
+              - listitem [ref=e128]: Boat
+              - listitem [ref=e129]: Private
+              - listitem [ref=e130]: Turtles
+      - listitem [ref=e131]:
+        - generic [ref=e132]:
+          - generic [ref=e133]: "06"
+          - generic [ref=e134]: Half day
+          - generic [ref=e135]: Year-round
+        - generic [ref=e136]:
+          - img "ATV & Coffee Plantation Tour" [ref=e138]
+          - generic [ref=e139]:
+            - heading "ATV & Coffee Plantation Tour" [level=2] [ref=e140]
+            - paragraph [ref=e141]: Ride ATVs through jungle trails into the hills above Las Terrenas, stopping at local farms where cacao, coffee, and tropical fruit are grown. You'll taste things straight from the tree. A reminder that this island produces some of the finest cacao and coffee in the world, and almost none of it gets exported.
+            - list [ref=e142]:
+              - listitem [ref=e143]: ATV
+              - listitem [ref=e144]: Coffee
+              - listitem [ref=e145]: Jungle
+              - listitem [ref=e146]: Local culture
+      - listitem [ref=e147]:
+        - generic [ref=e148]:
+          - generic [ref=e149]: "07"
+          - generic [ref=e150]: Half day
+          - generic [ref=e151]: Year-round
+        - generic [ref=e152]:
+          - img "Zipline in the Rainforest" [ref=e154]
+          - generic [ref=e155]:
+            - heading "Zipline in the Rainforest" [level=2] [ref=e156]
+            - paragraph [ref=e157]: Over two kilometres of zipline cables through the forest canopy above Las Terrenas. The views open up between the trees — ocean on one side, mountains on the other. A good option for families or anyone who wants a rush without going far.
+            - list [ref=e158]:
+              - listitem [ref=e159]: Zipline
+              - listitem [ref=e160]: Adrenaline
+              - listitem [ref=e161]: Canopy
+      - listitem [ref=e162]:
+        - generic [ref=e163]:
+          - generic [ref=e164]: "08"
+          - generic [ref=e165]: Half day
+          - generic [ref=e166]: Year-round
+        - generic [ref=e167]:
+          - img "Kitesurfing & Surf Lessons" [ref=e169]
+          - generic [ref=e170]:
+            - heading "Kitesurfing & Surf Lessons" [level=2] [ref=e171]
+            - paragraph [ref=e172]: Playa Cosón and El Portillo both have consistent wind and surf, with local instructors available for all levels. Kitesurfing schools operate year-round with equipment rental included. If you've never tried it, the wide empty beaches here are as good a place as any to start.
+            - list [ref=e173]:
+              - listitem [ref=e174]: Kitesurfing
+              - listitem [ref=e175]: Surfing
+              - listitem [ref=e176]: Lessons
+              - listitem [ref=e177]: Beach
+  - generic [ref=e178]:
+    - generic:
+      - generic:
+        - generic:
+          - generic: Vita
+          - generic: Villa Concierge
+        - button "Close chat": ✕
+      - generic:
+        - generic: Hi, I'm Vita! Ask me anything about the property — availability, pricing, amenities, and more.
+      - generic:
+        - textbox "Ask about availability, pricing…"
+        - button "↑" [disabled]
+    - button "Chat with Vita" [ref=e179] [cursor=pointer]:
+      - generic [ref=e180]: Hi, I'm Vita — ask me anything!
+      - generic [ref=e181]: ✕

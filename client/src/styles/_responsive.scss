@@ -41,13 +41,28 @@
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    width: 200px;
+    width: 220px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 0 0 20px 0;
+  }
+
+  // Collapse the large desktop curve padding so all items fit
+  .sidenav.is-open .sidenav-list {
+    padding-bottom: 80px;
+  }
+
+  // Larger tap targets and label size on mobile
+  .sidenav.is-open .sidenav-item {
+    padding: 14px 12px;
   }
 
   // Show labels when open on mobile
   .sidenav.is-open .sidenav-label {
     opacity: 1;
     transform: translateX(0);
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
   }
 
   // Show all lang buttons in open mobile nav
@@ -63,7 +78,7 @@
     animation: navItemIn 0.3s ease forwards;
   }
 
-  @for $i from 1 through 8 {
+  @for $i from 1 through 9 {
     .sidenav.is-open li:nth-child(#{$i}) .sidenav-item {
       animation-delay: #{$i * 0.05}s;
     }
@@ -84,8 +99,8 @@
   position: fixed;
   top: max(20px, env(safe-area-inset-top, 20px));
   left: 16px;
-  width: 44px;
-  height: 44px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   z-index: 600;
   align-items: center;
@@ -122,8 +137,8 @@
 
 // Hamburger — three concentric rings, middle one gold
 .hamburger-icon {
-  width: 28px;
-  height: 28px;
+  width: 36px;
+  height: 36px;
   position: relative;
   display: flex;
   align-items: center;
@@ -139,23 +154,23 @@
 
   // Outer ring
   &:nth-child(1) {
-    width: 28px;
-    height: 28px;
+    width: 36px;
+    height: 36px;
     border: 1.5px solid rgba(90, 122, 154, 0.7);
   }
 
   // Middle ring — gold
   &:nth-child(2) {
-    width: 17px;
-    height: 17px;
+    width: 22px;
+    height: 22px;
     border: 1.5px solid #c9a84c;
     box-shadow: 0 0 6px rgba(201, 168, 76, 0.4);
   }
 
   // Inner ring
   &:nth-child(3) {
-    width: 7px;
-    height: 7px;
+    width: 9px;
+    height: 9px;
     border: 1.5px solid rgba(90, 122, 154, 0.5);
   }
 }
@@ -191,7 +206,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 18px;
+  font-size: 24px;
   line-height: 1;
   color: #4a6080;
   opacity: 0;
@@ -250,11 +265,11 @@
 
 @include mobile {
   .hero-headline {
-    font-size: clamp(2.4rem, 11vw, 3.5rem);
+    font-size: clamp(3rem, 13vw, 4.2rem);
   }
 
   .hero-tagline {
-    font-size: 1.1rem;
+    font-size: 1.35rem;
   }
 }
 

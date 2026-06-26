@@ -1,0 +1,171 @@
+- generic [ref=e3]:
+  - text: ×
+  - navigation [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: RC
+      - generic [ref=e7]: Rosecore
+    - list [ref=e8]:
+      - listitem [ref=e9]:
+        - button "Home" [ref=e10] [cursor=pointer]:
+          - generic [ref=e12]: Home
+      - listitem [ref=e13]:
+        - button "About" [ref=e14] [cursor=pointer]:
+          - generic [ref=e16]: About
+      - listitem [ref=e17]:
+        - button "Amenities" [ref=e18] [cursor=pointer]:
+          - generic [ref=e20]: Amenities
+      - listitem [ref=e21]:
+        - button "Services" [disabled]:
+          - generic: Services
+      - listitem [ref=e22]:
+        - button "Entertainment" [disabled]:
+          - generic: Entertainment
+      - listitem [ref=e23]:
+        - button "Excursions" [ref=e24] [cursor=pointer]:
+          - generic [ref=e26]: Excursions
+      - listitem [ref=e27]:
+        - button "Beaches" [ref=e28] [cursor=pointer]:
+          - generic [ref=e30]: Beaches
+      - listitem [ref=e31]:
+        - button "Photo Gallery" [ref=e32] [cursor=pointer]:
+          - generic [ref=e34]: Photo Gallery
+      - listitem [ref=e35]:
+        - button "Contact" [ref=e36] [cursor=pointer]:
+          - generic [ref=e38]: Contact
+    - generic [ref=e39]:
+      - button "EN" [ref=e40] [cursor=pointer]
+      - button "ES" [ref=e41] [cursor=pointer]
+      - button "FR" [ref=e42] [cursor=pointer]
+  - main [ref=e44]:
+    - generic [ref=e45]:
+      - paragraph [ref=e46]: Las Terrenas · Samaná · Dominican Republic
+      - heading "The Coast" [level=1] [ref=e47]
+      - paragraph [ref=e48]: Eight beaches worth knowing.
+    - list [ref=e53]:
+      - listitem [ref=e54]:
+        - generic [ref=e55]:
+          - generic [ref=e56]: "01"
+          - generic [ref=e57]: 5 min
+          - generic [ref=e58]: Walking distance
+        - generic [ref=e59]:
+          - img "Playa Punta Popy" [ref=e61]
+          - generic [ref=e62]:
+            - heading "Playa Punta Popy" [level=2] [ref=e63]
+            - paragraph [ref=e64]: The closest beach to the residence. The town beach — calm clear water, a boardwalk lined with cafés and beach bars, and a lively atmosphere most evenings. Good for a morning coffee with your feet in the sand, or a long afternoon with nowhere to be.
+            - list [ref=e65]:
+              - listitem [ref=e66]: Cafés
+              - listitem [ref=e67]: Town beach
+              - listitem [ref=e68]: Calm water
+      - listitem [ref=e69]:
+        - generic [ref=e70]:
+          - generic [ref=e71]: "02"
+          - generic [ref=e72]: 10 min
+          - generic [ref=e73]: Short drive or walk
+        - generic [ref=e74]:
+          - img "Playa Bonita" [ref=e76]
+          - generic [ref=e77]:
+            - heading "Playa Bonita" [level=2] [ref=e78]
+            - paragraph [ref=e79]: Widely considered the most beautiful beach in Las Terrenas. Calm turquoise water, white sand, and palm trees that lean into the wind. Boutique hotels and restaurants along the shore. The sunsets here are unhurried and spectacular — the kind that make you stay longer than planned.
+            - list [ref=e80]:
+              - listitem [ref=e81]: Swimming
+              - listitem [ref=e82]: Sunsets
+              - listitem [ref=e83]: Palms
+      - listitem [ref=e84]:
+        - generic [ref=e85]:
+          - generic [ref=e86]: "03"
+          - generic [ref=e87]: 15 min
+          - generic [ref=e88]: Short drive
+        - generic [ref=e89]:
+          - img "Playa Las Ballenas" [ref=e91]
+          - generic [ref=e92]:
+            - heading "Playa Las Ballenas" [level=2] [ref=e93]
+            - paragraph [ref=e94]: Quiet and windswept, with an end-of-the-world feeling that the other beaches lack. Best walked at golden hour, when the light turns amber and the beach is mostly empty.
+            - list [ref=e95]:
+              - listitem [ref=e96]: Walking
+              - listitem [ref=e97]: Golden hour
+              - listitem [ref=e98]: Quiet
+      - listitem [ref=e99]:
+        - generic [ref=e100]:
+          - generic [ref=e101]: "04"
+          - generic [ref=e102]: 20 min
+          - generic [ref=e103]: Short drive
+        - generic [ref=e104]:
+          - img "Playa Cosón" [ref=e106]
+          - generic [ref=e107]:
+            - heading "Playa Cosón" [level=2] [ref=e108]
+            - paragraph [ref=e109]: Seven kilometres of wild, undeveloped beach — one of the longest in the Dominican Republic. A favourite among surfers and anyone who wants to feel genuinely far from civilisation. Bring water.
+            - list [ref=e110]:
+              - listitem [ref=e111]: Surfing
+              - listitem [ref=e112]: Wild beach
+              - listitem [ref=e113]: Long stretch
+      - listitem [ref=e114]:
+        - generic [ref=e115]:
+          - generic [ref=e116]: "05"
+          - generic [ref=e117]: 35 min
+          - generic [ref=e118]: Drive required
+        - generic [ref=e119]:
+          - img "Playa Morón" [ref=e121]
+          - generic [ref=e122]:
+            - heading "Playa Morón" [level=2] [ref=e123]
+            - paragraph [ref=e124]: Remote and peaceful, with almost no crowds even in high season. Pristine water, dramatic cliffs nearby, and the kind of silence that's hard to find anywhere on the peninsula.
+            - list [ref=e125]:
+              - listitem [ref=e126]: Remote
+              - listitem [ref=e127]: Uncrowded
+              - listitem [ref=e128]: Pristine
+      - listitem [ref=e129]:
+        - generic [ref=e130]:
+          - generic [ref=e131]: "06"
+          - generic [ref=e132]: 40 min
+          - generic [ref=e133]: Drive required
+        - generic [ref=e134]:
+          - img "Playa Rincón" [ref=e136]
+          - generic [ref=e137]:
+            - heading "Playa Rincón" [level=2] [ref=e138]
+            - paragraph [ref=e139]: Consistently ranked among the best beaches in the Caribbean — and it earns it. A long arc of white sand backed by coconut palms, with a river at one end and clear Atlantic water. Worth every minute of the drive.
+            - list [ref=e140]:
+              - listitem [ref=e141]: Top-rated
+              - listitem [ref=e142]: Caribbean classic
+              - listitem [ref=e143]: River
+      - listitem [ref=e144]:
+        - generic [ref=e145]:
+          - generic [ref=e146]: "07"
+          - generic [ref=e147]: 1 hr + ferry
+          - generic [ref=e148]: Drive to Samaná, then boat
+        - generic [ref=e149]:
+          - img "Cayo Levantado" [ref=e151]
+          - generic [ref=e152]:
+            - heading "Cayo Levantado" [level=2] [ref=e153]
+            - paragraph [ref=e154]: A small island in Samaná Bay — also known as Bacardi Island after a commercial filmed here in the 1970s. Voted one of the world's top 50 beaches. White sand, palm trees leaning over the water, and turquoise you can see straight through to the bottom. Only reachable by ferry from Samaná town.
+            - list [ref=e155]:
+              - listitem [ref=e156]: Island
+              - listitem [ref=e157]: Ferry required
+              - listitem [ref=e158]: World top 50
+      - listitem [ref=e159]:
+        - generic [ref=e160]:
+          - generic [ref=e161]: "08"
+          - generic [ref=e162]: 45 min
+          - generic [ref=e163]: Drive required
+        - generic [ref=e164]:
+          - img "Las Galeras" [ref=e166]
+          - generic [ref=e167]:
+            - heading "Las Galeras" [level=2] [ref=e168]
+            - paragraph [ref=e169]: A small fishing village at the far tip of the Samaná Peninsula. The drive alone is worth it — winding roads through jungle and hills. Several small beaches within the village, each one more secluded than the last.
+            - list [ref=e170]:
+              - listitem [ref=e171]: Village
+              - listitem [ref=e172]: Secluded
+              - listitem [ref=e173]: Scenic drive
+  - generic [ref=e174]:
+    - generic:
+      - generic:
+        - generic:
+          - generic: Vita
+          - generic: Villa Concierge
+        - button "Close chat": ✕
+      - generic:
+        - generic: Hi, I'm Vita! Ask me anything about the property — availability, pricing, amenities, and more.
+      - generic:
+        - textbox "Ask about availability, pricing…"
+        - button "↑" [disabled]
+    - button "Chat with Vita" [ref=e175] [cursor=pointer]:
+      - generic [ref=e176]: Hi, I'm Vita — ask me anything!
+      - generic [ref=e177]: ✕

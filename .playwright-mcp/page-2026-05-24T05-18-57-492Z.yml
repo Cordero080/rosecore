@@ -1,0 +1,131 @@
+- generic [ref=e3]:
+  - text: ×
+  - navigation [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: RC
+      - generic [ref=e7]: Rosecore
+    - list [ref=e8]:
+      - listitem [ref=e9]:
+        - button "Home" [ref=e10] [cursor=pointer]:
+          - generic [ref=e12]: Home
+      - listitem [ref=e13]:
+        - button "About" [ref=e14] [cursor=pointer]:
+          - generic [ref=e16]: About
+      - listitem [ref=e17]:
+        - button "Amenities" [ref=e18] [cursor=pointer]:
+          - generic [ref=e20]: Amenities
+      - listitem [ref=e21]:
+        - button "Services" [disabled]:
+          - generic: Services
+      - listitem [ref=e22]:
+        - button "Entertainment" [disabled]:
+          - generic: Entertainment
+      - listitem [ref=e23]:
+        - button "Excursions" [ref=e24] [cursor=pointer]:
+          - generic [ref=e26]: Excursions
+      - listitem [ref=e27]:
+        - button "Beaches" [ref=e28] [cursor=pointer]:
+          - generic [ref=e30]: Beaches
+      - listitem [ref=e31]:
+        - button "Photo Gallery" [ref=e32] [cursor=pointer]:
+          - generic [ref=e34]: Photo Gallery
+      - listitem [ref=e35]:
+        - button "Contact" [ref=e36] [cursor=pointer]:
+          - generic [ref=e38]: Contact
+    - generic [ref=e39]:
+      - button "EN" [ref=e40] [cursor=pointer]
+      - button "ES" [ref=e41] [cursor=pointer]
+      - button "FR" [ref=e42] [cursor=pointer]
+  - generic [ref=e43]:
+    - generic [ref=e44]:
+      - generic [ref=e47]:
+        - paragraph [ref=e48]: Private Residence · Dominican Republic
+        - heading "La Dolce Vita" [level=1] [ref=e49]
+        - paragraph [ref=e50]:
+          - emphasis [ref=e51]: A place to exhale.
+        - generic [ref=e52]:
+          - button "Check Availability" [ref=e53] [cursor=pointer]
+          - button "Explore the Property" [ref=e54] [cursor=pointer]
+      - generic:
+        - img
+    - generic [ref=e55]:
+      - generic [ref=e57]:
+        - generic [ref=e58]:
+          - button "Previous month" [ref=e59] [cursor=pointer]: ‹
+          - generic [ref=e60]: May 2026
+          - button "Next month" [ref=e61] [cursor=pointer]: ›
+        - generic [ref=e62]:
+          - generic [ref=e63]: Sun
+          - generic [ref=e64]: Mon
+          - generic [ref=e65]: Tue
+          - generic [ref=e66]: Wed
+          - generic [ref=e67]: Thu
+          - generic [ref=e68]: Fri
+          - generic [ref=e69]: Sat
+        - generic [ref=e70]: Loading availability...
+        - generic [ref=e71]:
+          - generic [ref=e72]: Available
+          - generic [ref=e74]: Booked
+      - generic [ref=e76]:
+        - link "Reserve your stay" [ref=e77] [cursor=pointer]:
+          - /url: https://www.airbnb.com/rooms/37812103
+        - link "Leave a review" [ref=e78] [cursor=pointer]:
+          - /url: https://search.google.com/local/writereview?placeid=ChIJJUn42O37ro4R_FeKqU3BNEM
+    - paragraph [ref=e80]: A place where time slows, and the sea remembers your name.
+    - generic [ref=e83]:
+      - generic:
+        - generic [ref=e143]:
+          - button "Previous" [ref=e144] [cursor=pointer]: ←
+          - generic [ref=e145]:
+            - button "Photo 1" [ref=e146] [cursor=pointer]
+            - button "Photo 2" [ref=e147] [cursor=pointer]
+            - button "Photo 3" [ref=e148] [cursor=pointer]
+            - button "Photo 4" [ref=e149] [cursor=pointer]
+            - button "Photo 5" [ref=e150] [cursor=pointer]
+            - button "Photo 6" [ref=e151] [cursor=pointer]
+            - button "Photo 7" [ref=e152] [cursor=pointer]
+            - button "Photo 8" [ref=e153] [cursor=pointer]
+            - button "Photo 9" [ref=e154] [cursor=pointer]
+            - button "Photo 10" [ref=e155] [cursor=pointer]
+            - button "Photo 11" [ref=e156] [cursor=pointer]
+            - button "Photo 12" [ref=e157] [cursor=pointer]
+            - button "Photo 13" [ref=e158] [cursor=pointer]
+            - button "Photo 14" [ref=e159] [cursor=pointer]
+            - button "Photo 15" [ref=e160] [cursor=pointer]
+            - button "Photo 16" [ref=e161] [cursor=pointer]
+            - button "Photo 17" [ref=e162] [cursor=pointer]
+            - button "Photo 18" [ref=e163] [cursor=pointer]
+            - button "Photo 19" [ref=e164] [cursor=pointer]
+            - button "Photo 20" [ref=e165] [cursor=pointer]
+            - button "Photo 21" [ref=e166] [cursor=pointer]
+            - button "Photo 22" [ref=e167] [cursor=pointer]
+            - button "Photo 23" [ref=e168] [cursor=pointer]
+            - button "Photo 24" [ref=e169] [cursor=pointer]
+            - button "Photo 25" [ref=e170] [cursor=pointer]
+            - button "Photo 26" [ref=e171] [cursor=pointer]
+            - button "Photo 27" [ref=e172] [cursor=pointer]
+            - button "Photo 28" [ref=e173] [cursor=pointer]
+            - button "Photo 29" [ref=e174] [cursor=pointer]
+          - button "Next" [ref=e175] [cursor=pointer]: →
+        - paragraph: 1 / 29
+    - generic [ref=e176]:
+      - heading "Book your escape." [level=2] [ref=e177]
+      - link "Reserve your stay" [ref=e178] [cursor=pointer]:
+        - /url: https://www.airbnb.com/rooms/37812103
+      - link "Leave a review" [ref=e179] [cursor=pointer]:
+        - /url: https://search.google.com/local/writereview?placeid=ChIJJUn42O37ro4R_FeKqU3BNEM
+  - generic [ref=e180]:
+    - generic:
+      - generic:
+        - generic:
+          - generic: Vita
+          - generic: Villa Concierge
+        - button "Close chat": ✕
+      - generic:
+        - generic: Hi, I'm Vita! Ask me anything about the property — availability, pricing, amenities, and more.
+      - generic:
+        - textbox "Ask about availability, pricing…"
+        - button "↑" [disabled]
+    - button "Chat with Vita" [ref=e181] [cursor=pointer]:
+      - generic [ref=e182]: Hi, I'm Vita — ask me anything!
+      - generic [ref=e183]: ✕
