@@ -94,6 +94,66 @@
 
 
 // ── Hamburger button ─────────────────────────
+@keyframes hamburgerShimmer {
+  0%, 55%, 100% {
+    opacity: 0;
+    transform: rotate(0deg);
+  }
+  62% {
+    opacity: 0;
+    transform: rotate(0deg);
+  }
+  70% {
+    opacity: 1;
+    transform: rotate(130deg);
+  }
+  82% {
+    opacity: 0;
+    transform: rotate(230deg);
+  }
+}
+
+@keyframes hamburgerIdle {
+  0%, 55%, 100% {
+    transform: scale(1);
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+  }
+  65% {
+    transform: scale(1.07);
+    box-shadow:
+      0 6px 22px rgba(0, 0, 0, 0.13),
+      0 0 0 4px rgba(201, 168, 76, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+  }
+  80% {
+    transform: scale(0.97);
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.1),
+      0 0 0 1px rgba(201, 168, 76, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+  }
+}
+
+@keyframes goldRingPulse {
+  0%, 55%, 100% {
+    box-shadow: 0 0 6px rgba(201, 168, 76, 0.4);
+    border-color: #c9a84c;
+  }
+  65% {
+    box-shadow: 0 0 14px rgba(201, 168, 76, 0.8), 0 0 26px rgba(201, 168, 76, 0.25);
+    border-color: #e0be6a;
+  }
+  80% {
+    box-shadow: 0 0 4px rgba(201, 168, 76, 0.2);
+    border-color: #b89438;
+  }
+}
+
 .hamburger-btn {
   display: none;
   position: fixed;
@@ -122,12 +182,35 @@
     inset 0 -1px 0 rgba(0, 0, 0, 0.05);
 
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: hamburgerIdle 7s ease-in-out infinite;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle at 28% 28%,
+      rgba(255, 255, 255, 0.6) 0%,
+      rgba(255, 255, 255, 0.2) 38%,
+      transparent 68%
+    );
+    opacity: 0;
+    pointer-events: none;
+    animation: hamburgerShimmer 7s ease-in-out infinite;
+  }
 
   &:hover {
+    animation: none;
     transform: scale(1.05);
     box-shadow:
       0 6px 20px rgba(0, 0, 0, 0.13),
       inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+    &::before {
+      animation: none;
+      opacity: 0;
+    }
   }
 
   @include tablet {
@@ -165,6 +248,7 @@
     height: 22px;
     border: 1.5px solid #c9a84c;
     box-shadow: 0 0 6px rgba(201, 168, 76, 0.4);
+    animation: goldRingPulse 7s ease-in-out infinite;
   }
 
   // Inner ring
@@ -175,14 +259,27 @@
   }
 }
 
+// Stop idle animations when user hovers or menu opens
+.hamburger-btn:hover .hamburger-line:nth-child(2) {
+  animation: none;
+}
+
 // Open state — rings ripple outward, × fades in
 .hamburger-btn.is-active {
+  animation: none;
+
+  &::before {
+    animation: none;
+    opacity: 0;
+  }
+
   .hamburger-line:nth-child(1) {
     transform: scale(1.5);
     opacity: 0;
     transition-delay: 0.05s;
   }
   .hamburger-line:nth-child(2) {
+    animation: none;
     transform: scale(1.5);
     opacity: 0;
     transition-delay: 0s;
