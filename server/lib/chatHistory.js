@@ -20,13 +20,3 @@ export async function saveChat(sessionId, userMessage, botReply) {
     timestamp: new Date(),
   });
 }
-
-export async function getChatHistory(sessionId, limit = 20) {
-  const database = await getDB();
-  return database
-    .collection("conversations")
-    .find({ sessionId })
-    .sort({ timestamp: -1 })
-    .limit(limit)
-    .toArray();
-}

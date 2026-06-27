@@ -3,10 +3,7 @@
   "outputDirectory": "client/dist",
   "installCommand": "npm install",
   "framework": null,
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" },
-    { "source": "/((?!api/).*)", "destination": "/index.html" }
-  ],
+  "rewrites": [{ "source": "/((?!api/).*)", "destination": "/index.html" }],
   "functions": {
     "api/*.js": {
       "maxDuration": 10

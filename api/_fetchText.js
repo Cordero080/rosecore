@@ -1,19 +1,8 @@
-import { get as httpsGet } from "node:https";
-import ical from "node-ical";
-
-const ICAL_URL = process.env.ICAL_URL || "";
-
-const MOCK_BLOCKED = [
-  "2026-12-20",
-  "2026-12-21",
-  "2026-12-22",
-  "2026-12-26",
-  "2026-12-27",
-];
+const https = require("https");
 
 function fetchText(url) {
   return new Promise((resolve, reject) => {
-    const req = httpsGet(
+    const req = https.get(
       url,
       {
         headers: {
@@ -46,21 +35,4 @@ function fetchText(url) {
   });
 }
 
-export async function getBlockedDates() {
-  if (!ICAL_URL) return MOCK_BLOCKED;
-
-  const text = await fetchText(ICAL_URL);
-  const events = ical.sync.parseICS(text);
-  const blocked = [];
-
-  for (const event of Object.values(events)) {
-    if (event.type !== "VEVENT") continue;
-    const start = new Date(event.start);
-    const end = new Date(event.end);
-    for (let d = new Date(start); d < end; d.setDate(d.getDate() + 1)) {
-      blocked.push(d.toISOString().split("T")[0]);
-    }
-  }
-
-  return blocked;
-}
+module.exports = { fetchText };

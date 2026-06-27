@@ -62,7 +62,6 @@ export default function ChatWidget() {
           sessionId:
             window.__chatSessionId ||
             (window.__chatSessionId = crypto.randomUUID()),
-          lang: i18n.resolvedLanguage || "en",
         }),
       });
       const data = await res.json();
