@@ -349,6 +349,12 @@
     pointer-events: auto;
   }
 
+  /* Closed panel must not absorb taps — otherwise it invisibly covers the
+     mobile nav and page content, blocking clicks. */
+  .chat-panel:not(.chat-panel--open) {
+    pointer-events: none;
+  }
+
   /* Panel centered absolutely within the full-screen widget */
   .chat-panel {
     position: absolute;

@@ -42,14 +42,17 @@
     visibility: visible;
     pointer-events: auto;
     width: 220px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    border-radius: 0 0 20px 0;
+    overflow: hidden; // required for border-radius to visibly clip on mobile
+    border-radius: 0 0 100% 0 / 0 0 60% 0;
   }
 
-  // Collapse the large desktop curve padding so all items fit
+  // Scroll the list internally instead of the whole sidenav so the curved
+  // border-radius on .sidenav still clips the background reliably
   .sidenav.is-open .sidenav-list {
-    padding-bottom: 80px;
+    flex: 1 1 auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 24px;
   }
 
   // Larger tap targets and label size on mobile
@@ -403,8 +406,17 @@
 
 // ── Lang switcher — mobile ────────────────────
 @include tablet {
+  // Move out of absolute positioning so it doesn't overlay the last nav items.
+  // Column layout keeps buttons on the left, clear of the bottom-right curve.
   .sidenav.is-open .sidenav-lang {
-    left: 12px;
+    position: static;
+    left: auto;
+    bottom: auto;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 12px 20px;
+    margin-top: auto;
+    align-self: flex-start;
   }
 
   .sidenav.is-open .sidenav-lang-btn {
