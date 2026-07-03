@@ -11,7 +11,9 @@
     "contact": "Contacto"
   },
   "home": {
-    "heroEyebrow": "Residencia Privada · República Dominicana",
+    "heroEyebrowApt": "Apto. No. 2",
+    "heroEyebrowMeta": "República Dominicana",
+    "heroEyebrow": "Apto. No. 2 · Frente al Mar · República Dominicana",
     "heroTagline": "Un lugar para respirar.",
     "checkAvailability": "Ver Disponibilidad",
     "exploreProperty": "Explorar la Propiedad",
@@ -230,29 +232,60 @@
     "detailsLabel": "Detalles",
     "houseRulesTitle": "Reglas de la casa",
     "stats": [
-      { "value": "2",    "label": "Habitaciones"  },
-      { "value": "2",    "label": "Baños"         },
-      { "value": "4",    "label": "Huéspedes máx" },
-      { "value": "$130", "label": "Por noche"     }
+      { "value": "2", "label": "Habitaciones" },
+      { "value": "2", "label": "Baños" },
+      { "value": "4", "label": "Huéspedes máx" },
+      { "value": "$130", "label": "Por noche" }
     ],
     "amenities": [
-      { "name": "Piscina Privada",      "detail": "Exclusiva para huéspedes. Sombreada por palmeras, abierta todo el año."         },
-      { "name": "Frente al mar",        "detail": "A 5 minutos a pie de Playa Bonita — agua turquesa, arena blanca."              },
-      { "name": "Aire Acondicionado",   "detail": "Aire central en todas las habitaciones."                                       },
-      { "name": "Cocina Completa",      "detail": "Totalmente equipada. Cocina en casa o abastécete en el mercado local."         },
-      { "name": "WiFi de Alta Velocidad","detail": "Conexión confiable para trabajo remoto o streaming."                          },
-      { "name": "Estacionamiento",      "detail": "Estacionamiento en el lugar disponible para huéspedes con vehículo."          }
+      {
+        "name": "Piscina Privada",
+        "detail": "Exclusiva para huéspedes. Sombreada por palmeras, abierta todo el año."
+      },
+      {
+        "name": "Frente al mar",
+        "detail": "A 5 minutos a pie de Playa Bonita — agua turquesa, arena blanca."
+      },
+      {
+        "name": "Aire Acondicionado",
+        "detail": "Aire central en todas las habitaciones."
+      },
+      {
+        "name": "Cocina Completa",
+        "detail": "Totalmente equipada. Cocina en casa o abastécete en el mercado local."
+      },
+      {
+        "name": "WiFi de Alta Velocidad",
+        "detail": "Conexión confiable para trabajo remoto o streaming."
+      },
+      {
+        "name": "Estacionamiento",
+        "detail": "Estacionamiento en el lugar disponible para huéspedes con vehículo."
+      }
     ],
     "rules": [
-      { "label": "Check-in",  "value": "3:00 PM"      },
-      { "label": "Check-out", "value": "10:00 AM"     },
-      { "label": "Huéspedes", "value": "Hasta 4"      },
-      { "label": "Mascotas",  "value": "No permitidas"   }
+      { "label": "Check-in", "value": "3:00 PM" },
+      { "label": "Check-out", "value": "10:00 AM" },
+      { "label": "Huéspedes", "value": "Hasta 4" },
+      { "label": "Mascotas", "value": "No permitidas" }
     ]
   },
   "calendar": {
     "days": ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
-    "months": ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+    "months": [
+      "Enero",
+      "Febrero",
+      "Marzo",
+      "Abril",
+      "Mayo",
+      "Junio",
+      "Julio",
+      "Agosto",
+      "Septiembre",
+      "Octubre",
+      "Noviembre",
+      "Diciembre"
+    ],
     "available": "Disponible",
     "booked": "Reservado",
     "loading": "Cargando disponibilidad..."

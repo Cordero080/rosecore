@@ -1,13 +1,15 @@
-import { useNavigate } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
-import './Hero.css'
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import "./Hero.css";
 
 export default function Hero() {
-  const navigate = useNavigate()
-  const { t } = useTranslation()
+  const navigate = useNavigate();
+  const { t } = useTranslation();
 
   function scrollToCalendar() {
-    document.getElementById('availability')?.scrollIntoView({ behavior: 'smooth' })
+    document
+      .getElementById("availability")
+      ?.scrollIntoView({ behavior: "smooth" });
   }
 
   return (
@@ -17,30 +19,44 @@ export default function Hero() {
       </div>
 
       <div className="hero-content">
-        <p className="hero-eyebrow">{t('home.heroEyebrow')}</p>
+        <p className="hero-eyebrow">
+          <span className="hero-eyebrow-apt">{t("home.heroEyebrowApt")}</span>
+          <span className="hero-eyebrow-sep"> · </span>
+          <span className="hero-eyebrow-meta">{t("home.heroEyebrowMeta")}</span>
+        </p>
 
-        <h1 className="hero-headline">
-          La Dolce Vita
-        </h1>
+        <h1 className="hero-headline">La Dolce Vita</h1>
 
-        <p className="hero-tagline"><em>{t('home.heroTagline')}</em></p>
+        <p className="hero-tagline">
+          <em>{t("home.heroTagline")}</em>
+        </p>
 
         <div className="hero-actions">
-          <button className="hero-btn hero-btn--primary" onClick={scrollToCalendar}>
-            {t('home.checkAvailability')}
+          <button
+            className="hero-btn hero-btn--primary"
+            onClick={scrollToCalendar}
+          >
+            {t("home.checkAvailability")}
           </button>
-          <button className="hero-btn hero-btn--ghost" onClick={() => navigate('/gallery')}>
-            {t('home.exploreProperty')}
+          <button
+            className="hero-btn hero-btn--ghost"
+            onClick={() => navigate("/gallery")}
+          >
+            {t("home.exploreProperty")}
           </button>
         </div>
       </div>
 
       {/* Curved tongue extending from bottom-left of hero into the next section */}
       <div className="hero-tongue" aria-hidden="true">
-        <svg viewBox="0 0 690 130" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          viewBox="0 0 690 130"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <defs>
             <linearGradient id="tongue-fade" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%"   stopColor="#f5f7fa50" stopOpacity="1"   />
+              <stop offset="0%" stopColor="#f5f7fa50" stopOpacity="1" />
               <stop offset="100%" stopColor="#f5f7fa61" stopOpacity="0.6" />
             </linearGradient>
           </defs>
@@ -51,5 +67,5 @@ export default function Hero() {
         </svg>
       </div>
     </section>
-  )
+  );
 }

@@ -81,6 +81,19 @@
   margin-bottom: var(--space-lg);
 }
 
+.hero-eyebrow-apt {
+  color: #a07828;
+  font-weight: 600;
+}
+
+.hero-eyebrow-sep {
+  color: var(--text-muted);
+}
+
+.hero-eyebrow-meta {
+  white-space: nowrap;
+}
+
 .hero-headline {
   font-family: var(--font-display);
   font-weight: 400;

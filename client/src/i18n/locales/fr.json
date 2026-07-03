@@ -11,7 +11,9 @@
     "contact": "Contact"
   },
   "home": {
-    "heroEyebrow": "Résidence Privée · République Dominicaine",
+    "heroEyebrowApt": "Apt. No. 2",
+    "heroEyebrowMeta": "République Dominicaine",
+    "heroEyebrow": "Apt. No. 2 · Bord de Mer · République Dominicaine",
     "heroTagline": "Un endroit pour souffler.",
     "checkAvailability": "Vérifier les Disponibilités",
     "exploreProperty": "Explorer la Résidence",
@@ -230,29 +232,60 @@
     "detailsLabel": "Détails",
     "houseRulesTitle": "Règles de la maison",
     "stats": [
-      { "value": "2",    "label": "Chambres"      },
-      { "value": "2",    "label": "Salles de bain" },
-      { "value": "4",    "label": "Voyageurs max"  },
-      { "value": "$130", "label": "Par nuit"       }
+      { "value": "2", "label": "Chambres" },
+      { "value": "2", "label": "Salles de bain" },
+      { "value": "4", "label": "Voyageurs max" },
+      { "value": "$130", "label": "Par nuit" }
     ],
     "amenities": [
-      { "name": "Piscine Privée",       "detail": "Réservée aux voyageurs. Ombragée par des palmiers, ouverte toute l'année."    },
-      { "name": "Vue sur la mer",       "detail": "À 5 minutes à pied de Playa Bonita — eau turquoise, sable blanc."            },
-      { "name": "Climatisation",        "detail": "Climatisation centrale dans toutes les pièces."                               },
-      { "name": "Cuisine Équipée",      "detail": "Entièrement équipée. Cuisinez chez vous ou faites le marché local."          },
-      { "name": "WiFi Haut Débit",      "detail": "Connexion fiable pour le télétravail ou le streaming."                       },
-      { "name": "Parking Privé",        "detail": "Parking sur place disponible pour les voyageurs avec un véhicule."           }
+      {
+        "name": "Piscine Privée",
+        "detail": "Réservée aux voyageurs. Ombragée par des palmiers, ouverte toute l'année."
+      },
+      {
+        "name": "Vue sur la mer",
+        "detail": "À 5 minutes à pied de Playa Bonita — eau turquoise, sable blanc."
+      },
+      {
+        "name": "Climatisation",
+        "detail": "Climatisation centrale dans toutes les pièces."
+      },
+      {
+        "name": "Cuisine Équipée",
+        "detail": "Entièrement équipée. Cuisinez chez vous ou faites le marché local."
+      },
+      {
+        "name": "WiFi Haut Débit",
+        "detail": "Connexion fiable pour le télétravail ou le streaming."
+      },
+      {
+        "name": "Parking Privé",
+        "detail": "Parking sur place disponible pour les voyageurs avec un véhicule."
+      }
     ],
     "rules": [
-      { "label": "Check-in",   "value": "15h00"       },
-      { "label": "Check-out",  "value": "10h00"       },
-      { "label": "Voyageurs",  "value": "Jusqu'à 4"   },
-      { "label": "Animaux",    "value": "Non autorisés"    }
+      { "label": "Check-in", "value": "15h00" },
+      { "label": "Check-out", "value": "10h00" },
+      { "label": "Voyageurs", "value": "Jusqu'à 4" },
+      { "label": "Animaux", "value": "Non autorisés" }
     ]
   },
   "calendar": {
     "days": ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"],
-    "months": ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
+    "months": [
+      "Janvier",
+      "Février",
+      "Mars",
+      "Avril",
+      "Mai",
+      "Juin",
+      "Juillet",
+      "Août",
+      "Septembre",
+      "Octobre",
+      "Novembre",
+      "Décembre"
+    ],
     "available": "Disponible",
     "booked": "Réservé",
     "loading": "Chargement des disponibilités..."

@@ -11,7 +11,9 @@
     "contact": "Contact"
   },
   "home": {
-    "heroEyebrow": "Private Residence · Dominican Republic",
+    "heroEyebrowApt": "Apt. No. 2",
+    "heroEyebrowMeta": "Dominican Republic",
+    "heroEyebrow": "Apt. No. 2 · Beachfront · Dominican Republic",
     "heroTagline": "A place to exhale.",
     "checkAvailability": "Check Availability",
     "exploreProperty": "Explore the Property",
@@ -230,29 +232,60 @@
     "detailsLabel": "Details",
     "houseRulesTitle": "House rules",
     "stats": [
-      { "value": "2",    "label": "Bedrooms"   },
-      { "value": "2",    "label": "Bathrooms"  },
-      { "value": "4",    "label": "Guests max" },
-      { "value": "$130", "label": "Per night"  }
+      { "value": "2", "label": "Bedrooms" },
+      { "value": "2", "label": "Bathrooms" },
+      { "value": "4", "label": "Guests max" },
+      { "value": "$130", "label": "Per night" }
     ],
     "amenities": [
-      { "name": "Private Pool",     "detail": "Exclusive to guests. Palm-shaded, open year-round."             },
-      { "name": "Beachfront",       "detail": "5-minute walk to Playa Bonita — turquoise water, white sand."  },
-      { "name": "Air Conditioning", "detail": "Central AC throughout all rooms."                              },
-      { "name": "Full Kitchen",     "detail": "Fully equipped. Cook at home or stock up at the local market." },
-      { "name": "High-Speed WiFi",  "detail": "Reliable connection for remote work or streaming."             },
-      { "name": "Private Parking",  "detail": "On-site parking available for guests with a vehicle."         }
+      {
+        "name": "Private Pool",
+        "detail": "Exclusive to guests. Palm-shaded, open year-round."
+      },
+      {
+        "name": "Beachfront",
+        "detail": "5-minute walk to Playa Bonita — turquoise water, white sand."
+      },
+      {
+        "name": "Air Conditioning",
+        "detail": "Central AC throughout all rooms."
+      },
+      {
+        "name": "Full Kitchen",
+        "detail": "Fully equipped. Cook at home or stock up at the local market."
+      },
+      {
+        "name": "High-Speed WiFi",
+        "detail": "Reliable connection for remote work or streaming."
+      },
+      {
+        "name": "Private Parking",
+        "detail": "On-site parking available for guests with a vehicle."
+      }
     ],
     "rules": [
-      { "label": "Check-in",  "value": "3:00 PM"  },
+      { "label": "Check-in", "value": "3:00 PM" },
       { "label": "Check-out", "value": "10:00 AM" },
-      { "label": "Guests",    "value": "Up to 4"  },
-      { "label": "Pets",      "value": "Not allowed"  }
+      { "label": "Guests", "value": "Up to 4" },
+      { "label": "Pets", "value": "Not allowed" }
     ]
   },
   "calendar": {
     "days": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-    "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    "months": [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
     "available": "Available",
     "booked": "Booked",
     "loading": "Loading availability..."

@@ -117,41 +117,40 @@
 }
 
 @keyframes hamburgerIdle {
-  0%, 55%, 100% {
+  0%, 100% {
     transform: scale(1);
     box-shadow:
       0 4px 16px rgba(0, 0, 0, 0.1),
       inset 0 1px 0 rgba(255, 255, 255, 0.9),
       inset 0 -1px 0 rgba(0, 0, 0, 0.05);
   }
-  65% {
-    transform: scale(1.07);
+  40% {
+    transform: scale(1.13);
     box-shadow:
-      0 6px 22px rgba(0, 0, 0, 0.13),
-      0 0 0 4px rgba(201, 168, 76, 0.18),
+      0 8px 28px rgba(0, 0, 0, 0.16),
+      0 0 0 6px rgba(201, 168, 76, 0.22),
       inset 0 1px 0 rgba(255, 255, 255, 0.9),
       inset 0 -1px 0 rgba(0, 0, 0, 0.05);
   }
-  80% {
-    transform: scale(0.97);
+  55% {
+    transform: scale(0.95);
     box-shadow:
       0 4px 16px rgba(0, 0, 0, 0.1),
-      0 0 0 1px rgba(201, 168, 76, 0.05),
       inset 0 1px 0 rgba(255, 255, 255, 0.9),
       inset 0 -1px 0 rgba(0, 0, 0, 0.05);
   }
 }
 
 @keyframes goldRingPulse {
-  0%, 55%, 100% {
+  0%, 100% {
     box-shadow: 0 0 6px rgba(201, 168, 76, 0.4);
     border-color: #c9a84c;
   }
-  65% {
-    box-shadow: 0 0 14px rgba(201, 168, 76, 0.8), 0 0 26px rgba(201, 168, 76, 0.25);
-    border-color: #e0be6a;
+  40% {
+    box-shadow: 0 0 18px rgba(201, 168, 76, 1), 0 0 36px rgba(201, 168, 76, 0.4);
+    border-color: #e8c96a;
   }
-  80% {
+  55% {
     box-shadow: 0 0 4px rgba(201, 168, 76, 0.2);
     border-color: #b89438;
   }
@@ -185,7 +184,7 @@
     inset 0 -1px 0 rgba(0, 0, 0, 0.05);
 
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  animation: hamburgerIdle 7s ease-in-out infinite;
+  animation: hamburgerIdle 3s ease-in-out infinite;
 
   &::before {
     content: '';
@@ -200,7 +199,7 @@
     );
     opacity: 0;
     pointer-events: none;
-    animation: hamburgerShimmer 7s ease-in-out infinite;
+    animation: hamburgerShimmer 3s ease-in-out infinite;
   }
 
   &:hover {
@@ -251,7 +250,7 @@
     height: 22px;
     border: 1.5px solid #c9a84c;
     box-shadow: 0 0 6px rgba(201, 168, 76, 0.4);
-    animation: goldRingPulse 7s ease-in-out infinite;
+    animation: goldRingPulse 3s ease-in-out infinite;
   }
 
   // Inner ring
