@@ -3,9 +3,7 @@
     "home": "Accueil",
     "about": "La Résidence",
     "amenities": "Équipements",
-    "services": "Services",
     "entertainment": "Loisirs",
-    "excursions": "Excursions",
     "beaches": "Plages",
     "gallery": "Galerie Photos",
     "contact": "Contact"
@@ -30,7 +28,7 @@
     "interludeTitle": "Entre la jungle et la mer.",
     "interludeBody": "Las Terrenas est située sur la côte nord de la péninsule de Samaná — un endroit qui a mystérieusement échappé au développement touristique massif qui a transformé le reste de l'île. Les plages sont longues et tranquilles. Le village est petit et d'esprit européen. La jungle recouvre la péninsule jusqu'au bord de l'eau.",
     "escapeTitle": "Un coin privé des Caraïbes.",
-    "escapeBody": "La Dolce Vita est un appartement de deux chambres dans une résidence calme à cinq minutes de la plage. Piscine privée, cuisine équipée, terrasse extérieure. Conçu pour ceux qui voyagent pour vraiment être quelque part.",
+    "escapeBody": "La Dolce Vita est un appartement de deux chambres climatisées, pouvant accueillir 4 à 6 personnes, dans une résidence calme à cinq minutes de la plage. Piscine privée, cuisine équipée, terrasse extérieure. Conçu pour ceux qui voyagent pour vraiment être quelque part.",
     "escapeLink": "Voir la résidence"
   },
   "about": {
@@ -38,7 +36,7 @@
     "titleAccent": "Dolce",
     "tagline": "Un endroit pour souffler.",
     "intro1": "Une résidence privée de deux chambres sur la péninsule de Samaná, à deux pas de l'une des plus belles plages de la République Dominicaine. L'appartement se trouve sur l'Ave 27 de Febrero à Las Terrenas — un village qui ressemble au sud de la France transplanté dans les Caraïbes.",
-    "intro2": "Deux chambres, deux salles de bain privées, une cuisine équipée et une piscine privée à l'ombre des palmiers. Assez confortable pour une famille. Assez calme pour deux. Le genre d'endroit où une semaine devient une conversation plus longue.",
+    "intro2": "Deux chambres climatisées, deux salles de bain privées, une cuisine équipée et une piscine privée à l'ombre des palmiers. Peut accueillir 4 à 6 personnes confortablement. Assez calme pour deux. Le genre d'endroit où une semaine devient une conversation plus longue.",
     "address": "Ave 27 de Febrero, Appartement 2 · Las Terrenas, Samaná · République Dominicaine",
     "mapsLink": "Ouvrir dans Google Maps ↗",
     "recognitionLabel": "Distinctions",
@@ -118,70 +116,6 @@
       }
     ]
   },
-  "excursions": {
-    "eyebrow": "Las Terrenas · Samaná · République Dominicaine",
-    "title": "La",
-    "titleGold": "Péninsule",
-    "subtitle": "Huit excursions qui valent le déplacement.",
-    "excursions": [
-      {
-        "name": "Observation des Baleines à Bosse",
-        "duration": "Demi-journée",
-        "season": "Jan – mars seulement",
-        "body": "Chaque année, des milliers de baleines à bosse migrent vers la baie de Samaná pour se reproduire — l'une des concentrations les plus élevées de la planète. Vous les entendrez avant de les voir. Un bateau avec guide local vous emmène assez près pour les voir sauter, et parfois assez près pour sentir les embruns.",
-        "tags": ["Saisonnier", "Faune", "Tour en bateau"]
-      },
-      {
-        "name": "Salto El Limón",
-        "duration": "Demi-journée",
-        "season": "Toute l'année",
-        "body": "Une cascade de 40 mètres au cœur des collines de la jungle de Samaná, accessible à cheval sur un sentier à travers des bananiers et des bambous. Le bassin à la base est froid, clair et complètement caché du monde. À environ 30 minutes de la résidence.",
-        "tags": ["Cascade", "Équitation", "Jungle"]
-      },
-      {
-        "name": "Parc National Los Haitises",
-        "duration": "Journée entière",
-        "season": "Toute l'année",
-        "body": "Une vaste réserve naturelle de mangroves, de formations karstiques calcaires et de grottes ornées de pétroglyphes taïnos. Plus de 230 espèces d'oiseaux, dont plusieurs endémiques à la République Dominicaine. Accessible en bateau à travers des canaux de forêt verte ancestrale.",
-        "tags": ["Parc national", "Tour en bateau", "Faune", "Histoire"]
-      },
-      {
-        "name": "Excursion à Playa Rincón",
-        "duration": "Journée entière",
-        "season": "Toute l'année",
-        "body": "Régulièrement classée parmi les meilleures plages des Caraïbes — et difficile d'accès, c'est exactement pourquoi elle reste préservée. Trois kilomètres de sable blanc, une rivière à une extrémité, des cocotiers tout au long. Prenez le bateau pour l'expérience d'arrivée complète.",
-        "tags": ["Plage", "Bateau ou voiture", "Top-rated"]
-      },
-      {
-        "name": "Snorkeling et Charter Bateau Privé",
-        "duration": "Demi-journée ou journée",
-        "season": "Toute l'année",
-        "body": "Louez un bateau local et choisissez votre route — criques cachées, récifs peu profonds et plages accessibles uniquement par la mer. L'eau au large de la péninsule de Samaná est suffisamment claire pour voir des formations coralliennes et des tortues marines depuis la surface.",
-        "tags": ["Snorkeling", "Bateau", "Privé", "Tortues"]
-      },
-      {
-        "name": "Tour en Quad et Plantation de Café",
-        "duration": "Demi-journée",
-        "season": "Toute l'année",
-        "body": "Parcourez en quad les sentiers de la jungle dans les collines au-dessus de Las Terrenas, avec des arrêts dans des fermes locales où poussent cacao, café et fruits tropicaux. Vous goûterez des choses directement sur l'arbre.",
-        "tags": ["Quad", "Café", "Jungle", "Culture locale"]
-      },
-      {
-        "name": "Tyrolienne dans la Forêt Tropicale",
-        "duration": "Demi-journée",
-        "season": "Toute l'année",
-        "body": "Plus de deux kilomètres de câbles de tyrolienne à travers la canopée au-dessus de Las Terrenas. Les vues s'ouvrent entre les arbres — l'océan d'un côté, les montagnes de l'autre. Une bonne option pour les familles ou quiconque veut des sensations fortes sans aller loin.",
-        "tags": ["Tyrolienne", "Adrénaline", "Canopée"]
-      },
-      {
-        "name": "Kitesurf et Cours de Surf",
-        "duration": "Demi-journée",
-        "season": "Toute l'année",
-        "body": "Playa Cosón et El Portillo ont un vent et des vagues constants, avec des instructeurs locaux pour tous les niveaux. Les écoles de kitesurf fonctionnent toute l'année avec location de matériel incluse. Si vous n'avez jamais essayé, ces plages vides et spacieuses sont le meilleur endroit pour commencer.",
-        "tags": ["Kitesurf", "Surf", "Cours", "Plage"]
-      }
-    ]
-  },
   "gallery": {
     "eyebrow": "La Dolce Vita · Las Terrenas",
     "title": "La",
@@ -234,7 +168,7 @@
     "stats": [
       { "value": "2", "label": "Chambres" },
       { "value": "2", "label": "Salles de bain" },
-      { "value": "4", "label": "Voyageurs max" },
+      { "value": "4-6", "label": "Voyageurs" },
       { "value": "$130", "label": "Par nuit" }
     ],
     "amenities": [
@@ -248,7 +182,7 @@
       },
       {
         "name": "Climatisation",
-        "detail": "Climatisation centrale dans toutes les pièces."
+        "detail": "Climatisation centrale partout, y compris dans les deux chambres."
       },
       {
         "name": "Cuisine Équipée",
@@ -265,8 +199,8 @@
     ],
     "rules": [
       { "label": "Check-in", "value": "15h00" },
-      { "label": "Check-out", "value": "10h00" },
-      { "label": "Voyageurs", "value": "Jusqu'à 4" },
+      { "label": "Check-out", "value": "12h00" },
+      { "label": "Voyageurs", "value": "4-6" },
       { "label": "Animaux", "value": "Non autorisés" }
     ]
   },

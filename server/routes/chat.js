@@ -366,9 +366,9 @@ const responses = {
       "heure d'arrivée",
     ],
     reply: {
-      en: "Check-in is at 3:00 PM and check-out is at 10:00 AM.",
-      es: "El check-in es a las 3:00 PM y el check-out es a las 10:00 AM.",
-      fr: "L'arrivée est à 15h00 et le départ est à 10h00.",
+      en: "Check-in is at 3:00 PM and check-out is at 12:00 PM.",
+      es: "El check-in es a las 3:00 PM y el check-out es a las 12:00 PM.",
+      fr: "L'arrivée est à 15h00 et le départ est à 12h00.",
     },
   },
   pets: {
@@ -456,9 +456,9 @@ const responses = {
       "capacité",
     ],
     reply: {
-      en: "The residence has two bedrooms and two bathrooms. The master bedroom has a private en-suite bathroom. The second bedroom has two twin beds with its own bathroom. There's also a comfortable living room and a full kitchen.",
-      es: "La residencia cuenta con dos habitaciones y dos baños. La habitación principal tiene baño privado en suite. La segunda habitación tiene dos camas individuales con su propio baño. También hay una sala de estar y cocina completa.",
-      fr: "La résidence dispose de deux chambres et deux salles de bain. La chambre principale dispose d'une salle de bain privative. La deuxième chambre a deux lits simples avec sa propre salle de bain. Il y a aussi un salon confortable et une cuisine complète.",
+      en: "The residence has two air-conditioned bedrooms and two bathrooms, sleeping 4–6 guests. The master bedroom has a private en-suite bathroom. The second bedroom has two twin beds with its own bathroom. There's also a comfortable living room and a full kitchen.",
+      es: "La residencia cuenta con dos habitaciones con aire acondicionado y dos baños, con capacidad para 4–6 huéspedes. La habitación principal tiene baño privado en suite. La segunda habitación tiene dos camas individuales con su propio baño. También hay una sala de estar y cocina completa.",
+      fr: "La résidence dispose de deux chambres climatisées et deux salles de bain, pouvant accueillir 4 à 6 personnes. La chambre principale dispose d'une salle de bain privative. La deuxième chambre a deux lits simples avec sa propre salle de bain. Il y a aussi un salon confortable et une cuisine complète.",
     },
   },
   contact: {
