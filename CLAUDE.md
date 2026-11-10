@@ -33,7 +33,7 @@ There are two separate implementations of the API:
 |---|---|---|
 | **Used when** | Local dev (`npm run dev`) | Production (Vercel) |
 | **Entry** | `server/index.js` → Express router | `api/chat.js`, `api/ical.js` as serverless handlers |
-| **Chat logic** | keyword → date parse → OpenAI (property data from Google Sheets via `server/lib/getSheetData.js`) | All property data, local knowledge, and the personality prompt are **hardcoded** in `api/chat.js` — no Sheets integration |
+| **Chat logic** | keyword → date parse → OpenAI. Property data comes from Google Sheets via `api/_getSheetData.js` | Same — `api/chat.js` reads the Sheet through the same `api/_getSheetData.js`. Local knowledge and the personality prompt stay hardcoded on both sides (2026-11-09: one shared reader, dev/prod no longer diverge) |
 
 **When changing chat or calendar behavior, you must update both** `server/routes/chat.js` and `api/chat.js` (or `server/routes/ical.js` and `api/ical.js`) to keep local and production in sync.
 

@@ -2,6 +2,7 @@ const { fetchText } = require("./_fetchText");
 const ical = require("node-ical");
 const OpenAI = require("openai");
 const { MongoClient } = require("mongodb");
+const { getSheetData } = require("./_getSheetData");
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 const ICAL_URL = process.env.ICAL_URL || "";
@@ -581,7 +582,7 @@ const fallback = {
 const LANG_INSTRUCTION =
   "Detect the language the guest is writing in and respond in that exact language — Spanish if they write Spanish, French if French, English if English. Follow their language naturally even if it changes mid-conversation. Never respond in a different language than what the guest is currently using.";
 
-function buildPrompt(availabilitySection) {
+function buildPrompt(availabilitySection, propertyData) {
   return `${LANG_INSTRUCTION}
 
 You are the concierge for "La Dolce Vita", a luxury vacation rental in Las Terrenas, Dominican Republic.
@@ -604,7 +605,7 @@ RULES:
 - Never say "as a concierge" or "as an AI."
 - When a guest wants to book or reserve, always include: https://www.airbnb.com/rooms/37812103
 
-PROPERTY:
+PROPERTY (baseline — always true):
 - 2 air-conditioned bedrooms, 2 bathrooms. Sleeps 4–6 guests. Master bedroom has private en-suite. Second bedroom has two twin beds with its own bathroom.
 - Private pool, full kitchen, high-speed WiFi, washer/dryer, central AC (including both bedrooms), parking.
 - Nightly rates start at $130/night. Weekend and holiday rates may vary.
@@ -613,6 +614,10 @@ PROPERTY:
 - Located at Ave 27 de Febrero, Las Terrenas, Samaná, Dominican Republic.
 - 5 minutes from the beach, 10 minutes from town center.
 - Contact: +1 (718) 759-8441 or +1 (917) 674-6543 (phone/WhatsApp).
+
+PROPERTY (live from the owner's sheet — if anything here conflicts with the
+baseline above, this wins; ignore any line that says N/A):
+${propertyData}
 
 LOCAL KNOWLEDGE:
 
@@ -786,11 +791,23 @@ module.exports = async function handler(req, res) {
   // ── OpenAI fallback ───────────────────────────────────────────────────────
   try {
     const availabilitySection = await getAvailabilitySection();
+
+    // Go read the sheet. If Google is down or the settings are missing,
+    // don't take the whole chat down — use a short note instead.
+    let propertyData = "Property details unavailable — ask the host.";
+    try {
+      propertyData = await getSheetData();
+    } catch (err) {
+      console.error("Sheet read failed:", err.message);
+    }
     const completion = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       max_tokens: 400,
       messages: [
-        { role: "system", content: buildPrompt(availabilitySection) },
+        {
+          role: "system",
+          content: buildPrompt(availabilitySection, propertyData),
+        },
         { role: "user", content: message },
       ],
     });

@@ -1,5 +1,6 @@
 import OpenAI from "openai";
-import { getSheetData } from "./getSheetData.js";
+// One shared reader, living in api/ — the only folder both sides can reach.
+import { getSheetData } from "../../api/_getSheetData.js";
 import { getBlockedDates } from "./getBlockedDates.js";
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
